@@ -4,6 +4,9 @@ import { Routes, RouterModule } from '@angular/router';
 import { AppComponent } from './app.component';
 import { WelcomeComponent } from './shared/welcome/welcome.component';
 import { NotfoundComponent } from './shared/notfound/notfound.component';
+import { AngajatiModule } from './angajati/angajati.module';
+import { FirmeModule } from './firme/firme.module';
+import { CandidatiModule } from './candidati/candidati.module';
 
 const routes: Routes = [
   { path: 'welcome', component: WelcomeComponent },
@@ -20,6 +23,9 @@ const routes: Routes = [
   ],
   imports: [
     BrowserModule,
+    AngajatiModule,
+    FirmeModule,
+    CandidatiModule,
     RouterModule.forRoot(routes)
   ],
   providers: [],
