@@ -1,14 +1,12 @@
 import { Injectable } from '@angular/core';
-import { CanActivate, ActivatedRouteSnapshot, RouterStateSnapshot, UrlTree, Router } from '@angular/router';
+import { CanActivate, Router, ActivatedRouteSnapshot, RouterStateSnapshot, UrlTree } from '@angular/router';
 import { Observable } from 'rxjs';
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
-
 
 @Injectable({
   providedIn: 'root'
 })
-export class FirmeDetailsGuard implements CanActivate {
-
+export class CandidatiDetailsGuard implements CanActivate {
   constructor(private router: Router, public dialog: MatDialog) { }
 
   canActivate(
@@ -25,10 +23,10 @@ export class FirmeDetailsGuard implements CanActivate {
       //  this.dialog.open(FirmeListComponent, dialogConfig);
        //create a nicer component for this dialog..maybe..  it loads the component within.. :))
 
-        this.router.navigate(['/firme']);
+        this.router.navigate(['/candidati']);
         return false;
       }
       return true;
   }
-
+  
 }
