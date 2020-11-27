@@ -7,7 +7,8 @@ import { NotfoundComponent } from './shared/notfound/notfound.component';
 import { AngajatiModule } from './angajati/angajati.module';
 import { FirmeModule } from './firme/firme.module';
 import { CandidatiModule } from './candidati/candidati.module';
-
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MatSliderModule } from '@angular/material/slider';
 const routes: Routes = [
   { path: 'welcome', component: WelcomeComponent },
   { path: 'notFound', component: NotfoundComponent },
@@ -22,11 +23,13 @@ const routes: Routes = [
     NotfoundComponent
   ],
   imports: [
+    MatSliderModule,
     BrowserModule,
     AngajatiModule,
     FirmeModule,
     CandidatiModule,
-    RouterModule.forRoot(routes)
+    RouterModule.forRoot(routes),
+    BrowserAnimationsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

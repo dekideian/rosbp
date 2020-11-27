@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-candidati-detalii',
@@ -6,10 +7,14 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./candidati-detalii.component.css']
 })
 export class CandidatiDetaliiComponent implements OnInit {
-
-  constructor() { }
+  currentId: number;
+  constructor(private route: ActivatedRoute, private router: Router) { }
 
   ngOnInit(): void {
+    this.currentId = +this.route.snapshot.paramMap.get('id');
   }
 
+  goBack() {
+    this.router.navigate(['/candidati']);
+  }
 }
