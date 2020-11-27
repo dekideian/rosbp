@@ -1,8 +1,16 @@
 <nav class="navbar navbar-expand navbar-light bg-light" style="margin-left: 100px;">
-  <a class = 'navbar-brand'>{{pageTitle}}</a>
+  <a class = 'navbar-brand'>
+    <div class="text-left">
+      <img src="./assets/images/logo.png"
+           class="img-responsive left-block"
+           style="max-height:300px;padding-left:10px" />
+    </div>
+  </a>
   <ul class="nav nav-tabs">
-    <li><a class="nav-link" [routerLink]="['/welcome']">Pagina Principala</a></li>
+    <li><a class="nav-link" [routerLink]="['/welcome']">Acasa</a></li>
     <li><a class="nav-link"  [routerLink]="['/firme']">Firme</a></li>
+    <li><a class="nav-link"  [routerLink]="['/angajati']">Angajati</a></li>
+    <li><a class="nav-link"  [routerLink]="['/candidati']">Candidati</a></li>
   </ul>
 </nav>
 <router-outlet></router-outlet>
