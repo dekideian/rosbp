@@ -4,6 +4,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { CandidatiListComponent } from './candidati-list/candidati-list.component';
 import { CandidatiDetaliiComponent } from './candidati-detalii/candidati-detalii.component';
 import { CandidatiDetailsGuard } from './candidati-details.guard';
+import { FormsModule } from '@angular/forms';
 
 const routes: Routes = [
   { path: 'candidati', component: CandidatiListComponent },
@@ -16,6 +17,7 @@ const routes: Routes = [
     CandidatiDetaliiComponent
   ],
   imports: [
+    FormsModule,
     CommonModule,
     RouterModule.forChild(routes)
   ],

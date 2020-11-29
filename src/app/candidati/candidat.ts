@@ -1,5 +1,6 @@
 export interface ICandidat {
-    id: number;
+   id: number;
     nume: string;
     email: string;
+    firma: string;
 }

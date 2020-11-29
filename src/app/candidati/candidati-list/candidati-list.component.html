@@ -1,16 +1,34 @@
 <div class='card'>
-    <div class='card-header'>
-        Candidati lista 
+  <div class='card-header'>
+      Lista candidatilor 
+  </div>
+  <div class="card-body">
+    <div class='row'>
+      <div class ='col-md-2'>Filtrare dupa nume:</div>
+      <div class = 'col-md-4'>
+          <input type="text" [(ngModel)] = 'listFilter'>  
+      </div>
     </div>
-    <div class="card-body">
-        <div class="container-fluid">
-          <div class="text-left">
-            candidati lista 
-            <a [routerLink]="['/candidati', '3']"> detalii candidati </a>
-          </div>
-        </div>
-    </div>
-    <div class='card-footer'>
-         
-    </div>
+  </div>
+
+  <div class="table-responsive">
+    <table class="table" *ngIf='candidatiFiltrate && candidatiFiltrate.length'>
+        <thead>
+            <tr>
+                <th>Nume Angajat</th>
+                <th>Email</th>
+                <th>Firma</th>
+            </tr>        
+        </thead>
+        <tbody>
+            <tr *ngFor='let candidat of candidatiFiltrate'>
+                <td><a [routerLink]="['/candidati', candidat.id]"> {{candidat.nume}}</a></td>
+                <td>{{candidat.email}}</td>
+                <td>{{candidat.firma}}</td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+  <div class='card-footer'>  
+  </div>
 </div>

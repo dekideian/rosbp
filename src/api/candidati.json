@@ -1,12 +1,14 @@
 [
   {
     "id": 1,
-    "nume": "Oana Rosca",
-    "email": "oana@rosbp.ro"
+    "nume": "Andra PETROV",
+    "email": "andra@gmail.ro",
+    "firma": "TSC"
   },
   {
     "id": 2,
-    "nume": "Mihai Rosca",
-    "email": "mihai@rosbp.ro"
+    "nume": "Petrov Deian",
+    "email": "deki.deian@gmail.com",
+    "firma": "everseen"
   }
 ]
