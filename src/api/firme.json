@@ -1,0 +1,14 @@
+[
+    {
+      "id": 1,
+      "nume": "TSC",
+      "angajatRos": "oana@rosbp.ro",
+      "angajatFirma": "monika.anitoiu@tsc.ro"
+    },
+    {
+      "id": 2,
+      "nume": "Everseen",
+      "angajatRos": "mihai@rosbp.ro",
+      "angajatFirma": "bogdan@everseen.ro"
+    }
+  ]

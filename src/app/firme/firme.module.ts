@@ -5,6 +5,8 @@ import { FirmeDetaliiComponent } from './firme-detalii/firme-detalii.component';
 import { Routes, RouterModule } from '@angular/router';
 import { FirmeDetailsGuard } from './firme-details.guard';
 import { MatDialogModule } from '@angular/material/dialog';
+import { FormsModule } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
 
 const routes: Routes = [
   { path: 'firme', component: FirmeListComponent },
@@ -16,11 +18,14 @@ const routes: Routes = [
     FirmeListComponent,
     FirmeDetaliiComponent],
   imports: [
+    HttpClientModule,
+    FormsModule,
     MatDialogModule,
     CommonModule,
     RouterModule.forChild(routes)
   ],
-  exports: [ 
+  exports: [
+    FormsModule,
     FirmeListComponent,
     FirmeDetaliiComponent ]
 })

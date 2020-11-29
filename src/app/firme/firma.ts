@@ -1,4 +1,6 @@
 export interface IFirma {
-    // productName: string;
-    // price: number;
+    id: number;
+    nume: string;
+    angajatFirma: string;
+    angajatRos: string;
 }

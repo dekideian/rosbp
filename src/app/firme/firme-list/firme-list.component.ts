@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { IFirma } from '../firma';
+import { FirmeService } from '../firme.service';
 
 @Component({
   selector: 'app-firme-list',
@@ -7,9 +9,35 @@ import { Component, OnInit } from '@angular/core';
 })
 export class FirmeListComponent implements OnInit {
 
-  constructor() { }
+  firme: IFirma[];
+  firmeFiltrate: IFirma[];
+  listFilterField = '';
+  errorMessage = '';
+  constructor(private firmeService: FirmeService) { }
+
+  get listFilter(): string {
+    return this.listFilterField;
+  }
+  set listFilter(value: string) {
+    this.listFilterField = value;
+    this.firmeFiltrate = this.listFilter ? this.performFilter(this.listFilter) : this.firme;
+  }
+  performFilter(filterBy: string): IFirma[] {
+    filterBy = filterBy.toLocaleLowerCase();
+    return this.firme.filter((firma: IFirma) =>
+        firma.nume.toLocaleLowerCase().indexOf(filterBy) !== -1);
+  }
 
   ngOnInit(): void {
+    this.firmeService.getProducts().subscribe({
+      next: firme => {
+        this.firme = firme;
+        this.firmeFiltrate = firme;
+      },
+      error: err => {
+        this.errorMessage = err;
+      }
+    });
   }
 
 }
