@@ -1,0 +1,12 @@
+[
+  {
+    "id": 1,
+    "nume": "Oana Rosca",
+    "email": "oana@rosbp.ro"
+  },
+  {
+    "id": 2,
+    "nume": "Mihai Rosca",
+    "email": "mihai@rosbp.ro"
+  }
+]

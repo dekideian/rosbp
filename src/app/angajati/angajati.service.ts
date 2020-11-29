@@ -1,20 +1,17 @@
 import { Injectable } from '@angular/core';
-import { IFirma } from './firma';
+import { IAngajat } from './angajat';
 import { Observable, throwError } from 'rxjs';
 import { tap, catchError } from 'rxjs/operators';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
-
 @Injectable({
   providedIn: 'root'
 })
-export class FirmeService {
-  firme: IFirma[];
-  firmeUrl = 'api/firme.json';
-  constructor(private http: HttpClient) {
-
-  }
-  getFirme(): Observable<IFirma[]> {
-    return this.http.get<IFirma[]>(this.firmeUrl).pipe(
+export class AngajatiService {
+  angajati: IAngajat[];
+  angajatiUrl = 'api/angajati.json';
+  constructor(private http: HttpClient) {}
+  getAngajati(): Observable<IAngajat[]> {
+    return this.http.get<IAngajat[]>(this.angajatiUrl).pipe(
       tap(data => console.log('We received a list of companies ', JSON.stringify(data))),
       catchError(this.handleError)
     );
@@ -33,3 +30,4 @@ export class FirmeService {
     return throwError(errorMessage);
   }
 }
+

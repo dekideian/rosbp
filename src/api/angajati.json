@@ -1,0 +1,20 @@
+[
+    {
+      "id": 1,
+      "nume": "Oana Rosca",
+      "email": "oana@rosbp.ro",
+      "firma": "RosBP"
+    },
+    {
+      "id": 2,
+      "nume": "Mihai Rosca",
+      "email": "mihai@rosbp.ro",
+      "firma": "RosBP"
+    },
+    {
+      "id": 3,
+      "nume": "Monika Anitoiu",
+      "email": "moni@tsc.ro",
+      "firma": "TSC"
+    }
+]

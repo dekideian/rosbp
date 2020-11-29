@@ -1,4 +1,6 @@
 export interface IAngajat {
-    // productName: string;
-    // price: number;
-}
+    id: number;
+    nume: string;
+    email: string;
+    firma: string;
+} 

@@ -9,15 +9,6 @@
             <input type="text" [(ngModel)] = 'listFilter'>  
         </div>
       </div>
-        <!-- <div class='row'>
-            <div class ='col-md-6'> <h4> Filtered by: {{this.listFilter}} </h4></div>
-        </div> -->
-        <!-- <div class="container-fluid">
-          <div class="text-left">
-            Firme lista 
-            <a [routerLink]="['/firme', '1']"> detalii firme </a>
-          </div>
-        </div> -->
     </div>
 
     <div class="table-responsive">
@@ -34,24 +25,10 @@
                   <td><a [routerLink]="['/firme', firma.id]"> {{firma.nume}}</a></td>
                   <td>{{firma.angajatRos}}</td>
                   <td>{{firma.angajatFirma}}</td>
-                  <!-- <td><a [routerLink]="['/products', product.productId]"> {{ product.productName }}</a></td>        
-                  <td>{{ product.productCode | convertToSpaces:'-'}}</td>     
-                  <td>{{ product.releaseDate }}</td>     
-                  <td>{{ product.price | currency: 'USD':'symbol': '1.2-2' | lowercase }}</td>     
-                  <td>
-                      <app-stars [rating]=product.starRating
-                                 (notify)='onNotify($event)' 
-                      >
-
-                      </app-stars>
-
-                  </td>      -->
               </tr>
           </tbody>
       </table>
   </div>
-
-    <div class='card-footer'>
-          
+    <div class='card-footer'>  
     </div>
 </div>

@@ -1,4 +1,5 @@
 export interface ICandidat {
-    // productName: string;
-    // price: number;
+    id: number;
+    nume: string;
+    email: string;
 }

@@ -29,7 +29,7 @@ export class FirmeListComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.firmeService.getProducts().subscribe({
+    this.firmeService.getFirme().subscribe({
       next: firme => {
         this.firme = firme;
         this.firmeFiltrate = firme;
