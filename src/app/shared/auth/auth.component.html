@@ -1,0 +1,43 @@
+<div class='card'>
+    <div class='card-header'>
+        Authentication
+    </div>
+    <div class="card-body">
+        <div class="container-fluid">
+          <div class="text-left">
+          </div>
+          <div class="text-left">
+            <div *ngIf="auth.user$ | async as user; else login"> 
+                <!-- {{user|json}}  -->               
+                <div class="table-responsive" [style.width.px]='500'>
+                    <table class="table">
+                        <tbody>
+                            <tr>
+                                <th rowspan="3">
+                                    <img *ngIf='user.photoURL ; else login2'  style="border-radius: 50%;" [src]='user.photoURL' [title]='user.displayName' [style.width.px]='150' [style.margin.px]='10'>
+                                    <ng-template #login2>
+                                        <img style="border-radius: 50%;" src="./assets/images/defaultUser.jpg" [title]='user.displayName' [style.width.px]='150' [style.margin.px]='10'>
+                                    </ng-template>
+                                </th>
+                                <td>{{user.displayName}}</td>
+                            </tr><tr>
+                                <td>{{user.uid}}</td>
+                            </tr><tr>
+                                <td>{{user.company}}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <button class="btn btn-outline-info" (click)="auth.signOut()">Sign out</button>
+              </div>
+              <ng-template #login>
+                <div class="text-left">E nevoie de autentificare pentru a putea accesa informatiile dorite</div>
+                <div class="text-left">
+                    <button class="btn btn-outline-info" (click)="auth.googleSignin()">Login with gmail</button>
+                </div>
+              </ng-template>
+          </div>
+      </div>
+    </div>
+
+     

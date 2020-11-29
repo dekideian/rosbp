@@ -10,10 +10,19 @@
   <ul class="nav nav-tabs">
     <!-- nav link -->
     <li><a class="nav-link" [routerLink]="['/welcome']">Acasa</a></li>
-    <li><a class="nav-link"  [routerLink]="['/firme']">Firme</a></li>
-    <li><a class="nav-link"  [routerLink]="['/angajati']">Angajati</a></li>
-    <li><a class="nav-link"  [routerLink]="['/candidati']">Candidati</a></li>
+    <li><a class="nav-link" [routerLink]="['/firme']">Firme</a></li>
+    <li><a class="nav-link" [routerLink]="['/angajati']">Angajati</a></li>
+    <li><a class="nav-link" [routerLink]="['/candidati']">Candidati</a></li>
+
+    <li *ngIf="auth.user$ | async as user; else loginMain"><a class="nav-link" (click)="auth.signOut()"><i class="fa fa-user"></i> Logout ({{user.displayName}})</a></li>
+    <ng-template #loginMain>
+      <li><a class="nav-link" [routerLink]="['/auth']"><i class="fa fa-user"></i> Login</a></li>
+  </ng-template>
+
   </ul>
 </nav>
-
 <router-outlet></router-outlet>
+
+<!-- <td>  image width set as attribute to ~ 50 ? maybe :). 
+  <img *ngIf='imageVisibility' [src]='product.imageUrl' [title]='product.productName' [style.width.px]='imageWidth' [style.margin.px]='imageMargin'>
+</td>   -->

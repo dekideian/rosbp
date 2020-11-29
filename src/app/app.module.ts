@@ -9,9 +9,13 @@ import { FirmeModule } from './firme/firme.module';
 import { CandidatiModule } from './candidati/candidati.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatSliderModule } from '@angular/material/slider';
+import { AuthComponent } from './shared/auth/auth.component';
+import { AngularFireModule } from '@angular/fire';
+
 const routes: Routes = [
   { path: 'welcome', component: WelcomeComponent },
   { path: 'notFound', component: NotfoundComponent },
+  { path: 'auth', component: AuthComponent },
   { path: '', redirectTo: 'welcome', pathMatch: 'full' },
   { path: '**', redirectTo: 'notFound', pathMatch: 'full' }
 ];
@@ -20,9 +24,20 @@ const routes: Routes = [
   declarations: [
     AppComponent,
     WelcomeComponent,
-    NotfoundComponent
+    NotfoundComponent,
+    AuthComponent
   ],
   imports: [
+    AngularFireModule.initializeApp({
+      apiKey: "AIzaSyBMrk9KPkfkgSnl1yG3u3hO_n358MEkVcE",
+      authDomain: "ros-bp.firebaseapp.com",
+      databaseURL: "https://ros-bp.firebaseio.com",
+      projectId: "ros-bp",
+      storageBucket: "ros-bp.appspot.com",
+      messagingSenderId: "769301585939",
+      appId: "1:769301585939:web:f98fd9c70f3d15b4fa9fe6",
+      measurementId: "G-D9YYS9W5X2"
+    }),
     MatSliderModule,
     BrowserModule,
     AngajatiModule,
