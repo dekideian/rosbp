@@ -50,18 +50,18 @@ import { User } from '../shared/user.model';
           }
         })
       );
-      this.readUsers();
+     // this.readUsers(); // do we actually want to read all users ?: P
     }
 
-    async readUsers() {
-      // value changes sees live changes
-      this.userList$ = this.afs.collection('users').valueChanges()
-      .pipe(
-        tap(val => console.log('Avem val ', JSON.stringify(val)))
-      );
+    // async readUsers() {
+    //   // value changes sees live changes
+    //   this.userList$ = this.afs.collection('users').valueChanges()
+    //   .pipe(
+    //     tap(val => console.log('Avem val ', JSON.stringify(val)))
+    //   );
 
-      // .subscribe(val => console.log(val));//only value
-    }
+    //   // .subscribe(val => console.log(val));//only value
+    // }
 
     async googleSignin() {
 
