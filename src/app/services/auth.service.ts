@@ -25,7 +25,7 @@ import {
 
 import { Observable, of } from 'rxjs';
 import { switchMap } from 'rxjs/operators';
-import { User } from '../shared/user.model';
+import { User, ROSBP } from '../shared/user.model';
 
 
 @Injectable({
@@ -84,5 +84,20 @@ import { User } from '../shared/user.model';
         photoURL: user.photoURL
       };
       return userRef.set(data, { merge: true});
+    }
+    isRosBpEmployee(companyField: string) {
+      if (companyField.toLocaleLowerCase() === ROSBP) {
+        return true;
+      } else {
+        return false;
+      }
+    }
+  
+    isAnyEmployee(companyField: string) {
+      if (companyField && companyField.toLocaleLowerCase() !== '') {
+        return true;
+      } else {
+        return false;
+      }
     }
   }

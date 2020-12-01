@@ -19,14 +19,18 @@
                                         <img style="border-radius: 50%;" src="./assets/images/defaultUser.jpg" [title]='user.displayName' [style.width.px]='150' [style.margin.px]='10'>
                                     </ng-template>
                                 </th>
-                                <td>{{user.displayName}}</td>
+                                <td title="Nume">{{user.displayName}}</td>
                             </tr><tr>
-                                <td>{{user.uid}}</td>
+                                <td title="Email">{{user.uid}}</td>
                             </tr><tr>
-                                <td>{{user.company}}</td>
+                                <td title="Compania la care lucrati">{{user.company}}</td>
                             </tr>
                         </tbody>
                     </table>
+                    <div *ngIf="!auth.isAnyEmployee()">
+                        Va rugam contactati un angajat RosBP pentru a primi drepturi pentru firma
+                        la care lucrati. 
+                    </div>
                 </div>
                 <button class="btn btn-outline-info" (click)="auth.signOut()">Sign out</button>
               </div>
