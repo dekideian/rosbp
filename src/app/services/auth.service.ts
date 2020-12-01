@@ -34,6 +34,7 @@ import { User, ROSBP } from '../shared/user.model';
   export class AuthService {
     userList$: Observable<any>;
     user$: Observable<User>;
+    userCompany: string;
     constructor(
       private router: Router,
       private afs: AngularFirestore,
@@ -50,6 +51,7 @@ import { User, ROSBP } from '../shared/user.model';
           }
         })
       );
+      this.storeUserInfo();
      // this.readUsers(); // do we actually want to read all users ?: P
     }
 
@@ -62,6 +64,9 @@ import { User, ROSBP } from '../shared/user.model';
 
     //   // .subscribe(val => console.log(val));//only value
     // }
+    async storeUserInfo() {
+      this.user$.subscribe(val => this.userCompany = val.company);
+    }
 
     async googleSignin() {
 
@@ -85,16 +90,27 @@ import { User, ROSBP } from '../shared/user.model';
       };
       return userRef.set(data, { merge: true});
     }
-    isRosBpEmployee(companyField: string) {
-      if (companyField.toLocaleLowerCase() === ROSBP) {
+    
+    checkMethod() {
+      console.log("check method was called, company is: " + this.userCompany);
+    }
+// TODO get info after subscribing to user, no need of sending | async from html
+    isRosBpEmployee(user: User) {
+      console.log("is rosbp  employee: ", user?.company);
+      if ( user?.company?.toLocaleLowerCase() === ROSBP) {
         return true;
       } else {
         return false;
       }
     }
-  
-    isAnyEmployee(companyField: string) {
-      if (companyField && companyField.toLocaleLowerCase() !== '') {
+
+    isAnyEmployee(user: User) {
+      console.log("is any employee: ", user?.company);
+      if (!user || !user.company){ 
+        return false;
+      }
+      if (user?.company?.toLocaleLowerCase() !== '') {
+        console.log("result "+true);
         return true;
       } else {
         return false;

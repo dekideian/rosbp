@@ -27,7 +27,7 @@
                             </tr>
                         </tbody>
                     </table>
-                    <div *ngIf="!auth.isAnyEmployee()">
+                    <div *ngIf="!auth.isAnyEmployee(auth.user$ | async)">
                         Va rugam contactati un angajat RosBP pentru a primi drepturi pentru firma
                         la care lucrati. 
                     </div>
