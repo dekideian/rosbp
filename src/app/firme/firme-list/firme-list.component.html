@@ -18,16 +18,23 @@
                   <th>Nume firma</th>
                   <th>Responsabil RosBP</th>
                   <th>Responsabil Firma</th>
+                  <th>Stergere</th>
               </tr>        
           </thead>
           <tbody>
               <tr *ngFor='let firma of firmeFiltrate'>
-                  <td><a [routerLink]="['/firme', firma.id]"> {{firma.nume}}</a></td>
+                  <td><a [routerLink]="['/firme', firma.nume]"> {{firma.nume}}</a></td>
                   <td>{{firma.angajatRos}}</td>
                   <td>{{firma.angajatFirma}}</td>
+                  <td>
+                    <button (click)="delete(firma.nume)" class="btn btn-outline-danger">
+                        <i class="fa fa-minus-circle"> Arhiveaza</i>
+                    </button>
+                </td>
               </tr>
           </tbody>
       </table>
+      <!-- <li *ngIf="auth.isRosBpEmployee(auth.user$ | async)"><a class="nav-link" [routerLink]="['/firme/adauga']">Adauga firma</a></li> -->
   </div>
     <div class='card-footer'>  
     </div>

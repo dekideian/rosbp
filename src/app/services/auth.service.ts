@@ -90,13 +90,10 @@ import { User, ROSBP } from '../shared/user.model';
       };
       return userRef.set(data, { merge: true});
     }
-    
-    checkMethod() {
-      console.log("check method was called, company is: " + this.userCompany);
-    }
-// TODO get info after subscribing to user, no need of sending | async from html
+
+    // TODO get info after subscribing to user, no need of sending | async from html
     isRosBpEmployee(user: User) {
-      console.log("is rosbp  employee: ", user?.company);
+
       if ( user?.company?.toLocaleLowerCase() === ROSBP) {
         return true;
       } else {
@@ -105,12 +102,11 @@ import { User, ROSBP } from '../shared/user.model';
     }
 
     isAnyEmployee(user: User) {
-      console.log("is any employee: ", user?.company);
-      if (!user || !user.company){ 
+
+      if (!user || !user.company){
         return false;
       }
       if (user?.company?.toLocaleLowerCase() !== '') {
-        console.log("result "+true);
         return true;
       } else {
         return false;

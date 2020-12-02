@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { IFirma } from '../firma';
+import { AuthService } from 'src/app/services/auth.service';
+import { IFirma } from '../ifirma.model';
 import { FirmeService } from '../firme.service';
 
 @Component({
@@ -13,7 +14,8 @@ export class FirmeListComponent implements OnInit {
   firmeFiltrate: IFirma[];
   listFilterField = '';
   errorMessage = '';
-  constructor(private firmeService: FirmeService) { }
+  constructor(private firmeService: FirmeService,
+              public auth: AuthService) { }
 
   get listFilter(): string {
     return this.listFilterField;
@@ -39,5 +41,8 @@ export class FirmeListComponent implements OnInit {
       }
     });
   }
-
+  delete(numeFirma: string) {
+    this.firmeService.remove(numeFirma);
+    console.log('remove item '+numeFirma);
+  }
 }

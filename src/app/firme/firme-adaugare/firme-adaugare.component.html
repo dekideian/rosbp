@@ -1,0 +1,67 @@
+<div class='card'>
+    <div class='card-header'>
+        Adauga firma
+    </div>
+    <div class="card-body">
+        <div class="container-fluid">
+          <div class="text-left">
+            <form (ngSubmit)="save()" [formGroup]="firmeGroup">
+                <div class="form-group row mb-2">
+                    <label for="firmaName" class="col-md-3 col-form-label">First Name</label>
+                    <div class="col-md-8">
+                        <input id="firmaName" type = "text" 
+                            placeholder="Nume firma (obligatoriu)"
+                            formControlName="firmaName"
+                        /> 
+                    </div>
+                </div>        
+                <div class="form-group row mb-2">
+                    <label for="angajatRosEmail"  class="col-md-3 col-form-label">Email angajat rosBP</label>
+                    <div class="col-md-8">
+                        <input id="angajatRosEmail" type = "text" 
+                            placeholder="Email angajat RosBP"
+                            formControlName="angajatRosEmail"
+                        />
+                    </div>
+                </div>
+                <div class="form-group row mb-2">
+                    <label for="angajatFirmaExtEmail"  class="col-md-3 col-form-label">Email HR client</label>
+                    <div class="col-md-8">
+                        <input id="angajatFirmaExtEmail" type = "text" 
+                            placeholder="Email HR client"
+                            formControlName="angajatFirmaExtEmail"
+                        /> 
+                     </div>
+                </div>
+                <div class="form-group row mb-2">
+                    <div class="col-md-1 col-form-label"></div>
+                    <button class="btn btn-outline-info col-md-3 col-form-label" type="submit">Salveaza Firma</button>
+                </div>
+                       
+            </form>
+          </div>
+        </div>
+    </div>
+    <div class='card-footer'>
+        <!-- <div class="example-container">
+            <mat-form-field appearance="fill">
+              <mat-label>Input</mat-label>
+              <input matInput>
+            </mat-form-field>
+            <br>
+            <mat-form-field appearance="fill">
+              <mat-label>Select</mat-label>
+              <mat-select>
+                <mat-option value="option">Option</mat-option>
+              </mat-select>
+            </mat-form-field>
+            <br>
+            <mat-form-field appearance="fill">
+              <mat-label>Textarea</mat-label>
+              <textarea matInput></textarea>
+            </mat-form-field>
+          </div> -->
+        <button class="btn btn-outline-secondary" (click)="goBack();">
+            <i class="fa fa-chevron-left"></i> Back</button>
+    </div>
+</div>

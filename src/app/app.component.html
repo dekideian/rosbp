@@ -11,6 +11,7 @@
     <!-- nav link -->
     <li><a class="nav-link" [routerLink]="['/welcome']">Acasa</a></li>
     <li *ngIf="auth.isRosBpEmployee(auth.user$ | async)"><a class="nav-link" [routerLink]="['/firme']">Firme</a></li>
+    <li *ngIf="auth.isRosBpEmployee(auth.user$ | async)"><a class="nav-link" [routerLink]="['/firme/adauga']">Adauga Firme</a></li>
     <li *ngIf="auth.isRosBpEmployee(auth.user$ | async)"><a class="nav-link" [routerLink]="['/angajati']">Angajati</a></li>
     <li *ngIf="auth.isRosBpEmployee(auth.user$ | async) || auth.isAnyEmployee(auth.user$ | async)"><a class="nav-link" [routerLink]="['/candidati']">Candidati</a></li>
 
