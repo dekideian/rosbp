@@ -32,7 +32,7 @@ export interface ICandidatLocal {
     dataAngajareNedeterminat: string;
     nrLuniSaptamaniAni: string;
     dataInceputCimDeteriminat: string;
-    dataSfarsitCimDeterinat: string;
+    dataSfarsitCimDeterminat: string;
     departament: string;
     locDeMunca: string;
     functia: string;
@@ -43,6 +43,35 @@ export interface ICandidatLocal {
     repartizareProgramPtNormaPartiala: string;
     repartizareTimpMunca: string;
     tipIntervalRepartizare: string;
+
+    durataConcediuDeOdihna: string;
+    salariulDeBazaBrut: string;
+    perioadaDeProba: string;
+    perioadaDePreavizInCazulConcedierii: string;
+    perioadaDePreavizInCazulDemisiei: string;
+    anulCurent: string;
+    nrInregCerereDeAngajare: string;
+    nrInregDeclaratieFunctieDeBaza: string;
+    nrInregDeclaratiePersoaneInIntretinere: string;
+    nrInregDeclaratieCasaDeSanatate: string;
+    nrInregDeclLuareLaCunostintaROI: string;
+    nrInregPlanificareaZilelorDeCO: string;
+    nrZileCOConveniteInAnulCurent: string;
+    platitorDeImpozit: string;
+
+    functiaDeBaza: string;
+    mail: string;
+    parolaWeb: string;
+    locatiePlata: string;
+    bancaAngajator: string;
+    iban: string;
+    tipContract: string;
+    sablonContractNexus: string;
+    angajatorNexus: string;
+    cuiAngajator: string;
+    cuiLocDeMunca: string;
+    ticheteDeMasa: string;
+    studiiSCED: string;
 }
 
 export const CANDIDAT_ATRIBUT = {
@@ -71,15 +100,44 @@ export const CANDIDAT_ATRIBUT = {
     dataAngajareNedeterminat: 'Dată angajare nedeterminat',
     nrLuniSaptamaniAni: 'Nr sapt/luni/ani',
     dataInceputCimDeteriminat: 'Dată inceput (determinat)',
-    dataSfarsitCimDeterinat: 'Dată sfarsit (determinat)',
+    dataSfarsitCimDeterminat: 'Dată sfarsit (determinat)',
     departament: 'Departament',
     locDeMunca: 'Loc de muncă',
     functia: 'Funcția',
     codCOR: 'Cod COR',
-    normaIntreagaDeLucruOreZi: 'Norma intreaga de lucru (ore/zi)',
-    normaIntreagaDeLucruOreSapt: 'Norma intreaga de lucru (ore/sapt)',
+    normaIntreagaDeLucruOreZi: 'Normă intreagă de lucru (ore/zi)',
+    normaIntreagaDeLucruOreSapt: 'Normă intreagă de lucru (ore/sapt)',
     normaPartiala: 'Norma parțială',
-    repartizareProgramPtNormaPartiala: 'Repartizarea programului pt norma parțială',
-    repartizareTimpMunca: 'Repartizare timp munca',
+    repartizareProgramPtNormaPartiala: 'Repartizarea programului pt normă parțială',
+    repartizareTimpMunca: 'Repartizare timp muncă',
     tipIntervalRepartizare: 'Tip interval repartizare',
+
+    durataConcediuDeOdihna: 'Durata concediului de odihnă',
+    salariulDeBazaBrut: 'Salariul de bază brut',
+    perioadaDeProba: 'Perioadă de probă',
+    perioadaDePreavizInCazulConcedierii: 'Perioadă de preaviz in cazul concedierii',
+    perioadaDePreavizInCazulDemisiei: 'Perioadă de preaviz in cazul demisiei',
+    anulCurent: 'Anul curent',
+    nrInregCerereDeAngajare: 'Nr. Inreg Cerere de angajare',
+    nrInregDeclaratieFunctieDeBaza: 'Nr. Inreg Declaratie funcție de bază',
+    nrInregDeclaratiePersoaneInIntretinere: 'Nr. Inreg Declaratie persoane in intreținere',
+    nrInregDeclaratieCasaDeSanatate: 'Nr. Inreg Declaratie Casa de sanătate',
+    nrInregDeclLuareLaCunostintaROI: 'Nr. Inreg Decl luare la cunostință ROI',
+    nrInregPlanificareaZilelorDeCO: 'Nr. Inreg planificarea zilelor de CO',
+    nrZileCOConveniteInAnulCurent: 'Nr. Zile CO cuvenite in anul curent',
+    platitorDeImpozit: 'Plătitor de impozit',
+
+    functiaDeBaza: 'Funcția de baza',
+    mail: 'Mail',
+    parolaWeb: 'Parolă web',
+    locatiePlata: 'Locație plata',
+    bancaAngajator: 'Banca Angajator',
+    iban: 'IBAN',
+    tipContract: 'Tip Contract',
+    sablonContractNexus: 'Șablon Contract Nexus',
+    angajatorNexus: 'Angajator (Nexus)',
+    cuiAngajator: 'CUI Angajator',
+    cuiLocDeMunca: 'CUI loc de muncă',
+    ticheteDeMasa: 'Tichete de masă',
+    studiiSCED: 'Studii ISCED (SAGA)',
 }
