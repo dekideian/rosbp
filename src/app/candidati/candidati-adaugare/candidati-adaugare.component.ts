@@ -37,7 +37,7 @@ export class CandidatiAdaugareComponent  implements OnInit {
       numeSalariat:  ['', [Validators.required, Validators.minLength(3)]],
       prenumeSalariat:  ['', [Validators.required, Validators.minLength(3)]],
       // candidatiEmail: ['', [Validators.required, Validators.email]],
-      marca: ['', [Validators.required, Validators.minLength(3)]],
+      marca: ['', [Validators.required]],
       tara: ['', [Validators.required, Validators.minLength(2)]],
       judet: ['', [Validators.required, Validators.minLength(2)]],
       localitate: ['', [Validators.required, Validators.minLength(3)]],
