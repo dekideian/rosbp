@@ -6,1166 +6,1180 @@
         <div class="container-fluid">
           <div class="text-left">
             <form (ngSubmit)="save()" [formGroup]="candidatiGroup">
-<!-- Rand 1 -->
-                <div class="form-group row mb-12">
-                    <div class="col-md-2">
-                        <mat-form-field class="atribut-candidat">
-                            <mat-label>{{atributCandidat.nrContract}}</mat-label>
-                            <input id="nrContract" type = "text" 
-                                matInput 
-                                formControlName="nrContract"
-                                [ngClass]="{'is-invalid': (candidatiGroup.get('nrContract').touched ||
-                                            candidatiGroup.get('nrContract').dirty) &&
-                                            !candidatiGroup.get('nrContract').valid }"
-                                >
-                                <span class="invalid-feedback">
-                                    <span *ngIf="candidatiGroup.get('nrContract').errors?.required">
-                                        Va rugam introduceti {{atributCandidat.nrContract}}
-                                    </span>
-                                    <span *ngIf="candidatiGroup.get('nrContract').errors?.minlength">
-                                        Minim 3 caractere
-                                    </span>
-                                </span>   
-                            </mat-form-field>
-                    </div>
-                    <div class="col-md-2">
-                        <mat-form-field class="atribut-candidat">
-                            <mat-label>{{atributCandidat.dataContract}}</mat-label>
-                            <input id="dataContract" type = "date" 
-                                matInput 
-                                formControlName="dataContract"
-                                [ngClass]="{'is-invalid': (candidatiGroup.get('dataContract').touched ||
-                                            candidatiGroup.get('dataContract').dirty) &&
-                                            !candidatiGroup.get('dataContract').valid }"
-                                >
-                                <span class="invalid-feedback">
-                                    <span *ngIf="candidatiGroup.get('dataContract').errors?.required">
-                                        Va rugam introduceti {{atributCandidat.dataContract}}
-                                    </span>
-                                </span>   
-                            </mat-form-field>
-                    </div>
-                    <div class="col-md-2">
-                        <mat-form-field class="atribut-candidat">
-                            <mat-label>{{atributCandidat.numeSalariat}}</mat-label>
-                        <input id="numeSalariat" type = "text" 
-                            formControlName="numeSalariat"
-                            matInput
-                            [ngClass]="{'is-invalid': (candidatiGroup.get('numeSalariat').touched ||
-                                            candidatiGroup.get('numeSalariat').dirty) &&
-                                            !candidatiGroup.get('numeSalariat').valid }"
-                        />  
-                          <span class="invalid-feedback">
-                            <span *ngIf="candidatiGroup.get('numeSalariat').errors?.required">
-                                Va rugam introduceti {{atributCandidat.numeSalariat}} 
-                            </span>
-                            <span *ngIf="candidatiGroup.get('numeSalariat').errors?.minlength">
-                                Minim 3 caractere
-                            </span>
-                        </span>   
-                    </mat-form-field>
-                    </div>
-                    <div class="col-md-2">
-                        <mat-form-field class="atribut-candidat">
-                            <mat-label>{{atributCandidat.prenumeSalariat}}</mat-label>
-                        <input id="prenumeSalariat" type = "text" 
-                            formControlName="prenumeSalariat"
-                            matInput
-                            [ngClass]="{'is-invalid': (candidatiGroup.get('prenumeSalariat').touched ||
-                                            candidatiGroup.get('prenumeSalariat').dirty) &&
-                                            !candidatiGroup.get('prenumeSalariat').valid }"
-                        />  
-                          <span class="invalid-feedback">
-                            <span *ngIf="candidatiGroup.get('prenumeSalariat').errors?.required">
-                                Va rugam introduceti prenume
-                            </span>
-                            <span *ngIf="candidatiGroup.get('prenumeSalariat').errors?.minlength">
-                                Minim 3 caractere
-                            </span>
-                        </span>   
-                    </mat-form-field>
-                    </div>
-                    <div class="col-md-2">
-                        <mat-form-field class="atribut-candidat">
-                            <mat-label>{{atributCandidat.marca}}</mat-label>
-                        <input id="marca" type = "text" 
-                            matInput
-                            formControlName="marca"
-                            [ngClass]="{'is-invalid': (candidatiGroup.get('marca').touched ||
-                                             candidatiGroup.get('marca').dirty) &&
-                                            !candidatiGroup.get('marca').valid }"
-                        />
-                        <span class="invalid-feedback">
-                            <span *ngIf="candidatiGroup.get('marca').errors?.required">
-                                Va rugam introduceti {{atributCandidat.marca}}
-                            </span>
-                        </span>
-                        </mat-form-field>
-                    </div>
-                    <div class="col-md-2">
-                        <mat-form-field class="atribut-candidat">
-                            <mat-label>{{atributCandidat.tara}}</mat-label>
-                        <input id="tara" type = "text" 
-                            matInput
-                            formControlName="tara"
-                            [ngClass]="{'is-invalid': (candidatiGroup.get('tara').touched ||
-                                             candidatiGroup.get('tara').dirty) &&
-                                            !candidatiGroup.get('tara').valid }"
-                        />
-                        <span class="invalid-feedback">
-                            <span *ngIf="candidatiGroup.get('tara').errors?.required">
-                                Va rugam introduceti {{atributCandidat.tara}}
-                            </span>
-                            <span *ngIf="candidatiGroup.get('tara').errors?.minlength">
-                                Minim 2 caractere
-                            </span>
-                        </span>
-                        </mat-form-field>
-                    </div>
-                </div>          
-<!-- Rand 2   -->
-                <div class="form-group row mb-12">
-                    <div class="col-md-2">
-                        <mat-form-field class="atribut-candidat">
-                            <mat-label>{{atributCandidat.judet}}</mat-label>
-                        <input id="judet" type = "text" 
-                            matInput
-                            formControlName='judet'
-                            [ngClass]="{'is-invalid': (candidatiGroup.get('judet').touched ||
-                                             candidatiGroup.get('judet').dirty) &&
-                                            !candidatiGroup.get('judet').valid }"
-                        />
-                        <span class="invalid-feedback">
-                            <span *ngIf="candidatiGroup.get('judet').errors?.required">
-                                Va rugam introduceti {{atributCandidat.judet}}
-                            </span>
-                            <span *ngIf="candidatiGroup.get('judet').errors?.minlength">
-                                Minim 2 caractere
-                            </span>
-                        </span>
-                        </mat-form-field>
-                    </div>    
-                    <div class="col-md-2">
-                        <mat-form-field class="atribut-candidat">
-                            <mat-label>{{atributCandidat.localitate}}</mat-label>
-                        <input id="localitate" type = "text" 
-                            matInput
-                            formControlName='localitate'
-                            [ngClass]="{'is-invalid': (candidatiGroup.get('localitate').touched ||
-                                             candidatiGroup.get('localitate').dirty) &&
-                                            !candidatiGroup.get('localitate').valid }"
-                        />
-                        <span class="invalid-feedback">
-                            <span *ngIf="candidatiGroup.get('localitate').errors?.required">
-                                Va rugam introduceti {{atributCandidat.localitate}}
-                            </span>
-                            <span *ngIf="candidatiGroup.get('localitate').errors?.minlength">
-                                Minim 3 caractere
-                            </span>
-                        </span>
-                        </mat-form-field>
-                    </div>
-                    <div class="col-md-2">
-                        <mat-form-field class="atribut-candidat">
-                            <mat-label>{{atributCandidat.strada}}</mat-label>
-                        <input id="strada" type = "text" 
-                            matInput
-                            formControlName='strada'
-                            [ngClass]="{'is-invalid': (candidatiGroup.get('strada').touched ||
-                                             candidatiGroup.get('strada').dirty) &&
-                                            !candidatiGroup.get('strada').valid }"
-                        />
-                        <span class="invalid-feedback">
-                            <span *ngIf="candidatiGroup.get('strada').errors?.required">
-                                Va rugam introduceti {{atributCandidat.strada}}
-                            </span>
-                            <span *ngIf="candidatiGroup.get('strada').errors?.minlength">
-                                Minim 3 caractere
-                            </span>
-                        </span>
-                        </mat-form-field>
-                    </div>
-                    <div class="col-md-2">
-                        <mat-form-field class="atribut-candidat">
-                            <mat-label>{{atributCandidat.numar}}</mat-label>
-                        <input id="numar" type = "text" 
-                            matInput
-                            formControlName='numar'
-                            [ngClass]="{'is-invalid': (candidatiGroup.get('numar').touched ||
-                                             candidatiGroup.get('numar').dirty) &&
-                                            !candidatiGroup.get('numar').valid }"
-                        />
-                        <span class="invalid-feedback">
-                            <span *ngIf="candidatiGroup.get('numar').errors?.required">
-                                Va rugam introduceti {{atributCandidat.numar}}
-                            </span>
-                        </span>
-                        </mat-form-field>
-                    </div>
-                    <div class="col-md-2">
-                        <mat-form-field class="atribut-candidat">
-                            <mat-label>{{atributCandidat.bloc}}</mat-label>
-                        <input id="bloc" type = "text" 
-                            matInput
-                            formControlName='bloc'
-                            [ngClass]="{'is-invalid': (candidatiGroup.get('bloc').touched ||
-                                             candidatiGroup.get('bloc').dirty) &&
-                                            !candidatiGroup.get('bloc').valid }"
-                        />
-                        <span class="invalid-feedback">
-                            <span *ngIf="candidatiGroup.get('bloc').errors?.required">
-                                Va rugam introduceti {{atributCandidat.bloc}}
-                            </span>
-                        </span>
-                        </mat-form-field>
-                    </div>
-                    <div class="col-md-2">
-                        <mat-form-field class="atribut-candidat">
-                            <mat-label>{{atributCandidat.scara}}</mat-label>
-                        <input id="scara" type = "text" 
-                            matInput
-                            formControlName='scara'
-                            [ngClass]="{'is-invalid': (candidatiGroup.get('scara').touched ||
-                                             candidatiGroup.get('scara').dirty) &&
-                                            !candidatiGroup.get('scara').valid }"
-                        />
-                        <span class="invalid-feedback">
-                            <span *ngIf="candidatiGroup.get('scara').errors?.required">
-                                Va rugam introduceti {{atributCandidat.scara}}
-                            </span>
-                            <span *ngIf="candidatiGroup.get('scara').errors?.minlength">
-                                Minim 3 caractere
-                            </span>
-                        </span>
-                        </mat-form-field>
+                <div class="accordion" id="accordionExample">
+                    <div class="card" style="margin:-20px;">
+                        <div class="card-header" id="headingOne">
+                            <h2 class="mb-0">
+                                <button type="button" class="btn btn-link" data-toggle="collapse" data-target="#collapseOne">Informatii de baza</button>									
+                            </h2>
+                        </div>
+                        <div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#accordionExample">
+                            <div class="card-body">
+                                <!-- Rand 1 -->
+                                <div class="form-group row mb-12">
+                                    <div class="col-md-2">
+                                        <mat-form-field class="atribut-candidat">
+                                            <mat-label>{{atributCandidat.nrContract}}</mat-label>
+                                            <input id="nrContract" type = "text" 
+                                                matInput 
+                                                formControlName="nrContract"
+                                                [ngClass]="{'is-invalid': (candidatiGroup.get('nrContract').touched ||
+                                                            candidatiGroup.get('nrContract').dirty) &&
+                                                            !candidatiGroup.get('nrContract').valid }"
+                                                >
+                                                <span class="invalid-feedback">
+                                                    <span *ngIf="candidatiGroup.get('nrContract').errors?.required">
+                                                        Va rugam introduceti {{atributCandidat.nrContract}}
+                                                    </span>
+                                                    <span *ngIf="candidatiGroup.get('nrContract').errors?.minlength">
+                                                        Minim 3 caractere
+                                                    </span>
+                                                </span>   
+                                            </mat-form-field>
+                                    </div>
+                                    <div class="col-md-2">
+                                        <mat-form-field class="atribut-candidat">
+                                            <mat-label>{{atributCandidat.dataContract}}</mat-label>
+                                            <input id="dataContract" type = "date" 
+                                                matInput 
+                                                formControlName="dataContract"
+                                                [ngClass]="{'is-invalid': (candidatiGroup.get('dataContract').touched ||
+                                                            candidatiGroup.get('dataContract').dirty) &&
+                                                            !candidatiGroup.get('dataContract').valid }"
+                                                >
+                                                <span class="invalid-feedback">
+                                                    <span *ngIf="candidatiGroup.get('dataContract').errors?.required">
+                                                        Va rugam introduceti {{atributCandidat.dataContract}}
+                                                    </span>
+                                                </span>   
+                                            </mat-form-field>
+                                    </div>
+                                    <div class="col-md-2">
+                                        <mat-form-field class="atribut-candidat">
+                                            <mat-label>{{atributCandidat.numeSalariat}}</mat-label>
+                                        <input id="numeSalariat" type = "text" 
+                                            formControlName="numeSalariat"
+                                            matInput
+                                            [ngClass]="{'is-invalid': (candidatiGroup.get('numeSalariat').touched ||
+                                                            candidatiGroup.get('numeSalariat').dirty) &&
+                                                            !candidatiGroup.get('numeSalariat').valid }"
+                                        />  
+                                        <span class="invalid-feedback">
+                                            <span *ngIf="candidatiGroup.get('numeSalariat').errors?.required">
+                                                Va rugam introduceti {{atributCandidat.numeSalariat}} 
+                                            </span>
+                                            <span *ngIf="candidatiGroup.get('numeSalariat').errors?.minlength">
+                                                Minim 3 caractere
+                                            </span>
+                                        </span>   
+                                    </mat-form-field>
+                                    </div>
+                                    <div class="col-md-2">
+                                        <mat-form-field class="atribut-candidat">
+                                            <mat-label>{{atributCandidat.prenumeSalariat}}</mat-label>
+                                        <input id="prenumeSalariat" type = "text" 
+                                            formControlName="prenumeSalariat"
+                                            matInput
+                                            [ngClass]="{'is-invalid': (candidatiGroup.get('prenumeSalariat').touched ||
+                                                            candidatiGroup.get('prenumeSalariat').dirty) &&
+                                                            !candidatiGroup.get('prenumeSalariat').valid }"
+                                        />  
+                                        <span class="invalid-feedback">
+                                            <span *ngIf="candidatiGroup.get('prenumeSalariat').errors?.required">
+                                                Va rugam introduceti prenume
+                                            </span>
+                                            <span *ngIf="candidatiGroup.get('prenumeSalariat').errors?.minlength">
+                                                Minim 3 caractere
+                                            </span>
+                                        </span>   
+                                    </mat-form-field>
+                                    </div>
+                                    <div class="col-md-2">
+                                        <mat-form-field class="atribut-candidat">
+                                            <mat-label>{{atributCandidat.marca}}</mat-label>
+                                        <input id="marca" type = "text" 
+                                            matInput
+                                            formControlName="marca"
+                                            [ngClass]="{'is-invalid': (candidatiGroup.get('marca').touched ||
+                                                            candidatiGroup.get('marca').dirty) &&
+                                                            !candidatiGroup.get('marca').valid }"
+                                        />
+                                        <span class="invalid-feedback">
+                                            <span *ngIf="candidatiGroup.get('marca').errors?.required">
+                                                Va rugam introduceti {{atributCandidat.marca}}
+                                            </span>
+                                        </span>
+                                        </mat-form-field>
+                                    </div>
+                                    <div class="col-md-2">
+                                        <mat-form-field class="atribut-candidat">
+                                            <mat-label>{{atributCandidat.tara}}</mat-label>
+                                        <input id="tara" type = "text" 
+                                            matInput
+                                            formControlName="tara"
+                                            [ngClass]="{'is-invalid': (candidatiGroup.get('tara').touched ||
+                                                            candidatiGroup.get('tara').dirty) &&
+                                                            !candidatiGroup.get('tara').valid }"
+                                        />
+                                        <span class="invalid-feedback">
+                                            <span *ngIf="candidatiGroup.get('tara').errors?.required">
+                                                Va rugam introduceti {{atributCandidat.tara}}
+                                            </span>
+                                            <span *ngIf="candidatiGroup.get('tara').errors?.minlength">
+                                                Minim 2 caractere
+                                            </span>
+                                        </span>
+                                        </mat-form-field>
+                                    </div>
+                                </div>          
+                                <!-- Rand 2   -->
+                                <div class="form-group row mb-12">
+                                    <div class="col-md-2">
+                                        <mat-form-field class="atribut-candidat">
+                                            <mat-label>{{atributCandidat.judet}}</mat-label>
+                                        <input id="judet" type = "text" 
+                                            matInput
+                                            formControlName='judet'
+                                            [ngClass]="{'is-invalid': (candidatiGroup.get('judet').touched ||
+                                                            candidatiGroup.get('judet').dirty) &&
+                                                            !candidatiGroup.get('judet').valid }"
+                                        />
+                                        <span class="invalid-feedback">
+                                            <span *ngIf="candidatiGroup.get('judet').errors?.required">
+                                                Va rugam introduceti {{atributCandidat.judet}}
+                                            </span>
+                                            <span *ngIf="candidatiGroup.get('judet').errors?.minlength">
+                                                Minim 2 caractere
+                                            </span>
+                                        </span>
+                                        </mat-form-field>
+                                    </div>    
+                                    <div class="col-md-2">
+                                        <mat-form-field class="atribut-candidat">
+                                            <mat-label>{{atributCandidat.localitate}}</mat-label>
+                                        <input id="localitate" type = "text" 
+                                            matInput
+                                            formControlName='localitate'
+                                            [ngClass]="{'is-invalid': (candidatiGroup.get('localitate').touched ||
+                                                            candidatiGroup.get('localitate').dirty) &&
+                                                            !candidatiGroup.get('localitate').valid }"
+                                        />
+                                        <span class="invalid-feedback">
+                                            <span *ngIf="candidatiGroup.get('localitate').errors?.required">
+                                                Va rugam introduceti {{atributCandidat.localitate}}
+                                            </span>
+                                            <span *ngIf="candidatiGroup.get('localitate').errors?.minlength">
+                                                Minim 3 caractere
+                                            </span>
+                                        </span>
+                                        </mat-form-field>
+                                    </div>
+                                    <div class="col-md-2">
+                                        <mat-form-field class="atribut-candidat">
+                                            <mat-label>{{atributCandidat.strada}}</mat-label>
+                                        <input id="strada" type = "text" 
+                                            matInput
+                                            formControlName='strada'
+                                            [ngClass]="{'is-invalid': (candidatiGroup.get('strada').touched ||
+                                                            candidatiGroup.get('strada').dirty) &&
+                                                            !candidatiGroup.get('strada').valid }"
+                                        />
+                                        <span class="invalid-feedback">
+                                            <span *ngIf="candidatiGroup.get('strada').errors?.required">
+                                                Va rugam introduceti {{atributCandidat.strada}}
+                                            </span>
+                                            <span *ngIf="candidatiGroup.get('strada').errors?.minlength">
+                                                Minim 3 caractere
+                                            </span>
+                                        </span>
+                                        </mat-form-field>
+                                    </div>
+                                    <div class="col-md-2">
+                                        <mat-form-field class="atribut-candidat">
+                                            <mat-label>{{atributCandidat.numar}}</mat-label>
+                                        <input id="numar" type = "text" 
+                                            matInput
+                                            formControlName='numar'
+                                            [ngClass]="{'is-invalid': (candidatiGroup.get('numar').touched ||
+                                                            candidatiGroup.get('numar').dirty) &&
+                                                            !candidatiGroup.get('numar').valid }"
+                                        />
+                                        <span class="invalid-feedback">
+                                            <span *ngIf="candidatiGroup.get('numar').errors?.required">
+                                                Va rugam introduceti {{atributCandidat.numar}}
+                                            </span>
+                                        </span>
+                                        </mat-form-field>
+                                    </div>
+                                    <div class="col-md-2">
+                                        <mat-form-field class="atribut-candidat">
+                                            <mat-label>{{atributCandidat.bloc}}</mat-label>
+                                        <input id="bloc" type = "text" 
+                                            matInput
+                                            formControlName='bloc'
+                                            [ngClass]="{'is-invalid': (candidatiGroup.get('bloc').touched ||
+                                                            candidatiGroup.get('bloc').dirty) &&
+                                                            !candidatiGroup.get('bloc').valid }"
+                                        />
+                                        <span class="invalid-feedback">
+                                            <span *ngIf="candidatiGroup.get('bloc').errors?.required">
+                                                Va rugam introduceti {{atributCandidat.bloc}}
+                                            </span>
+                                        </span>
+                                        </mat-form-field>
+                                    </div>
+                                    <div class="col-md-2">
+                                        <mat-form-field class="atribut-candidat">
+                                            <mat-label>{{atributCandidat.scara}}</mat-label>
+                                        <input id="scara" type = "text" 
+                                            matInput
+                                            formControlName='scara'
+                                            [ngClass]="{'is-invalid': (candidatiGroup.get('scara').touched ||
+                                                            candidatiGroup.get('scara').dirty) &&
+                                                            !candidatiGroup.get('scara').valid }"
+                                        />
+                                        <span class="invalid-feedback">
+                                            <span *ngIf="candidatiGroup.get('scara').errors?.required">
+                                                Va rugam introduceti {{atributCandidat.scara}}
+                                            </span>
+                                            <span *ngIf="candidatiGroup.get('scara').errors?.minlength">
+                                                Minim 3 caractere
+                                            </span>
+                                        </span>
+                                        </mat-form-field>
+                                    </div>
+                                </div>
+                                <!-- Rand 3   -->
+                                <div class="form-group row mb-12">
+                                    <div class="col-md-2">
+                                        <mat-form-field class="atribut-candidat">
+                                            <mat-label>{{atributCandidat.etaj}}</mat-label>
+                                        <input id="etaj" type = "text" 
+                                            matInput
+                                            formControlName='etaj'
+                                            style="width:250px;"
+                                            [ngClass]="{'is-invalid': (candidatiGroup.get('etaj').touched ||
+                                                            candidatiGroup.get('etaj').dirty) &&
+                                                            !candidatiGroup.get('etaj').valid }"
+                                        />
+                                        <span class="invalid-feedback">
+                                            <span *ngIf="candidatiGroup.get('etaj').errors?.required">
+                                                Va rugam introduceti {{atributCandidat.etaj}}
+                                            </span>
+                                            <span *ngIf="candidatiGroup.get('etaj').errors?.minlength">
+                                                Minim 3 caractere
+                                            </span>
+                                        </span>
+                                        </mat-form-field>
+                                    </div>
+                                    <div class="col-md-2">
+                                        <mat-form-field class="atribut-candidat">
+                                            <mat-label>{{atributCandidat.apartament}}</mat-label>
+                                        <input id="apartament" type = "text" 
+                                            matInput
+                                            formControlName='apartament'
+                                            [ngClass]="{'is-invalid': (candidatiGroup.get('apartament').touched ||
+                                                            candidatiGroup.get('apartament').dirty) &&
+                                                            !candidatiGroup.get('apartament').valid }"
+                                        />
+                                        <span class="invalid-feedback">
+                                            <span *ngIf="candidatiGroup.get('apartament').errors?.required">
+                                                Va rugam introduceti {{atributCandidat.apartament}}
+                                            </span>
+                                        </span>
+                                        </mat-form-field>
+                                    </div>
+                                    <div class="col-md-2">
+                                        <mat-form-field class="atribut-candidat">
+                                            <mat-label>{{atributCandidat.actIdentitate}}</mat-label>
+                                        <input id="actIdentitate" type = "text" 
+                                            matInput
+                                            formControlName='actIdentitate'
+                                            [ngClass]="{'is-invalid': (candidatiGroup.get('actIdentitate').touched ||
+                                                            candidatiGroup.get('actIdentitate').dirty) &&
+                                                            !candidatiGroup.get('actIdentitate').valid }"
+                                        />
+                                        <span class="invalid-feedback">
+                                            <span *ngIf="candidatiGroup.get('actIdentitate').errors?.required">
+                                                Va rugam introduceti {{atributCandidat.actIdentitate}}
+                                            </span>
+                                        </span>
+                                        </mat-form-field>
+                                    </div>
+                                    <div class="col-md-2">
+                                        <mat-form-field class="atribut-candidat">
+                                            <mat-label>{{atributCandidat.serieCI}}</mat-label>
+                                        <input id="serieCI" type = "text" 
+                                            matInput
+                                            formControlName='serieCI'
+                                            [ngClass]="{'is-invalid': (candidatiGroup.get('serieCI').touched ||
+                                                            candidatiGroup.get('serieCI').dirty) &&
+                                                            !candidatiGroup.get('serieCI').valid }"
+                                        />
+                                        <span class="invalid-feedback">
+                                            <span *ngIf="candidatiGroup.get('serieCI').errors?.required">
+                                                Va rugam introduceti {{atributCandidat.serieCI}}
+                                            </span>
+                                            <span *ngIf="candidatiGroup.get('serieCI').errors?.minlength">
+                                                Minim 3 caractere
+                                            </span>
+                                        </span>
+                                        </mat-form-field>
+                                    </div>
+                                    <div class="col-md-2">
+                                        <mat-form-field class="atribut-candidat">
+                                            <mat-label>{{atributCandidat.numarCI}}</mat-label>
+                                        <input id="numarCI" type = "text" 
+                                            matInput
+                                            formControlName='numarCI'
+                                            [ngClass]="{'is-invalid': (candidatiGroup.get('numarCI').touched ||
+                                                            candidatiGroup.get('numarCI').dirty) &&
+                                                            !candidatiGroup.get('numarCI').valid }"
+                                        />
+                                        <span class="invalid-feedback">
+                                            <span *ngIf="candidatiGroup.get('numarCI').errors?.required">
+                                                Va rugam introduceti {{atributCandidat.numarCI}}
+                                            </span>
+                                            <span *ngIf="candidatiGroup.get('numarCI').errors?.minlength">
+                                                Minim 3 caractere
+                                            </span>
+                                        </span>
+                                        </mat-form-field>
+                                    </div>
+                                    <div class="col-md-2">
+                                        <mat-form-field class="atribut-candidat">
+                                            <mat-label>{{atributCandidat.unitateaCareAEliberatCI}}</mat-label>
+                                        <input id="unitateaCareAEliberatCI" type = "text" 
+                                            matInput
+                                            formControlName='unitateaCareAEliberatCI'
+                                            [ngClass]="{'is-invalid': (candidatiGroup.get('unitateaCareAEliberatCI').touched ||
+                                                            candidatiGroup.get('unitateaCareAEliberatCI').dirty) &&
+                                                            !candidatiGroup.get('unitateaCareAEliberatCI').valid }"
+                                        />
+                                        <span class="invalid-feedback">
+                                            <span *ngIf="candidatiGroup.get('unitateaCareAEliberatCI').errors?.required">
+                                                Va rugam introduceti {{atributCandidat.unitateaCareAEliberatCI}}
+                                            </span>
+                                            <span *ngIf="candidatiGroup.get('unitateaCareAEliberatCI').errors?.minlength">
+                                                Minim 3 caractere
+                                            </span>
+                                        </span>
+                                        </mat-form-field>
+                                    </div>
+                                </div>
+                                <!-- Rand 4   -->
+                                <div class="form-group row mb-12">
+                                    <div class="col-md-2">
+                                        <mat-form-field class="atribut-candidat">
+                                            <mat-label>{{atributCandidat.dataEliberareCI}}</mat-label>
+                                        <input id="dataEliberareCI" type = "date" 
+                                            matInput
+                                            formControlName='dataEliberareCI'
+                                            [ngClass]="{'is-invalid': (candidatiGroup.get('dataEliberareCI').touched ||
+                                                            candidatiGroup.get('dataEliberareCI').dirty) &&
+                                                            !candidatiGroup.get('dataEliberareCI').valid }"
+                                        />
+                                        <span class="invalid-feedback">
+                                            <span *ngIf="candidatiGroup.get('dataEliberareCI').errors?.required">
+                                                Va rugam introduceti {{atributCandidat.dataEliberareCI}}
+                                            </span>
+                                            <span *ngIf="candidatiGroup.get('dataEliberareCI').errors?.minlength">
+                                                Minim 3 caractere
+                                            </span>
+                                        </span>
+                                        </mat-form-field>
+                                    </div>
+                                    <div class="col-md-2">
+                                        <mat-form-field class="atribut-candidat">
+                                            <mat-label>{{atributCandidat.dataExpirareCI}}</mat-label>
+                                        <input id="dataExpirareCI" type = "date" 
+                                            matInput
+                                            formControlName='dataExpirareCI'
+                                            [ngClass]="{'is-invalid': (candidatiGroup.get('dataExpirareCI').touched ||
+                                                            candidatiGroup.get('dataExpirareCI').dirty) &&
+                                                            !candidatiGroup.get('dataExpirareCI').valid }"
+                                        />
+                                        <span class="invalid-feedback">
+                                            <span *ngIf="candidatiGroup.get('dataExpirareCI').errors?.required">
+                                                Va rugam introduceti {{atributCandidat.dataExpirareCI}}
+                                            </span>
+                                        </span>
+                                        </mat-form-field>
+                                    </div>
+                                    <div class="col-md-2">
+                                        <mat-form-field class="atribut-candidat">
+                                            <mat-label>{{atributCandidat.cnp}}</mat-label>
+                                        <input id="cnp" type = "text" 
+                                            matInput
+                                            formControlName='cnp'
+                                            [ngClass]="{'is-invalid': (candidatiGroup.get('cnp').touched ||
+                                                            candidatiGroup.get('cnp').dirty) &&
+                                                            !candidatiGroup.get('cnp').valid }"
+                                        />
+                                        <span class="invalid-feedback">
+                                            <span *ngIf="candidatiGroup.get('cnp').errors?.required">
+                                                Va rugam introduceti {{atributCandidat.cnp}}
+                                            </span>
+                                            <span *ngIf="candidatiGroup.get('cnp').errors?.minlength">
+                                                {{atributCandidat.cnp}} introdus nu are 13 caracter
+                                            </span>
+                                            <span *ngIf="candidatiGroup.get('cnp').errors?.maxlength">
+                                                {{atributCandidat.cnp}} introdus nu are 13 caracter
+                                            </span>
+                                        </span>
+                                        </mat-form-field>
+                                    </div>
+                                    <div class="col-md-2">
+                                        <mat-form-field class="atribut-candidat">
+                                            <mat-label>{{atributCandidat.dataAngajare}}</mat-label>
+                                        <input id="dataAngajare" type = "date" 
+                                            matInput
+                                            formControlName='dataAngajare'
+                                            [ngClass]="{'is-invalid': (candidatiGroup.get('dataAngajare').touched ||
+                                                            candidatiGroup.get('dataAngajare').dirty) &&
+                                                            !candidatiGroup.get('dataAngajare').valid }"
+                                        />
+                                        <span class="invalid-feedback">
+                                            <span *ngIf="candidatiGroup.get('dataAngajare').errors?.required">
+                                                Va rugam introduceti {{atributCandidat.dataAngajare}}
+                                            </span>
+                                        </span>
+                                        </mat-form-field>
+                                    </div>
+                                    <div class="col-md-2">
+                                        <mat-form-field class="atribut-candidat">
+                                            <mat-label>{{atributCandidat.dataAngajareNedeterminat}}</mat-label>
+                                        <input id="dataAngajareNedeterminat" type = "date" 
+                                            matInput
+                                            formControlName='dataAngajareNedeterminat'
+                                            [ngClass]="{'is-invalid': (candidatiGroup.get('dataAngajareNedeterminat').touched ||
+                                                            candidatiGroup.get('dataAngajareNedeterminat').dirty) &&
+                                                            !candidatiGroup.get('dataAngajareNedeterminat').valid }"
+                                        />
+                                        <span class="invalid-feedback">
+                                            <span *ngIf="candidatiGroup.get('dataAngajareNedeterminat').errors?.required">
+                                                Va rugam introduceti {{atributCandidat.dataAngajareNedeterminat}}
+                                            </span>
+                                        </span>
+                                        </mat-form-field>
+                                    </div>
+                                    <div class="col-md-2">
+                                        <mat-form-field class="atribut-candidat">
+                                            <mat-label>{{atributCandidat.nrLuniSaptamaniAni}}</mat-label>
+                                        <input id="nrLuniSaptamaniAni" type = "text" 
+                                            matInput
+                                            formControlName='nrLuniSaptamaniAni'
+                                            [ngClass]="{'is-invalid': (candidatiGroup.get('nrLuniSaptamaniAni').touched ||
+                                                            candidatiGroup.get('nrLuniSaptamaniAni').dirty) &&
+                                                            !candidatiGroup.get('nrLuniSaptamaniAni').valid }"
+                                        />
+                                        <span class="invalid-feedback">
+                                            <span *ngIf="candidatiGroup.get('nrLuniSaptamaniAni').errors?.required">
+                                                Va rugam introduceti {{atributCandidat.nrLuniSaptamaniAni}}
+                                            </span>
+                                        </span>
+                                        </mat-form-field>
+                                    </div>
+                                </div>
+                                <!-- Rand 5   -->
+                                <div class="form-group row mb-12">
+                                    <div class="col-md-2">
+                                        <mat-form-field class="atribut-candidat">
+                                            <mat-label>{{atributCandidat.dataInceputCimDeteriminat}}</mat-label>
+                                        <input id="dataInceputCimDeteriminat" type = "date" 
+                                            matInput
+                                            formControlName='dataInceputCimDeteriminat'
+                                            [ngClass]="{'is-invalid': (candidatiGroup.get('dataInceputCimDeteriminat').touched ||
+                                                            candidatiGroup.get('dataInceputCimDeteriminat').dirty) &&
+                                                            !candidatiGroup.get('dataInceputCimDeteriminat').valid }"
+                                        />
+                                        <span class="invalid-feedback">
+                                            <span *ngIf="candidatiGroup.get('dataInceputCimDeteriminat').errors?.required">
+                                                Va rugam introduceti {{atributCandidat.dataInceputCimDeteriminat}}
+                                            </span>
+                                        </span>
+                                        </mat-form-field>
+                                    </div>
+                                    <div class="col-md-2">
+                                        <mat-form-field class="atribut-candidat">
+                                            <mat-label>{{atributCandidat.dataSfarsitCimDeterminat}}</mat-label>
+                                        <input id="dataSfarsitCimDeterminat" type = "date" 
+                                            matInput
+                                            formControlName='dataSfarsitCimDeterminat'
+                                            [ngClass]="{'is-invalid': (candidatiGroup.get('dataSfarsitCimDeterminat').touched ||
+                                                            candidatiGroup.get('dataSfarsitCimDeterminat').dirty) &&
+                                                            !candidatiGroup.get('dataSfarsitCimDeterminat').valid }"
+                                        />
+                                        <span class="invalid-feedback">
+                                            <span *ngIf="candidatiGroup.get('dataSfarsitCimDeterminat').errors?.required">
+                                                Va rugam introduceti {{atributCandidat.dataSfarsitCimDeterminat}}
+                                            </span>
+                                        </span>
+                                        </mat-form-field>
+                                    </div>   
+                                    <div class="col-md-2">
+                                        <mat-form-field class="atribut-candidat">
+                                            <mat-label>{{atributCandidat.departament}}</mat-label>
+                                        <input id="departament" type = "text" 
+                                            matInput
+                                            formControlName='departament'
+                                            [ngClass]="{'is-invalid': (candidatiGroup.get('departament').touched ||
+                                                            candidatiGroup.get('departament').dirty) &&
+                                                            !candidatiGroup.get('departament').valid }"
+                                        />
+                                        <span class="invalid-feedback">
+                                            <span *ngIf="candidatiGroup.get('departament').errors?.required">
+                                                Va rugam introduceti {{atributCandidat.departament}}
+                                            </span>
+                                        </span>
+                                        </mat-form-field>
+                                    </div> 
+                                    <div class="col-md-2">
+                                        <mat-form-field class="atribut-candidat">
+                                            <mat-label>{{atributCandidat.locDeMunca}}</mat-label>
+                                        <input id="locDeMunca" type = "text" 
+                                            matInput
+                                            formControlName='locDeMunca'
+                                            [ngClass]="{'is-invalid': (candidatiGroup.get('locDeMunca').touched ||
+                                                            candidatiGroup.get('locDeMunca').dirty) &&
+                                                            !candidatiGroup.get('locDeMunca').valid }"
+                                        />
+                                        <span class="invalid-feedback">
+                                            <span *ngIf="candidatiGroup.get('locDeMunca').errors?.required">
+                                                Va rugam introduceti {{atributCandidat.locDeMunca}}
+                                            </span>
+                                        </span>
+                                        </mat-form-field>
+                                    </div> 
+                                    <div class="col-md-2">
+                                        <mat-form-field class="atribut-candidat">
+                                            <mat-label>{{atributCandidat.functia}}</mat-label>
+                                        <input id="functia" type = "text" 
+                                            matInput
+                                            formControlName='functia'
+                                            [ngClass]="{'is-invalid': (candidatiGroup.get('functia').touched ||
+                                                            candidatiGroup.get('functia').dirty) &&
+                                                            !candidatiGroup.get('functia').valid }"
+                                        />
+                                        <span class="invalid-feedback">
+                                            <span *ngIf="candidatiGroup.get('functia').errors?.required">
+                                                Va rugam introduceti {{atributCandidat.functia}}
+                                            </span>
+                                        </span>
+                                        </mat-form-field>
+                                    </div> 
+                                    <div class="col-md-2">
+                                        <mat-form-field class="atribut-candidat">
+                                            <mat-label>{{atributCandidat.codCOR}}</mat-label>
+                                        <input id="codCOR" type = "text" 
+                                            matInput
+                                            formControlName='codCOR'
+                                            [ngClass]="{'is-invalid': (candidatiGroup.get('codCOR').touched ||
+                                                            candidatiGroup.get('codCOR').dirty) &&
+                                                            !candidatiGroup.get('codCOR').valid }"
+                                        />
+                                        <span class="invalid-feedback">
+                                            <span *ngIf="candidatiGroup.get('codCOR').errors?.required">
+                                                Va rugam introduceti {{atributCandidat.codCOR}}
+                                            </span>
+                                        </span>
+                                        </mat-form-field>
+                                    </div> 
+                                </div>
+                                <!-- Rand 6   -->
+                                <div class="form-group row mb-12">
+                                    <div class="col-md-2">
+                                        <mat-form-field class="atribut-candidat">
+                                            <mat-label>{{atributCandidat.normaIntreagaDeLucruOreZi}}</mat-label>
+                                        <input id="normaIntreagaDeLucruOreZi" type = "text" 
+                                            matInput
+                                            formControlName='normaIntreagaDeLucruOreZi'
+                                            [ngClass]="{'is-invalid': (candidatiGroup.get('normaIntreagaDeLucruOreZi').touched ||
+                                                            candidatiGroup.get('normaIntreagaDeLucruOreZi').dirty) &&
+                                                            !candidatiGroup.get('normaIntreagaDeLucruOreZi').valid }"
+                                        />
+                                        <span class="invalid-feedback">
+                                            <span *ngIf="candidatiGroup.get('normaIntreagaDeLucruOreZi').errors?.required">
+                                                Va rugam introduceti {{atributCandidat.normaIntreagaDeLucruOreZi}}
+                                            </span>
+                                        </span>
+                                        </mat-form-field>
+                                    </div> 
+                                    <div class="col-md-2">
+                                        <mat-form-field class="atribut-candidat">
+                                            <mat-label>{{atributCandidat.normaIntreagaDeLucruOreSapt}}</mat-label>
+                                        <input id="normaIntreagaDeLucruOreSapt" type = "text" 
+                                            matInput
+                                            formControlName='normaIntreagaDeLucruOreSapt'
+                                            [ngClass]="{'is-invalid': (candidatiGroup.get('normaIntreagaDeLucruOreSapt').touched ||
+                                                            candidatiGroup.get('normaIntreagaDeLucruOreSapt').dirty) &&
+                                                            !candidatiGroup.get('normaIntreagaDeLucruOreSapt').valid }"
+                                        />
+                                        <span class="invalid-feedback">
+                                            <span *ngIf="candidatiGroup.get('normaIntreagaDeLucruOreSapt').errors?.required">
+                                                Va rugam introduceti {{atributCandidat.normaIntreagaDeLucruOreSapt}}
+                                            </span>
+                                        </span>
+                                        </mat-form-field>
+                                    </div> 
+                                    <div class="col-md-2">
+                                        <mat-form-field class="atribut-candidat">
+                                            <mat-label>{{atributCandidat.normaPartiala}}</mat-label>
+                                        <input id="normaPartiala" type = "text" 
+                                            matInput
+                                            formControlName='normaPartiala'
+                                            [ngClass]="{'is-invalid': (candidatiGroup.get('normaPartiala').touched ||
+                                                            candidatiGroup.get('normaPartiala').dirty) &&
+                                                            !candidatiGroup.get('normaPartiala').valid }"
+                                        />
+                                        <span class="invalid-feedback">
+                                            <span *ngIf="candidatiGroup.get('normaPartiala').errors?.required">
+                                                Va rugam introduceti {{atributCandidat.normaPartiala}}
+                                            </span>
+                                        </span>
+                                        </mat-form-field>
+                                    </div> 
+                                    <div class="col-md-2">
+                                        <mat-form-field class="atribut-candidat">
+                                            <mat-label>{{atributCandidat.repartizareProgramPtNormaPartiala}}</mat-label>
+                                        <input id="repartizareProgramPtNormaPartiala" type = "text" 
+                                            matInput
+                                            formControlName='repartizareProgramPtNormaPartiala'
+                                            [ngClass]="{'is-invalid': (candidatiGroup.get('repartizareProgramPtNormaPartiala').touched ||
+                                                            candidatiGroup.get('repartizareProgramPtNormaPartiala').dirty) &&
+                                                            !candidatiGroup.get('repartizareProgramPtNormaPartiala').valid }"
+                                        />
+                                        <span class="invalid-feedback">
+                                            <span *ngIf="candidatiGroup.get('repartizareProgramPtNormaPartiala').errors?.required">
+                                                Va rugam introduceti {{atributCandidat.repartizareProgramPtNormaPartiala}}
+                                            </span>
+                                        </span>
+                                        </mat-form-field>
+                                    </div> 
+                                    <div class="col-md-2">
+                                        <mat-form-field class="atribut-candidat">
+                                            <mat-label>{{atributCandidat.repartizareTimpMunca}}</mat-label>
+                                        <input id="repartizareTimpMunca" type = "text" 
+                                            matInput
+                                            formControlName='repartizareTimpMunca'
+                                            [ngClass]="{'is-invalid': (candidatiGroup.get('repartizareTimpMunca').touched ||
+                                                            candidatiGroup.get('repartizareTimpMunca').dirty) &&
+                                                            !candidatiGroup.get('repartizareTimpMunca').valid }"
+                                        />
+                                        <span class="invalid-feedback">
+                                            <span *ngIf="candidatiGroup.get('repartizareTimpMunca').errors?.required">
+                                                Va rugam introduceti {{atributCandidat.repartizareTimpMunca}}
+                                            </span>
+                                        </span>
+                                        </mat-form-field>
+                                    </div> 
+                                    <div class="col-md-2">
+                                        <mat-form-field class="atribut-candidat">
+                                            <mat-label>{{atributCandidat.tipIntervalRepartizare}}</mat-label>
+                                        <input id="tipIntervalRepartizare" type = "text" 
+                                            matInput
+                                            formControlName='tipIntervalRepartizare'
+                                            [ngClass]="{'is-invalid': (candidatiGroup.get('tipIntervalRepartizare').touched ||
+                                                            candidatiGroup.get('tipIntervalRepartizare').dirty) &&
+                                                            !candidatiGroup.get('tipIntervalRepartizare').valid }"
+                                        />
+                                        <span class="invalid-feedback">
+                                            <span *ngIf="candidatiGroup.get('tipIntervalRepartizare').errors?.required">
+                                                Va rugam introduceti {{atributCandidat.tipIntervalRepartizare}}
+                                            </span>
+                                        </span>
+                                        </mat-form-field>
+                                    </div> 
+                                </div>
+                                <!-- Rand 7   -->
+                                <div class="form-group row mb-12">
+                                    <div class="col-md-2">
+                                        <mat-form-field class="atribut-candidat">
+                                            <mat-label>{{atributCandidat.durataConcediuDeOdihna}}</mat-label>
+                                        <input id="durataConcediuDeOdihna" type = "text" 
+                                            matInput
+                                            formControlName='durataConcediuDeOdihna'
+                                            [ngClass]="{'is-invalid': (candidatiGroup.get('durataConcediuDeOdihna').touched ||
+                                                            candidatiGroup.get('durataConcediuDeOdihna').dirty) &&
+                                                            !candidatiGroup.get('durataConcediuDeOdihna').valid }"
+                                        />
+                                        <span class="invalid-feedback">
+                                            <span *ngIf="candidatiGroup.get('durataConcediuDeOdihna').errors?.required">
+                                                Va rugam introduceti {{atributCandidat.durataConcediuDeOdihna}}
+                                            </span>
+                                        </span>
+                                        </mat-form-field>
+                                    </div>
+                                    <div class="col-md-2">
+                                        <mat-form-field class="atribut-candidat">
+                                            <mat-label>{{atributCandidat.salariulDeBazaBrut}}</mat-label>
+                                        <input id="salariulDeBazaBrut" type = "text" 
+                                            matInput
+                                            formControlName='salariulDeBazaBrut'
+                                            [ngClass]="{'is-invalid': (candidatiGroup.get('salariulDeBazaBrut').touched ||
+                                                            candidatiGroup.get('salariulDeBazaBrut').dirty) &&
+                                                            !candidatiGroup.get('salariulDeBazaBrut').valid }"
+                                        />
+                                        <span class="invalid-feedback">
+                                            <span *ngIf="candidatiGroup.get('salariulDeBazaBrut').errors?.required">
+                                                Va rugam introduceti {{atributCandidat.salariulDeBazaBrut}}
+                                            </span>
+                                        </span>
+                                        </mat-form-field>
+                                    </div> 
+                                    <div class="col-md-2">
+                                        <mat-form-field class="atribut-candidat">
+                                            <mat-label>{{atributCandidat.perioadaDeProba}}</mat-label>
+                                        <input id="perioadaDeProba" type = "text" 
+                                            matInput
+                                            formControlName='perioadaDeProba'
+                                            [ngClass]="{'is-invalid': (candidatiGroup.get('perioadaDeProba').touched ||
+                                                            candidatiGroup.get('perioadaDeProba').dirty) &&
+                                                            !candidatiGroup.get('perioadaDeProba').valid }"
+                                        />
+                                        <span class="invalid-feedback">
+                                            <span *ngIf="candidatiGroup.get('perioadaDeProba').errors?.required">
+                                                Va rugam introduceti {{atributCandidat.perioadaDeProba}}
+                                            </span>
+                                        </span>
+                                        </mat-form-field>
+                                    </div> 
+                                    <div class="col-md-2">
+                                        <mat-form-field class="atribut-candidat">
+                                            <mat-label>{{atributCandidat.perioadaDePreavizInCazulConcedierii}}</mat-label>
+                                        <input id="perioadaDePreavizInCazulConcedierii" type = "text" 
+                                            matInput
+                                            formControlName='perioadaDePreavizInCazulConcedierii'
+                                            [ngClass]="{'is-invalid': (candidatiGroup.get('perioadaDePreavizInCazulConcedierii').touched ||
+                                                            candidatiGroup.get('perioadaDePreavizInCazulConcedierii').dirty) &&
+                                                            !candidatiGroup.get('perioadaDePreavizInCazulConcedierii').valid }"
+                                        />
+                                        <span class="invalid-feedback">
+                                            <span *ngIf="candidatiGroup.get('perioadaDePreavizInCazulConcedierii').errors?.required">
+                                                Va rugam introduceti {{atributCandidat.perioadaDePreavizInCazulConcedierii}}
+                                            </span>
+                                        </span>
+                                        </mat-form-field>
+                                    </div> 
+                                    <div class="col-md-2">
+                                        <mat-form-field class="atribut-candidat">
+                                            <mat-label>{{atributCandidat.perioadaDePreavizInCazulDemisiei}}</mat-label>
+                                        <input id="perioadaDePreavizInCazulDemisiei" type = "text" 
+                                            matInput
+                                            formControlName='perioadaDePreavizInCazulDemisiei'
+                                            [ngClass]="{'is-invalid': (candidatiGroup.get('perioadaDePreavizInCazulDemisiei').touched ||
+                                                            candidatiGroup.get('perioadaDePreavizInCazulDemisiei').dirty) &&
+                                                            !candidatiGroup.get('perioadaDePreavizInCazulDemisiei').valid }"
+                                        />
+                                        <span class="invalid-feedback">
+                                            <span *ngIf="candidatiGroup.get('perioadaDePreavizInCazulDemisiei').errors?.required">
+                                                Va rugam introduceti {{atributCandidat.perioadaDePreavizInCazulDemisiei}}
+                                            </span>
+                                        </span>
+                                        </mat-form-field>
+                                    </div> 
+                                    <div class="col-md-2">
+                                        <mat-form-field class="atribut-candidat">
+                                            <mat-label>{{atributCandidat.anulCurent}}</mat-label>
+                                        <input id="anulCurent" type = "text" 
+                                            matInput
+                                            formControlName='anulCurent'
+                                            [ngClass]="{'is-invalid': (candidatiGroup.get('anulCurent').touched ||
+                                                            candidatiGroup.get('anulCurent').dirty) &&
+                                                            !candidatiGroup.get('anulCurent').valid }"
+                                        />
+                                        <span class="invalid-feedback">
+                                            <span *ngIf="candidatiGroup.get('anulCurent').errors?.required">
+                                                Va rugam introduceti {{atributCandidat.anulCurent}}
+                                            </span>
+                                        </span>
+                                        </mat-form-field>
+                                    </div>  
+                                </div>
+                                <!-- Rand 8   -->
+                                <div class="form-group row mb-12">
+                                    <div class="col-md-2">
+                                        <mat-form-field class="atribut-candidat">
+                                            <mat-label>{{atributCandidat.nrInregCerereDeAngajare}}</mat-label>
+                                        <input id="nrInregCerereDeAngajare" type = "text" 
+                                            matInput
+                                            formControlName='nrInregCerereDeAngajare'
+                                            [ngClass]="{'is-invalid': (candidatiGroup.get('nrInregCerereDeAngajare').touched ||
+                                                            candidatiGroup.get('nrInregCerereDeAngajare').dirty) &&
+                                                            !candidatiGroup.get('nrInregCerereDeAngajare').valid }"
+                                        />
+                                        <span class="invalid-feedback">
+                                            <span *ngIf="candidatiGroup.get('nrInregCerereDeAngajare').errors?.required">
+                                                Va rugam introduceti {{atributCandidat.nrInregCerereDeAngajare}}
+                                            </span>
+                                        </span>
+                                        </mat-form-field>
+                                    </div> 
+                                    <div class="col-md-2">
+                                        <mat-form-field class="atribut-candidat">
+                                            <mat-label>{{atributCandidat.nrInregDeclaratieFunctieDeBaza}}</mat-label>
+                                        <input id="nrInregDeclaratieFunctieDeBaza" type = "text" 
+                                            matInput
+                                            formControlName='nrInregDeclaratieFunctieDeBaza'
+                                            [ngClass]="{'is-invalid': (candidatiGroup.get('nrInregDeclaratieFunctieDeBaza').touched ||
+                                                            candidatiGroup.get('nrInregDeclaratieFunctieDeBaza').dirty) &&
+                                                            !candidatiGroup.get('nrInregDeclaratieFunctieDeBaza').valid }"
+                                        />
+                                        <span class="invalid-feedback">
+                                            <span *ngIf="candidatiGroup.get('nrInregDeclaratieFunctieDeBaza').errors?.required">
+                                                Va rugam introduceti {{atributCandidat.nrInregDeclaratieFunctieDeBaza}}
+                                            </span>
+                                        </span>
+                                        </mat-form-field>
+                                    </div> 
+                                    <div class="col-md-2">
+                                        <mat-form-field class="atribut-candidat">
+                                            <mat-label>{{atributCandidat.nrInregDeclaratiePersoaneInIntretinere}}</mat-label>
+                                        <input id="nrInregDeclaratiePersoaneInIntretinere" type = "text" 
+                                            matInput
+                                            formControlName='nrInregDeclaratiePersoaneInIntretinere'
+                                            [ngClass]="{'is-invalid': (candidatiGroup.get('nrInregDeclaratiePersoaneInIntretinere').touched ||
+                                                            candidatiGroup.get('nrInregDeclaratiePersoaneInIntretinere').dirty) &&
+                                                            !candidatiGroup.get('nrInregDeclaratiePersoaneInIntretinere').valid }"
+                                        />
+                                        <span class="invalid-feedback">
+                                            <span *ngIf="candidatiGroup.get('nrInregDeclaratiePersoaneInIntretinere').errors?.required">
+                                                Va rugam introduceti {{atributCandidat.nrInregDeclaratiePersoaneInIntretinere}}
+                                            </span>
+                                        </span>
+                                        </mat-form-field>
+                                    </div> 
+                                    <div class="col-md-2">
+                                        <mat-form-field class="atribut-candidat">
+                                            <mat-label>{{atributCandidat.nrInregDeclaratieCasaDeSanatate}}</mat-label>
+                                        <input id="nrInregDeclaratieCasaDeSanatate" type = "text" 
+                                            matInput
+                                            formControlName='nrInregDeclaratieCasaDeSanatate'
+                                            [ngClass]="{'is-invalid': (candidatiGroup.get('nrInregDeclaratieCasaDeSanatate').touched ||
+                                                            candidatiGroup.get('nrInregDeclaratieCasaDeSanatate').dirty) &&
+                                                            !candidatiGroup.get('nrInregDeclaratieCasaDeSanatate').valid }"
+                                        />
+                                        <span class="invalid-feedback">
+                                            <span *ngIf="candidatiGroup.get('nrInregDeclaratieCasaDeSanatate').errors?.required">
+                                                Va rugam introduceti {{atributCandidat.nrInregDeclaratieCasaDeSanatate}}
+                                            </span>
+                                        </span>
+                                        </mat-form-field>
+                                    </div> 
+                                    <div class="col-md-2">
+                                        <mat-form-field class="atribut-candidat">
+                                            <mat-label>{{atributCandidat.nrInregDeclLuareLaCunostintaROI}}</mat-label>
+                                        <input id="nrInregDeclLuareLaCunostintaROI" type = "text" 
+                                            matInput
+                                            formControlName='nrInregDeclLuareLaCunostintaROI'
+                                            [ngClass]="{'is-invalid': (candidatiGroup.get('nrInregDeclLuareLaCunostintaROI').touched ||
+                                                            candidatiGroup.get('nrInregDeclLuareLaCunostintaROI').dirty) &&
+                                                            !candidatiGroup.get('nrInregDeclLuareLaCunostintaROI').valid }"
+                                        />
+                                        <span class="invalid-feedback">
+                                            <span *ngIf="candidatiGroup.get('nrInregDeclLuareLaCunostintaROI').errors?.required">
+                                                Va rugam introduceti {{atributCandidat.nrInregDeclLuareLaCunostintaROI}}
+                                            </span>
+                                        </span>
+                                        </mat-form-field>
+                                    </div> 
+                                    <div class="col-md-2">
+                                        <mat-form-field class="atribut-candidat">
+                                            <mat-label>{{atributCandidat.nrInregPlanificareaZilelorDeCO}}</mat-label>
+                                        <input id="nrInregPlanificareaZilelorDeCO" type = "text" 
+                                            matInput
+                                            formControlName='nrInregPlanificareaZilelorDeCO'
+                                            [ngClass]="{'is-invalid': (candidatiGroup.get('nrInregPlanificareaZilelorDeCO').touched ||
+                                                            candidatiGroup.get('nrInregPlanificareaZilelorDeCO').dirty) &&
+                                                            !candidatiGroup.get('nrInregPlanificareaZilelorDeCO').valid }"
+                                        />
+                                        <span class="invalid-feedback">
+                                            <span *ngIf="candidatiGroup.get('nrInregPlanificareaZilelorDeCO').errors?.required">
+                                                Va rugam introduceti {{atributCandidat.nrInregPlanificareaZilelorDeCO}}
+                                            </span>
+                                        </span>
+                                        </mat-form-field>
+                                    </div> 
+                                </div>
+                                <!-- Rand 9   -->
+                                <div class="form-group row mb-12">
+                                    <div class="col-md-2">
+                                        <mat-form-field class="atribut-candidat">
+                                            <mat-label>{{atributCandidat.nrZileCOConveniteInAnulCurent}}</mat-label>
+                                        <input id="nrZileCOConveniteInAnulCurent" type = "text" 
+                                            matInput
+                                            formControlName='nrZileCOConveniteInAnulCurent'
+                                            [ngClass]="{'is-invalid': (candidatiGroup.get('nrZileCOConveniteInAnulCurent').touched ||
+                                                            candidatiGroup.get('nrZileCOConveniteInAnulCurent').dirty) &&
+                                                            !candidatiGroup.get('nrZileCOConveniteInAnulCurent').valid }"
+                                        />
+                                        <span class="invalid-feedback">
+                                            <span *ngIf="candidatiGroup.get('nrZileCOConveniteInAnulCurent').errors?.required">
+                                                Va rugam introduceti {{atributCandidat.nrZileCOConveniteInAnulCurent}}
+                                            </span>
+                                        </span>
+                                        </mat-form-field>
+                                    </div> 
+                                    <div class="col-md-2">
+                                        <mat-form-field class="atribut-candidat">
+                                            <mat-label>{{atributCandidat.platitorDeImpozit}}</mat-label>
+                                        <input id="platitorDeImpozit" type = "text" 
+                                            matInput
+                                            formControlName='platitorDeImpozit'
+                                            [ngClass]="{'is-invalid': (candidatiGroup.get('platitorDeImpozit').touched ||
+                                                            candidatiGroup.get('platitorDeImpozit').dirty) &&
+                                                            !candidatiGroup.get('platitorDeImpozit').valid }"
+                                        />
+                                        <span class="invalid-feedback">
+                                            <span *ngIf="candidatiGroup.get('platitorDeImpozit').errors?.required">
+                                                Va rugam introduceti {{atributCandidat.platitorDeImpozit}}
+                                            </span>
+                                        </span>
+                                        </mat-form-field>
+                                    </div> 
+                                    <div class="col-md-2">
+                                        <mat-form-field class="atribut-candidat">
+                                            <mat-label>{{atributCandidat.functiaDeBaza}}</mat-label>
+                                        <input id="functiaDeBaza" type = "text" 
+                                            matInput
+                                            formControlName='functiaDeBaza'
+                                            [ngClass]="{'is-invalid': (candidatiGroup.get('functiaDeBaza').touched ||
+                                                            candidatiGroup.get('functiaDeBaza').dirty) &&
+                                                            !candidatiGroup.get('functiaDeBaza').valid }"
+                                        />
+                                        <span class="invalid-feedback">
+                                            <span *ngIf="candidatiGroup.get('functiaDeBaza').errors?.required">
+                                                Va rugam introduceti {{atributCandidat.functiaDeBaza}}
+                                            </span>
+                                        </span>
+                                        </mat-form-field>
+                                    </div> 
+                                    <div class="col-md-2">
+                                        <mat-form-field class="atribut-candidat">
+                                            <mat-label>{{atributCandidat.mail}}</mat-label>
+                                        <input id="mail" type = "email" 
+                                            matInput
+                                            formControlName='mail'
+                                            [ngClass]="{'is-invalid': (candidatiGroup.get('mail').touched ||
+                                                            candidatiGroup.get('mail').dirty) &&
+                                                            !candidatiGroup.get('mail').valid }"
+                                        />
+                                        <span class="invalid-feedback">
+                                            <span *ngIf="candidatiGroup.get('mail').errors?.required">
+                                                Va rugam introduceti {{atributCandidat.mail}}
+                                            </span>
+                                            <span *ngIf="candidatiGroup.get('mail').errors?.email">
+                                                Va rugam introduceti {{atributCandidat.mail}} valid
+                                            </span>
+                                        </span>
+                                        </mat-form-field>
+                                    </div> 
+                                    <div class="col-md-2">
+                                        <mat-form-field class="atribut-candidat">
+                                            <mat-label>{{atributCandidat.parolaWeb}}</mat-label>
+                                        <input id="parolaWeb" type = "text" 
+                                            matInput
+                                            formControlName='parolaWeb'
+                                            [ngClass]="{'is-invalid': (candidatiGroup.get('parolaWeb').touched ||
+                                                            candidatiGroup.get('parolaWeb').dirty) &&
+                                                            !candidatiGroup.get('parolaWeb').valid }"
+                                        />
+                                        <span class="invalid-feedback">
+                                            <span *ngIf="candidatiGroup.get('parolaWeb').errors?.required">
+                                                Va rugam introduceti {{atributCandidat.parolaWeb}}
+                                            </span>
+                                        </span>
+                                        </mat-form-field>
+                                    </div> 
+                                    <div class="col-md-2">
+                                        <mat-form-field class="atribut-candidat">
+                                            <mat-label>{{atributCandidat.locatiePlata}}</mat-label>
+                                        <input id="locatiePlata" type = "text" 
+                                            matInput
+                                            formControlName='locatiePlata'
+                                            [ngClass]="{'is-invalid': (candidatiGroup.get('locatiePlata').touched ||
+                                                            candidatiGroup.get('locatiePlata').dirty) &&
+                                                            !candidatiGroup.get('locatiePlata').valid }"
+                                        />
+                                        <span class="invalid-feedback">
+                                            <span *ngIf="candidatiGroup.get('locatiePlata').errors?.required">
+                                                Va rugam introduceti {{atributCandidat.locatiePlata}}
+                                            </span>
+                                        </span>
+                                        </mat-form-field>
+                                    </div> 
+                                </div>
+                                <!-- Rand 10   -->
+                                <div class="form-group row mb-12">
+                                    <div class="col-md-2">
+                                        <mat-form-field class="atribut-candidat">
+                                            <mat-label>{{atributCandidat.bancaAngajator}}</mat-label>
+                                        <input id="bancaAngajator" type = "text" 
+                                            matInput
+                                            formControlName='bancaAngajator'
+                                            [ngClass]="{'is-invalid': (candidatiGroup.get('bancaAngajator').touched ||
+                                                            candidatiGroup.get('bancaAngajator').dirty) &&
+                                                            !candidatiGroup.get('bancaAngajator').valid }"
+                                        />
+                                        <span class="invalid-feedback">
+                                            <span *ngIf="candidatiGroup.get('bancaAngajator').errors?.required">
+                                                Va rugam introduceti {{atributCandidat.bancaAngajator}}
+                                            </span>
+                                        </span>
+                                        </mat-form-field>
+                                    </div> 
+                                    <div class="col-md-2">
+                                        <mat-form-field class="atribut-candidat">
+                                            <mat-label>{{atributCandidat.iban}}</mat-label>
+                                        <input id="iban" type = "text" 
+                                            matInput
+                                            formControlName='iban'
+                                            [ngClass]="{'is-invalid': (candidatiGroup.get('iban').touched ||
+                                                            candidatiGroup.get('iban').dirty) &&
+                                                            !candidatiGroup.get('iban').valid }"
+                                        />
+                                        <span class="invalid-feedback">
+                                            <span *ngIf="candidatiGroup.get('iban').errors?.required">
+                                                Va rugam introduceti {{atributCandidat.iban}}
+                                            </span>
+                                        </span>
+                                        </mat-form-field>
+                                    </div> 
+                                    <div class="col-md-2">
+                                        <mat-form-field class="atribut-candidat">
+                                            <mat-label>{{atributCandidat.tipContract}}</mat-label>
+                                        <input id="tipContract" type = "text" 
+                                            matInput
+                                            formControlName='tipContract'
+                                            [ngClass]="{'is-invalid': (candidatiGroup.get('tipContract').touched ||
+                                                            candidatiGroup.get('tipContract').dirty) &&
+                                                            !candidatiGroup.get('tipContract').valid }"
+                                        />
+                                        <span class="invalid-feedback">
+                                            <span *ngIf="candidatiGroup.get('tipContract').errors?.required">
+                                                Va rugam introduceti {{atributCandidat.tipContract}}
+                                            </span>
+                                        </span>
+                                        </mat-form-field>
+                                    </div> 
+                                    <div class="col-md-2">
+                                        <mat-form-field class="atribut-candidat">
+                                            <mat-label>{{atributCandidat.sablonContractNexus}}</mat-label>
+                                        <input id="sablonContractNexus" type = "text" 
+                                            matInput
+                                            formControlName='sablonContractNexus'
+                                            [ngClass]="{'is-invalid': (candidatiGroup.get('sablonContractNexus').touched ||
+                                                            candidatiGroup.get('sablonContractNexus').dirty) &&
+                                                            !candidatiGroup.get('sablonContractNexus').valid }"
+                                        />
+                                        <span class="invalid-feedback">
+                                            <span *ngIf="candidatiGroup.get('sablonContractNexus').errors?.required">
+                                                Va rugam introduceti {{atributCandidat.sablonContractNexus}}
+                                            </span>
+                                        </span>
+                                        </mat-form-field>
+                                    </div> 
+                                    <div class="col-md-2">
+                                        <mat-form-field class="atribut-candidat">
+                                            <mat-label>{{atributCandidat.angajatorNexus}}</mat-label>
+                                        <input id="angajatorNexus" type = "text" 
+                                            matInput
+                                            formControlName='angajatorNexus'
+                                            [ngClass]="{'is-invalid': (candidatiGroup.get('angajatorNexus').touched ||
+                                                            candidatiGroup.get('angajatorNexus').dirty) &&
+                                                            !candidatiGroup.get('angajatorNexus').valid }"
+                                        />
+                                        <span class="invalid-feedback">
+                                            <span *ngIf="candidatiGroup.get('angajatorNexus').errors?.required">
+                                                Va rugam introduceti {{atributCandidat.angajatorNexus}}
+                                            </span>
+                                        </span>
+                                        </mat-form-field>
+                                    </div> 
+                                    <div class="col-md-2">
+                                        <mat-form-field class="atribut-candidat">
+                                            <mat-label>{{atributCandidat.cuiAngajator}}</mat-label>
+                                        <input id="cuiAngajator" type = "text" 
+                                            matInput
+                                            formControlName='cuiAngajator'
+                                            [ngClass]="{'is-invalid': (candidatiGroup.get('cuiAngajator').touched ||
+                                                            candidatiGroup.get('cuiAngajator').dirty) &&
+                                                            !candidatiGroup.get('cuiAngajator').valid }"
+                                        />
+                                        <span class="invalid-feedback">
+                                            <span *ngIf="candidatiGroup.get('cuiAngajator').errors?.required">
+                                                Va rugam introduceti {{atributCandidat.cuiAngajator}}
+                                            </span>
+                                        </span>
+                                        </mat-form-field>
+                                    </div> 
+                                </div>
+                                <!-- Rand 11   -->
+                                <div class="form-group row mb-12">
+                                    <div class="col-md-2">
+                                        <mat-form-field class="atribut-candidat">
+                                            <mat-label>{{atributCandidat.cuiLocDeMunca}}</mat-label>
+                                        <input id="cuiLocDeMunca" type = "text" 
+                                            matInput
+                                            formControlName='cuiLocDeMunca'
+                                            [ngClass]="{'is-invalid': (candidatiGroup.get('cuiLocDeMunca').touched ||
+                                                            candidatiGroup.get('cuiLocDeMunca').dirty) &&
+                                                            !candidatiGroup.get('cuiLocDeMunca').valid }"
+                                        />
+                                        <span class="invalid-feedback">
+                                            <span *ngIf="candidatiGroup.get('cuiLocDeMunca').errors?.required">
+                                                Va rugam introduceti {{atributCandidat.cuiLocDeMunca}}
+                                            </span>
+                                        </span>
+                                        </mat-form-field>
+                                    </div> 
+                                    <div class="col-md-2">
+                                        <mat-form-field class="atribut-candidat">
+                                            <mat-label>{{atributCandidat.ticheteDeMasa}}</mat-label>
+                                        <input id="ticheteDeMasa" type = "text" 
+                                            matInput
+                                            formControlName='ticheteDeMasa'
+                                            [ngClass]="{'is-invalid': (candidatiGroup.get('ticheteDeMasa').touched ||
+                                                            candidatiGroup.get('ticheteDeMasa').dirty) &&
+                                                            !candidatiGroup.get('ticheteDeMasa').valid }"
+                                        />
+                                        <span class="invalid-feedback">
+                                            <span *ngIf="candidatiGroup.get('ticheteDeMasa').errors?.required">
+                                                Va rugam introduceti {{atributCandidat.ticheteDeMasa}}
+                                            </span>
+                                        </span>
+                                        </mat-form-field>
+                                    </div> 
+                                    <div class="col-md-2">
+                                        <mat-form-field class="atribut-candidat">
+                                            <mat-label>{{atributCandidat.studiiSCED}}</mat-label>
+                                        <input id="studiiSCED" type = "text" 
+                                            matInput
+                                            formControlName='studiiSCED'
+                                            [ngClass]="{'is-invalid': (candidatiGroup.get('studiiSCED').touched ||
+                                                            candidatiGroup.get('studiiSCED').dirty) &&
+                                                            !candidatiGroup.get('studiiSCED').valid }"
+                                        />
+                                        <span class="invalid-feedback">
+                                            <span *ngIf="candidatiGroup.get('studiiSCED').errors?.required">
+                                                Va rugam introduceti {{atributCandidat.studiiSCED}}
+                                            </span>
+                                        </span>
+                                        </mat-form-field>
+                                    </div> 
+                                </div>
+                                <div class="form-group row mb-12">
+                                    <button class="btn btn-outline-info col-form-label"
+                                        style="margin-left: 14px; width: 100%;" 
+                                        type="submit"
+                                        [disabled]="!candidatiGroup.valid"
+                                        >Salvează salariat</button>
+                                </div> 
+                            </div>
+                        </div>
                     </div>
                 </div>
-<!-- Rand 3   -->
-                <div class="form-group row mb-12">
-                    <div class="col-md-2">
-                        <mat-form-field class="atribut-candidat">
-                            <mat-label>{{atributCandidat.etaj}}</mat-label>
-                        <input id="etaj" type = "text" 
-                            matInput
-                            formControlName='etaj'
-                            style="width:250px;"
-                            [ngClass]="{'is-invalid': (candidatiGroup.get('etaj').touched ||
-                                             candidatiGroup.get('etaj').dirty) &&
-                                            !candidatiGroup.get('etaj').valid }"
-                        />
-                        <span class="invalid-feedback">
-                            <span *ngIf="candidatiGroup.get('etaj').errors?.required">
-                                Va rugam introduceti {{atributCandidat.etaj}}
-                            </span>
-                            <span *ngIf="candidatiGroup.get('etaj').errors?.minlength">
-                                Minim 3 caractere
-                            </span>
-                        </span>
-                        </mat-form-field>
-                    </div>
-                    <div class="col-md-2">
-                        <mat-form-field class="atribut-candidat">
-                            <mat-label>{{atributCandidat.apartament}}</mat-label>
-                        <input id="apartament" type = "text" 
-                            matInput
-                            formControlName='apartament'
-                            [ngClass]="{'is-invalid': (candidatiGroup.get('apartament').touched ||
-                                             candidatiGroup.get('apartament').dirty) &&
-                                            !candidatiGroup.get('apartament').valid }"
-                        />
-                        <span class="invalid-feedback">
-                            <span *ngIf="candidatiGroup.get('apartament').errors?.required">
-                                Va rugam introduceti {{atributCandidat.apartament}}
-                            </span>
-                        </span>
-                        </mat-form-field>
-                    </div>
-                    <div class="col-md-2">
-                        <mat-form-field class="atribut-candidat">
-                            <mat-label>{{atributCandidat.actIdentitate}}</mat-label>
-                        <input id="actIdentitate" type = "text" 
-                            matInput
-                            formControlName='actIdentitate'
-                            [ngClass]="{'is-invalid': (candidatiGroup.get('actIdentitate').touched ||
-                                             candidatiGroup.get('actIdentitate').dirty) &&
-                                            !candidatiGroup.get('actIdentitate').valid }"
-                        />
-                        <span class="invalid-feedback">
-                            <span *ngIf="candidatiGroup.get('actIdentitate').errors?.required">
-                                Va rugam introduceti {{atributCandidat.actIdentitate}}
-                            </span>
-                        </span>
-                        </mat-form-field>
-                    </div>
-                    <div class="col-md-2">
-                        <mat-form-field class="atribut-candidat">
-                            <mat-label>{{atributCandidat.serieCI}}</mat-label>
-                        <input id="serieCI" type = "text" 
-                            matInput
-                            formControlName='serieCI'
-                            [ngClass]="{'is-invalid': (candidatiGroup.get('serieCI').touched ||
-                                             candidatiGroup.get('serieCI').dirty) &&
-                                            !candidatiGroup.get('serieCI').valid }"
-                        />
-                        <span class="invalid-feedback">
-                            <span *ngIf="candidatiGroup.get('serieCI').errors?.required">
-                                Va rugam introduceti {{atributCandidat.serieCI}}
-                            </span>
-                            <span *ngIf="candidatiGroup.get('serieCI').errors?.minlength">
-                                Minim 3 caractere
-                            </span>
-                        </span>
-                        </mat-form-field>
-                    </div>
-                    <div class="col-md-2">
-                        <mat-form-field class="atribut-candidat">
-                            <mat-label>{{atributCandidat.numarCI}}</mat-label>
-                        <input id="numarCI" type = "text" 
-                            matInput
-                            formControlName='numarCI'
-                            [ngClass]="{'is-invalid': (candidatiGroup.get('numarCI').touched ||
-                                             candidatiGroup.get('numarCI').dirty) &&
-                                            !candidatiGroup.get('numarCI').valid }"
-                        />
-                        <span class="invalid-feedback">
-                            <span *ngIf="candidatiGroup.get('numarCI').errors?.required">
-                                Va rugam introduceti {{atributCandidat.numarCI}}
-                            </span>
-                            <span *ngIf="candidatiGroup.get('numarCI').errors?.minlength">
-                                Minim 3 caractere
-                            </span>
-                        </span>
-                        </mat-form-field>
-                    </div>
-                    <div class="col-md-2">
-                        <mat-form-field class="atribut-candidat">
-                            <mat-label>{{atributCandidat.unitateaCareAEliberatCI}}</mat-label>
-                        <input id="unitateaCareAEliberatCI" type = "text" 
-                            matInput
-                            formControlName='unitateaCareAEliberatCI'
-                            [ngClass]="{'is-invalid': (candidatiGroup.get('unitateaCareAEliberatCI').touched ||
-                                             candidatiGroup.get('unitateaCareAEliberatCI').dirty) &&
-                                            !candidatiGroup.get('unitateaCareAEliberatCI').valid }"
-                        />
-                        <span class="invalid-feedback">
-                            <span *ngIf="candidatiGroup.get('unitateaCareAEliberatCI').errors?.required">
-                                Va rugam introduceti {{atributCandidat.unitateaCareAEliberatCI}}
-                            </span>
-                            <span *ngIf="candidatiGroup.get('unitateaCareAEliberatCI').errors?.minlength">
-                                Minim 3 caractere
-                            </span>
-                        </span>
-                        </mat-form-field>
-                    </div>
-                </div>
-<!-- Rand 4   -->
-                <div class="form-group row mb-12">
-                    <div class="col-md-2">
-                        <mat-form-field class="atribut-candidat">
-                            <mat-label>{{atributCandidat.dataEliberareCI}}</mat-label>
-                        <input id="dataEliberareCI" type = "date" 
-                            matInput
-                            formControlName='dataEliberareCI'
-                            [ngClass]="{'is-invalid': (candidatiGroup.get('dataEliberareCI').touched ||
-                                             candidatiGroup.get('dataEliberareCI').dirty) &&
-                                            !candidatiGroup.get('dataEliberareCI').valid }"
-                        />
-                        <span class="invalid-feedback">
-                            <span *ngIf="candidatiGroup.get('dataEliberareCI').errors?.required">
-                                Va rugam introduceti {{atributCandidat.dataEliberareCI}}
-                            </span>
-                            <span *ngIf="candidatiGroup.get('dataEliberareCI').errors?.minlength">
-                                Minim 3 caractere
-                            </span>
-                        </span>
-                        </mat-form-field>
-                    </div>
-                    <div class="col-md-2">
-                        <mat-form-field class="atribut-candidat">
-                            <mat-label>{{atributCandidat.dataExpirareCI}}</mat-label>
-                        <input id="dataExpirareCI" type = "date" 
-                            matInput
-                            formControlName='dataExpirareCI'
-                            [ngClass]="{'is-invalid': (candidatiGroup.get('dataExpirareCI').touched ||
-                                             candidatiGroup.get('dataExpirareCI').dirty) &&
-                                            !candidatiGroup.get('dataExpirareCI').valid }"
-                        />
-                        <span class="invalid-feedback">
-                            <span *ngIf="candidatiGroup.get('dataExpirareCI').errors?.required">
-                                Va rugam introduceti {{atributCandidat.dataExpirareCI}}
-                            </span>
-                        </span>
-                        </mat-form-field>
-                    </div>
-                    <div class="col-md-2">
-                        <mat-form-field class="atribut-candidat">
-                            <mat-label>{{atributCandidat.cnp}}</mat-label>
-                        <input id="cnp" type = "text" 
-                            matInput
-                            formControlName='cnp'
-                            [ngClass]="{'is-invalid': (candidatiGroup.get('cnp').touched ||
-                                             candidatiGroup.get('cnp').dirty) &&
-                                            !candidatiGroup.get('cnp').valid }"
-                        />
-                        <span class="invalid-feedback">
-                            <span *ngIf="candidatiGroup.get('cnp').errors?.required">
-                                Va rugam introduceti {{atributCandidat.cnp}}
-                            </span>
-                            <span *ngIf="candidatiGroup.get('cnp').errors?.minlength">
-                                {{atributCandidat.cnp}} introdus nu are 13 caracter
-                            </span>
-                            <span *ngIf="candidatiGroup.get('cnp').errors?.maxlength">
-                                {{atributCandidat.cnp}} introdus nu are 13 caracter
-                            </span>
-                        </span>
-                        </mat-form-field>
-                    </div>
-                    <div class="col-md-2">
-                        <mat-form-field class="atribut-candidat">
-                            <mat-label>{{atributCandidat.dataAngajare}}</mat-label>
-                        <input id="dataAngajare" type = "date" 
-                            matInput
-                            formControlName='dataAngajare'
-                            [ngClass]="{'is-invalid': (candidatiGroup.get('dataAngajare').touched ||
-                                             candidatiGroup.get('dataAngajare').dirty) &&
-                                            !candidatiGroup.get('dataAngajare').valid }"
-                        />
-                        <span class="invalid-feedback">
-                            <span *ngIf="candidatiGroup.get('dataAngajare').errors?.required">
-                                Va rugam introduceti {{atributCandidat.dataAngajare}}
-                            </span>
-                        </span>
-                        </mat-form-field>
-                    </div>
-                    <div class="col-md-2">
-                        <mat-form-field class="atribut-candidat">
-                            <mat-label>{{atributCandidat.dataAngajareNedeterminat}}</mat-label>
-                        <input id="dataAngajareNedeterminat" type = "date" 
-                            matInput
-                            formControlName='dataAngajareNedeterminat'
-                            [ngClass]="{'is-invalid': (candidatiGroup.get('dataAngajareNedeterminat').touched ||
-                                             candidatiGroup.get('dataAngajareNedeterminat').dirty) &&
-                                            !candidatiGroup.get('dataAngajareNedeterminat').valid }"
-                        />
-                        <span class="invalid-feedback">
-                            <span *ngIf="candidatiGroup.get('dataAngajareNedeterminat').errors?.required">
-                                Va rugam introduceti {{atributCandidat.dataAngajareNedeterminat}}
-                            </span>
-                        </span>
-                        </mat-form-field>
-                    </div>
-                    <div class="col-md-2">
-                        <mat-form-field class="atribut-candidat">
-                            <mat-label>{{atributCandidat.nrLuniSaptamaniAni}}</mat-label>
-                        <input id="nrLuniSaptamaniAni" type = "text" 
-                            matInput
-                            formControlName='nrLuniSaptamaniAni'
-                            [ngClass]="{'is-invalid': (candidatiGroup.get('nrLuniSaptamaniAni').touched ||
-                                             candidatiGroup.get('nrLuniSaptamaniAni').dirty) &&
-                                            !candidatiGroup.get('nrLuniSaptamaniAni').valid }"
-                        />
-                        <span class="invalid-feedback">
-                            <span *ngIf="candidatiGroup.get('nrLuniSaptamaniAni').errors?.required">
-                                Va rugam introduceti {{atributCandidat.nrLuniSaptamaniAni}}
-                            </span>
-                        </span>
-                        </mat-form-field>
-                    </div>
-                </div>
-<!-- Rand 5   -->
-                <div class="form-group row mb-12">
-                    <div class="col-md-2">
-                        <mat-form-field class="atribut-candidat">
-                            <mat-label>{{atributCandidat.dataInceputCimDeteriminat}}</mat-label>
-                        <input id="dataInceputCimDeteriminat" type = "date" 
-                            matInput
-                            formControlName='dataInceputCimDeteriminat'
-                            [ngClass]="{'is-invalid': (candidatiGroup.get('dataInceputCimDeteriminat').touched ||
-                                             candidatiGroup.get('dataInceputCimDeteriminat').dirty) &&
-                                            !candidatiGroup.get('dataInceputCimDeteriminat').valid }"
-                        />
-                        <span class="invalid-feedback">
-                            <span *ngIf="candidatiGroup.get('dataInceputCimDeteriminat').errors?.required">
-                                Va rugam introduceti {{atributCandidat.dataInceputCimDeteriminat}}
-                            </span>
-                        </span>
-                        </mat-form-field>
-                    </div>
-                    <div class="col-md-2">
-                        <mat-form-field class="atribut-candidat">
-                            <mat-label>{{atributCandidat.dataSfarsitCimDeterminat}}</mat-label>
-                        <input id="dataSfarsitCimDeterminat" type = "date" 
-                            matInput
-                            formControlName='dataSfarsitCimDeterminat'
-                            [ngClass]="{'is-invalid': (candidatiGroup.get('dataSfarsitCimDeterminat').touched ||
-                                             candidatiGroup.get('dataSfarsitCimDeterminat').dirty) &&
-                                            !candidatiGroup.get('dataSfarsitCimDeterminat').valid }"
-                        />
-                        <span class="invalid-feedback">
-                            <span *ngIf="candidatiGroup.get('dataSfarsitCimDeterminat').errors?.required">
-                                Va rugam introduceti {{atributCandidat.dataSfarsitCimDeterminat}}
-                            </span>
-                        </span>
-                        </mat-form-field>
-                    </div>   
-                    <div class="col-md-2">
-                        <mat-form-field class="atribut-candidat">
-                            <mat-label>{{atributCandidat.departament}}</mat-label>
-                        <input id="departament" type = "text" 
-                            matInput
-                            formControlName='departament'
-                            [ngClass]="{'is-invalid': (candidatiGroup.get('departament').touched ||
-                                             candidatiGroup.get('departament').dirty) &&
-                                            !candidatiGroup.get('departament').valid }"
-                        />
-                        <span class="invalid-feedback">
-                            <span *ngIf="candidatiGroup.get('departament').errors?.required">
-                                Va rugam introduceti {{atributCandidat.departament}}
-                            </span>
-                        </span>
-                        </mat-form-field>
-                    </div> 
-                    <div class="col-md-2">
-                        <mat-form-field class="atribut-candidat">
-                            <mat-label>{{atributCandidat.locDeMunca}}</mat-label>
-                        <input id="locDeMunca" type = "text" 
-                            matInput
-                            formControlName='locDeMunca'
-                            [ngClass]="{'is-invalid': (candidatiGroup.get('locDeMunca').touched ||
-                                             candidatiGroup.get('locDeMunca').dirty) &&
-                                            !candidatiGroup.get('locDeMunca').valid }"
-                        />
-                        <span class="invalid-feedback">
-                            <span *ngIf="candidatiGroup.get('locDeMunca').errors?.required">
-                                Va rugam introduceti {{atributCandidat.locDeMunca}}
-                            </span>
-                        </span>
-                        </mat-form-field>
-                    </div> 
-                    <div class="col-md-2">
-                        <mat-form-field class="atribut-candidat">
-                            <mat-label>{{atributCandidat.functia}}</mat-label>
-                        <input id="functia" type = "text" 
-                            matInput
-                            formControlName='functia'
-                            [ngClass]="{'is-invalid': (candidatiGroup.get('functia').touched ||
-                                             candidatiGroup.get('functia').dirty) &&
-                                            !candidatiGroup.get('functia').valid }"
-                        />
-                        <span class="invalid-feedback">
-                            <span *ngIf="candidatiGroup.get('functia').errors?.required">
-                                Va rugam introduceti {{atributCandidat.functia}}
-                            </span>
-                        </span>
-                        </mat-form-field>
-                    </div> 
-                    <div class="col-md-2">
-                        <mat-form-field class="atribut-candidat">
-                            <mat-label>{{atributCandidat.codCOR}}</mat-label>
-                        <input id="codCOR" type = "text" 
-                            matInput
-                            formControlName='codCOR'
-                            [ngClass]="{'is-invalid': (candidatiGroup.get('codCOR').touched ||
-                                             candidatiGroup.get('codCOR').dirty) &&
-                                            !candidatiGroup.get('codCOR').valid }"
-                        />
-                        <span class="invalid-feedback">
-                            <span *ngIf="candidatiGroup.get('codCOR').errors?.required">
-                                Va rugam introduceti {{atributCandidat.codCOR}}
-                            </span>
-                        </span>
-                        </mat-form-field>
-                    </div> 
-                </div>
-<!-- Rand 6   -->
-                <div class="form-group row mb-12">
-                    <div class="col-md-2">
-                        <mat-form-field class="atribut-candidat">
-                            <mat-label>{{atributCandidat.normaIntreagaDeLucruOreZi}}</mat-label>
-                        <input id="normaIntreagaDeLucruOreZi" type = "text" 
-                            matInput
-                            formControlName='normaIntreagaDeLucruOreZi'
-                            [ngClass]="{'is-invalid': (candidatiGroup.get('normaIntreagaDeLucruOreZi').touched ||
-                                             candidatiGroup.get('normaIntreagaDeLucruOreZi').dirty) &&
-                                            !candidatiGroup.get('normaIntreagaDeLucruOreZi').valid }"
-                        />
-                        <span class="invalid-feedback">
-                            <span *ngIf="candidatiGroup.get('normaIntreagaDeLucruOreZi').errors?.required">
-                                Va rugam introduceti {{atributCandidat.normaIntreagaDeLucruOreZi}}
-                            </span>
-                        </span>
-                        </mat-form-field>
-                    </div> 
-                    <div class="col-md-2">
-                        <mat-form-field class="atribut-candidat">
-                            <mat-label>{{atributCandidat.normaIntreagaDeLucruOreSapt}}</mat-label>
-                        <input id="normaIntreagaDeLucruOreSapt" type = "text" 
-                            matInput
-                            formControlName='normaIntreagaDeLucruOreSapt'
-                            [ngClass]="{'is-invalid': (candidatiGroup.get('normaIntreagaDeLucruOreSapt').touched ||
-                                             candidatiGroup.get('normaIntreagaDeLucruOreSapt').dirty) &&
-                                            !candidatiGroup.get('normaIntreagaDeLucruOreSapt').valid }"
-                        />
-                        <span class="invalid-feedback">
-                            <span *ngIf="candidatiGroup.get('normaIntreagaDeLucruOreSapt').errors?.required">
-                                Va rugam introduceti {{atributCandidat.normaIntreagaDeLucruOreSapt}}
-                            </span>
-                        </span>
-                        </mat-form-field>
-                    </div> 
-                    <div class="col-md-2">
-                        <mat-form-field class="atribut-candidat">
-                            <mat-label>{{atributCandidat.normaPartiala}}</mat-label>
-                        <input id="normaPartiala" type = "text" 
-                            matInput
-                            formControlName='normaPartiala'
-                            [ngClass]="{'is-invalid': (candidatiGroup.get('normaPartiala').touched ||
-                                             candidatiGroup.get('normaPartiala').dirty) &&
-                                            !candidatiGroup.get('normaPartiala').valid }"
-                        />
-                        <span class="invalid-feedback">
-                            <span *ngIf="candidatiGroup.get('normaPartiala').errors?.required">
-                                Va rugam introduceti {{atributCandidat.normaPartiala}}
-                            </span>
-                        </span>
-                        </mat-form-field>
-                    </div> 
-                    <div class="col-md-2">
-                        <mat-form-field class="atribut-candidat">
-                            <mat-label>{{atributCandidat.repartizareProgramPtNormaPartiala}}</mat-label>
-                        <input id="repartizareProgramPtNormaPartiala" type = "text" 
-                            matInput
-                            formControlName='repartizareProgramPtNormaPartiala'
-                            [ngClass]="{'is-invalid': (candidatiGroup.get('repartizareProgramPtNormaPartiala').touched ||
-                                             candidatiGroup.get('repartizareProgramPtNormaPartiala').dirty) &&
-                                            !candidatiGroup.get('repartizareProgramPtNormaPartiala').valid }"
-                        />
-                        <span class="invalid-feedback">
-                            <span *ngIf="candidatiGroup.get('repartizareProgramPtNormaPartiala').errors?.required">
-                                Va rugam introduceti {{atributCandidat.repartizareProgramPtNormaPartiala}}
-                            </span>
-                        </span>
-                        </mat-form-field>
-                    </div> 
-                    <div class="col-md-2">
-                        <mat-form-field class="atribut-candidat">
-                            <mat-label>{{atributCandidat.repartizareTimpMunca}}</mat-label>
-                        <input id="repartizareTimpMunca" type = "text" 
-                            matInput
-                            formControlName='repartizareTimpMunca'
-                            [ngClass]="{'is-invalid': (candidatiGroup.get('repartizareTimpMunca').touched ||
-                                             candidatiGroup.get('repartizareTimpMunca').dirty) &&
-                                            !candidatiGroup.get('repartizareTimpMunca').valid }"
-                        />
-                        <span class="invalid-feedback">
-                            <span *ngIf="candidatiGroup.get('repartizareTimpMunca').errors?.required">
-                                Va rugam introduceti {{atributCandidat.repartizareTimpMunca}}
-                            </span>
-                        </span>
-                        </mat-form-field>
-                    </div> 
-                    <div class="col-md-2">
-                        <mat-form-field class="atribut-candidat">
-                            <mat-label>{{atributCandidat.tipIntervalRepartizare}}</mat-label>
-                        <input id="tipIntervalRepartizare" type = "text" 
-                            matInput
-                            formControlName='tipIntervalRepartizare'
-                            [ngClass]="{'is-invalid': (candidatiGroup.get('tipIntervalRepartizare').touched ||
-                                             candidatiGroup.get('tipIntervalRepartizare').dirty) &&
-                                            !candidatiGroup.get('tipIntervalRepartizare').valid }"
-                        />
-                        <span class="invalid-feedback">
-                            <span *ngIf="candidatiGroup.get('tipIntervalRepartizare').errors?.required">
-                                Va rugam introduceti {{atributCandidat.tipIntervalRepartizare}}
-                            </span>
-                        </span>
-                        </mat-form-field>
-                    </div> 
-                </div>
-<!-- Rand 7   -->
-                <div class="form-group row mb-12">
-                    <div class="col-md-2">
-                        <mat-form-field class="atribut-candidat">
-                            <mat-label>{{atributCandidat.durataConcediuDeOdihna}}</mat-label>
-                        <input id="durataConcediuDeOdihna" type = "text" 
-                            matInput
-                            formControlName='durataConcediuDeOdihna'
-                            [ngClass]="{'is-invalid': (candidatiGroup.get('durataConcediuDeOdihna').touched ||
-                                             candidatiGroup.get('durataConcediuDeOdihna').dirty) &&
-                                            !candidatiGroup.get('durataConcediuDeOdihna').valid }"
-                        />
-                        <span class="invalid-feedback">
-                            <span *ngIf="candidatiGroup.get('durataConcediuDeOdihna').errors?.required">
-                                Va rugam introduceti {{atributCandidat.durataConcediuDeOdihna}}
-                            </span>
-                        </span>
-                        </mat-form-field>
-                    </div>
-                    <div class="col-md-2">
-                        <mat-form-field class="atribut-candidat">
-                            <mat-label>{{atributCandidat.salariulDeBazaBrut}}</mat-label>
-                        <input id="salariulDeBazaBrut" type = "text" 
-                            matInput
-                            formControlName='salariulDeBazaBrut'
-                            [ngClass]="{'is-invalid': (candidatiGroup.get('salariulDeBazaBrut').touched ||
-                                             candidatiGroup.get('salariulDeBazaBrut').dirty) &&
-                                            !candidatiGroup.get('salariulDeBazaBrut').valid }"
-                        />
-                        <span class="invalid-feedback">
-                            <span *ngIf="candidatiGroup.get('salariulDeBazaBrut').errors?.required">
-                                Va rugam introduceti {{atributCandidat.salariulDeBazaBrut}}
-                            </span>
-                        </span>
-                        </mat-form-field>
-                    </div> 
-                    <div class="col-md-2">
-                        <mat-form-field class="atribut-candidat">
-                            <mat-label>{{atributCandidat.perioadaDeProba}}</mat-label>
-                        <input id="perioadaDeProba" type = "text" 
-                            matInput
-                            formControlName='perioadaDeProba'
-                            [ngClass]="{'is-invalid': (candidatiGroup.get('perioadaDeProba').touched ||
-                                             candidatiGroup.get('perioadaDeProba').dirty) &&
-                                            !candidatiGroup.get('perioadaDeProba').valid }"
-                        />
-                        <span class="invalid-feedback">
-                            <span *ngIf="candidatiGroup.get('perioadaDeProba').errors?.required">
-                                Va rugam introduceti {{atributCandidat.perioadaDeProba}}
-                            </span>
-                        </span>
-                        </mat-form-field>
-                    </div> 
-                    <div class="col-md-2">
-                        <mat-form-field class="atribut-candidat">
-                            <mat-label>{{atributCandidat.perioadaDePreavizInCazulConcedierii}}</mat-label>
-                        <input id="perioadaDePreavizInCazulConcedierii" type = "text" 
-                            matInput
-                            formControlName='perioadaDePreavizInCazulConcedierii'
-                            [ngClass]="{'is-invalid': (candidatiGroup.get('perioadaDePreavizInCazulConcedierii').touched ||
-                                             candidatiGroup.get('perioadaDePreavizInCazulConcedierii').dirty) &&
-                                            !candidatiGroup.get('perioadaDePreavizInCazulConcedierii').valid }"
-                        />
-                        <span class="invalid-feedback">
-                            <span *ngIf="candidatiGroup.get('perioadaDePreavizInCazulConcedierii').errors?.required">
-                                Va rugam introduceti {{atributCandidat.perioadaDePreavizInCazulConcedierii}}
-                            </span>
-                        </span>
-                        </mat-form-field>
-                    </div> 
-                    <div class="col-md-2">
-                        <mat-form-field class="atribut-candidat">
-                            <mat-label>{{atributCandidat.perioadaDePreavizInCazulDemisiei}}</mat-label>
-                        <input id="perioadaDePreavizInCazulDemisiei" type = "text" 
-                            matInput
-                            formControlName='perioadaDePreavizInCazulDemisiei'
-                            [ngClass]="{'is-invalid': (candidatiGroup.get('perioadaDePreavizInCazulDemisiei').touched ||
-                                             candidatiGroup.get('perioadaDePreavizInCazulDemisiei').dirty) &&
-                                            !candidatiGroup.get('perioadaDePreavizInCazulDemisiei').valid }"
-                        />
-                        <span class="invalid-feedback">
-                            <span *ngIf="candidatiGroup.get('perioadaDePreavizInCazulDemisiei').errors?.required">
-                                Va rugam introduceti {{atributCandidat.perioadaDePreavizInCazulDemisiei}}
-                            </span>
-                        </span>
-                        </mat-form-field>
-                    </div> 
-                    <div class="col-md-2">
-                        <mat-form-field class="atribut-candidat">
-                            <mat-label>{{atributCandidat.anulCurent}}</mat-label>
-                        <input id="anulCurent" type = "text" 
-                            matInput
-                            formControlName='anulCurent'
-                            [ngClass]="{'is-invalid': (candidatiGroup.get('anulCurent').touched ||
-                                             candidatiGroup.get('anulCurent').dirty) &&
-                                            !candidatiGroup.get('anulCurent').valid }"
-                        />
-                        <span class="invalid-feedback">
-                            <span *ngIf="candidatiGroup.get('anulCurent').errors?.required">
-                                Va rugam introduceti {{atributCandidat.anulCurent}}
-                            </span>
-                        </span>
-                        </mat-form-field>
-                    </div>  
-                </div>
-<!-- Rand 8   -->
-                <div class="form-group row mb-12">
-                    <div class="col-md-2">
-                        <mat-form-field class="atribut-candidat">
-                            <mat-label>{{atributCandidat.nrInregCerereDeAngajare}}</mat-label>
-                        <input id="nrInregCerereDeAngajare" type = "text" 
-                            matInput
-                            formControlName='nrInregCerereDeAngajare'
-                            [ngClass]="{'is-invalid': (candidatiGroup.get('nrInregCerereDeAngajare').touched ||
-                                             candidatiGroup.get('nrInregCerereDeAngajare').dirty) &&
-                                            !candidatiGroup.get('nrInregCerereDeAngajare').valid }"
-                        />
-                        <span class="invalid-feedback">
-                            <span *ngIf="candidatiGroup.get('nrInregCerereDeAngajare').errors?.required">
-                                Va rugam introduceti {{atributCandidat.nrInregCerereDeAngajare}}
-                            </span>
-                        </span>
-                        </mat-form-field>
-                    </div> 
-                    <div class="col-md-2">
-                        <mat-form-field class="atribut-candidat">
-                            <mat-label>{{atributCandidat.nrInregDeclaratieFunctieDeBaza}}</mat-label>
-                        <input id="nrInregDeclaratieFunctieDeBaza" type = "text" 
-                            matInput
-                            formControlName='nrInregDeclaratieFunctieDeBaza'
-                            [ngClass]="{'is-invalid': (candidatiGroup.get('nrInregDeclaratieFunctieDeBaza').touched ||
-                                             candidatiGroup.get('nrInregDeclaratieFunctieDeBaza').dirty) &&
-                                            !candidatiGroup.get('nrInregDeclaratieFunctieDeBaza').valid }"
-                        />
-                        <span class="invalid-feedback">
-                            <span *ngIf="candidatiGroup.get('nrInregDeclaratieFunctieDeBaza').errors?.required">
-                                Va rugam introduceti {{atributCandidat.nrInregDeclaratieFunctieDeBaza}}
-                            </span>
-                        </span>
-                        </mat-form-field>
-                    </div> 
-                    <div class="col-md-2">
-                        <mat-form-field class="atribut-candidat">
-                            <mat-label>{{atributCandidat.nrInregDeclaratiePersoaneInIntretinere}}</mat-label>
-                        <input id="nrInregDeclaratiePersoaneInIntretinere" type = "text" 
-                            matInput
-                            formControlName='nrInregDeclaratiePersoaneInIntretinere'
-                            [ngClass]="{'is-invalid': (candidatiGroup.get('nrInregDeclaratiePersoaneInIntretinere').touched ||
-                                             candidatiGroup.get('nrInregDeclaratiePersoaneInIntretinere').dirty) &&
-                                            !candidatiGroup.get('nrInregDeclaratiePersoaneInIntretinere').valid }"
-                        />
-                        <span class="invalid-feedback">
-                            <span *ngIf="candidatiGroup.get('nrInregDeclaratiePersoaneInIntretinere').errors?.required">
-                                Va rugam introduceti {{atributCandidat.nrInregDeclaratiePersoaneInIntretinere}}
-                            </span>
-                        </span>
-                        </mat-form-field>
-                    </div> 
-                    <div class="col-md-2">
-                        <mat-form-field class="atribut-candidat">
-                            <mat-label>{{atributCandidat.nrInregDeclaratieCasaDeSanatate}}</mat-label>
-                        <input id="nrInregDeclaratieCasaDeSanatate" type = "text" 
-                            matInput
-                            formControlName='nrInregDeclaratieCasaDeSanatate'
-                            [ngClass]="{'is-invalid': (candidatiGroup.get('nrInregDeclaratieCasaDeSanatate').touched ||
-                                             candidatiGroup.get('nrInregDeclaratieCasaDeSanatate').dirty) &&
-                                            !candidatiGroup.get('nrInregDeclaratieCasaDeSanatate').valid }"
-                        />
-                        <span class="invalid-feedback">
-                            <span *ngIf="candidatiGroup.get('nrInregDeclaratieCasaDeSanatate').errors?.required">
-                                Va rugam introduceti {{atributCandidat.nrInregDeclaratieCasaDeSanatate}}
-                            </span>
-                        </span>
-                        </mat-form-field>
-                    </div> 
-                    <div class="col-md-2">
-                        <mat-form-field class="atribut-candidat">
-                            <mat-label>{{atributCandidat.nrInregDeclLuareLaCunostintaROI}}</mat-label>
-                        <input id="nrInregDeclLuareLaCunostintaROI" type = "text" 
-                            matInput
-                            formControlName='nrInregDeclLuareLaCunostintaROI'
-                            [ngClass]="{'is-invalid': (candidatiGroup.get('nrInregDeclLuareLaCunostintaROI').touched ||
-                                             candidatiGroup.get('nrInregDeclLuareLaCunostintaROI').dirty) &&
-                                            !candidatiGroup.get('nrInregDeclLuareLaCunostintaROI').valid }"
-                        />
-                        <span class="invalid-feedback">
-                            <span *ngIf="candidatiGroup.get('nrInregDeclLuareLaCunostintaROI').errors?.required">
-                                Va rugam introduceti {{atributCandidat.nrInregDeclLuareLaCunostintaROI}}
-                            </span>
-                        </span>
-                        </mat-form-field>
-                    </div> 
-                    <div class="col-md-2">
-                        <mat-form-field class="atribut-candidat">
-                            <mat-label>{{atributCandidat.nrInregPlanificareaZilelorDeCO}}</mat-label>
-                        <input id="nrInregPlanificareaZilelorDeCO" type = "text" 
-                            matInput
-                            formControlName='nrInregPlanificareaZilelorDeCO'
-                            [ngClass]="{'is-invalid': (candidatiGroup.get('nrInregPlanificareaZilelorDeCO').touched ||
-                                             candidatiGroup.get('nrInregPlanificareaZilelorDeCO').dirty) &&
-                                            !candidatiGroup.get('nrInregPlanificareaZilelorDeCO').valid }"
-                        />
-                        <span class="invalid-feedback">
-                            <span *ngIf="candidatiGroup.get('nrInregPlanificareaZilelorDeCO').errors?.required">
-                                Va rugam introduceti {{atributCandidat.nrInregPlanificareaZilelorDeCO}}
-                            </span>
-                        </span>
-                        </mat-form-field>
-                    </div> 
-                </div>
-<!-- Rand 9   -->
-                <div class="form-group row mb-12">
-                    <div class="col-md-2">
-                        <mat-form-field class="atribut-candidat">
-                            <mat-label>{{atributCandidat.nrZileCOConveniteInAnulCurent}}</mat-label>
-                        <input id="nrZileCOConveniteInAnulCurent" type = "text" 
-                            matInput
-                            formControlName='nrZileCOConveniteInAnulCurent'
-                            [ngClass]="{'is-invalid': (candidatiGroup.get('nrZileCOConveniteInAnulCurent').touched ||
-                                             candidatiGroup.get('nrZileCOConveniteInAnulCurent').dirty) &&
-                                            !candidatiGroup.get('nrZileCOConveniteInAnulCurent').valid }"
-                        />
-                        <span class="invalid-feedback">
-                            <span *ngIf="candidatiGroup.get('nrZileCOConveniteInAnulCurent').errors?.required">
-                                Va rugam introduceti {{atributCandidat.nrZileCOConveniteInAnulCurent}}
-                            </span>
-                        </span>
-                        </mat-form-field>
-                    </div> 
-                    <div class="col-md-2">
-                        <mat-form-field class="atribut-candidat">
-                            <mat-label>{{atributCandidat.platitorDeImpozit}}</mat-label>
-                        <input id="platitorDeImpozit" type = "text" 
-                            matInput
-                            formControlName='platitorDeImpozit'
-                            [ngClass]="{'is-invalid': (candidatiGroup.get('platitorDeImpozit').touched ||
-                                             candidatiGroup.get('platitorDeImpozit').dirty) &&
-                                            !candidatiGroup.get('platitorDeImpozit').valid }"
-                        />
-                        <span class="invalid-feedback">
-                            <span *ngIf="candidatiGroup.get('platitorDeImpozit').errors?.required">
-                                Va rugam introduceti {{atributCandidat.platitorDeImpozit}}
-                            </span>
-                        </span>
-                        </mat-form-field>
-                    </div> 
-                    <div class="col-md-2">
-                        <mat-form-field class="atribut-candidat">
-                            <mat-label>{{atributCandidat.functiaDeBaza}}</mat-label>
-                        <input id="functiaDeBaza" type = "text" 
-                            matInput
-                            formControlName='functiaDeBaza'
-                            [ngClass]="{'is-invalid': (candidatiGroup.get('functiaDeBaza').touched ||
-                                             candidatiGroup.get('functiaDeBaza').dirty) &&
-                                            !candidatiGroup.get('functiaDeBaza').valid }"
-                        />
-                        <span class="invalid-feedback">
-                            <span *ngIf="candidatiGroup.get('functiaDeBaza').errors?.required">
-                                Va rugam introduceti {{atributCandidat.functiaDeBaza}}
-                            </span>
-                        </span>
-                        </mat-form-field>
-                    </div> 
-                    <div class="col-md-2">
-                        <mat-form-field class="atribut-candidat">
-                            <mat-label>{{atributCandidat.mail}}</mat-label>
-                        <input id="mail" type = "email" 
-                            matInput
-                            formControlName='mail'
-                            [ngClass]="{'is-invalid': (candidatiGroup.get('mail').touched ||
-                                             candidatiGroup.get('mail').dirty) &&
-                                            !candidatiGroup.get('mail').valid }"
-                        />
-                        <span class="invalid-feedback">
-                            <span *ngIf="candidatiGroup.get('mail').errors?.required">
-                                Va rugam introduceti {{atributCandidat.mail}}
-                            </span>
-                            <span *ngIf="candidatiGroup.get('mail').errors?.email">
-                                Va rugam introduceti {{atributCandidat.mail}} valid
-                            </span>
-                        </span>
-                        </mat-form-field>
-                    </div> 
-                    <div class="col-md-2">
-                        <mat-form-field class="atribut-candidat">
-                            <mat-label>{{atributCandidat.parolaWeb}}</mat-label>
-                        <input id="parolaWeb" type = "text" 
-                            matInput
-                            formControlName='parolaWeb'
-                            [ngClass]="{'is-invalid': (candidatiGroup.get('parolaWeb').touched ||
-                                             candidatiGroup.get('parolaWeb').dirty) &&
-                                            !candidatiGroup.get('parolaWeb').valid }"
-                        />
-                        <span class="invalid-feedback">
-                            <span *ngIf="candidatiGroup.get('parolaWeb').errors?.required">
-                                Va rugam introduceti {{atributCandidat.parolaWeb}}
-                            </span>
-                        </span>
-                        </mat-form-field>
-                    </div> 
-                    <div class="col-md-2">
-                        <mat-form-field class="atribut-candidat">
-                            <mat-label>{{atributCandidat.locatiePlata}}</mat-label>
-                        <input id="locatiePlata" type = "text" 
-                            matInput
-                            formControlName='locatiePlata'
-                            [ngClass]="{'is-invalid': (candidatiGroup.get('locatiePlata').touched ||
-                                             candidatiGroup.get('locatiePlata').dirty) &&
-                                            !candidatiGroup.get('locatiePlata').valid }"
-                        />
-                        <span class="invalid-feedback">
-                            <span *ngIf="candidatiGroup.get('locatiePlata').errors?.required">
-                                Va rugam introduceti {{atributCandidat.locatiePlata}}
-                            </span>
-                        </span>
-                        </mat-form-field>
-                    </div> 
-                </div>
-<!-- Rand 10   -->
-                <div class="form-group row mb-12">
-                    <div class="col-md-2">
-                        <mat-form-field class="atribut-candidat">
-                            <mat-label>{{atributCandidat.bancaAngajator}}</mat-label>
-                        <input id="bancaAngajator" type = "text" 
-                            matInput
-                            formControlName='bancaAngajator'
-                            [ngClass]="{'is-invalid': (candidatiGroup.get('bancaAngajator').touched ||
-                                             candidatiGroup.get('bancaAngajator').dirty) &&
-                                            !candidatiGroup.get('bancaAngajator').valid }"
-                        />
-                        <span class="invalid-feedback">
-                            <span *ngIf="candidatiGroup.get('bancaAngajator').errors?.required">
-                                Va rugam introduceti {{atributCandidat.bancaAngajator}}
-                            </span>
-                        </span>
-                        </mat-form-field>
-                    </div> 
-                    <div class="col-md-2">
-                        <mat-form-field class="atribut-candidat">
-                            <mat-label>{{atributCandidat.iban}}</mat-label>
-                        <input id="iban" type = "text" 
-                            matInput
-                            formControlName='iban'
-                            [ngClass]="{'is-invalid': (candidatiGroup.get('iban').touched ||
-                                             candidatiGroup.get('iban').dirty) &&
-                                            !candidatiGroup.get('iban').valid }"
-                        />
-                        <span class="invalid-feedback">
-                            <span *ngIf="candidatiGroup.get('iban').errors?.required">
-                                Va rugam introduceti {{atributCandidat.iban}}
-                            </span>
-                        </span>
-                        </mat-form-field>
-                    </div> 
-                    <div class="col-md-2">
-                        <mat-form-field class="atribut-candidat">
-                            <mat-label>{{atributCandidat.tipContract}}</mat-label>
-                        <input id="tipContract" type = "text" 
-                            matInput
-                            formControlName='tipContract'
-                            [ngClass]="{'is-invalid': (candidatiGroup.get('tipContract').touched ||
-                                             candidatiGroup.get('tipContract').dirty) &&
-                                            !candidatiGroup.get('tipContract').valid }"
-                        />
-                        <span class="invalid-feedback">
-                            <span *ngIf="candidatiGroup.get('tipContract').errors?.required">
-                                Va rugam introduceti {{atributCandidat.tipContract}}
-                            </span>
-                        </span>
-                        </mat-form-field>
-                    </div> 
-                    <div class="col-md-2">
-                        <mat-form-field class="atribut-candidat">
-                            <mat-label>{{atributCandidat.sablonContractNexus}}</mat-label>
-                        <input id="sablonContractNexus" type = "text" 
-                            matInput
-                            formControlName='sablonContractNexus'
-                            [ngClass]="{'is-invalid': (candidatiGroup.get('sablonContractNexus').touched ||
-                                             candidatiGroup.get('sablonContractNexus').dirty) &&
-                                            !candidatiGroup.get('sablonContractNexus').valid }"
-                        />
-                        <span class="invalid-feedback">
-                            <span *ngIf="candidatiGroup.get('sablonContractNexus').errors?.required">
-                                Va rugam introduceti {{atributCandidat.sablonContractNexus}}
-                            </span>
-                        </span>
-                        </mat-form-field>
-                    </div> 
-                    <div class="col-md-2">
-                        <mat-form-field class="atribut-candidat">
-                            <mat-label>{{atributCandidat.angajatorNexus}}</mat-label>
-                        <input id="angajatorNexus" type = "text" 
-                            matInput
-                            formControlName='angajatorNexus'
-                            [ngClass]="{'is-invalid': (candidatiGroup.get('angajatorNexus').touched ||
-                                             candidatiGroup.get('angajatorNexus').dirty) &&
-                                            !candidatiGroup.get('angajatorNexus').valid }"
-                        />
-                        <span class="invalid-feedback">
-                            <span *ngIf="candidatiGroup.get('angajatorNexus').errors?.required">
-                                Va rugam introduceti {{atributCandidat.angajatorNexus}}
-                            </span>
-                        </span>
-                        </mat-form-field>
-                    </div> 
-                    <div class="col-md-2">
-                        <mat-form-field class="atribut-candidat">
-                            <mat-label>{{atributCandidat.cuiAngajator}}</mat-label>
-                        <input id="cuiAngajator" type = "text" 
-                            matInput
-                            formControlName='cuiAngajator'
-                            [ngClass]="{'is-invalid': (candidatiGroup.get('cuiAngajator').touched ||
-                                             candidatiGroup.get('cuiAngajator').dirty) &&
-                                            !candidatiGroup.get('cuiAngajator').valid }"
-                        />
-                        <span class="invalid-feedback">
-                            <span *ngIf="candidatiGroup.get('cuiAngajator').errors?.required">
-                                Va rugam introduceti {{atributCandidat.cuiAngajator}}
-                            </span>
-                        </span>
-                        </mat-form-field>
-                    </div> 
-                </div>
-<!-- Rand 11   -->
-                <div class="form-group row mb-12">
-                    <div class="col-md-2">
-                        <mat-form-field class="atribut-candidat">
-                            <mat-label>{{atributCandidat.cuiLocDeMunca}}</mat-label>
-                        <input id="cuiLocDeMunca" type = "text" 
-                            matInput
-                            formControlName='cuiLocDeMunca'
-                            [ngClass]="{'is-invalid': (candidatiGroup.get('cuiLocDeMunca').touched ||
-                                             candidatiGroup.get('cuiLocDeMunca').dirty) &&
-                                            !candidatiGroup.get('cuiLocDeMunca').valid }"
-                        />
-                        <span class="invalid-feedback">
-                            <span *ngIf="candidatiGroup.get('cuiLocDeMunca').errors?.required">
-                                Va rugam introduceti {{atributCandidat.cuiLocDeMunca}}
-                            </span>
-                        </span>
-                        </mat-form-field>
-                    </div> 
-                    <div class="col-md-2">
-                        <mat-form-field class="atribut-candidat">
-                            <mat-label>{{atributCandidat.ticheteDeMasa}}</mat-label>
-                        <input id="ticheteDeMasa" type = "text" 
-                            matInput
-                            formControlName='ticheteDeMasa'
-                            [ngClass]="{'is-invalid': (candidatiGroup.get('ticheteDeMasa').touched ||
-                                             candidatiGroup.get('ticheteDeMasa').dirty) &&
-                                            !candidatiGroup.get('ticheteDeMasa').valid }"
-                        />
-                        <span class="invalid-feedback">
-                            <span *ngIf="candidatiGroup.get('ticheteDeMasa').errors?.required">
-                                Va rugam introduceti {{atributCandidat.ticheteDeMasa}}
-                            </span>
-                        </span>
-                        </mat-form-field>
-                    </div> 
-                    <div class="col-md-2">
-                        <mat-form-field class="atribut-candidat">
-                            <mat-label>{{atributCandidat.studiiSCED}}</mat-label>
-                        <input id="studiiSCED" type = "text" 
-                            matInput
-                            formControlName='studiiSCED'
-                            [ngClass]="{'is-invalid': (candidatiGroup.get('studiiSCED').touched ||
-                                             candidatiGroup.get('studiiSCED').dirty) &&
-                                            !candidatiGroup.get('studiiSCED').valid }"
-                        />
-                        <span class="invalid-feedback">
-                            <span *ngIf="candidatiGroup.get('studiiSCED').errors?.required">
-                                Va rugam introduceti {{atributCandidat.studiiSCED}}
-                            </span>
-                        </span>
-                        </mat-form-field>
-                    </div> 
-                </div>
-                <div class="form-group row mb-12">
-                    <button class="btn btn-outline-info col-form-label"
-                        style="margin-left: 14px; width: 100%;" 
-                        type="submit"
-                        [disabled]="!candidatiGroup.valid"
-                        >Salvează salariat</button>
-                </div>           
+          
             </form>
           </div>
         </div>
@@ -1191,6 +1205,7 @@
                 </div>
             </div>
         </div>
+    </div>
         <!-- <div class="card">
             <div class="card-header" id="headingTwo">
                 <h2 class="mb-0">
@@ -1227,5 +1242,5 @@
                 </div>
             </div>
         </div> -->
-    </div>
+    <!-- </div> -->
 <!-- </div> -->
