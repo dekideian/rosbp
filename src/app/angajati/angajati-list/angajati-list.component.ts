@@ -38,5 +38,8 @@ export class AngajatiListComponent implements OnInit {
       }
     });
   }
+  delete(emailAngajat: string) {
+    this.angajatiService.remove(emailAngajat);
+  }
 
 }

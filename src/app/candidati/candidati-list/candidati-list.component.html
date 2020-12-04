@@ -18,13 +18,19 @@
                 <th>Nume Angajat</th>
                 <th>Email</th>
                 <th>Firma</th>
+                <th>Stergere</th>
             </tr>        
         </thead>
         <tbody>
             <tr *ngFor='let candidat of candidatiFiltrate'>
-                <td><a [routerLink]="['/candidati', candidat.id]"> {{candidat.nume}}</a></td>
+                <td><a [routerLink]="['/candidati', candidat.uid]"> {{candidat.nume}}</a></td>
                 <td>{{candidat.email}}</td>
                 <td>{{candidat.firma}}</td>
+                <td>
+                  <button (click)="delete(candidat.uid)" class="btn btn-outline-danger">
+                      <i class="fa fa-minus-circle"> Stergere</i>
+                  </button>
+              </td>
             </tr>
         </tbody>
     </table>

@@ -39,5 +39,7 @@ export class CandidatiListComponent implements OnInit {
       }
     });
   }
-
+  delete(idCandidat: string) {
+    this.candidatiService.remove(idCandidat);
+  }
 }

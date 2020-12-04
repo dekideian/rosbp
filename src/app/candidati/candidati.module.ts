@@ -5,25 +5,52 @@ import { CandidatiListComponent } from './candidati-list/candidati-list.componen
 import { CandidatiDetaliiComponent } from './candidati-detalii/candidati-detalii.component';
 import { CandidatiDetailsGuard } from './candidati-details.guard';
 import { FormsModule } from '@angular/forms';
+import { ReactiveFormsModule } from '@angular/forms';
+import { CandidatiAdaugareComponent } from './candidati-adaugare/candidati-adaugare.component';
+
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MatSliderModule } from '@angular/material/slider';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import {platformBrowserDynamic} from '@angular/platform-browser-dynamic';
+import {MatNativeDateModule} from '@angular/material/core';
+import {MAT_FORM_FIELD_DEFAULT_OPTIONS} from '@angular/material/form-field';
+import { DemoMaterialModule } from './material-module';
+
 
 const routes: Routes = [
   { path: 'candidati', component: CandidatiListComponent },
-  { path: 'candidati/:id', canActivate: [CandidatiDetailsGuard], component: CandidatiDetaliiComponent }
+  { path: 'candidati/adauga', component: CandidatiAdaugareComponent },
+  { path: 'candidati/:id', component: CandidatiDetaliiComponent }
+  // { path: 'candidati/:id', canActivate: [CandidatiDetailsGuard], component: CandidatiDetaliiComponent }
 ];
 
 @NgModule({
   declarations: [
     CandidatiListComponent,
-    CandidatiDetaliiComponent
+    CandidatiDetaliiComponent,
+    CandidatiAdaugareComponent
   ],
   imports: [
+    DemoMaterialModule,
+    MatSliderModule,
+    MatFormFieldModule,
+    BrowserAnimationsModule,
+    MatNativeDateModule,
+
+
     FormsModule,
+    ReactiveFormsModule,
     CommonModule,
     RouterModule.forChild(routes)
   ],
   exports: [
     CandidatiListComponent,
-    CandidatiDetaliiComponent
+    CandidatiDetaliiComponent,
+    CandidatiAdaugareComponent,
+    ReactiveFormsModule
+  ],
+  providers: [
+    { provide: MAT_FORM_FIELD_DEFAULT_OPTIONS, useValue: { appearance: 'fill' } },
   ]
 })
 export class CandidatiModule { }

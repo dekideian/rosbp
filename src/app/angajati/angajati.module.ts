@@ -5,24 +5,31 @@ import { AngajatiDetaliiComponent } from './angajati-detalii/angajati-detalii.co
 import { AngajatiListComponent } from './angajati-list/angajati-list.component';
 import { AngajatiDetailsGuard } from './angajati-details.guard';
 import { FormsModule } from '@angular/forms';
+import { ReactiveFormsModule } from '@angular/forms';
+import { AngajatiAdaugareComponent } from './angajati-adaugare/angajati-adaugare.component';
 const routes: Routes = [
   { path: 'angajati', component: AngajatiListComponent },
-  { path: 'angajati/:id', canActivate: [AngajatiDetailsGuard], component: AngajatiDetaliiComponent }
+  { path: 'angajati/adauga', component: AngajatiAdaugareComponent },
+  { path: 'angajati/:id', component: AngajatiDetaliiComponent }
+  // { path: 'angajati/:id', canActivate: [AngajatiDetailsGuard], component: AngajatiDetaliiComponent }
 ];
 
 @NgModule({
   declarations: [
     AngajatiDetaliiComponent,
-    AngajatiListComponent
+    AngajatiListComponent,
+    AngajatiAdaugareComponent
   ],
   imports: [
     FormsModule,
+    ReactiveFormsModule,
     CommonModule,
     RouterModule.forChild(routes)
   ],
   exports: [
     AngajatiDetaliiComponent,
-    AngajatiListComponent
+    AngajatiListComponent,
+    ReactiveFormsModule
   ]
 })
 export class AngajatiModule { }

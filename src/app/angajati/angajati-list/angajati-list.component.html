@@ -18,13 +18,19 @@
                 <th>Nume Angajat</th>
                 <th>Email</th>
                 <th>Firma</th>
+                <th>Stergere</th>
             </tr>        
         </thead>
         <tbody>
             <tr *ngFor='let angajat of angajatiFiltrate'>
-                <td><a [routerLink]="['/angajati', angajat.id]"> {{angajat.nume}}</a></td>
+                <td><a [routerLink]="['/angajati', angajat.email]"> {{angajat.nume}}</a></td>
                 <td>{{angajat.email}}</td>
                 <td>{{angajat.firma}}</td>
+                <td>
+                  <button (click)="delete(angajat.email)" class="btn btn-outline-danger">
+                      <i class="fa fa-minus-circle"> Stergere</i>
+                  </button>
+              </td>
             </tr>
         </tbody>
     </table>

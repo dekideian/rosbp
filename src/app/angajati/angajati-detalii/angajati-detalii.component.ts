@@ -7,11 +7,11 @@ import { ActivatedRoute, Router } from '@angular/router';
   styleUrls: ['./angajati-detalii.component.css']
 })
 export class AngajatiDetaliiComponent implements OnInit {
-  currentId: number;
+  email: string;
   constructor(private route: ActivatedRoute, private router: Router) { }
 
   ngOnInit(): void {
-    this.currentId = +this.route.snapshot.paramMap.get('id');
+    this.email = this.route.snapshot.paramMap.get('id');
     
   }
 

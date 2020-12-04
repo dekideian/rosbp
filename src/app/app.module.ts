@@ -7,8 +7,6 @@ import { NotfoundComponent } from './shared/notfound/notfound.component';
 import { AngajatiModule } from './angajati/angajati.module';
 import { FirmeModule } from './firme/firme.module';
 import { CandidatiModule } from './candidati/candidati.module';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { MatSliderModule } from '@angular/material/slider';
 import { AuthComponent } from './shared/auth/auth.component';
 import { AngularFireModule } from '@angular/fire';
 
@@ -38,13 +36,11 @@ const routes: Routes = [
       appId: "1:769301585939:web:f98fd9c70f3d15b4fa9fe6",
       measurementId: "G-D9YYS9W5X2"
     }),
-    MatSliderModule,
     BrowserModule,
     AngajatiModule,
     FirmeModule,
     CandidatiModule,
-    RouterModule.forRoot(routes),
-    BrowserAnimationsModule
+    RouterModule.forRoot(routes)
   ],
   providers: [],
   bootstrap: [AppComponent]

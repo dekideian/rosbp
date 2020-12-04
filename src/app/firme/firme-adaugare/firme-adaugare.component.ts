@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { FormControl, FormGroup } from '@angular/forms';
+import { FormControl, FormGroup, FormBuilder, Validators } from '@angular/forms';
+
 import { IFirma } from '../ifirma.model';
 import { Firma } from '../firma.model';
 import {
@@ -21,18 +22,16 @@ export class FirmeAdaugareComponent implements OnInit {
     private route: ActivatedRoute,
     private router: Router,
     private afs: AngularFirestore,
-    private firmeService: FirmeService) { }
+    private firmeService: FirmeService,
+    private fb: FormBuilder
+    ) { }
 
   ngOnInit(): void {
-    this.firmeGroup = new FormGroup({
-      firmaName: new FormControl(),
-      angajatRosEmail: new FormControl(),
-      angajatFirmaExtEmail: new FormControl()
-    });
-    this.firmeGroup.setValue({
-      firmaName: 'ACME',
-      angajatRosEmail: 'Angajat RosBP',
-      angajatFirmaExtEmail : 'HR firma client'
+    //  this.firmeGroup = new FormGroup({
+     this.firmeGroup = this.fb.group({
+      firmaName:  ['', [Validators.required, Validators.minLength(3)]],
+      angajatRosEmail: ['', [Validators.required, Validators.email]],
+      angajatFirmaExtEmail: ['', [Validators.required, Validators.email]],
     });
   }
 
