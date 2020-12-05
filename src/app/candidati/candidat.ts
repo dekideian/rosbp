@@ -94,7 +94,7 @@ export const CANDIDAT_ATRIBUT = {
     numarCI: 'Numar CI',
     unitateaCareAEliberatCI: 'Unitate eliberare CI',
     dataEliberareCI: 'Dată eliberare CI',
-    dataExpirareCI: 'Dată expirării CI',
+    dataExpirareCI: 'Dată expirare CI',
     cnp: 'CNP',
     dataAngajare: 'Dată angajare',
     dataAngajareNedeterminat: 'Dată angajare nedeterminat',

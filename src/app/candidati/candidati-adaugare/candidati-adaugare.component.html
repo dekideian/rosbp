@@ -4,15 +4,15 @@
     </div>
     <div class="card-body">
         <div class="container-fluid">
-          <div class="text-left">
+          <div class="text-center">
             <form (ngSubmit)="save()" [formGroup]="candidatiGroup">
                 <div class="accordion" id="accordionExample">
-                    <div class="card" style="margin-left:-25px; margin-right:-25px;margin-top:-18px;">
+                    <div class="card" style="margin-left:-25px; margin-right:-25px;margin-top:-13px; margin-bottom: 10px;">
 <!-- first collapsible                         -->
                         <div class="card-header" id="headingOne">
                             <h2 class="mb-0">
                                 <button type="button" class="btn btn-link" data-toggle="collapse" data-target="#collapseOne">
-                                    Informatii de baza 
+                                    Informații de bază  
                                         <i class="fa fa-check" style="color: green;"
                                             *ngIf="candidatiGroup.get('nrContract').valid"
                                         ></i>    
@@ -379,7 +379,7 @@
                         <div class="card-header" id="headingTwo">
                             <h2 class="mb-0">
                                 <button type="button" class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseTwo">
-                                    Adresa si contracte
+                                    Adresă și contracte
                                      <i class="fa fa-times" style="color:red"></i>
                                 </button>
                             </h2>
@@ -715,7 +715,9 @@
 <!-- third collapsible                     -->
                         <div class="card-header" id="headingThree">
                             <h2 class="mb-0">
-                                <button type="button" class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseThree">Detalii contract</button>                     
+                                <button type="button" class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseThree">
+                                    Detalii contract
+                                </button>                     
                             </h2>
                         </div>
                         <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordionExample">
@@ -936,7 +938,9 @@
 <!-- fourth collapsible -->
                         <div class="card-header" id="headingFour">
                             <h2 class="mb-0">
-                                <button type="button" class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseFour">Detalii angajator</button>                     
+                                <button type="button" class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseFour">
+                                    Detalii angajator
+                                </button>                     
                             </h2>
                         </div>
                         <div id="collapseFour" class="collapse" aria-labelledby="headingFour" data-parent="#accordionExample">
@@ -1211,14 +1215,25 @@
                             </div>
                     </div>
                 </div>
-                    <div class="form-group row mb-12">
-                        <button class="btn btn-outline-info col-form-label"
-                            style="margin-left: -10px; width: 100%; margin-right:-10px; margin-top:15px;" 
-                            type="submit"
-                            [disabled]="!candidatiGroup.valid"
-                            >Salvează salariat</button>
-                    </div>  
-                </div>  
+            </div> 
+                <button class="btn btn-outline-info" 
+                                    style="width: 103%; margin-left: -24px; margin-top:15px;" 
+                                    type="submit"
+                                    title="Salvarea datelor este posibila dupa ce toate datele sunt introduse corect"
+                                    [disabled]="!candidatiGroup.valid"
+                >Salvează salariat</button> 
+                
+                    <!-- <div class="form-group row mb-12"> -->
+                        <!-- <div class="col-md-12">
+                            <button class="btn btn-outline-info col-form-label"
+                                style="margin-left: -10px; width: 100%; margin-right:-10px; margin-top:25px;" 
+                                type="submit"
+                                
+                                [disabled]="!candidatiGroup.valid"
+                                >Salvează salariat</button>
+                        </div> -->
+                    <!-- </div>   -->
+                 
             </form>
           </div>
         </div>
@@ -1283,3 +1298,4 @@
         </div> -->
     <!-- </div> -->
 <!-- </div> -->
+ 

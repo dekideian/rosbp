@@ -11,3 +11,13 @@
  .bs-example{
    margin: 0px;
 }  
+
+.btn-outline-info {
+   color: rgb(0, 0, 255);
+   border-color: #CCCCCC;
+ }
+ .btn-outline-info:hover {
+   color: rgba(33, 33, 214, 0.934);
+   /* background-color: gray; */
+   border-color: gray;
+ }
