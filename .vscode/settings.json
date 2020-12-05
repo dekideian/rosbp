@@ -2,6 +2,7 @@
     "cSpell.words": [
         "Adaugare",
         "Angajati",
+        "Avem",
         "Candidati",
         "Detalii",
         "Firestore",
@@ -17,6 +18,7 @@
         "judet",
         "marca",
         "nume",
-        "prenume"
+        "prenume",
+        "salariati"
     ]
 }

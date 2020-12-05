@@ -108,6 +108,7 @@ export class CandidatiAdaugareComponent  implements OnInit {
 
   save() {
     const data: ICandidatLocal = {
+      uid: null,
       nrContract: this.candidatiGroup.get('nrContract').value,
       dataContract: this.candidatiGroup.get('dataContract').value,
       numeSalariat: this.candidatiGroup.get('numeSalariat').value,

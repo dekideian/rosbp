@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ICandidat } from '../candidat';
+import { ICandidat, ICandidatLocal } from '../candidat';
 import { CandidatiService } from '../candidati.service';
 
 @Component({
@@ -22,10 +22,11 @@ export class CandidatiListComponent implements OnInit {
     this.listFilterField = value;
     this.candidatiFiltrate = this.listFilter ? this.performFilter(this.listFilter) : this.candidati;
   }
-  performFilter(filterBy: string): ICandidat[] {
+  performFilter(filterBy: string): ICandidatLocal[] {
     filterBy = filterBy.toLocaleLowerCase();
-    return this.candidati.filter((candidat: ICandidat) =>
-      candidat.nume.toLocaleLowerCase().indexOf(filterBy) !== -1);
+    return this.candidati.filter((candidat: ICandidatLocal) =>
+      candidat.numeSalariat.toLocaleLowerCase().indexOf(filterBy) !== -1 );
+      //|| candidat.prenumeSalariat.toLocaleLowerCase().indexOf(filterBy) !== -1);
   }
 
   ngOnInit(): void {

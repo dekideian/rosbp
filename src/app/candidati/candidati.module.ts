@@ -47,6 +47,7 @@ const routes: Routes = [
     CandidatiListComponent,
     CandidatiDetaliiComponent,
     CandidatiAdaugareComponent,
+    FormsModule,
     ReactiveFormsModule
   ],
   providers: [

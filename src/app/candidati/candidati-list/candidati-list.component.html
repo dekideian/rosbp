@@ -15,19 +15,29 @@
     <table class="table" *ngIf='candidatiFiltrate && candidatiFiltrate.length'>
         <thead>
             <tr>
-                <th>Nume Angajat</th>
+                <td>Nume</td>
+                <th>Tip Contract</th>
+                <th>Data Contract</th>
                 <th>Email</th>
-                <th>Firma</th>
+                <th>Editare Date</th>
                 <th>Stergere</th>
             </tr>        
         </thead>
         <tbody>
+          
             <tr *ngFor='let candidat of candidatiFiltrate'>
-                <td><a [routerLink]="['/candidati', candidat.uid]"> {{candidat.nume}}</a></td>
-                <td>{{candidat.email}}</td>
-                <td>{{candidat.firma}}</td>
                 <td>
-                  <button (click)="delete(candidat.uid)" class="btn btn-outline-danger">
+                  <a [routerLink]="['/candidati', candidat.uid]">{{candidat.prenumeSalariat}} {{candidat.numeSalariat}}</a>        
+                </td>  
+                <td>{{candidat.tipContract}}</td>
+                <td>{{candidat.dataContract}}</td>
+                <td>{{candidat.mail}}</td>
+                <td>
+                    <button  class="btn btn-outline-info">
+                        <i class="fa fa-minus-circle"> Editare</i>
+                    </button>
+                <td>
+                  <button (click)="delete(candidat.uid)" class="btn btn-outline-danger" disabled>
                       <i class="fa fa-minus-circle"> Stergere</i>
                   </button>
               </td>
