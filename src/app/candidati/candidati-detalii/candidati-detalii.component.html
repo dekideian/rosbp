@@ -6,6 +6,22 @@
         <div class="container-fluid">
           <div class="text-left">
             Salariati firme {{currentId}} si {{ salariat.numeSalariat }} si {{ salariat.prenumeSalariat }}
+
+            <h3>Upload file</h3>
+            <div class="card card-outline-primary">
+              <div class="card-block">
+                
+                <div class="form-group col-12">
+                  <input type="file"
+                  id="file"
+                  (change)="onFileSelected($event)"
+                  name="image"
+                  autocomplete="off"
+                  />                  
+                 </div>
+
+              </div>
+            </div>
           </div>
         </div>
     </div>

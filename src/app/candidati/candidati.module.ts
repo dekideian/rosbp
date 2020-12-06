@@ -15,7 +15,7 @@ import {platformBrowserDynamic} from '@angular/platform-browser-dynamic';
 import {MatNativeDateModule} from '@angular/material/core';
 import {MAT_FORM_FIELD_DEFAULT_OPTIONS} from '@angular/material/form-field';
 import { DemoMaterialModule } from './material-module';
-
+import { AngularFireModule } from '@angular/fire';
 
 const routes: Routes = [
   { path: 'candidati', component: CandidatiListComponent },
@@ -31,6 +31,7 @@ const routes: Routes = [
     CandidatiAdaugareComponent
   ],
   imports: [
+    AngularFireModule,
     DemoMaterialModule,
     MatSliderModule,
     MatFormFieldModule,
@@ -44,6 +45,7 @@ const routes: Routes = [
     RouterModule.forChild(routes)
   ],
   exports: [
+    AngularFireModule,
     CandidatiListComponent,
     CandidatiDetaliiComponent,
     CandidatiAdaugareComponent,
