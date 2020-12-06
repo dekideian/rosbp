@@ -3,30 +3,44 @@
         Salariati detalii 
     </div>
     <div class="card-body">
-        <div class="container-fluid">
-          <div class="text-left">
-            Salariati firme {{currentId}} si {{ salariat.numeSalariat }} si {{ salariat.prenumeSalariat }}
-
-            <h3>Upload file</h3>
-            <div class="card card-outline-primary">
-              <div class="card-block">
-                
-                <div class="form-group col-12">
-                  <input type="file"
-                  id="file"
-                  (change)="onFileSelected($event)"
-                  name="image"
-                  autocomplete="off"
-                  />                  
-                 </div>
-
-              </div>
-            </div>
-          </div>
+<!-- Upload file  -->
+        <app-upload-file [filePath] = "'pdfs'" 
+          (uploadedFile)="newFileUploaded($event)">
+        </app-upload-file>
+<!-- DISPLAY DATA -->
+        <div class="table-responsive">
+          <table class="table" *ngIf='files && files.length'>
+              <thead>
+                  <tr>
+                      <td>Nume</td>
+                      <th>Data</th>
+                      <th>Autor</th>
+                      <th>Download</th>
+                      <th>Stergere</th>
+                  </tr>        
+              </thead>
+              <tbody>
+                  <tr *ngFor='let file of files'>
+                    <td>
+                      {{file.nume}}
+                      <!-- <a [routerLink]="['/candidati', candidat.uid]">{{candidat.prenumeSalariat}} {{candidat.numeSalariat}}</a>         -->
+                    </td>  
+                    <td>{{file.data}}</td>
+                    <td>{{file.autor}}</td>
+                    <td><a href="{{file.documentUrl}}" target="_blank"><i class="fa fa-download" aria-hidden="true"></i></a></td>
+                    <td>
+                      <button (click)="deleteFile(file.uid, file.documentUrl)" class="btn btn-outline-danger">
+                        <i class="fa fa-minus-circle"> Stergere</i>
+                      </button>
+                    </td>
+    
+                  </tr>
+              </tbody>
+          </table>
         </div>
     </div>
     <div class='card-footer'>
       <button class="btn btn-outline-secondary" (click)="goBack();">
         <i class="fa fa-chevron-left"></i> Salariati</button>
     </div>
-</div>
+     

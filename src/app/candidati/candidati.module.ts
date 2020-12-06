@@ -7,7 +7,6 @@ import { CandidatiDetailsGuard } from './candidati-details.guard';
 import { FormsModule } from '@angular/forms';
 import { ReactiveFormsModule } from '@angular/forms';
 import { CandidatiAdaugareComponent } from './candidati-adaugare/candidati-adaugare.component';
-
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatSliderModule } from '@angular/material/slider';
 import { MatFormFieldModule } from '@angular/material/form-field';
@@ -16,6 +15,7 @@ import {MatNativeDateModule} from '@angular/material/core';
 import {MAT_FORM_FIELD_DEFAULT_OPTIONS} from '@angular/material/form-field';
 import { DemoMaterialModule } from './material-module';
 import { AngularFireModule } from '@angular/fire';
+import { UploadFileComponent } from '../shared/upload-file/upload-file.component';
 
 const routes: Routes = [
   { path: 'candidati', component: CandidatiListComponent },
@@ -26,6 +26,7 @@ const routes: Routes = [
 
 @NgModule({
   declarations: [
+    UploadFileComponent,
     CandidatiListComponent,
     CandidatiDetaliiComponent,
     CandidatiAdaugareComponent

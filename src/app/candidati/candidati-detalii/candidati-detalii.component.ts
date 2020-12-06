@@ -3,8 +3,9 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { Candidat, ICandidat } from '../candidat';
 import { CandidatiService } from '../candidati.service';
-import { AngularFireStorage } from '@angular/fire/storage';
-import { finalize } from 'rxjs/operators';
+import { FilesService } from '../../services/files.service';
+import { FileDetails } from 'src/app/shared/upload-file/uploadedFileDetails';
+import { AuthService } from 'src/app/services/auth.service';
 @Component({
   selector: 'app-candidati-detalii',
   templateUrl: './candidati-detalii.component.html',
@@ -13,6 +14,7 @@ import { finalize } from 'rxjs/operators';
 export class CandidatiDetaliiComponent implements OnInit {
   currentId: string;
   salariat: Candidat;
+  files: FileDetails[];
   errorMessage: string;
   
   selectedFile: File = null;
@@ -20,10 +22,11 @@ export class CandidatiDetaliiComponent implements OnInit {
   downloadURL: Observable<string>;
 
   constructor(
+    private auth: AuthService,
     private route: ActivatedRoute,
     private router: Router,
     private candidatiService: CandidatiService,
-    private storage: AngularFireStorage) { }
+    private filesService: FilesService) { }
 
   ngOnInit(): void {
     this.currentId = this.route.snapshot.paramMap.get('id');
@@ -35,38 +38,32 @@ export class CandidatiDetaliiComponent implements OnInit {
         this.errorMessage = err;
       }
     });
-  }
 
-  onFileSelected(event) {
-    var n = Date.now();
-    const file = event.target.files[0];
-    const filePath = `pdfs/${n}`;
-    const fileRef = this.storage.ref(filePath);
-    const task = this.storage.upload(`pdfs/${n}`, file);
-    task
-      .snapshotChanges()
-      .pipe(
-        finalize(() => {
-          this.downloadURL = fileRef.getDownloadURL();
-          this.downloadURL.subscribe(url => {
-            if (url) {
-              this.fb = url;
-            }
-            console.log(this.fb);
-          });
-        })
-      )
-      .subscribe(url => {
-        if (url) {
-          console.log(url);
-        }
-      });
+    this.filesService.getFiles(this.currentId).subscribe({
+      next: files => {
+        this.files = files;
+      },
+      error: err => {
+        this.errorMessage = err;
+      }
+    });
   }
-  uploadSingle() {
+  newFileUploaded(fileDetails: FileDetails) {
+    fileDetails.data = new Date().toISOString().slice(0, 10);
     
+    fileDetails.autor = this.auth.userEmail+" ";
+    fileDetails.salariat  = this.currentId;
+    this.filesService.addFile(fileDetails);
+    
+    console.log('User just uploaded: ' + fileDetails.documentUrl + ' and ' + fileDetails.nume);
   }
-
   goBack() {
     this.router.navigate(['/candidati']);
+  }
+  deleteFile(fileId: string, documentURL: string) {
+    //comandam stergerea din tabela care ne intereseaza
+    this.filesService.removeFile(fileId, documentURL);
+    //  + stergerea din Storage. 
+    //call service to remove file
   }
 }

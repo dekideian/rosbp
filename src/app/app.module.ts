@@ -10,6 +10,7 @@ import { CandidatiModule } from './candidati/candidati.module';
 import { AuthComponent } from './shared/auth/auth.component';
 import { AngularFireModule } from '@angular/fire';
 import { environment } from "../environments/environment";
+
 const routes: Routes = [
   { path: 'welcome', component: WelcomeComponent },
   { path: 'notFound', component: NotfoundComponent },

@@ -35,6 +35,7 @@ import { User, ROSBP } from '../shared/user.model';
     userList$: Observable<any>;
     user$: Observable<User>;
     userCompany: string;
+    userEmail: string; 
     constructor(
       private router: Router,
       private afs: AngularFirestore,
@@ -45,13 +46,14 @@ import { User, ROSBP } from '../shared/user.model';
 
         switchMap(user => {
           if (user) {
+            this.userEmail = user.email;
             return this.afs.doc<User>(`users/${user.email}`).valueChanges();
           } else {
             return of(null);
           }
         })
       );
-      this.storeUserInfo();
+      // this.storeUserInfo();
      // this.readUsers(); // do we actually want to read all users ?: P
     }
 
@@ -64,9 +66,11 @@ import { User, ROSBP } from '../shared/user.model';
 
     //   // .subscribe(val => console.log(val));//only value
     // }
-    async storeUserInfo() {
-      this.user$.subscribe(val => this.userCompany = val.company);
-    }
+    // async storeUserInfo() {
+    //   this.user$.subscribe(val => {
+    //     this.userCompany = val.company;
+    //   });
+    // }
 
     async googleSignin() {
 
@@ -88,6 +92,8 @@ import { User, ROSBP } from '../shared/user.model';
         displayName: user.displayName,
         photoURL: user.photoURL
       };
+      console.log('update user data:' + user.email);
+      this.userEmail = user.email;
       return userRef.set(data, { merge: true});
     }
 
