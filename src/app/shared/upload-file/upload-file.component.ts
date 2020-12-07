@@ -6,6 +6,7 @@ import { finalize } from 'rxjs/operators';
 import { Candidat } from 'src/app/candidati/candidat';
 import { Output, EventEmitter } from '@angular/core';
 import { FileDetails } from './uploadedFileDetails';
+import { UploadMetadata } from '@angular/fire/storage/interfaces';
 /**
  * This component receives a path where to upload a file
  * Returns URL and documentName
@@ -17,8 +18,8 @@ import { FileDetails } from './uploadedFileDetails';
   styleUrls: ['./upload-file.component.css']
 })
 export class UploadFileComponent implements OnInit {
+
   @Input() filePath: string;
-  // @Input() salariat: Candidat;
   @Output() uploadedFile = new EventEmitter<FileDetails>();
   selectedFile: File = null;
   downloadURL: Observable<string>;
@@ -53,22 +54,26 @@ export class UploadFileComponent implements OnInit {
   }
 
   submit() {
-    const n = Date.now();
-    const filePath = `${this.filePath}/${n}`;
-    const fileRef = this.storage.ref(filePath);
-    const task = this.storage.upload(`${this.filePath}/${n}`, this.selectedFile);
-    task
+     const newMetadata = {
+      contentDisposition: 'attachment; filename=' + this.myForm.get('name').value,
+    };
+
+     const n = Date.now();
+     const filePath = `${this.filePath}/${n}`;
+     const fileRef = this.storage.ref(filePath);
+
+     const task = this.storage.upload(`${this.filePath}/${n}`, this.selectedFile, newMetadata);
+     task
       .snapshotChanges()
       .pipe(
         finalize(() => {
           this.downloadURL = fileRef.getDownloadURL();
+          fileRef.updateMetadata(newMetadata).subscribe();
           this.downloadURL.subscribe(url => {
             if (url) {
-               
               const value = new FileDetails();
               value.nume = this.myForm.get('name').value;
               value.documentUrl = url;
-
               this.uploadedFile.emit(value);
               this.myForm.get('name').reset();
               this.myForm.get('file').reset();

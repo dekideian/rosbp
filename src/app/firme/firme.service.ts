@@ -4,42 +4,43 @@ import { Observable, throwError } from 'rxjs';
 import { tap, catchError } from 'rxjs/operators';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { AngularFirestore } from '@angular/fire/firestore';
+import { Firma } from './firma.model';
 
 @Injectable({
   providedIn: 'root'
 })
 export class FirmeService {
 
-  //TODO is it better to save the Observable and just subscribe to it?
-  // firmeList$: Observable<any>;
-  firme: IFirma[];
+  firme$: Observable<Firma[]>;
   firmeUrl = 'api/firme.json';
+
   constructor(
     private http: HttpClient,
     private afs: AngularFirestore) {
-  //  this.readFirme();
+  
+      this.firme$ = this.afs.collection<Firma>('firme')
+        .valueChanges({ idField: 'uid' });
   }
 
   addFirma(data: IFirma) {
-    this.afs.collection(`firme`).doc(`${data.nume}`).set(data, {merge: true});
+    //this.afs.collection(`firme`).doc(`${data.nume}`).set(data, {merge: true});
+    this.afs.collection(`firme`).add(data);
+    
     // throw new Error('Method not implemented.');
   }
 
-  remove(numeFirma: string) {
-    this.afs.collection(`firme`).doc(`${numeFirma}`).delete();
+  remove(uidFirma: string) {
+    this.afs.collection(`firme`).doc(`${uidFirma}`).delete();
     // throw new Error('Method not implemented.');
   }
 
   getFirme(): Observable<any> {
-    // return this.http.get<IFirma[]>(this.firmeUrl).pipe(
-    //   tap(data => console.log('We received a list of companies ', JSON.stringify(data))),
-    //   catchError(this.handleError)
-    // );
-    return this.afs.collection('firme').valueChanges()
-    .pipe(
-      tap(val => console.log('Avem val ', JSON.stringify(val))),
-      catchError(this.handleError)
-    );
+ 
+    return this.firme$.pipe(
+      tap(val => console.log('Returnam firme ')),
+     catchError(this.handleError)
+   );
+
   }
 
   private handleError(err: HttpErrorResponse){

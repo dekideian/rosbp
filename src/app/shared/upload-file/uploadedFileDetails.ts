@@ -6,3 +6,12 @@ export class FileDetails {
     nume: string;
     documentUrl: string;
 }
+
+export class TemplateDetails {
+    uid: string;
+    data: string;
+    autor: string;
+    codFirma: string;
+    nume: string;
+    documentUrl: string;
+}

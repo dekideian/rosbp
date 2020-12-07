@@ -8,14 +8,19 @@ import { FormsModule } from '@angular/forms';
 import { ReactiveFormsModule } from '@angular/forms';
 import { CandidatiAdaugareComponent } from './candidati-adaugare/candidati-adaugare.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { MatSliderModule } from '@angular/material/slider';
-import { MatFormFieldModule } from '@angular/material/form-field';
+import { SharedModule } from '../shared/shared.module';
+
 import {platformBrowserDynamic} from '@angular/platform-browser-dynamic';
-import {MatNativeDateModule} from '@angular/material/core';
-import {MAT_FORM_FIELD_DEFAULT_OPTIONS} from '@angular/material/form-field';
+
+import { MatSliderModule } from '@angular/material/slider';
+// import {MAT_FORM_FIELD_DEFAULT_OPTIONS} from '@angular/material/form-field';
+// import { MatFormFieldModule } from '@angular/material/form-field';
+// import {MatNativeDateModule} from '@angular/material/core';
 import { DemoMaterialModule } from './material-module';
+
+
 import { AngularFireModule } from '@angular/fire';
-import { UploadFileComponent } from '../shared/upload-file/upload-file.component';
+
 
 const routes: Routes = [
   { path: 'candidati', component: CandidatiListComponent },
@@ -26,18 +31,18 @@ const routes: Routes = [
 
 @NgModule({
   declarations: [
-    UploadFileComponent,
     CandidatiListComponent,
     CandidatiDetaliiComponent,
     CandidatiAdaugareComponent
   ],
   imports: [
+    SharedModule,
     AngularFireModule,
     DemoMaterialModule,
-    MatSliderModule,
-    MatFormFieldModule,
+    // MatSliderModule,
+    // MatFormFieldModule,
     BrowserAnimationsModule,
-    MatNativeDateModule,
+    // MatNativeDateModule,
 
 
     FormsModule,
@@ -50,11 +55,12 @@ const routes: Routes = [
     CandidatiListComponent,
     CandidatiDetaliiComponent,
     CandidatiAdaugareComponent,
+    DemoMaterialModule,
     FormsModule,
     ReactiveFormsModule
   ],
-  providers: [
-    { provide: MAT_FORM_FIELD_DEFAULT_OPTIONS, useValue: { appearance: 'fill' } },
-  ]
+  // providers: [
+  //   { provide: MAT_FORM_FIELD_DEFAULT_OPTIONS, useValue: { appearance: 'fill' } },
+  // ]
 })
 export class CandidatiModule { }

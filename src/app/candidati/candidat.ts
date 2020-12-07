@@ -1,71 +1,71 @@
-export interface ICandidat {
-    uid: string;
-    nrContract: string;
-    dataContract: string;
-    numeSalariat: string;
-    prenumeSalariat: string;
-    marca: string;
-    tara: string;
-    judet: string;
-    localitate: string;
-    strada: string;
-    numar: string;
-    bloc: string;
-    scara: string;
-    etaj: string;
-    apartament: string;
-    actIdentitate: string;
-    serieCI: string;
-    numarCI: string;
-    unitateaCareAEliberatCI: string;
-    dataEliberareCI: string;
-    dataExpirareCI: string;
-    cnp: string;
-    dataAngajare: string;
-    dataAngajareNedeterminat: string;
-    nrLuniSaptamaniAni: string;
-    dataInceputCimDeteriminat: string;
-    dataSfarsitCimDeterminat: string;
-    departament: string;
-    locDeMunca: string;
-    functia: string;
-    codCOR: string;
-    normaIntreagaDeLucruOreZi: string;
-    normaIntreagaDeLucruOreSapt: string;
-    normaPartiala: string;
-    repartizareProgramPtNormaPartiala: string;
-    repartizareTimpMunca: string;
-    tipIntervalRepartizare: string;
+// export interface ICandidat {
+//     uid: string;
+//     nrContract: string;
+//     dataContract: string;
+//     numeSalariat: string;
+//     prenumeSalariat: string;
+//     marca: string;
+//     tara: string;
+//     judet: string;
+//     localitate: string;
+//     strada: string;
+//     numar: string;
+//     bloc: string;
+//     scara: string;
+//     etaj: string;
+//     apartament: string;
+//     actIdentitate: string;
+//     serieCI: string;
+//     numarCI: string;
+//     unitateaCareAEliberatCI: string;
+//     dataEliberareCI: string;
+//     dataExpirareCI: string;
+//     cnp: string;
+//     dataAngajare: string;
+//     dataAngajareNedeterminat: string;
+//     nrLuniSaptamaniAni: string;
+//     dataInceputCimDeteriminat: string;
+//     dataSfarsitCimDeterminat: string;
+//     departament: string;
+//     locDeMunca: string;
+//     functia: string;
+//     codCOR: string;
+//     normaIntreagaDeLucruOreZi: string;
+//     normaIntreagaDeLucruOreSapt: string;
+//     normaPartiala: string;
+//     repartizareProgramPtNormaPartiala: string;
+//     repartizareTimpMunca: string;
+//     tipIntervalRepartizare: string;
 
-    durataConcediuDeOdihna: string;
-    salariulDeBazaBrut: string;
-    perioadaDeProba: string;
-    perioadaDePreavizInCazulConcedierii: string;
-    perioadaDePreavizInCazulDemisiei: string;
-    anulCurent: string;
-    nrInregCerereDeAngajare: string;
-    nrInregDeclaratieFunctieDeBaza: string;
-    nrInregDeclaratiePersoaneInIntretinere: string;
-    nrInregDeclaratieCasaDeSanatate: string;
-    nrInregDeclLuareLaCunostintaROI: string;
-    nrInregPlanificareaZilelorDeCO: string;
-    nrZileCOConveniteInAnulCurent: string;
-    platitorDeImpozit: string;
+//     durataConcediuDeOdihna: string;
+//     salariulDeBazaBrut: string;
+//     perioadaDeProba: string;
+//     perioadaDePreavizInCazulConcedierii: string;
+//     perioadaDePreavizInCazulDemisiei: string;
+//     anulCurent: string;
+//     nrInregCerereDeAngajare: string;
+//     nrInregDeclaratieFunctieDeBaza: string;
+//     nrInregDeclaratiePersoaneInIntretinere: string;
+//     nrInregDeclaratieCasaDeSanatate: string;
+//     nrInregDeclLuareLaCunostintaROI: string;
+//     nrInregPlanificareaZilelorDeCO: string;
+//     nrZileCOConveniteInAnulCurent: string;
+//     platitorDeImpozit: string;
 
-    functiaDeBaza: string;
-    mail: string;
-    parolaWeb: string;
-    locatiePlata: string;
-    bancaAngajator: string;
-    iban: string;
-    tipContract: string;
-    sablonContractNexus: string;
-    angajatorNexus: string;
-    cuiAngajator: string;
-    cuiLocDeMunca: string;
-    ticheteDeMasa: string;
-    studiiSCED: string;
-}
+//     functiaDeBaza: string;
+//     mail: string;
+//     parolaWeb: string;
+//     locatiePlata: string;
+//     bancaAngajator: string;
+//     iban: string;
+//     tipContract: string;
+//     sablonContractNexus: string;
+//     angajatorNexus: string;
+//     cuiAngajator: string;
+//     cuiLocDeMunca: string;
+//     ticheteDeMasa: string;
+//     studiiSCED: string;
+// }
 
 export interface ICandidatLocal {
     uid;
@@ -134,9 +134,10 @@ export interface ICandidatLocal {
     cuiLocDeMunca: string;
     ticheteDeMasa: string;
     studiiSCED: string;
+    codFirma: string;
 }
 
-export class Candidat implements ICandidat {
+export class Candidat implements ICandidatLocal {
     uid: string;
     nrContract: string;
     dataContract: string;
@@ -201,6 +202,7 @@ export class Candidat implements ICandidat {
     cuiLocDeMunca: string;
     ticheteDeMasa: string;
     studiiSCED: string;
+    codFirma: string;
 }
 
 export const CANDIDAT_ATRIBUT = {

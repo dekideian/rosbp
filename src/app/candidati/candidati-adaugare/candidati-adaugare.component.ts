@@ -1,13 +1,14 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { FormControl, FormGroup, FormBuilder, Validators } from '@angular/forms';
-import { ICandidat, ICandidatLocal, CANDIDAT_ATRIBUT } from '../candidat';
+import { ICandidatLocal,  CANDIDAT_ATRIBUT } from '../candidat';
 import {
   AngularFirestore,
   AngularFirestoreDocument
 
 } from '@angular/fire/firestore';
-import { CandidatiService } from '../candidati.service';
+import { SalariatiService } from '../candidati.service';
+import { AuthService } from 'src/app/services/auth.service';
 @Component({
   selector: 'app-candidati-adaugare',
   templateUrl: './candidati-adaugare.component.html',
@@ -15,20 +16,34 @@ import { CandidatiService } from '../candidati.service';
 })
 export class CandidatiAdaugareComponent  implements OnInit {
   candidatiGroup: FormGroup;
-  candidat: ICandidat;
+  candidat: ICandidatLocal;
   atributCandidat;
+  codFirma: string;
+  errorMessage: string;
 
-  judet = 'judet';
+  // judet = 'judet';
 
   constructor(
     private router: Router,
-    private candidatiService: CandidatiService,
-    private fb: FormBuilder
+    private salariatiService: SalariatiService,
+    private fb: FormBuilder,
+    public auth: AuthService
     ) {
 
     }
 
   ngOnInit(): void {
+  
+    console.log('get users object fom :' + this.auth.userEmail);
+    this.auth.getLoggedInUser(this.auth.userEmail).subscribe({
+      next: templates => {
+        this.codFirma = templates?.company;
+      },
+      error: err => {
+        this.errorMessage = err;
+      }
+    });
+
     this.atributCandidat = CANDIDAT_ATRIBUT;
     //  this.firmeGroup = new FormGroup({
     this.candidatiGroup = this.fb.group({
@@ -107,6 +122,9 @@ export class CandidatiAdaugareComponent  implements OnInit {
   }
 
   save() {
+//avem aici logged in user company .. in ce forma oare?..
+    // this.auth.userCompany
+
     const data: ICandidatLocal = {
       uid: null,
       nrContract: this.candidatiGroup.get('nrContract').value,
@@ -174,9 +192,10 @@ export class CandidatiAdaugareComponent  implements OnInit {
       cuiLocDeMunca: this.candidatiGroup.get('cuiLocDeMunca').value,
       ticheteDeMasa: this.candidatiGroup.get('ticheteDeMasa').value,
       studiiSCED: this.candidatiGroup.get('studiiSCED').value,
+      codFirma: this.codFirma
     };
-    this.candidatiService.addCandidat(data);
-    console.log('Candidat ', JSON.stringify(data));
+    this.salariatiService.addCandidat(data);
+    console.log('Salariat ', JSON.stringify(data));
     this.router.navigate(['/candidati']);
   }
 }

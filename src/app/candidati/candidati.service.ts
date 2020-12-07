@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Candidat, ICandidat, ICandidatLocal } from './candidat';
+import { Candidat, ICandidatLocal } from './candidat';
 import { Observable, throwError } from 'rxjs';
 import { tap, catchError, filter, map, first,mergeAll } from 'rxjs/operators';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
@@ -9,7 +9,7 @@ import { FileDetails } from '../shared/upload-file/uploadedFileDetails';
 @Injectable({
   providedIn: 'root'
 })
-export class CandidatiService {
+export class SalariatiService {
 
   salariati$: Observable<Candidat[]>;
   candidatiUrl = 'api/candidati.json';

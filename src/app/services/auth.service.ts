@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 // angular router to redirect users after they sign out
 import { Router } from '@angular/router';
-import { tap } from 'rxjs/operators';
+import { catchError, tap } from 'rxjs/operators';
 /*
 * reduce the amount of code that your app uses by
 * only including the features that you need.
@@ -23,19 +23,24 @@ import {
 
   } from '@angular/fire/firestore';
 
-import { Observable, of } from 'rxjs';
+import { Observable, of, throwError } from 'rxjs';
 import { switchMap } from 'rxjs/operators';
 import { User, ROSBP } from '../shared/user.model';
+import { HttpErrorResponse } from '@angular/common/http';
+import { JsonPipe } from '@angular/common';
 
 
 @Injectable({
     providedIn: 'root'
   })
   export class AuthService {
-    userList$: Observable<any>;
+    // userList$: Observable<any>;
     user$: Observable<User>;
+    loggedInUser$: Observable<User>;
+
     userCompany: string;
     userEmail: string; 
+
     constructor(
       private router: Router,
       private afs: AngularFirestore,
@@ -53,8 +58,23 @@ import { User, ROSBP } from '../shared/user.model';
           }
         })
       );
-      // this.storeUserInfo();
+      this.storeUserInfo();
      // this.readUsers(); // do we actually want to read all users ?: P
+    }
+
+    getLoggedInUser(userEmail: string): Observable<User> {
+      const userRef: AngularFirestoreDocument<User> = this.afs.doc(`users/${userEmail}`);
+      return userRef.valueChanges({fieldId: 'uid'})
+        .pipe(
+          tap(obj => console.log('we have: ' + JSON.stringify(obj))),
+          catchError(this.handleError)
+        );
+      // return this.loggedInUser$.pipe(
+      //   // map(ob => {
+      //   //    return ob.filter(templateEntry => templateEntry.codFirma === codFirma);
+      //   // }),
+      //   catchError(this.handleError)
+      // );
     }
 
     // async readUsers() {
@@ -66,11 +86,11 @@ import { User, ROSBP } from '../shared/user.model';
 
     //   // .subscribe(val => console.log(val));//only value
     // }
-    // async storeUserInfo() {
-    //   this.user$.subscribe(val => {
-    //     this.userCompany = val.company;
-    //   });
-    // }
+    async storeUserInfo() {
+      this.user$.subscribe(val => {
+        this.userCompany = val.company;
+      });
+    }
 
     async googleSignin() {
 
@@ -86,7 +106,7 @@ import { User, ROSBP } from '../shared/user.model';
     private updateUserData(user) {
       // sets user data to firestore on login
       const userRef: AngularFirestoreDocument<User> = this.afs.doc(`users/${user.email}`);
-
+      this.loggedInUser$ = userRef.valueChanges({fieldId: 'uid'});
       const data = {
         uid: user.email,
         displayName: user.displayName,
@@ -117,5 +137,17 @@ import { User, ROSBP } from '../shared/user.model';
       } else {
         return false;
       }
+    }
+    private handleError(err: HttpErrorResponse){
+      let errorMessage = '';
+      if (err.error instanceof ErrorEvent) {
+        // client side error
+        errorMessage = `An error occured: ${err.error.message}`;
+      } else {
+        // be side
+        errorMessage = `Server returned code: ${err.status}, error message is: ${err.error.message}`;
+      }
+      console.log(errorMessage);
+      return throwError(errorMessage);
     }
   }

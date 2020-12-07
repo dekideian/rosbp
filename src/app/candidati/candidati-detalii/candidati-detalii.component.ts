@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Observable } from 'rxjs';
-import { Candidat, ICandidat } from '../candidat';
-import { CandidatiService } from '../candidati.service';
+import { Candidat, ICandidatLocal } from '../candidat';
+import { SalariatiService } from '../candidati.service';
 import { FilesService } from '../../services/files.service';
 import { FileDetails } from 'src/app/shared/upload-file/uploadedFileDetails';
 import { AuthService } from 'src/app/services/auth.service';
@@ -25,7 +25,7 @@ export class CandidatiDetaliiComponent implements OnInit {
     private auth: AuthService,
     private route: ActivatedRoute,
     private router: Router,
-    private candidatiService: CandidatiService,
+    private candidatiService: SalariatiService,
     private filesService: FilesService) { }
 
   ngOnInit(): void {

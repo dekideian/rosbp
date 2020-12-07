@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { ICandidat, ICandidatLocal } from '../candidat';
-import { CandidatiService } from '../candidati.service';
+import { ICandidatLocal } from '../candidat';
+import { SalariatiService } from '../candidati.service';
 
 @Component({
   selector: 'app-candidati-list',
@@ -9,11 +9,11 @@ import { CandidatiService } from '../candidati.service';
 })
 export class CandidatiListComponent implements OnInit {
 
-  candidati: ICandidat[];
-  candidatiFiltrate: ICandidat[];
+  candidati: ICandidatLocal[];
+  candidatiFiltrate: ICandidatLocal[];
   listFilterField = '';
   errorMessage = '';
-  constructor(private candidatiService: CandidatiService) { }
+  constructor(private candidatiService: SalariatiService) { }
 
   get listFilter(): string {
     return this.listFilterField;

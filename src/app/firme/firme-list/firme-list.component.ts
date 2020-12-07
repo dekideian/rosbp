@@ -41,8 +41,8 @@ export class FirmeListComponent implements OnInit {
       }
     });
   }
-  delete(numeFirma: string) {
-    this.firmeService.remove(numeFirma);
-    console.log('remove item '+numeFirma);
+  delete(uidFirma: string) {
+    this.firmeService.remove(uidFirma);
+    console.log('remove item ' + uidFirma);
   }
 }
