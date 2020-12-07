@@ -1,11 +1,12 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { Candidat, ICandidatLocal } from '../candidat';
 import { SalariatiService } from '../candidati.service';
 import { FilesService } from '../../services/files.service';
-import { FileDetails } from 'src/app/shared/upload-file/uploadedFileDetails';
+import { FileDetails, TemplateDetails } from 'src/app/shared/upload-file/uploadedFileDetails';
 import { AuthService } from 'src/app/services/auth.service';
+import { FirmeService } from 'src/app/firme/firme.service';
 @Component({
   selector: 'app-candidati-detalii',
   templateUrl: './candidati-detalii.component.html',
@@ -16,7 +17,7 @@ export class CandidatiDetaliiComponent implements OnInit {
   salariat: Candidat;
   files: FileDetails[];
   errorMessage: string;
-  
+  templateDetails: TemplateDetails;
   selectedFile: File = null;
   fb;
   downloadURL: Observable<string>;
@@ -26,22 +27,25 @@ export class CandidatiDetaliiComponent implements OnInit {
     private route: ActivatedRoute,
     private router: Router,
     private candidatiService: SalariatiService,
-    private filesService: FilesService) { }
+    private filesService: FilesService
+    ) { }
 
   ngOnInit(): void {
     this.currentId = this.route.snapshot.paramMap.get('id');
+    console.log('Current id : ' + this.currentId);
     this.candidatiService.getCandidat(this.currentId).subscribe({
       next: candidat => {
-        this.salariat = candidat;
-      },
-      error: err => {
-        this.errorMessage = err;
-      }
-    });
 
-    this.filesService.getFiles(this.currentId).subscribe({
-      next: files => {
-        this.files = files;
+        this.salariat = candidat;
+        this.filesService.getTemplates(candidat?.codFirma).subscribe({
+          next: files => {
+            this.templateDetails = files[0];
+          },
+          error: err => {
+            this.errorMessage = err;
+          }
+        });
+
       },
       error: err => {
         this.errorMessage = err;
@@ -50,20 +54,18 @@ export class CandidatiDetaliiComponent implements OnInit {
   }
   newFileUploaded(fileDetails: FileDetails) {
     fileDetails.data = new Date().toISOString().slice(0, 10);
-    
-    fileDetails.autor = this.auth.userEmail+" ";
+
+    fileDetails.autor = this.auth.userEmail + ' ';
     fileDetails.salariat  = this.currentId;
     this.filesService.addFile(fileDetails);
-    
+
     console.log('User just uploaded: ' + fileDetails.documentUrl + ' and ' + fileDetails.nume);
   }
   goBack() {
     this.router.navigate(['/candidati']);
   }
+
   deleteFile(fileId: string, documentURL: string) {
-    //comandam stergerea din tabela care ne intereseaza
     this.filesService.removeFile(fileId, documentURL);
-    //  + stergerea din Storage. 
-    //call service to remove file
   }
 }

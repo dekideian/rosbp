@@ -71,7 +71,7 @@ export class FilesService {
     );
   }
 
-  getTemplates(codFirma: string): Observable<  TemplateDetails[]> {
+  getTemplates(codFirma: string): Observable<TemplateDetails[]> {
     console.log('Filtram dupa cod firma: ' + codFirma);
     return this.templatesDinStorage$.pipe(
       map(ob => {
