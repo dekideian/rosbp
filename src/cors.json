@@ -1,0 +1,12 @@
+[
+    {
+      "origin": ["https://ros-bp.web.app"],
+      "method": ["GET"],
+      "maxAgeSeconds": 3600
+    },
+    {
+        "origin": ["*"],
+        "method": ["GET"],
+        "maxAgeSeconds": 3600
+      }
+  ]
