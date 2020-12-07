@@ -24,8 +24,7 @@ export class AngajatiAdaugareComponent implements OnInit {
     //  this.firmeGroup = new FormGroup({
      this.angajatiGroup = this.fb.group({
       angajatiName:  ['', [Validators.required, Validators.minLength(3)]],
-      angajatiEmail: ['', [Validators.required, Validators.email]],
-      angajatiFirma: ['', [Validators.required, Validators.minLength(3)]],
+      angajatiEmail: ['', [Validators.required, Validators.email]]
     });
   }
 
@@ -37,7 +36,6 @@ export class AngajatiAdaugareComponent implements OnInit {
     const data: IAngajat = {
       nume: this.angajatiGroup.get('angajatiName').value,
       email: this.angajatiGroup.get('angajatiEmail').value,
-      firma: this.angajatiGroup.get('angajatiFirma').value
     };
     this.angajatiService.addAngajat(data);
     console.log('Angajat ', JSON.stringify(data));

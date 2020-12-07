@@ -29,10 +29,10 @@ export class FirmeAdaugareComponent implements OnInit {
   ngOnInit(): void {
     //  this.firmeGroup = new FormGroup({
      this.firmeGroup = this.fb.group({
-      firmaName:  ['', [Validators.required, Validators.minLength(2)]],
-      codFirma:  ['', [Validators.required, Validators.minLength(2)]],
-      angajatRosEmail: ['', [Validators.required, Validators.email]],
-      angajatFirmaExtEmail: ['', [Validators.required, Validators.email]],
+      firmaName:  ['', [Validators.required, Validators.minLength(2)]]
+      // codFirma:  ['', [Validators.required, Validators.minLength(2)]],
+      // angajatRosEmail: ['', [Validators.required, Validators.email]],
+      // angajatFirmaExtEmail: ['', [Validators.required, Validators.email]],
     });
   }
 
@@ -43,10 +43,10 @@ export class FirmeAdaugareComponent implements OnInit {
   save() {
     const data = {
       uid: null,
-      nume: this.firmeGroup.get('firmaName').value,
-      codFirma: this.firmeGroup.get('codFirma').value,
-      angajatFirma: this.firmeGroup.get('angajatFirmaExtEmail').value,
-      angajatRos: this.firmeGroup.get('angajatRosEmail').value
+      nume: this.firmeGroup.get('firmaName').value
+      // codFirma: this.firmeGroup.get('codFirma').value,
+      // angajatFirma: this.firmeGroup.get('angajatFirmaExtEmail').value,
+      // angajatRos: this.firmeGroup.get('angajatRosEmail').value
     };
     this.firmeService.addFirma(data);
     console.log('Firma ', JSON.stringify(data));

@@ -4,6 +4,7 @@ import { AngularFirestore } from '@angular/fire/firestore';
 import { AngularFireStorage } from '@angular/fire/storage';
 import { Observable, throwError } from 'rxjs';
 import { catchError, map, tap } from 'rxjs/operators';
+import { ContactInformation } from '../firme/contact-information';
 import { FileDetails, TemplateDetails } from '../shared/upload-file/uploadedFileDetails';
 
 @Injectable({
@@ -13,6 +14,8 @@ export class FilesService {
 
   fisiereDinStorage$: Observable<FileDetails[]>;
   templatesDinStorage$: Observable<TemplateDetails[]>;
+  clienti$: Observable<ContactInformation[]>;
+  responsabili$: Observable<ContactInformation[]>;
 
   constructor(
     private storage: AngularFireStorage,
@@ -23,6 +26,12 @@ export class FilesService {
     .valueChanges({ idField: 'uid' });
 
     this.templatesDinStorage$ = this.afs.collection<TemplateDetails>('templates')
+    .valueChanges({ idField: 'uid' });
+
+    this.clienti$ = this.afs.collection<ContactInformation>('clienti')
+    .valueChanges({ idField: 'uid' });
+
+    this.responsabili$ = this.afs.collection<ContactInformation>('responsabili')
     .valueChanges({ idField: 'uid' });
   }
 
@@ -44,6 +53,14 @@ export class FilesService {
     this.storage.refFromURL(documentURL).delete();
   }
 
+  removeClient(idClient: string) {
+    this.afs.collection(`clienti`).doc(`${idClient}`).delete();
+  }
+
+  removeResponsabil(idResponsabil: string) {
+    this.afs.collection(`responsabili`).doc(`${idResponsabil}`).delete();
+  }
+
   getFiles(salariatId: string): Observable<FileDetails[]> {
     return this.fisiereDinStorage$.pipe(
       map(ob => {
@@ -59,6 +76,26 @@ export class FilesService {
     return this.templatesDinStorage$.pipe(
       map(ob => {
          return ob.filter(templateEntry => templateEntry.codFirma === codFirma);
+      }),
+      catchError(this.handleError)
+    );
+  }
+
+  getClienti(firmaUID: string): Observable<ContactInformation[]> {
+    console.log('Filtram dupa cod firma: ' + firmaUID);
+    return this.clienti$.pipe(
+      map(ob => {
+         return ob.filter(templateEntry => templateEntry.firmaUID === firmaUID);
+      }),
+      catchError(this.handleError)
+    );
+  }
+
+  getResponsabili(firmaUID: string): Observable<ContactInformation[]> {
+    console.log('Filtram dupa cod firma: ' + firmaUID);
+    return this.responsabili$.pipe(
+      map(ob => {
+         return ob.filter(templateEntry => templateEntry.firmaUID === firmaUID);
       }),
       catchError(this.handleError)
     );

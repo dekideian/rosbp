@@ -5,65 +5,124 @@
     <div class="card-body">
         <div class="container-fluid">
           <div class="text-left">
-       <h3>Fisier Cadru CIM</h3>    
-           <!-- Upload file  -->
-           <div class="form-group row mb-12">
-                <div class="col-md-3">
-                    <app-upload-file [filePath] = "'templates'" 
-                        (uploadedFile)="newFileUploaded($event)">
-                    </app-upload-file>
+<!-- contact client               -->
+            <div class="form-group row mb-12">
+                <div class="col-md-3" >
+                    <h3>Contact {{numeFirma}}</h3>
+                        <app-add-client [firmaUID]="currentId">
+                        </app-add-client>
                 </div>
-            
-            <!-- DISPLAY DATA -->
+
+                <div class="col-md-9" style="margin-top:-9px;">
+                    <div class="table-responsive">
+                        <table class="table" *ngIf='clienti && clienti.length'>
+                            <thead>
+                                <tr>
+                                    <td>Nume</td>
+                                    <th>email</th>
+                                    <th>Stergere</th>
+                                </tr>        
+                            </thead>
+                            <tbody>
+                                <tr *ngFor="let client of clienti">
+                                    <td>{{client.nume}}</td>
+                                    <td>{{client.email}}</td>
+                                    <td>
+                                        <button (click)="deleteClient(client.uid)" class="btn btn-outline-danger">
+                                            <i class="fa fa-minus-circle"> Stergere</i>
+                                            </button>
+                                        </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>  
+
+       
+            <br>
+        <hr><br>
+<!-- responsabili RosBP -->
+        <div class="form-group row mb-12">
+            <div class="col-md-3">
+                <h3>Angajati RosBP, responsabili {{numeFirma}}</h3>
+                    <app-add-responsible [firmaUID]="currentId">
+                    </app-add-responsible> 
+            </div>
             <div class="col-md-9" style="margin-top:-9px;">
                 <div class="table-responsive">
-                    <table class="table" *ngIf='templates && templates.length'>
+                    <table class="table" *ngIf='responsabili && responsabili.length'>
                         <thead>
                             <tr>
                                 <td>Nume</td>
-                                <th>Data</th>
-                                <th>Autor</th>
-                                <th>Download</th>
+                                <th>email</th>
                                 <th>Stergere</th>
                             </tr>        
                         </thead>
                         <tbody>
-                            <tr *ngFor='let file of templates'>
-                            <td>
-                                {{file.nume}}
-                                <!-- <a [routerLink]="['/candidati', candidat.uid]">{{candidat.prenumeSalariat}} {{candidat.numeSalariat}}</a>         -->
-                            </td>  
-                            <td>{{file.data}}</td>
-                            <td>{{file.autor}}</td>
-                            <td><a href="{{file.documentUrl}}" 
-                                target="_blank"
-                                download="{{file.nume}}"
-                                ><i class="fa fa-download" aria-hidden="true"></i></a></td>
-                            <td>
-                                <button (click)="deleteFile(file.uid, file.documentUrl)" class="btn btn-outline-danger">
-                                <i class="fa fa-minus-circle"> Stergere</i>
-                                </button>
-                            </td>
+                            <tr *ngFor="let responsabil of responsabili">
+                                <td>{{responsabil.nume}}</td>
+                                <td>{{responsabil.email}}</td>
+                                <td>
+                                    <button (click)="deleteResponsabil(responsabil.uid)" class="btn btn-outline-danger">
+                                        <i class="fa fa-minus-circle"> Stergere</i>
+                                        </button>
+                                    </td>
                             </tr>
                         </tbody>
                     </table>
                 </div>
             </div>
-            
         </div>
+        <br>
+        <hr>
+        <br>
+        <h3>Fisier Cadru CIM</h3>    
+        <!-- Upload file  -->
         <div class="form-group row mb-12">
-            <div class="col-md-3">
-                
-                <h3>Responsabili RosBP</h3>
-                
-               
-            </div>
-        </div>
-        <div class="form-group row mb-12">
-            <div class="col-md-3">
-                <h3>Contact RosBP</h3>
-            </div>
-        </div>  
+             <div class="col-md-3">
+                 <app-upload-file [filePath] = "'templates'" 
+                     (uploadedFile)="newFileUploaded($event)">
+                 </app-upload-file>
+             </div>
+         
+         <!-- DISPLAY DATA -->
+         <div class="col-md-9" style="margin-top:-9px;">
+             <div class="table-responsive">
+                 <table class="table" *ngIf='templates && templates.length'>
+                     <thead>
+                         <tr>
+                             <td>Nume</td>
+                             <th>Data</th>
+                             <th>Autor</th>
+                             <th>Download</th>
+                             <th>Stergere</th>
+                         </tr>        
+                     </thead>
+                     <tbody>
+                         <tr *ngFor='let file of templates'>
+                         <td>
+                             {{file.nume}}
+                             <!-- <a [routerLink]="['/candidati', candidat.uid]">{{candidat.prenumeSalariat}} {{candidat.numeSalariat}}</a>         -->
+                         </td>  
+                         <td>{{file.data}}</td>
+                         <td>{{file.autor}}</td>
+                         <td><a href="{{file.documentUrl}}" 
+                             target="_blank"
+                             download="{{file.nume}}"
+                             ><i class="fa fa-download" aria-hidden="true"></i></a></td>
+                         <td>
+                             <button (click)="deleteFile(file.uid, file.documentUrl)" class="btn btn-outline-danger">
+                             <i class="fa fa-minus-circle"> Stergere</i>
+                             </button>
+                         </td>
+                         </tr>
+                     </tbody>
+                 </table>
+             </div>
+         </div>
+         
+     </div> 
 <br>
 
       

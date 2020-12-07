@@ -6,74 +6,63 @@
         <div class="container-fluid">
           <div class="text-left">
             <form (ngSubmit)="save()" [formGroup]="angajatiGroup">
-                <div class="form-group row mb-2">
+                <div class="form-group row mb-12">
                     <!-- <label for="firmaName" class="col-md-3 col-form-label">First Name</label> -->
-                    <div class="col-md-8">
-                        <input id="angajatiName" type = "text" 
-                            placeholder="Nume angajat"
-                            formControlName="angajatiName"
-                            style="width:250px;"
-                            [ngClass]="{'is-invalid': (angajatiGroup.get('angajatiName').touched ||
-                            angajatiGroup.get('angajatiName').dirty) &&
-                                            !angajatiGroup.get('angajatiName').valid }"
-                        />  
-                          <span class="invalid-feedback">
-                            <span *ngIf="angajatiGroup.get('angajatiName').errors?.required">
-                                Va rugam introduceti un nume 
-                            </span>
-                            <span *ngIf="angajatiGroup.get('angajatiName').errors?.minlength">
-                                Minim 3 caractere
-                            </span>
-                        </span>   
+                    <div class="col-md-3">
+                        <mat-form-field style="width: 100%;">
+                            <mat-label>Nume angajat</mat-label>
+                            <input id="angajatiName" type = "text" 
+                                formControlName="angajatiName"
+                                matInput
+                                style="width:100%;"
+                                [ngClass]="{'is-invalid': (angajatiGroup.get('angajatiName').touched ||
+                                angajatiGroup.get('angajatiName').dirty) &&
+                                                !angajatiGroup.get('angajatiName').valid }"
+                            />  
+                            <span class="invalid-feedback">
+                                <span *ngIf="angajatiGroup.get('angajatiName').errors?.required">
+                                    Va rugam introduceti un nume 
+                                </span>
+                                <span *ngIf="angajatiGroup.get('angajatiName').errors?.minlength">
+                                    Minim 3 caractere
+                                </span>
+                            </span>   
+                    </mat-form-field>
                     </div>
                 </div>        
-                 <div class="form-group row mb-2">
-                    <div class="col-md-8">
-                        <input id="angajatiEmail" type = "text" 
-                            placeholder="Email angajat"
-                            formControlName="angajatiEmail"
-                            style="width:250px;"
-                            [ngClass]="{'is-invalid': (angajatiGroup.get('angajatiEmail').touched ||
-                                            angajatiGroup.get('angajatiEmail').dirty) &&
-                                            !angajatiGroup.get('angajatiEmail').valid }"
-                        />
-                        <span class="invalid-feedback">
-                            <span *ngIf="angajatiGroup.get('angajatiEmail').errors?.required">
-                                Va rugam introduceti adresa de email a angajatului
-                            </span>
-                            <span *ngIf="angajatiGroup.get('angajatiEmail').errors?.email">
-                                Va rugam introduceti adresa de email a angajatului
-                            </span>
-                        </span>
+                 <div class="form-group row mb-12">
+                    <div class="col-md-3">
+                            <mat-form-field style="width: 100%;">
+                                <mat-label>Email angajat</mat-label>
+                                
+                                <input id="angajatiEmail" type = "text" 
+                                    placeholder="Email angajat"
+                                    formControlName="angajatiEmail"
+                                    style="width:100%;"
+                                    matInput
+                                    [ngClass]="{'is-invalid': (angajatiGroup.get('angajatiEmail').touched ||
+                                                    angajatiGroup.get('angajatiEmail').dirty) &&
+                                                    !angajatiGroup.get('angajatiEmail').valid }"
+                                />
+                                <span class="invalid-feedback">
+                                    <span *ngIf="angajatiGroup.get('angajatiEmail').errors?.required">
+                                        Va rugam introduceti adresa de email a angajatului
+                                    </span>
+                                    <span *ngIf="angajatiGroup.get('angajatiEmail').errors?.email">
+                                        Va rugam introduceti adresa de email a angajatului
+                                    </span>
+                                </span>
+                            </mat-form-field>
                     </div>
                 </div>
                 <div class="form-group row mb-2">
-                    <div class="col-md-8">
-                        <input id="angajatiFirma" type = "text" 
-                            placeholder="Nume firma"
-                            formControlName="angajatiFirma"
-                            style="width:250px;"
-                            [ngClass]="{'is-invalid': (angajatiGroup.get('angajatiFirma').touched ||
-                                            angajatiGroup.get('angajatiFirma').dirty) &&
-                                            !angajatiGroup.get('angajatiFirma').valid }"
-                        />
-                        <span class="invalid-feedback">
-                            <span *ngIf="angajatiGroup.get('angajatiFirma').errors?.required">
-                                Va rugam introduceti numele firmei
-                            </span>
-                            <span *ngIf="angajatiGroup.get('angajatiFirma').errors?.minlength">
-                                Minim 3 caractere
-                            </span>
-                        </span>
-                    </div>
-                </div>
-                <div class="form-group row mb-2">
-                    <!-- <div class="col-md-1 col-form-label"></div> -->
+                    <div class="col-md-3">
                     <button class="btn btn-outline-info col-form-label"
-                        style="margin-left: 14px; width: 250px;" 
+                        style="width: 100%;" 
                         type="submit"
                         [disabled]="!angajatiGroup.valid"
                         >Salveaza Angajat</button>
+                    </div> 
                 </div>           
             </form>
           </div>
@@ -81,6 +70,6 @@
     </div>
     <div class='card-footer'>       
         <button class="btn btn-outline-secondary" (click)="goBack();">
-            <i class="fa fa-chevron-left"></i> Back</button>
+            <i class="fa fa-chevron-left"></i> Lista angajati</button>
     </div>
 </div>

@@ -13,6 +13,8 @@ import { FirmeAdaugareComponent } from './firme-adaugare/firme-adaugare.componen
 import { MatSelectModule } from '@angular/material/select';
 import { DemoMaterialModule } from '../candidati/material-module';
 import { SharedModule } from '../shared/shared.module';
+import { AddResponsibleComponent } from './add-responsible/add-responsible.component';
+import { AddClientComponent } from './add-client/add-client.component';
 
 
 const routes: Routes = [
@@ -26,7 +28,9 @@ const routes: Routes = [
   declarations: [
     FirmeListComponent,
     FirmeDetaliiComponent,
-    FirmeAdaugareComponent],
+    FirmeAdaugareComponent,
+    AddResponsibleComponent,
+    AddClientComponent],
   imports: [
     SharedModule,
     DemoMaterialModule,

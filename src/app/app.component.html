@@ -14,7 +14,7 @@
     <li *ngIf="auth.isRosBpEmployee(auth.user$ | async)"><a class="nav-link" [routerLink]="['/firme/adauga']">Adaugă Firmă</a></li>
     <li *ngIf="auth.isRosBpEmployee(auth.user$ | async)"><a class="nav-link" [routerLink]="['/angajati']">Angajați</a></li>
     <li *ngIf="auth.isRosBpEmployee(auth.user$ | async)"><a class="nav-link" [routerLink]="['/angajati/adauga']">Adaugă Angajat</a></li>
-    <li *ngIf="auth.isRosBpEmployee(auth.user$ | async)"><a class="nav-link" [routerLink]="['/candidati/adauga']">Adaugă salariat</a></li>
+    <li *ngIf="!auth.isRosBpEmployee(auth.user$ | async)"><a class="nav-link" [routerLink]="['/candidati/adauga']">Adaugă salariat</a></li>
     <li *ngIf="auth.isRosBpEmployee(auth.user$ | async) || auth.isAnyEmployee(auth.user$ | async)"><a class="nav-link" [routerLink]="['/candidati']">Salariați</a></li>
     <li *ngIf="auth.user$ | async as user; else loginMain"><a class="nav-link" (click)="auth.signOut()"><i class="fa fa-user"></i> Logout ({{user.displayName}})</a></li>
     <ng-template #loginMain>

@@ -42,7 +42,13 @@ export class FirmeListComponent implements OnInit {
     });
   }
   delete(uidFirma: string) {
-    this.firmeService.remove(uidFirma);
-    console.log('remove item ' + uidFirma);
+    const result = confirm("Esti sigur ca vrei sa stergi ? ");
+    if (result) {
+      this.firmeService.remove(uidFirma);
+
+      // this.firmeService.removeAllClients(uidFirma);
+      // this.firmeService.removeAllResponsibles(uidFirma);
+      console.log('remove item ' + uidFirma);
+    }
   }
 }

@@ -4,47 +4,45 @@
     </div>
     <div class="card-body">
       <div class='row'>
-        <div class ='col-md-2'>Filtrare dupa nume:</div>
-        <div class = 'col-md-4'>
+        <div class ='col-md-2' style="margin-left:20px;">Filtrare dupa nume:</div>
+        <div class = 'col-md-4'>    
             <input type="text" [(ngModel)] = 'listFilter'>  
         </div>
       </div>
     </div>
 
-    <div class="table-responsive">
-      <table class="table" *ngIf='firmeFiltrate && firmeFiltrate.length'>
-          <thead>
-              <tr>
-                  <th>Nume firma</th>
-                  <th>Cod firma</th>
-                  <th>Responsabil RosBP</th>
-                  <th>Responsabil Firma</th>
-                  <th>Stergere</th>
-              </tr>        
-          </thead>
-          <tbody>
-              <tr *ngFor='let firma of firmeFiltrate'>
-                 
-                
-                  <td>
-                      <a 
-                        [routerLink]="['/firme', firma.uid]"
-                        [queryParams]="{ nume: firma.nume }"  
-                             > {{firma.nume}}
-                        </a></td>
-                  <td>{{firma.codFirma}}</td>
-                  <td>{{firma.angajatRos}}</td>
-                  <td>{{firma.angajatFirma}}</td>
-                  <td>
-                    <button (click)="delete(firma.uid)" class="btn btn-outline-danger">
-                        <i class="fa fa-minus-circle"> Stergere</i>
-                    </button>
-                </td>
-              </tr>
-          </tbody>
-      </table>
+    
+        <div class="form-group row mb-12" style="margin-left:20px;">
+            <div class="col-md-4">
+                <table class="table" *ngIf='firmeFiltrate && firmeFiltrate.length'>
+                    <thead>
+                        <tr>
+                            <th>Nume firma</th>
+                            <th>Stergere</th>
+                        </tr>        
+                    </thead>
+                    <tbody>
+                        <tr *ngFor='let firma of firmeFiltrate'>
+                            <td>
+                                <a 
+                                  [routerLink]="['/firme', firma.uid]"
+                                  [queryParams]="{ nume: firma.nume }"  
+                                       > {{firma.nume}}
+                                  </a></td>  
+                            <td>
+                              <button (click)="delete(firma.uid)" class="btn btn-outline-danger" 
+                              
+                              >
+                                  <i class="fa fa-minus-circle"> Stergere</i>
+                              </button>
+                          </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
       <!-- <li *ngIf="auth.isRosBpEmployee(auth.user$ | async)"><a class="nav-link" [routerLink]="['/firme/adauga']">Adauga firma</a></li> -->
-  </div>
+  
     <div class='card-footer'>  
     </div>
 </div>

@@ -29,6 +29,14 @@ export class AngajatiService {
   }
   addAngajat(data: IAngajat) {
     this.afs.collection(`angajati`).doc(`${data.email}`).set(data, {merge: true});
+    const newData = {
+      uid: data.email,
+      company: "RosBP"
+    };
+
+    this.afs.doc(`users/${data.email}`).set(newData, {merge: true});
+
+
     // throw new Error('Method not implemented.');
   }
 
