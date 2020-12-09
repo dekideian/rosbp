@@ -25,9 +25,11 @@ import {
 
 import { Observable, of, throwError } from 'rxjs';
 import { switchMap } from 'rxjs/operators';
-import { User, ROSBP } from '../shared/user.model';
+import { User, rosbp, admin } from '../shared/user.model';
 import { HttpErrorResponse } from '@angular/common/http';
 import { JsonPipe } from '@angular/common';
+import { FirmeService } from '../firme/firme.service';
+import { stringify } from 'querystring';
 
 
 @Injectable({
@@ -44,7 +46,8 @@ import { JsonPipe } from '@angular/common';
     constructor(
       private router: Router,
       private afs: AngularFirestore,
-      private afAuth: AngularFireAuth
+      private afAuth: AngularFireAuth,
+      private firmeService: FirmeService
     ) {
 
       this.user$ = this.afAuth.authState.pipe(
@@ -88,7 +91,7 @@ import { JsonPipe } from '@angular/common';
     // }
     async storeUserInfo() {
       this.user$.subscribe(val => {
-        this.userCompany = val.company;
+        this.userCompany = val?.company;
       });
     }
 
@@ -117,10 +120,25 @@ import { JsonPipe } from '@angular/common';
       return userRef.set(data, { merge: true});
     }
 
+    role(user: User): string {
+      let result = '';
+      
+      if(this.isAdmin(user))
+        result = 'Administrator';
+      else if(this.isRosBpEmployee(user))
+        result =   'Angajat RosBP';
+      else if(this.isAnyEmployee(user))
+        result = 'Client';
+      else {
+        result = 'Rol necunoscut';
+      }
+      console.log('rez: '+result)
+      return result;
+    }
     // TODO get info after subscribing to user, no need of sending | async from html
     isRosBpEmployee(user: User) {
 
-      if ( user?.company?.toLocaleLowerCase() === ROSBP) {
+      if ( user?.company?.toLocaleLowerCase() === rosbp) {
         return true;
       } else {
         return false;
@@ -128,11 +146,35 @@ import { JsonPipe } from '@angular/common';
     }
 
     isAnyEmployee(user: User) {
+      
+      if (!user || !user.company) {
+        return false;
+      }
+      if (user?.company?.toLocaleLowerCase() !== '' && (!this.isAdmin(user)) && (!this.isRosBpEmployee(user))) {
+        return true;
+      } else {
+        return false;
+      }
+    }
 
-      if (!user || !user.company){
+    isUnknownUser(user: User) {
+      
+      if (!user || !user.company) {
         return false;
       }
       if (user?.company?.toLocaleLowerCase() !== '') {
+        return false;
+      } else {
+        return true;
+      }
+    }
+
+    isAdmin(user: User) {
+      
+      if (!user || !user.company) {
+        return false;
+      }
+      if (user?.company?.toLocaleLowerCase() === admin) {
         return true;
       } else {
         return false;

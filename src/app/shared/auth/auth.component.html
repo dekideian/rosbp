@@ -22,12 +22,13 @@
                                 <td title="Nume">{{user.displayName}}</td>
                             </tr><tr>
                                 <td title="Email">{{user.uid}}</td>
-                            </tr><tr>
-                                <td title="Compania la care lucrati">{{user.company}}</td>
+                            </tr>
+                            <tr>
+                                <td title="Rol ">{{auth.role(auth.user$ | async)}}</td>
                             </tr>
                         </tbody>
                     </table>
-                    <div *ngIf="!auth.isAnyEmployee(auth.user$ | async)">
+                    <div *ngIf="auth.isUnknownUser(auth.user$ | async)">
                         Va rugam contactati un angajat RosBP pentru a primi drepturi pentru firma
                         la care lucrati. 
                     </div>

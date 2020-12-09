@@ -4,4 +4,5 @@ export interface User {
     displayName?: string;
     company?: string;
 }
-export const ROSBP = 'rosbp';
+export const rosbp = 'rosbp';
+export const admin = 'admin';

@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { IAngajat } from './angajat';
+import { rosbp } from '../shared/user.model';
 import { Observable, throwError } from 'rxjs';
 import { tap, catchError } from 'rxjs/operators';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
@@ -31,13 +32,10 @@ export class AngajatiService {
     this.afs.collection(`angajati`).doc(`${data.email}`).set(data, {merge: true});
     const newData = {
       uid: data.email,
-      company: "RosBP"
+      company: rosbp 
     };
 
     this.afs.doc(`users/${data.email}`).set(newData, {merge: true});
-
-
-    // throw new Error('Method not implemented.');
   }
 
   remove(emailAngajat: string) {

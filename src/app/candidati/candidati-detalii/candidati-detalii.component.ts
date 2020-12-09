@@ -34,11 +34,12 @@ export class CandidatiDetaliiComponent implements OnInit {
 
   ngOnInit(): void {
     this.currentId = this.route.snapshot.paramMap.get('id');
-    console.log('Current id : ' + this.currentId);
+    console.log('Current id salariat: ' + this.currentId);
     this.candidatiService.getCandidat(this.currentId).subscribe({
       next: candidat => {
 
         this.salariat = candidat;
+        console.log('Angajatul are cod firma: '+candidat?.codFirma)
         this.filesService.getTemplates(candidat?.codFirma).subscribe({
           next: files => {
             this.templateDetails = files[0];
@@ -66,13 +67,74 @@ export class CandidatiDetaliiComponent implements OnInit {
   goBack() {
     this.router.navigate(['/candidati']);
   }
-  async aici() {
+  async downloadCimGenerat() {
     console.log('hah');
     const data = {
       posts: [
           {
-            nrContract: 'Numar Contract',
-            dataContract: 'Data Contract'
+            nrContract: this.salariat.nrContract,
+            dataContract: this.salariat.dataContract,
+            numeSalariat: this.salariat.numeSalariat,
+            prenumeSalariat: this.salariat.prenumeSalariat,
+            marca: this.salariat.marca,
+            tara: this.salariat.tara,
+            judet: this.salariat.judet,
+            localitate: this.salariat.localitate,
+            strada: this.salariat.strada,
+            numar: this.salariat.numeSalariat,
+            bloc: this.salariat.bloc,
+            scara: this.salariat.scara,
+            etaj: this.salariat.etaj,
+            apartament: this.salariat.apartament,
+            actIdentitate: this.salariat.actIdentitate,
+            serieCI: this.salariat.serieCI,
+            numarCI: this.salariat.numarCI,
+            unitateaCareAEliberatCI: this.salariat.unitateaCareAEliberatCI,
+            dataEliberareCI: this.salariat.dataEliberareCI,
+            dataExpirareCI: this.salariat.dataExpirareCI,
+            cnp: this.salariat.cnp,
+            dataAngajare: this.salariat.dataAngajare,
+            dataAngajareNedeterminat: this.salariat.dataAngajareNedeterminat,
+            nrLuniSaptamaniAni: this.salariat.nrLuniSaptamaniAni,
+            dataInceputCimDeteriminat: this.salariat.dataInceputCimDeteriminat,
+            dataSfarsitCimDeterminat: this.salariat.dataSfarsitCimDeterminat,
+            departament: this.salariat.departament,
+            locDeMunca: this.salariat.locDeMunca,
+            functia: this.salariat.functia,
+            codCOR: this.salariat.codCOR,
+            normaIntreagaDeLucruOreZi: this.salariat.normaIntreagaDeLucruOreZi,
+            normaIntreagaDeLucruOreSapt: this.salariat.normaIntreagaDeLucruOreSapt,
+            normaPartiala: this.salariat.normaPartiala,
+            repartizareProgramPtNormaPartiala: this.salariat.repartizareProgramPtNormaPartiala,
+            repartizareTimpMunca: this.salariat.repartizareTimpMunca,
+            tipIntervalRepartizare: this.salariat.tipIntervalRepartizare,
+            durataConcediuDeOdihna: this.salariat.durataConcediuDeOdihna,
+            salariulDeBazaBrut: this.salariat.salariulDeBazaBrut,
+            perioadaDeProba: this.salariat.perioadaDeProba,
+            perioadaDePreavizInCazulConcedierii: this.salariat.perioadaDePreavizInCazulConcedierii,
+            perioadaDePreavizInCazulDemisiei: this.salariat.perioadaDePreavizInCazulDemisiei,
+            anulCurent: this.salariat.anulCurent,
+            nrInregCerereDeAngajare: this.salariat.nrInregCerereDeAngajare,
+            nrInregDeclaratieFunctieDeBaza: this.salariat.nrInregDeclaratieFunctieDeBaza,
+            nrInregDeclaratiePersoaneInIntretinere: this.salariat.nrInregDeclaratiePersoaneInIntretinere,
+            nrInregDeclaratieCasaDeSanatate: this.salariat.nrInregDeclaratieCasaDeSanatate,
+            nrInregDeclLuareLaCunostintaROI: this.salariat.nrInregDeclLuareLaCunostintaROI,
+            nrInregPlanificareaZilelorDeCO: this.salariat.nrInregPlanificareaZilelorDeCO,
+            nrZileCOConveniteInAnulCurent: this.salariat.nrZileCOConveniteInAnulCurent,
+            platitorDeImpozit: this.salariat.platitorDeImpozit,
+            functiaDeBaza: this.salariat.functiaDeBaza,
+            mail: this.salariat.mail,
+            parolaWeb: this.salariat.parolaWeb,
+            locatiePlata: this.salariat.locatiePlata,
+            bancaAngajator: this.salariat.bancaAngajator,
+            iban: this.salariat.iban,
+            tipContract: this.salariat.tipContract,
+            sablonContractNexus: this.salariat.sablonContractNexus,
+            angajatorNexus: this.salariat.angajatorNexus,
+            cuiAngajator: this.salariat.cuiAngajator,
+            cuiLocDeMunca: this.salariat.cuiLocDeMunca,
+            ticheteDeMasa: this.salariat.ticheteDeMasa,
+            studiiSCED: this.salariat.studiiSCED
           }]
       };
     const response = await fetch(this.templateDetails.documentUrl);

@@ -23,6 +23,7 @@
         "nume",
         "pdfs",
         "prenume",
+        "responsabili",
         "salariati"
     ]
 }

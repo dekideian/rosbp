@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { IFirma } from './ifirma.model';
 import { Observable, throwError } from 'rxjs';
-import { tap, catchError } from 'rxjs/operators';
+import { tap, catchError, map } from 'rxjs/operators';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { AngularFirestore } from '@angular/fire/firestore';
 import { Firma } from './firma.model';
@@ -12,6 +12,11 @@ import { UsersService } from '../services/users.service';
   providedIn: 'root'
 })
 export class FirmeService {
+
+  firme$: Observable<Firma[]>;
+  responsabili$: Observable<ContactInformation[]>;
+  firmeUrl = 'api/firme.json';
+
   removeAllClients(uidFirma: string) {
     throw new Error('Method not implemented.');
   }
@@ -19,14 +24,14 @@ export class FirmeService {
     throw new Error('Method not implemented.');
   }
 
-  firme$: Observable<Firma[]>;
-  firmeUrl = 'api/firme.json';
-
   constructor(
     private http: HttpClient,
     private afs: AngularFirestore) {
   
       this.firme$ = this.afs.collection<Firma>('firme')
+        .valueChanges({ idField: 'uid' });
+
+      this.responsabili$ = this.afs.collection<ContactInformation>('responsabili')
         .valueChanges({ idField: 'uid' });
   }
 
@@ -35,6 +40,16 @@ export class FirmeService {
     this.afs.collection(`firme`).add(data);
     
     // throw new Error('Method not implemented.');
+  }
+
+  getContactInfoIfResponsible(email: string): Observable<any> {
+    return this.responsabili$.pipe(
+      map(ob => {
+         return ob.filter(bla => bla.email === email);
+      }),
+      tap(val => console.log(`Avem ${email} responsabil pt firme:  `, JSON.stringify(val.length))),
+      catchError(this.handleError)
+    );
   }
 
   addClient(data: ContactInformation) {
@@ -60,6 +75,14 @@ export class FirmeService {
  
     return this.firme$.pipe(
       tap(val => console.log('Returnam firme ')),
+     catchError(this.handleError)
+   );
+  }  
+
+  getResponsabili(): Observable<any> {
+ 
+    return this.firme$.pipe(
+      tap(val => console.log('Returnam responsabili')),
      catchError(this.handleError)
    );
   }  

@@ -8,7 +8,7 @@
           <h2>CIM</h2>
             <ul>
               <li><a class="btn btn-link" href="{{templateDetails?.documentUrl}}" target="_blank">Download CIM cadru.</a></li> 
-              <li> <button class="btn btn-link" (click)="aici()">Download CIM generat</button> </li>
+              <li> <button class="btn btn-link" (click)="downloadCimGenerat()">Download CIM generat</button> </li>
               <li> <button class="btn btn-link" (click)="csvExport()">Download CSV date salariat</button> </li>
             </ul>
         </div>     
@@ -61,7 +61,7 @@
                       </div>
         </div>
         
-
+<h2>cod firma candidat {{salariat?.codFirma}}</h2>
     </div>
     <div class='card-footer'>
       <button class="btn btn-outline-secondary" (click)="goBack();">
