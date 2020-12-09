@@ -15,7 +15,7 @@ import { DemoMaterialModule } from '../candidati/material-module';
 import { SharedModule } from '../shared/shared.module';
 import { AddResponsibleComponent } from './add-responsible/add-responsible.component';
 import { AddClientComponent } from './add-client/add-client.component';
-
+import { UploadFileComponent } from '../shared/upload-file/upload-file.component';
 
 const routes: Routes = [
   { path: 'firme', component: FirmeListComponent },
@@ -44,6 +44,7 @@ const routes: Routes = [
     RouterModule.forChild(routes)
   ],
   exports: [
+    AddResponsibleComponent,
     DemoMaterialModule,
     RouterModule,
     ReactiveFormsModule,

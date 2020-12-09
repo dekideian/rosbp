@@ -11,6 +11,7 @@ import { FirmeService } from '../firme.service';
 export class AddClientComponent implements OnInit {
 
   @Input() firmaUID: string;
+  @Input() numeFirma: string;
 
   myForm;
   constructor(private firmeService: FirmeService) {
@@ -32,6 +33,7 @@ export class AddClientComponent implements OnInit {
     contactInformation.nume = this.myForm.get('name').value;
     contactInformation.email = this.myForm.get('email').value;
     contactInformation.firmaUID = this.firmaUID;
+    contactInformation.numeFirma = this.numeFirma;
     this.firmeService.addClient(contactInformation);
     this.myForm.reset();
     formDirective.resetForm();

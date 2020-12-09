@@ -9,7 +9,7 @@
             <div class="form-group row mb-12">
                 <div class="col-md-3" >
                     <h3>Contact {{numeFirma}}</h3>
-                        <app-add-client [firmaUID]="currentId">
+                        <app-add-client [firmaUID]="currentId" [numeFirma] = "numeFirma">
                         </app-add-client>
                 </div>
 
@@ -46,7 +46,7 @@
         <div class="form-group row mb-12">
             <div class="col-md-3">
                 <h3>Angajati RosBP, responsabili {{numeFirma}}</h3>
-                    <app-add-responsible [firmaUID]="currentId">
+                    <app-add-responsible [firmaUID]="currentId" [numeFirma] = "numeFirma">
                     </app-add-responsible> 
             </div>
             <div class="col-md-9" style="margin-top:-9px;">

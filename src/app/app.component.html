@@ -10,39 +10,39 @@
   <ul class="nav nav-tabs">
     <!-- nav link -->
     <li><a class="nav-link" [routerLink]="['/welcome']">Acasa</a></li>
-    <li *ngIf="auth.isAdmin(auth.user$ | async) || 
-               auth.isRosBpEmployee(auth.user$ | async) ">
+    <li *ngIf="auth.isAdmin() || 
+               auth.isRosBpEmployee() ">
         <a class="nav-link" [routerLink]="['/firme']">
             Firme
         </a>
     </li>
 
-    <li *ngIf="auth.isAdmin(auth.user$ | async)">
+    <li *ngIf="auth.isAdmin()">
         <a class="nav-link" [routerLink]="['/firme/adauga']">
             Adaugă Firmă
         </a>
     </li>
-    <li *ngIf="auth.isAdmin(auth.user$ | async) || 
-               auth.isRosBpEmployee(auth.user$ | async)">
+    <li *ngIf="auth.isAdmin() || 
+               auth.isRosBpEmployee()">
       <a class="nav-link" [routerLink]="['/angajati']">
         Angajați
       </a>
     </li>
-    <li *ngIf="auth.isAdmin(auth.user$ | async)">
+    <li *ngIf="auth.isAdmin()">
       <a class="nav-link" [routerLink]="['/angajati/adauga']">
         Adaugă Angajat
       </a>
     </li>
-    <li *ngIf="auth.isAdmin(auth.user$ | async) || 
-               auth.isRosBpEmployee(auth.user$ | async) || 
-               auth.isAnyEmployee(auth.user$ | async)">
+    <li *ngIf="auth.isAdmin() || 
+               auth.isRosBpEmployee() || 
+               auth.isAnyEmployee()">
       <a class="nav-link" [routerLink]="['/candidati']">
           Salariați
       </a>
     </li>
-    <li *ngIf="auth.isAdmin(auth.user$ | async) || 
-               auth.isRosBpEmployee(auth.user$ | async) || 
-               auth.isAnyEmployee(auth.user$ | async)">
+    <li *ngIf="auth.isAdmin() || 
+               auth.isRosBpEmployee() || 
+               auth.isAnyEmployee()">
         <a class="nav-link" [routerLink]="['/candidati/adauga']">
           Adaugă salariat
         </a>

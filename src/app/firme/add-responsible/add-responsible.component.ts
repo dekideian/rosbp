@@ -13,6 +13,7 @@ import { FirmeService } from '../firme.service';
 export class AddResponsibleComponent implements OnInit {
   
   @Input() firmaUID: string;
+  @Input() numeFirma: string;
   angajati: IAngajat[];
 
   myForm =  new FormGroup({
@@ -44,6 +45,7 @@ export class AddResponsibleComponent implements OnInit {
     const contactInformation = new ContactInformation();
     contactInformation.nume = this.myForm.get('name').value;
     contactInformation.email = this.myForm.get('email').value;
+    contactInformation.numeFirma = this.numeFirma;
     contactInformation.firmaUID = this.firmaUID;
     console.log('adaugare responsabil')
     this.firmeService.addResponsible(contactInformation);

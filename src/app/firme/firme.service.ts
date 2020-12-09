@@ -15,6 +15,7 @@ export class FirmeService {
 
   firme$: Observable<Firma[]>;
   responsabili$: Observable<ContactInformation[]>;
+  clienti$: Observable<ContactInformation[]>;
   firmeUrl = 'api/firme.json';
 
   removeAllClients(uidFirma: string) {
@@ -33,8 +34,12 @@ export class FirmeService {
 
       this.responsabili$ = this.afs.collection<ContactInformation>('responsabili')
         .valueChanges({ idField: 'uid' });
+
+        this.clienti$ = this.afs.collection<ContactInformation>('clienti')
+        .valueChanges({ idField: 'uid' });
   }
 
+  
   addFirma(data: IFirma) {
     //this.afs.collection(`firme`).doc(`${data.nume}`).set(data, {merge: true});
     this.afs.collection(`firme`).add(data);
@@ -42,12 +47,29 @@ export class FirmeService {
     // throw new Error('Method not implemented.');
   }
 
+
+  // getFirmeWhereResponsible(email: string)
+
   getContactInfoIfResponsible(email: string): Observable<any> {
     return this.responsabili$.pipe(
       map(ob => {
-         return ob.filter(bla => bla.email === email);
+         return ob.filter(bla => 
+          (bla.email === email)
+          );
       }),
-      tap(val => console.log(`Avem ${email} responsabil pt firme:  `, JSON.stringify(val.length))),
+      tap(val => console.log(`Avem ${email} responsabil pt firma:  `, JSON.stringify(val))),
+      catchError(this.handleError)
+    );
+  }
+
+  getContactInfoIfClient(email: string): Observable<any> {
+    return this.clienti$.pipe(
+      map(ob => {
+         return ob.filter(bla => 
+          (bla.email === email)
+          );
+      }),
+      tap(val => console.log(`Avem ${email} client pt firma:  `, JSON.stringify(val))),
       catchError(this.handleError)
     );
   }

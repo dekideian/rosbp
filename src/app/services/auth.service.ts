@@ -120,14 +120,14 @@ import { stringify } from 'querystring';
       return userRef.set(data, { merge: true});
     }
 
-    role(user: User): string {
+    role(): string {
       let result = '';
       
-      if(this.isAdmin(user))
+      if(this.isAdmin())
         result = 'Administrator';
-      else if(this.isRosBpEmployee(user))
+      else if(this.isRosBpEmployee())
         result =   'Angajat RosBP';
-      else if(this.isAnyEmployee(user))
+      else if(this.isAnyEmployee())
         result = 'Client';
       else {
         result = 'Rol necunoscut';
@@ -136,21 +136,23 @@ import { stringify } from 'querystring';
       return result;
     }
     // TODO get info after subscribing to user, no need of sending | async from html
-    isRosBpEmployee(user: User) {
-
-      if ( user?.company?.toLocaleLowerCase() === rosbp) {
+    isRosBpEmployee() {
+      if (!this.userCompany) {
+        return false;
+      }
+      if ( this.userCompany.toLocaleLowerCase() === rosbp) {
         return true;
       } else {
         return false;
       }
     }
 
-    isAnyEmployee(user: User) {
+    isAnyEmployee() {
       
-      if (!user || !user.company) {
+      if (!this.userCompany) {
         return false;
       }
-      if (user?.company?.toLocaleLowerCase() !== '' && (!this.isAdmin(user)) && (!this.isRosBpEmployee(user))) {
+      if (this.userCompany.toLocaleLowerCase() !== '' && (!this.isAdmin()) && (!this.isRosBpEmployee())) {
         return true;
       } else {
         return false;
@@ -168,18 +170,38 @@ import { stringify } from 'querystring';
         return true;
       }
     }
-
-    isAdmin(user: User) {
+    isAdmin() {
       
-      if (!user || !user.company) {
+      if (!this.userCompany) {
         return false;
       }
-      if (user?.company?.toLocaleLowerCase() === admin) {
+      if (this.userCompany.toLocaleLowerCase() === admin) {
         return true;
       } else {
         return false;
       }
     }
+
+    // isAdmin(user: User) {
+      
+    //   if (!this.userCompany) {
+    //     return false;
+    //   }
+    //   if (this.userCompany.toLocaleLowerCase() === admin) {
+    //     return true;
+    //   } else {
+    //     return false;
+    //   }
+
+      // if (!user || !user.company) {
+      //   return false;
+      // }
+      // if (user?.company?.toLocaleLowerCase() === admin) {
+      //   return true;
+      // } else {
+      //   return false;
+      // }
+    // }
     private handleError(err: HttpErrorResponse){
       let errorMessage = '';
       if (err.error instanceof ErrorEvent) {

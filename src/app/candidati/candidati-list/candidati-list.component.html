@@ -1,17 +1,81 @@
 <div class='card'>
   <div class='card-header'>
-      Lista candidatilor 
+      Lista cu salariati 
   </div>
-  <div class="card-body">
+  <br>
+  <!-- <div class="card-body">
     <div class='row'>
       <div class ='col-md-2'>Filtrare dupa nume:</div>
       <div class = 'col-md-4'>
           <input type="text" [(ngModel)] = 'listFilter'>  
       </div>
     </div>
-  </div>
+  </div> -->
+<div *ngFor="let contactInformation of listOfAuthorizedContacts; let i = index" [attr.data-index]="i">
+  <div class="accordion" id="accordionExample">
+    <div class="card" style="margin-left:0px; margin-right:0px;margin-top:-13px; margin-bottom: 10px;">
+      <div class="card-header" id="headingOne">
+        <h2 class="mb-0">
+            <button type="button" class="btn btn-link" data-toggle="collapse" data-target="#collapseOne">
+                {{contactInformation.numeFirma}} 
+                 <!-- {{i}} -->
+                       
+                </button>									
+        </h2>
+      </div>
+      <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordionExample">
+      <!-- <div *ngIf="i!=0" id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordionExample"> -->
+        <div class="card-body">
+            <!-- Rand 1 -->
+            <!-- <div class="form-group row mb-12">
+                <div class="col-md-2">
+                  hello nurse
+                </div>
+            </div>   -->
+             <div class="table-responsive">
+              <table class="table" *ngIf='candidatesMap[contactInformation.firmaUID] && candidatesMap[contactInformation.firmaUID].length'>
+                  <thead>
+                      <tr>
+                          <td>Nume</td>
+                          <th>Tip Contract</th>
+                          <th>Data Contract</th>
+                          <th>Email</th>
+                          <th>Editare Date</th>
+                          <th>Stergere</th>
+                      </tr>        
+                  </thead>
+                  <tbody>
+                    
+                      <tr *ngFor='let candidat of candidatesMap[contactInformation.firmaUID]'>
+                          <td>
+                            <a [routerLink]="['/candidati', candidat.uid]">{{candidat.prenumeSalariat}} {{candidat.numeSalariat}}</a>        
+                          </td>  
+                          <td>{{candidat.tipContract}}</td>
+                          <td>{{candidat.dataContract}}</td>
+                          <td>{{candidat.mail}}</td>
+                          <td>
+                              <button  class="btn btn-outline-info">
+                                  <i class="fa fa-minus-circle"> Editare</i>
+                              </button>
+                          <td>
+                            <button (click)="delete(candidat.uid)" class="btn btn-outline-danger" disabled>
+                                <i class="fa fa-minus-circle"> Stergere</i>
+                            </button>
+                        </td>
+                      </tr>
+                  </tbody>
+              </table>
+            </div>
 
-  <div class="table-responsive">
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+  
+
+
+  <!-- <div class="table-responsive">
     <table class="table" *ngIf='candidatiFiltrate && candidatiFiltrate.length'>
         <thead>
             <tr>
@@ -44,7 +108,7 @@
             </tr>
         </tbody>
     </table>
-</div>
+  </div> -->
   <div class='card-footer'>  
   </div>
 </div>
