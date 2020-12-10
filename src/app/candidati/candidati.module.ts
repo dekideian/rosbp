@@ -24,7 +24,7 @@ import { AngularFireModule } from '@angular/fire';
 
 const routes: Routes = [
   { path: 'candidati', component: CandidatiListComponent },
-  { path: 'candidati/adauga', component: CandidatiAdaugareComponent },
+  { path: 'candidati/adauga/:id', component: CandidatiAdaugareComponent },
   { path: 'candidati/:id', component: CandidatiDetaliiComponent }
   // { path: 'candidati/:id', canActivate: [CandidatiDetailsGuard], component: CandidatiDetaliiComponent }
 ];

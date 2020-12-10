@@ -40,13 +40,13 @@
           Salariați
       </a>
     </li>
-    <li *ngIf="auth.isAdmin() || 
+    <!-- <li *ngIf="auth.isAdmin() || 
                auth.isRosBpEmployee() || 
                auth.isAnyEmployee()">
         <a class="nav-link" [routerLink]="['/candidati/adauga']">
           Adaugă salariat
         </a>
-    </li>
+    </li> -->
     <li *ngIf="auth.user$ | async as user; else loginMain">
       <a class="nav-link" [routerLink]="['/auth']"><i class="fa fa-user"></i> 
           Info ({{user.displayName}})

@@ -19,12 +19,15 @@ export class CandidatiAdaugareComponent  implements OnInit {
   candidat: ICandidatLocal;
   atributCandidat;
   codFirma: string;
+  numeFirma: string;
   errorMessage: string;
+  
 
   // judet = 'judet';
 
   constructor(
     private router: Router,
+    private route: ActivatedRoute,
     private salariatiService: SalariatiService,
     private fb: FormBuilder,
     public auth: AuthService
@@ -34,15 +37,20 @@ export class CandidatiAdaugareComponent  implements OnInit {
 
   ngOnInit(): void {
   
-    console.log('get users object fom :' + this.auth.userEmail);
-    this.auth.getLoggedInUser(this.auth.userEmail).subscribe({
-      next: templates => {
-        this.codFirma = templates?.company;
-      },
-      error: err => {
-        this.errorMessage = err;
-      }
-    });
+    this.codFirma = this.route.snapshot.paramMap.get('id');
+    this.route.queryParams.subscribe(params => {
+      this.numeFirma = params.nume;
+  });
+
+    // console.log('get users object fom :' + this.auth.userEmail);
+    // this.auth.getLoggedInUser(this.auth.userEmail).subscribe({
+    //   next: templates => {
+    //     this.codFirma = templates?.company;
+    //   },
+    //   error: err => {
+    //     this.errorMessage = err;
+    //   }
+    // });
 
     this.atributCandidat = CANDIDAT_ATRIBUT;
     //  this.firmeGroup = new FormGroup({
@@ -118,7 +126,7 @@ export class CandidatiAdaugareComponent  implements OnInit {
   }
 
   goBack() {
-    this.router.navigate(['/angajati']);
+    this.router.navigate(['/candidati']);
   }
 
   save() {
