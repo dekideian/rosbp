@@ -16,7 +16,7 @@
     <div class="card" style="margin-left:0px; margin-right:0px;margin-top:-13px; margin-bottom: 10px;">
       <div class="card-header" id="headingOne">
         <h2 class="mb-0">
-            <button type="button" class="btn btn-link" data-toggle="collapse" data-target="#collapseOne">
+            <button type="button" class="btn btn-link" data-toggle="collapse" attr.data-target="#collapseOne_{{i}}">
                 {{contactInformation.numeFirma}} 
                 </button>									
         </h2>
@@ -27,7 +27,7 @@
         <i class="fa fa-plus" aria-hidden="true"></i> 
         Adauga salariat
     </button>
-      <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordionExample">
+      <div attr.id="collapseOne_{{i}}" class="collapse" attr.aria-labelledby="headingOne_{{i}}" data-parent="#accordionExample">
       <!-- <div *ngIf="i!=0" id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordionExample"> -->
         <div class="card-body">
             <!-- Rand 1 -->
@@ -40,7 +40,7 @@
               <table class="table" *ngIf='candidatesMap[contactInformation.firmaUID] && candidatesMap[contactInformation.firmaUID].length'>
                   <thead>
                       <tr>
-                          <td>Nume</td>
+                          <th>Nume</th>
                           <th>Tip Contract</th>
                           <th>Data Contract</th>
                           <th>Email</th>

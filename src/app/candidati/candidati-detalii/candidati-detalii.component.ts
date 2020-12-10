@@ -54,6 +54,14 @@ export class CandidatiDetaliiComponent implements OnInit {
         this.errorMessage = err;
       }
     });
+    this.filesService.getFiles(this.currentId).subscribe({
+      next: files => {
+        this.files = files;
+      },
+      error: err => {
+        this.errorMessage = err;
+      }
+    });
   }
   newFileUploaded(fileDetails: FileDetails) {
     fileDetails.data = new Date().toISOString().slice(0, 10);

@@ -8,11 +8,11 @@
             <form (ngSubmit)="save()" [formGroup]="candidatiGroup">
                 <div class="accordion" id="accordionExample">
                     <div class="card" style="margin-left:-25px; margin-right:-25px;margin-top:-13px; margin-bottom: 10px;">
-<!-- first collapsible                         -->
+<!-- Date contract de munca -->
                         <div class="card-header" id="headingOne">
                             <h2 class="mb-0">
                                 <button type="button" class="btn btn-link" data-toggle="collapse" data-target="#collapseOne">
-                                    Informații de bază  
+                                     Date contract de munca  
                                         <i class="fa fa-check" style="color: green;"
                                             *ngIf="candidatiGroup.get('nrContract').valid"
                                         ></i>    
@@ -60,6 +60,24 @@
                                                 </span>   
                                             </mat-form-field>
                                     </div>
+                                </div>          
+                            </div>
+                        </div>
+<!-- Informatii salariat -->
+                        <div class="card-header" id="headingTwo">
+                            <h2 class="mb-0">
+                                <button type="button" class="btn btn-link" data-toggle="collapse" data-target="#collapseTwo">
+                                    Informații salariat  
+                                        <i class="fa fa-check" style="color: green;"
+                                            *ngIf="candidatiGroup.get('nrContract').valid"
+                                        ></i>    
+                                    </button>									
+                            </h2>
+                        </div>
+                        <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionExample">
+                            <div class="card-body">
+                                <!-- Rand 1 -->
+                                <div class="form-group row mb-12">
                                     <div class="col-md-2">
                                         <mat-form-field class="atribut-candidat">
                                             <mat-label>{{atributCandidat.numeSalariat}}</mat-label>
@@ -137,9 +155,6 @@
                                         </span>
                                         </mat-form-field>
                                     </div>
-                                </div>          
-                                <!-- Rand 2   -->
-                                <div class="form-group row mb-12">
                                     <div class="col-md-2">
                                         <mat-form-field class="atribut-candidat">
                                             <mat-label>{{atributCandidat.judet}}</mat-label>
@@ -180,6 +195,10 @@
                                         </span>
                                         </mat-form-field>
                                     </div>
+                                </div>          
+                                <!-- Rand 2   -->
+                                <div class="form-group row mb-12">
+
                                     <div class="col-md-2">
                                         <mat-form-field class="atribut-candidat">
                                             <mat-label>{{atributCandidat.strada}}</mat-label>
@@ -254,9 +273,6 @@
                                         </span>
                                         </mat-form-field>
                                     </div>
-                                </div>
-                                <!-- Rand 3   -->
-                                <div class="form-group row mb-12">
                                     <div class="col-md-2">
                                         <mat-form-field class="atribut-candidat">
                                             <mat-label>{{atributCandidat.etaj}}</mat-label>
@@ -295,6 +311,9 @@
                                         </span>
                                         </mat-form-field>
                                     </div>
+                                </div>
+                                <!-- Rand 3   -->
+                                <div class="form-group row mb-12">
                                     <div class="col-md-2">
                                         <mat-form-field class="atribut-candidat">
                                             <mat-label>{{atributCandidat.actIdentitate}}</mat-label>
@@ -372,22 +391,6 @@
                                         </span>
                                         </mat-form-field>
                                     </div>
-                                </div>
-                            </div>
-                        </div>
-<!-- second collapsible                         -->
-                        <div class="card-header" id="headingTwo">
-                            <h2 class="mb-0">
-                                <button type="button" class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseTwo">
-                                    Adresă și contracte
-                                     <i class="fa fa-times" style="color:red"></i>
-                                </button>
-                            </h2>
-                        </div>
-                        <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionExample">
-                            <div class="card-body">
-                                <!-- Rand 4   -->
-                                <div class="form-group row mb-12">
                                     <div class="col-md-2">
                                         <mat-form-field class="atribut-candidat">
                                             <mat-label>{{atributCandidat.dataEliberareCI}}</mat-label>
@@ -425,6 +428,9 @@
                                         </span>
                                         </mat-form-field>
                                     </div>
+                                </div>
+                                <!-- Rand 4   -->
+                                <div class="form-group row mb-12">
                                     <div class="col-md-2">
                                         <mat-form-field class="atribut-candidat">
                                             <mat-label>{{atributCandidat.cnp}}</mat-label>
@@ -448,6 +454,22 @@
                                         </span>
                                         </mat-form-field>
                                     </div>
+                                </div>
+                            </div>
+                        </div>
+<!-- Durata contract -->
+                        <div class="card-header" id="headingThree">
+                            <h2 class="mb-0">
+                                <button type="button" class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseThree">
+                                    Durata contract
+                                     <i class="fa fa-times" style="color:red"></i>
+                                </button>
+                            </h2>
+                        </div>
+                        <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordionExample">
+                            <div class="card-body">
+                                <!-- Rand 4   -->
+                                <div class="form-group row mb-12"> 
                                     <div class="col-md-2">
                                         <mat-form-field class="atribut-candidat">
                                             <mat-label>{{atributCandidat.dataAngajare}}</mat-label>
@@ -499,9 +521,6 @@
                                         </span>
                                         </mat-form-field>
                                     </div>
-                                </div>
-                                <!-- Rand 5   -->
-                                <div class="form-group row mb-12">
                                     <div class="col-md-2">
                                         <mat-form-field class="atribut-candidat">
                                             <mat-label>{{atributCandidat.dataInceputCimDeteriminat}}</mat-label>
@@ -535,7 +554,25 @@
                                             </span>
                                         </span>
                                         </mat-form-field>
-                                    </div>   
+                                    </div> 
+                                </div>
+                            </div>
+                        </div>
+<!-- Locul si felul muncii -->
+                        <div class="card-header" id="headingFour">
+                            <h2 class="mb-0">
+                                <button type="button" class="btn btn-link" data-toggle="collapse" data-target="#collapseFour">
+                                    Locul si felul muncii  
+                                        <i class="fa fa-check" style="color: green;"
+                                            *ngIf="candidatiGroup.get('nrContract').valid"
+                                        ></i>    
+                                    </button>									
+                            </h2>
+                        </div>
+                        <div id="collapseFour" class="collapse" aria-labelledby="headingFour" data-parent="#accordionExample">
+                            <div class="card-body">
+                                <!-- Rand 1 -->
+                                <div class="form-group row mb-12">
                                     <div class="col-md-2">
                                         <mat-form-field class="atribut-candidat">
                                             <mat-label>{{atributCandidat.departament}}</mat-label>
@@ -604,123 +641,140 @@
                                         </span>
                                         </mat-form-field>
                                     </div> 
-                                </div>
-                                <!-- Rand 6   -->
-                                <div class="form-group row mb-12">
-                                    <div class="col-md-2">
-                                        <mat-form-field class="atribut-candidat">
-                                            <mat-label>{{atributCandidat.normaIntreagaDeLucruOreZi}}</mat-label>
-                                        <input id="normaIntreagaDeLucruOreZi" type = "text" 
-                                            matInput
-                                            formControlName='normaIntreagaDeLucruOreZi'
-                                            [ngClass]="{'is-invalid': (candidatiGroup.get('normaIntreagaDeLucruOreZi').touched ||
-                                                            candidatiGroup.get('normaIntreagaDeLucruOreZi').dirty) &&
-                                                            !candidatiGroup.get('normaIntreagaDeLucruOreZi').valid }"
-                                        />
-                                        <span class="invalid-feedback">
-                                            <span *ngIf="candidatiGroup.get('normaIntreagaDeLucruOreZi').errors?.required">
-                                                Va rugam introduceti {{atributCandidat.normaIntreagaDeLucruOreZi}}
-                                            </span>
-                                        </span>
-                                        </mat-form-field>
-                                    </div> 
-                                    <div class="col-md-2">
-                                        <mat-form-field class="atribut-candidat">
-                                            <mat-label>{{atributCandidat.normaIntreagaDeLucruOreSapt}}</mat-label>
-                                        <input id="normaIntreagaDeLucruOreSapt" type = "text" 
-                                            matInput
-                                            formControlName='normaIntreagaDeLucruOreSapt'
-                                            [ngClass]="{'is-invalid': (candidatiGroup.get('normaIntreagaDeLucruOreSapt').touched ||
-                                                            candidatiGroup.get('normaIntreagaDeLucruOreSapt').dirty) &&
-                                                            !candidatiGroup.get('normaIntreagaDeLucruOreSapt').valid }"
-                                        />
-                                        <span class="invalid-feedback">
-                                            <span *ngIf="candidatiGroup.get('normaIntreagaDeLucruOreSapt').errors?.required">
-                                                Va rugam introduceti {{atributCandidat.normaIntreagaDeLucruOreSapt}}
-                                            </span>
-                                        </span>
-                                        </mat-form-field>
-                                    </div> 
-                                    <div class="col-md-2">
-                                        <mat-form-field class="atribut-candidat">
-                                            <mat-label>{{atributCandidat.normaPartiala}}</mat-label>
-                                        <input id="normaPartiala" type = "text" 
-                                            matInput
-                                            formControlName='normaPartiala'
-                                            [ngClass]="{'is-invalid': (candidatiGroup.get('normaPartiala').touched ||
-                                                            candidatiGroup.get('normaPartiala').dirty) &&
-                                                            !candidatiGroup.get('normaPartiala').valid }"
-                                        />
-                                        <span class="invalid-feedback">
-                                            <span *ngIf="candidatiGroup.get('normaPartiala').errors?.required">
-                                                Va rugam introduceti {{atributCandidat.normaPartiala}}
-                                            </span>
-                                        </span>
-                                        </mat-form-field>
-                                    </div> 
-                                    <div class="col-md-2">
-                                        <mat-form-field class="atribut-candidat">
-                                            <mat-label>{{atributCandidat.repartizareProgramPtNormaPartiala}}</mat-label>
-                                        <input id="repartizareProgramPtNormaPartiala" type = "text" 
-                                            matInput
-                                            formControlName='repartizareProgramPtNormaPartiala'
-                                            [ngClass]="{'is-invalid': (candidatiGroup.get('repartizareProgramPtNormaPartiala').touched ||
-                                                            candidatiGroup.get('repartizareProgramPtNormaPartiala').dirty) &&
-                                                            !candidatiGroup.get('repartizareProgramPtNormaPartiala').valid }"
-                                        />
-                                        <span class="invalid-feedback">
-                                            <span *ngIf="candidatiGroup.get('repartizareProgramPtNormaPartiala').errors?.required">
-                                                Va rugam introduceti {{atributCandidat.repartizareProgramPtNormaPartiala}}
-                                            </span>
-                                        </span>
-                                        </mat-form-field>
-                                    </div> 
-                                    <div class="col-md-2">
-                                        <mat-form-field class="atribut-candidat">
-                                            <mat-label>{{atributCandidat.repartizareTimpMunca}}</mat-label>
-                                        <input id="repartizareTimpMunca" type = "text" 
-                                            matInput
-                                            formControlName='repartizareTimpMunca'
-                                            [ngClass]="{'is-invalid': (candidatiGroup.get('repartizareTimpMunca').touched ||
-                                                            candidatiGroup.get('repartizareTimpMunca').dirty) &&
-                                                            !candidatiGroup.get('repartizareTimpMunca').valid }"
-                                        />
-                                        <span class="invalid-feedback">
-                                            <span *ngIf="candidatiGroup.get('repartizareTimpMunca').errors?.required">
-                                                Va rugam introduceti {{atributCandidat.repartizareTimpMunca}}
-                                            </span>
-                                        </span>
-                                        </mat-form-field>
-                                    </div> 
-                                    <div class="col-md-2">
-                                        <mat-form-field class="atribut-candidat">
-                                            <mat-label>{{atributCandidat.tipIntervalRepartizare}}</mat-label>
-                                        <input id="tipIntervalRepartizare" type = "text" 
-                                            matInput
-                                            formControlName='tipIntervalRepartizare'
-                                            [ngClass]="{'is-invalid': (candidatiGroup.get('tipIntervalRepartizare').touched ||
-                                                            candidatiGroup.get('tipIntervalRepartizare').dirty) &&
-                                                            !candidatiGroup.get('tipIntervalRepartizare').valid }"
-                                        />
-                                        <span class="invalid-feedback">
-                                            <span *ngIf="candidatiGroup.get('tipIntervalRepartizare').errors?.required">
-                                                Va rugam introduceti {{atributCandidat.tipIntervalRepartizare}}
-                                            </span>
-                                        </span>
-                                        </mat-form-field>
-                                    </div> 
-                                </div>    
+                                </div>          
                             </div>
                         </div>
-<!-- third collapsible                     -->
-                        <div class="card-header" id="headingThree">
+<!-- Durata muncii -->
+                        <div class="card-header" id="headingFive">
                             <h2 class="mb-0">
-                                <button type="button" class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseThree">
-                                    Detalii contract
+                                <button type="button" class="btn btn-link" data-toggle="collapse" data-target="#collapseFive">
+                                    Durata muncii  
+                                        <i class="fa fa-check" style="color: green;"
+                                            *ngIf="candidatiGroup.get('nrContract').valid"
+                                        ></i>    
+                                    </button>									
+                            </h2>
+                        </div>
+                        <div id="collapseFive" class="collapse" aria-labelledby="headingFive" data-parent="#accordionExample">
+                            <div class="card-body">
+                                <!-- Rand 1 -->
+                                <div class="form-group row mb-12">
+                                    <div class="form-group row mb-12">
+                                        <div class="col-md-2">
+                                            <mat-form-field class="atribut-candidat">
+                                                <mat-label>{{atributCandidat.normaIntreagaDeLucruOreZi}}</mat-label>
+                                            <input id="normaIntreagaDeLucruOreZi" type = "text" 
+                                                matInput
+                                                formControlName='normaIntreagaDeLucruOreZi'
+                                                [ngClass]="{'is-invalid': (candidatiGroup.get('normaIntreagaDeLucruOreZi').touched ||
+                                                                candidatiGroup.get('normaIntreagaDeLucruOreZi').dirty) &&
+                                                                !candidatiGroup.get('normaIntreagaDeLucruOreZi').valid }"
+                                            />
+                                            <span class="invalid-feedback">
+                                                <span *ngIf="candidatiGroup.get('normaIntreagaDeLucruOreZi').errors?.required">
+                                                    Va rugam introduceti {{atributCandidat.normaIntreagaDeLucruOreZi}}
+                                                </span>
+                                            </span>
+                                            </mat-form-field>
+                                        </div> 
+                                        <div class="col-md-2">
+                                            <mat-form-field class="atribut-candidat">
+                                                <mat-label>{{atributCandidat.normaIntreagaDeLucruOreSapt}}</mat-label>
+                                            <input id="normaIntreagaDeLucruOreSapt" type = "text" 
+                                                matInput
+                                                formControlName='normaIntreagaDeLucruOreSapt'
+                                                [ngClass]="{'is-invalid': (candidatiGroup.get('normaIntreagaDeLucruOreSapt').touched ||
+                                                                candidatiGroup.get('normaIntreagaDeLucruOreSapt').dirty) &&
+                                                                !candidatiGroup.get('normaIntreagaDeLucruOreSapt').valid }"
+                                            />
+                                            <span class="invalid-feedback">
+                                                <span *ngIf="candidatiGroup.get('normaIntreagaDeLucruOreSapt').errors?.required">
+                                                    Va rugam introduceti {{atributCandidat.normaIntreagaDeLucruOreSapt}}
+                                                </span>
+                                            </span>
+                                            </mat-form-field>
+                                        </div> 
+                                        <div class="col-md-2">
+                                            <mat-form-field class="atribut-candidat">
+                                                <mat-label>{{atributCandidat.normaPartiala}}</mat-label>
+                                            <input id="normaPartiala" type = "text" 
+                                                matInput
+                                                formControlName='normaPartiala'
+                                                [ngClass]="{'is-invalid': (candidatiGroup.get('normaPartiala').touched ||
+                                                                candidatiGroup.get('normaPartiala').dirty) &&
+                                                                !candidatiGroup.get('normaPartiala').valid }"
+                                            />
+                                            <span class="invalid-feedback">
+                                                <span *ngIf="candidatiGroup.get('normaPartiala').errors?.required">
+                                                    Va rugam introduceti {{atributCandidat.normaPartiala}}
+                                                </span>
+                                            </span>
+                                            </mat-form-field>
+                                        </div> 
+                                        <div class="col-md-2">
+                                            <mat-form-field class="atribut-candidat">
+                                                <mat-label>{{atributCandidat.repartizareProgramPtNormaPartiala}}</mat-label>
+                                            <input id="repartizareProgramPtNormaPartiala" type = "text" 
+                                                matInput
+                                                formControlName='repartizareProgramPtNormaPartiala'
+                                                [ngClass]="{'is-invalid': (candidatiGroup.get('repartizareProgramPtNormaPartiala').touched ||
+                                                                candidatiGroup.get('repartizareProgramPtNormaPartiala').dirty) &&
+                                                                !candidatiGroup.get('repartizareProgramPtNormaPartiala').valid }"
+                                            />
+                                            <span class="invalid-feedback">
+                                                <span *ngIf="candidatiGroup.get('repartizareProgramPtNormaPartiala').errors?.required">
+                                                    Va rugam introduceti {{atributCandidat.repartizareProgramPtNormaPartiala}}
+                                                </span>
+                                            </span>
+                                            </mat-form-field>
+                                        </div> 
+                                        <div class="col-md-2">
+                                            <mat-form-field class="atribut-candidat">
+                                                <mat-label>{{atributCandidat.repartizareTimpMunca}}</mat-label>
+                                            <input id="repartizareTimpMunca" type = "text" 
+                                                matInput
+                                                formControlName='repartizareTimpMunca'
+                                                [ngClass]="{'is-invalid': (candidatiGroup.get('repartizareTimpMunca').touched ||
+                                                                candidatiGroup.get('repartizareTimpMunca').dirty) &&
+                                                                !candidatiGroup.get('repartizareTimpMunca').valid }"
+                                            />
+                                            <span class="invalid-feedback">
+                                                <span *ngIf="candidatiGroup.get('repartizareTimpMunca').errors?.required">
+                                                    Va rugam introduceti {{atributCandidat.repartizareTimpMunca}}
+                                                </span>
+                                            </span>
+                                            </mat-form-field>
+                                        </div> 
+                                        <div class="col-md-2">
+                                            <mat-form-field class="atribut-candidat">
+                                                <mat-label>{{atributCandidat.tipIntervalRepartizare}}</mat-label>
+                                            <input id="tipIntervalRepartizare" type = "text" 
+                                                matInput
+                                                formControlName='tipIntervalRepartizare'
+                                                [ngClass]="{'is-invalid': (candidatiGroup.get('tipIntervalRepartizare').touched ||
+                                                                candidatiGroup.get('tipIntervalRepartizare').dirty) &&
+                                                                !candidatiGroup.get('tipIntervalRepartizare').valid }"
+                                            />
+                                            <span class="invalid-feedback">
+                                                <span *ngIf="candidatiGroup.get('tipIntervalRepartizare').errors?.required">
+                                                    Va rugam introduceti {{atributCandidat.tipIntervalRepartizare}}
+                                                </span>
+                                            </span>
+                                            </mat-form-field>
+                                        </div> 
+                                    </div> 
+                                </div>          
+                            </div>
+                        </div>                        
+<!-- Concediu si salarii -->
+                        <div class="card-header" id="headingSix">
+                            <h2 class="mb-0">
+                                <button type="button" class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseSix">
+                                    Concediu si salarii
                                 </button>                     
                             </h2>
                         </div>
-                        <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordionExample">
+                        <div id="collapseSix" class="collapse" aria-labelledby="headingSix" data-parent="#accordionExample">
                             <div class="card-body">
                                 <!-- Rand 7   -->
                                 <div class="form-group row mb-12">
@@ -758,6 +812,42 @@
                                         </span>
                                         </mat-form-field>
                                     </div> 
+                                    
+                                    <div class="col-md-2">
+                                        <mat-form-field class="atribut-candidat">
+                                            <mat-label>{{atributCandidat.anulCurent}}</mat-label>
+                                        <input id="anulCurent" type = "text" 
+                                            matInput
+                                            formControlName='anulCurent'
+                                            [ngClass]="{'is-invalid': (candidatiGroup.get('anulCurent').touched ||
+                                                            candidatiGroup.get('anulCurent').dirty) &&
+                                                            !candidatiGroup.get('anulCurent').valid }"
+                                        />
+                                        <span class="invalid-feedback">
+                                            <span *ngIf="candidatiGroup.get('anulCurent').errors?.required">
+                                                Va rugam introduceti {{atributCandidat.anulCurent}}
+                                            </span>
+                                        </span>
+                                        </mat-form-field>
+                                    </div>  
+                                </div>                         
+                            </div>
+                        </div>
+<!-- Alte clauze -->
+                        <div class="card-header" id="headingSeven">
+                            <h2 class="mb-0">
+                                <button type="button" class="btn btn-link" data-toggle="collapse" data-target="#collapseSeven">
+                                    Alte clauze  
+                                        <i class="fa fa-check" style="color: green;"
+                                            *ngIf="candidatiGroup.get('nrContract').valid"
+                                        ></i>    
+                                    </button>									
+                            </h2>
+                        </div>
+                        <div id="collapseSeven" class="collapse" aria-labelledby="headingSeven" data-parent="#accordionExample">
+                            <div class="card-body">
+                                <!-- Rand 1 -->
+                                <div class="form-group row mb-12">
                                     <div class="col-md-2">
                                         <mat-form-field class="atribut-candidat">
                                             <mat-label>{{atributCandidat.perioadaDeProba}}</mat-label>
@@ -809,25 +899,24 @@
                                         </span>
                                         </mat-form-field>
                                     </div> 
-                                    <div class="col-md-2">
-                                        <mat-form-field class="atribut-candidat">
-                                            <mat-label>{{atributCandidat.anulCurent}}</mat-label>
-                                        <input id="anulCurent" type = "text" 
-                                            matInput
-                                            formControlName='anulCurent'
-                                            [ngClass]="{'is-invalid': (candidatiGroup.get('anulCurent').touched ||
-                                                            candidatiGroup.get('anulCurent').dirty) &&
-                                                            !candidatiGroup.get('anulCurent').valid }"
-                                        />
-                                        <span class="invalid-feedback">
-                                            <span *ngIf="candidatiGroup.get('anulCurent').errors?.required">
-                                                Va rugam introduceti {{atributCandidat.anulCurent}}
-                                            </span>
-                                        </span>
-                                        </mat-form-field>
-                                    </div>  
-                                </div>
-                                <!-- Rand 8   -->
+                                </div>          
+                            </div>
+                        </div>   
+                        
+<!-- Nr de ordine - anexe CIM -->
+                        <div class="card-header" id="headingEight">
+                            <h2 class="mb-0">
+                                <button type="button" class="btn btn-link" data-toggle="collapse" data-target="#collapseEight">
+                                    Nr de ordine - anexe CIM 
+                                        <i class="fa fa-check" style="color: green;"
+                                            *ngIf="candidatiGroup.get('nrContract').valid"
+                                        ></i>    
+                                    </button>									
+                            </h2>
+                        </div>
+                        <div id="collapseEight" class="collapse" aria-labelledby="headingEight" data-parent="#accordionExample">
+                            <div class="card-body">
+                                <!-- Rand 1 -->
                                 <div class="form-group row mb-12">
                                     <div class="col-md-2">
                                         <mat-form-field class="atribut-candidat">
@@ -930,23 +1019,9 @@
                                             </span>
                                         </span>
                                         </mat-form-field>
-                                    </div> 
-                                </div>
-                                
-                            </div>
-                        </div>
-<!-- fourth collapsible -->
-                        <div class="card-header" id="headingFour">
-                            <h2 class="mb-0">
-                                <button type="button" class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseFour">
-                                    Detalii angajator
-                                </button>                     
-                            </h2>
-                        </div>
-                        <div id="collapseFour" class="collapse" aria-labelledby="headingFour" data-parent="#accordionExample">
-                            <div class="card-body">
-                                <!-- Rand 9   -->
-                                <div class="form-group row mb-12">
+                                    </div>    
+                                </div> 
+                                <div class = "form-group row mb-12">
                                     <div class="col-md-2">
                                         <mat-form-field class="atribut-candidat">
                                             <mat-label>{{atributCandidat.nrZileCOConveniteInAnulCurent}}</mat-label>
@@ -964,6 +1039,21 @@
                                         </span>
                                         </mat-form-field>
                                     </div> 
+                                </div>         
+                            </div>
+                        </div>                        
+<!-- diverse -->
+                        <div class="card-header" id="headingNine">
+                            <h2 class="mb-0">
+                                <button type="button" class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseNine">
+                                    Diverse
+                                </button>                     
+                            </h2>
+                        </div>
+                        <div id="collapseNine" class="collapse" aria-labelledby="headingNine" data-parent="#accordionExample">
+                            <div class="card-body">
+                                <!-- Rand 9   -->
+                                <div class="form-group row mb-12">
                                     <div class="col-md-2">
                                         <mat-form-field class="atribut-candidat">
                                             <mat-label>{{atributCandidat.platitorDeImpozit}}</mat-label>
@@ -1052,9 +1142,6 @@
                                         </span>
                                         </mat-form-field>
                                     </div> 
-                                </div>
-                                <!-- Rand 10   -->
-                                <div class="form-group row mb-12">
                                     <div class="col-md-2">
                                         <mat-form-field class="atribut-candidat">
                                             <mat-label>{{atributCandidat.bancaAngajator}}</mat-label>
@@ -1072,6 +1159,9 @@
                                         </span>
                                         </mat-form-field>
                                     </div> 
+                                </div>
+                                <!-- Rand 10   -->
+                                <div class="form-group row mb-12">
                                     <div class="col-md-2">
                                         <mat-form-field class="atribut-candidat">
                                             <mat-label>{{atributCandidat.iban}}</mat-label>
@@ -1157,9 +1247,6 @@
                                         </span>
                                         </mat-form-field>
                                     </div> 
-                                </div>
-                                <!-- Rand 11   -->
-                                <div class="form-group row mb-12">
                                     <div class="col-md-2">
                                         <mat-form-field class="atribut-candidat">
                                             <mat-label>{{atributCandidat.cuiLocDeMunca}}</mat-label>
@@ -1177,6 +1264,9 @@
                                         </span>
                                         </mat-form-field>
                                     </div> 
+                                </div>
+                                <!-- Rand 11   -->
+                                <div class="form-group row mb-12">
                                     <div class="col-md-2">
                                         <mat-form-field class="atribut-candidat">
                                             <mat-label>{{atributCandidat.ticheteDeMasa}}</mat-label>
@@ -1222,8 +1312,6 @@
                                     title="Salvarea datelor este posibila dupa ce toate datele sunt introduse corect"
                                     [disabled]="!candidatiGroup.valid"
                 >Salvează salariat</button> 
-                
-                 
             </form>
           </div>
         </div>
