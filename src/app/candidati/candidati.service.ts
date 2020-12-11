@@ -13,12 +13,19 @@ export class SalariatiService {
 
   salariati$: Observable<Candidat[]>;
   candidatiUrl = 'api/candidati.json';
+  coduriCorUrl = 'api/codCor.json';
   
   constructor(
     private http: HttpClient,
     private afs: AngularFirestore) {
       this.salariati$ = this.afs.collection<Candidat>('candidati')
         .valueChanges({ idField: 'uid' });
+    }
+
+    getCoduriCor(): Observable<any> {
+      return this.http.get<any>(this.coduriCorUrl).pipe(
+        catchError(this.handleError)
+      );
     }
 
   getCandidat(currentId: string): Observable<Candidat> {

@@ -21,7 +21,10 @@ export class CandidatiAdaugareComponent  implements OnInit {
   codFirma: string;
   numeFirma: string;
   errorMessage: string;
-  
+  listaJudete;
+  coduriCor: any[];
+  coduriCorSelectate: any[]
+  selected: 'Timis';
 
   // judet = 'judet';
 
@@ -32,7 +35,61 @@ export class CandidatiAdaugareComponent  implements OnInit {
     private fb: FormBuilder,
     public auth: AuthService
     ) {
-
+      this.listaJudete = [
+            "Alba", 
+            "Arad", 
+            "Arges", 
+            "Bacau", 
+            "Bihor",
+            "Bistrita-Nasaud", 
+            "Botosani", 
+            "Brasov", 
+            "Braila", 
+            "Buzau", 
+            "Caras-Severin", 
+            "Calarasi", 
+            "Cluj", 
+            "Constanţa", 
+            "Covasna", 
+            "Dambovita", 
+            "Dolj", 
+            "Galati", 
+            "Giurgiu", 
+            "Gorj", 
+            "Harghita", 
+            "Hunedoara", 
+            "Ialomita", 
+            "Iasi", 
+            "Ilfov", 
+            "Maramureş",
+            "Mehedinti", 
+            "Mures", 
+            "Neamt", 
+            "Olt", 
+            "Prahova", 
+            "Satu Mare", 
+            "Salaj", 
+            "Sibiu", 
+            "Suceava", 
+            "Teleorman", 
+            "Timis", 
+            "Tulcea", 
+            "Valcea",
+            "Vaslui", 
+            "Vrancea"
+        ];
+    }
+    // Receive user input and send to search method**
+    onKey(value) { 
+      console.log('Cautam dupa valoarea '+value)
+      this.coduriCorSelectate = this.search(value);
+    }
+    
+    // Filter the states list and send back to populate the selectedStates**
+    search(value: string) { 
+      let filter = value.toLowerCase();
+      return this.coduriCor.filter(option => option.cod.startsWith(filter) || 
+                                             option.nume.toLowerCase().includes(filter) );
     }
 
   ngOnInit(): void {
@@ -41,21 +98,19 @@ export class CandidatiAdaugareComponent  implements OnInit {
     this.route.queryParams.subscribe(params => {
       this.numeFirma = params.nume;
   });
-
-    // console.log('get users object fom :' + this.auth.userEmail);
-    // this.auth.getLoggedInUser(this.auth.userEmail).subscribe({
-    //   next: templates => {
-    //     this.codFirma = templates?.company;
-    //   },
-    //   error: err => {
-    //     this.errorMessage = err;
-    //   }
-    // });
-
     this.atributCandidat = CANDIDAT_ATRIBUT;
-    //  this.firmeGroup = new FormGroup({
+    this.salariatiService.getCoduriCor().subscribe({
+      next: coduriCor => {
+        this.coduriCor = coduriCor;
+        this.coduriCorSelectate = coduriCor;
+      },
+      error: err => {
+        this.errorMessage = err;
+      }
+    });
+
     this.candidatiGroup = this.fb.group({
-      nrContract:     ['', [Validators.required, Validators.minLength(3)]],
+      nrContract:     ['', [Validators.required, Validators.minLength(1)]],
       dataContract:     ['', [Validators.required]],
       numeSalariat:  ['', [Validators.required, Validators.minLength(3)]],
       prenumeSalariat:  ['', [Validators.required, Validators.minLength(3)]],
@@ -66,9 +121,9 @@ export class CandidatiAdaugareComponent  implements OnInit {
       localitate: ['', [Validators.required, Validators.minLength(3)]],
       strada: ['', [Validators.required, Validators.minLength(3)]],
       numar: ['', [Validators.required]],
-      bloc: ['', ],
-      scara: ['', ],
-      etaj: ['', ],
+      bloc: ['-', ],
+      scara: ['-', ],
+      etaj: ['-', ],
       apartament: ['', ],
       actIdentitate: ['CI', [Validators.required]],
       serieCI: ['', [Validators.required]],
@@ -85,7 +140,7 @@ export class CandidatiAdaugareComponent  implements OnInit {
 
       departament: ['', [Validators.required]],
       locDeMunca: ['', [Validators.required]],
-      functia: ['', [Validators.required]],
+      // functia: ['', [Validators.required]],
       codCOR: ['', [Validators.required]],
       normaIntreagaDeLucruOreZi: ['', [Validators.required]],
       normaIntreagaDeLucruOreSapt: ['', [Validators.required]],
@@ -99,7 +154,7 @@ export class CandidatiAdaugareComponent  implements OnInit {
       perioadaDeProba: ['', [Validators.required]],
       perioadaDePreavizInCazulConcedierii: ['20', [Validators.required]],
       perioadaDePreavizInCazulDemisiei: ['20', [Validators.required]],
-      anulCurent: ['', [Validators.required]],
+      // anulCurent: ['', [Validators.required]],
       nrInregCerereDeAngajare: ['', [Validators.required]],
       nrInregDeclaratieFunctieDeBaza: ['', [Validators.required]],
       nrInregDeclaratiePersoaneInIntretinere: ['', [Validators.required]],
@@ -163,8 +218,8 @@ export class CandidatiAdaugareComponent  implements OnInit {
       dataSfarsitCimDeterminat: this.candidatiGroup.get('dataSfarsitCimDeterminat').value,
       departament: this.candidatiGroup.get('departament').value,
       locDeMunca: this.candidatiGroup.get('locDeMunca').value,
-      functia: this.candidatiGroup.get('functia').value,
-      codCOR: this.candidatiGroup.get('codCOR').value,
+      functia: this.candidatiGroup.get('codCOR').value.nume,
+      codCOR: this.candidatiGroup.get('codCOR').value.cod,
       normaIntreagaDeLucruOreZi: this.candidatiGroup.get('normaIntreagaDeLucruOreZi').value,
       normaIntreagaDeLucruOreSapt: this.candidatiGroup.get('normaIntreagaDeLucruOreSapt').value,
       normaPartiala: this.candidatiGroup.get('normaPartiala').value,
@@ -177,7 +232,7 @@ export class CandidatiAdaugareComponent  implements OnInit {
       perioadaDeProba: this.candidatiGroup.get('perioadaDeProba').value,
       perioadaDePreavizInCazulConcedierii: this.candidatiGroup.get('perioadaDePreavizInCazulConcedierii').value,
       perioadaDePreavizInCazulDemisiei: this.candidatiGroup.get('perioadaDePreavizInCazulDemisiei').value,
-      anulCurent: this.candidatiGroup.get('anulCurent').value,
+      anulCurent:  new Date().getFullYear()+'',
       nrInregCerereDeAngajare: this.candidatiGroup.get('nrInregCerereDeAngajare').value,
       nrInregDeclaratieFunctieDeBaza: this.candidatiGroup.get('nrInregDeclaratieFunctieDeBaza').value,
       nrInregDeclaratiePersoaneInIntretinere: this.candidatiGroup.get('nrInregDeclaratiePersoaneInIntretinere').value,
@@ -205,5 +260,205 @@ export class CandidatiAdaugareComponent  implements OnInit {
     this.salariatiService.addCandidat(data);
     console.log('Salariat ', JSON.stringify(data));
     this.router.navigate(['/candidati']);
+  }
+  dateContractDeMuncaValide(){
+    if(this.isValid('dataContract') && 
+       this.isValid('nrContract')){
+      return true;
+    } else {
+      return false;
+    }
+  }
+  dateContractDeMuncaInvalide(){
+    if((this.isInvalid('dataContract') || 
+        this.isInvalid('nrContract'))
+    ) {
+      return true;
+    } else {
+      return false;
+    }
+  }
+  informatiiSalariatValid() {
+    if(this.isValid('numeSalariat') && 
+       this.isValid('prenumeSalariat') && 
+       this.isValid('marca') &&
+       this.isValid('tara') &&
+       this.isValid('judet') &&
+       this.isValid('localitate') &&
+       this.isValid('strada') &&
+       this.isValid('numar') &&
+       this.isValid('bloc') &&
+       this.isValid('scara') &&
+       this.isValid('etaj') &&
+       this.isValid('apartament') &&
+       this.isValid('actIdentitate') &&
+       this.isValid('serieCI') &&
+       this.isValid('numarCI') &&
+       this.isValid('unitateaCareAEliberatCI') &&
+       this.isValid('dataEliberareCI') &&
+       this.isValid('dataExpirareCI') &&
+       this.isValid('cnp') 
+       ){
+        console.log('informatii salariat valid  ')
+       return true;
+     } else {
+      console.log('informatii salariat nu e valid  ')
+       return false;
+     }
+  }
+  informatiiSalariatInvalid() {
+    if(this.isInvalid('numeSalariat') || 
+        this.isInvalid('prenumeSalariat') ||
+        this.isInvalid('marca') ||
+        this.isInvalid('tara') ||
+        this.isInvalid('judet') ||
+        this.isInvalid('localitate') ||
+        this.isInvalid('strada') ||
+        this.isInvalid('numar') ||
+        this.isInvalid('bloc') ||
+        this.isInvalid('scara') ||
+        this.isInvalid('etaj') ||
+        this.isInvalid('apartament') ||
+        this.isInvalid('actIdentitate') ||
+        this.isInvalid('serieCI') ||
+        this.isInvalid('numarCI') ||
+        this.isInvalid('unitateaCareAEliberatCI') ||
+        this.isInvalid('dataEliberareCI') ||
+        this.isInvalid('dataExpirareCI') ||
+        this.isInvalid('cnp')
+    ) {
+      console.log('informatii salariat invalid  ')
+      return true;
+    } else {
+      console.log('informatii salariat nu e invalid  ')
+      return false;
+    }
+  }
+  durataContractValid() {
+    if(this.isValid('dataAngajare') && 
+       this.isValid('dataAngajareNedeterminat') &&
+       this.isValid('nrLuniSaptamaniAni') &&
+       this.isValid('dataInceputCimDeteriminat') &&
+       this.isValid('dataSfarsitCimDeterminat') 
+       ){
+      return true;
+    } else {
+      return false;
+    }
+  }
+  durataContractInvalid() {
+    if(this.isInvalid('dataAngajare') ||  
+       this.isInvalid('dataAngajareNedeterminat') ||
+       this.isInvalid('nrLuniSaptamaniAni') ||
+        this.isInvalid('dataInceputCimDeteriminat') ||
+        this.isInvalid('dataSfarsitCimDeterminat')  
+    ) {
+      return true;
+    } else {
+      return false;
+    }
+  }
+  loculSiFelulMunciiValid() {
+    if(this.isValid('departament') && 
+       this.isValid('locDeMunca') &&
+       this.isValid('codCOR')  
+       ){
+      return true;
+    } else {
+      return false;
+    }
+  }
+  loculSiFelulMunciiInvalid() {
+    if(this.isInvalid('departament') ||  
+       this.isInvalid('locDeMunca') ||
+       this.isInvalid('codCOR') 
+    ) {
+      return true;
+    } else {
+      return false;
+    }
+  }
+  concediiSiSalariiValid() {
+    if(this.isValid('durataConcediuDeOdihna') && 
+       this.isValid('salariulDeBazaBrut') 
+       ){
+      return true;
+    } else {
+      return false;
+    }
+  }
+  concediiSiSalariiInvalid() {
+    if(this.isInvalid('durataConcediuDeOdihna') ||  
+       this.isInvalid('salariulDeBazaBrut')
+       
+    ) {
+      return true;
+    } else {
+      return false;
+    }
+  }
+  alteClauzeValid() {
+    if(this.isValid('perioadaDeProba') && 
+       this.isValid('perioadaDePreavizInCazulConcedierii') &&
+       this.isValid('perioadaDePreavizInCazulDemisiei') 
+       ){
+      return true;
+    } else {
+      return false;
+    }
+  }
+  alteClauzeInvalid() {
+    if(this.isInvalid('perioadaDeProba') ||  
+       this.isInvalid('perioadaDePreavizInCazulConcedierii') ||
+       this.isInvalid('perioadaDePreavizInCazulDemisiei')
+    ) {
+      return true;
+    } else {
+      return false;
+    }
+  }
+  nrOrdineValid() {
+
+    if(this.isValid('nrInregCerereDeAngajare') && 
+       this.isValid('nrInregDeclaratieFunctieDeBaza') &&
+       this.isValid('nrInregDeclaratiePersoaneInIntretinere') && 
+       this.isValid('nrInregDeclaratieCasaDeSanatate') &&
+       this.isValid('nrInregDeclLuareLaCunostintaROI') &&
+       this.isValid('nrInregPlanificareaZilelorDeCO') &&
+       this.isValid('nrZileCOConveniteInAnulCurent') 
+       ){
+      return true;
+    } else {
+      return false;
+    }
+  }
+  nrOrdineInvalid() {
+    if(this.isInvalid('nrInregCerereDeAngajare') ||  
+       this.isInvalid('nrInregDeclaratieFunctieDeBaza') ||
+       this.isInvalid('nrInregDeclaratiePersoaneInIntretinere') ||
+       this.isInvalid('nrInregDeclaratieCasaDeSanatate') ||
+       this.isInvalid('nrInregDeclLuareLaCunostintaROI') ||
+       this.isInvalid('nrInregPlanificareaZilelorDeCO') ||
+       this.isInvalid('nrZileCOConveniteInAnulCurent') 
+    ) {
+      return true;
+    } else {
+      return false;
+    }
+  }
+  isValid(fieldName: string) {
+    if(this.candidatiGroup.get(fieldName).valid && this.candidatiGroup.get(fieldName).touched) {
+        return true;
+    } else {
+
+        return false;
+    }
+  }
+  isInvalid(fieldName: string) {
+    if(this.candidatiGroup.get(fieldName).touched && this.candidatiGroup.get(fieldName).invalid) {
+        return true;
+    } else {
+        return false;
+    }
   }
 }

@@ -80,6 +80,8 @@ export class CandidatiDetaliiComponent implements OnInit {
     const data = {
       posts: [
           {
+            prenumeNumeSalariat: this.salariat.prenumeSalariat+' '+this.salariat.numeSalariat,
+            domiciliul: this.salariat.localitate + ', strada '+ this.salariat.strada+ ' nr '+this.salariat.numar+', bloc '+this.salariat.bloc+', scara '+this.salariat.scara + ', etaj '+this.salariat.etaj+', apartament '+this.salariat.apartament+', judetul '+this.salariat.judet+', '+this.salariat.tara,
             nrContract: this.salariat.nrContract,
             dataContract: this.salariat.dataContract,
             numeSalariat: this.salariat.numeSalariat,
@@ -206,7 +208,7 @@ export class CandidatiDetaliiComponent implements OnInit {
       unitateaCareAEliberatCI: this.salariat.unitateaCareAEliberatCI,
       dataEliberareCI: this.salariat.dataEliberareCI,
       dataExpirareCI: this.salariat.dataExpirareCI,
-      cnp: this.salariat.cnp,
+      cnp: "_"+this.salariat.cnp+"",
       dataAngajare: this.salariat.dataAngajare,
       dataAngajareNedeterminat: this.salariat.dataAngajareNedeterminat,
       nrLuniSaptamaniAni: this.salariat.nrLuniSaptamaniAni,

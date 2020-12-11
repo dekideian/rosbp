@@ -14,8 +14,10 @@
                                 <button type="button" class="btn btn-link" data-toggle="collapse" data-target="#collapseOne">
                                      Date contract de munca  
                                         <i class="fa fa-check" style="color: green;"
-                                            *ngIf="candidatiGroup.get('nrContract').valid"
-                                        ></i>    
+                                            *ngIf="dateContractDeMuncaValide()"
+                                        ></i>
+                                        <i class="fa fa-times" style="color:red"
+                                        *ngIf="dateContractDeMuncaInvalide()"></i>    
                                     </button>									
                             </h2>
                         </div>
@@ -68,9 +70,11 @@
                             <h2 class="mb-0">
                                 <button type="button" class="btn btn-link" data-toggle="collapse" data-target="#collapseTwo">
                                     Informații salariat  
-                                        <i class="fa fa-check" style="color: green;"
-                                            *ngIf="candidatiGroup.get('nrContract').valid"
-                                        ></i>    
+                                    <i class="fa fa-check" style="color: green;"
+                                    *ngIf="informatiiSalariatValid()"
+                                    ></i>
+                                    <i class="fa fa-times" style="color:red"
+                                    *ngIf="informatiiSalariatInvalid()"></i>   
                                     </button>									
                             </h2>
                         </div>
@@ -156,7 +160,7 @@
                                         </mat-form-field>
                                     </div>
                                     <div class="col-md-2">
-                                        <mat-form-field class="atribut-candidat">
+                                        <!-- <mat-form-field class="atribut-candidat">
                                             <mat-label>{{atributCandidat.judet}}</mat-label>
                                         <input id="judet" type = "text" 
                                             matInput
@@ -173,7 +177,21 @@
                                                 Minim 2 caractere
                                             </span>
                                         </span>
-                                        </mat-form-field>
+                                        </mat-form-field> -->
+
+                                        <mat-form-field appearance="fill" style="width: 100%;">
+                                            <mat-label>Judet</mat-label>
+                                            <mat-select 
+                                                [(ngModel)]="listaJudete[36]"
+
+                                                formControlName="judet">
+                                              <mat-option 
+                                                *ngFor="let judet of listaJudete" 
+                                                [value]="judet">
+                                                {{judet}}
+                                              </mat-option>
+                                            </mat-select>
+                                          </mat-form-field>
                                     </div>    
                                     <div class="col-md-2">
                                         <mat-form-field class="atribut-candidat">
@@ -462,7 +480,16 @@
                             <h2 class="mb-0">
                                 <button type="button" class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseThree">
                                     Durata contract
-                                     <i class="fa fa-times" style="color:red"></i>
+                                    <i class="fa fa-check" style="color: green;"
+                                    *ngIf="durataContractValid()"
+                                    ></i>
+                                    <i class="fa fa-times" style="color:red"
+                                    *ngIf="durataContractInvalid()"></i>
+                                 <!-- <i class="fa fa-check" style="color: green;"
+                                    *ngIf="durataContractValid()"
+                                    ></i>
+                                    <i class="fa fa-times" style="color:red"
+                                    *ngIf="durataContractInvalid()"></i>    -->
                                 </button>
                             </h2>
                         </div>
@@ -563,9 +590,11 @@
                             <h2 class="mb-0">
                                 <button type="button" class="btn btn-link" data-toggle="collapse" data-target="#collapseFour">
                                     Locul si felul muncii  
-                                        <i class="fa fa-check" style="color: green;"
-                                            *ngIf="candidatiGroup.get('nrContract').valid"
-                                        ></i>    
+                                    <i class="fa fa-check" style="color: green;"
+                                    *ngIf="loculSiFelulMunciiValid()"
+                                    ></i>
+                                    <i class="fa fa-times" style="color:red"
+                                    *ngIf="loculSiFelulMunciiInvalid()"></i>      
                                     </button>									
                             </h2>
                         </div>
@@ -607,7 +636,7 @@
                                         </span>
                                         </mat-form-field>
                                     </div> 
-                                    <div class="col-md-2">
+                                    <!-- <div class="col-md-2">
                                         <mat-form-field class="atribut-candidat">
                                             <mat-label>{{atributCandidat.functia}}</mat-label>
                                         <input id="functia" type = "text" 
@@ -623,9 +652,9 @@
                                             </span>
                                         </span>
                                         </mat-form-field>
-                                    </div> 
-                                    <div class="col-md-2">
-                                        <mat-form-field class="atribut-candidat">
+                                    </div>  -->
+                                    <div class="col-md-4">
+                                        <!-- <mat-form-field class="atribut-candidat">
                                             <mat-label>{{atributCandidat.codCOR}}</mat-label>
                                         <input id="codCOR" type = "text" 
                                             matInput
@@ -639,7 +668,21 @@
                                                 Va rugam introduceti {{atributCandidat.codCOR}}
                                             </span>
                                         </span>
-                                        </mat-form-field>
+                                        </mat-form-field> -->
+                                        <mat-form-field style="width:100%">
+                                            <mat-label>Functia si codul COR</mat-label>
+                                            <mat-select formControlName="codCOR">
+                                                <mat-label style="padding-left: 10px;padding-top:15px;">Cod sau nume functie</mat-label>
+                                               <input 
+                                               style="margin-left:10px; margin-top:5px;"
+                                                matInput
+                                                (keyup)="onKey($event.target.value)" 
+                                                style="width:100%; margin-top:5px;" 
+                                              > 
+                                              <mat-option>None</mat-option>
+                                              <mat-option *ngFor="let state of coduriCorSelectate" [value]="state">{{state.cod}} - {{state.nume}}</mat-option>
+                                            </mat-select>
+                                          </mat-form-field>
                                     </div> 
                                 </div>          
                             </div>
@@ -649,9 +692,7 @@
                             <h2 class="mb-0">
                                 <button type="button" class="btn btn-link" data-toggle="collapse" data-target="#collapseFive">
                                     Durata muncii  
-                                        <i class="fa fa-check" style="color: green;"
-                                            *ngIf="candidatiGroup.get('nrContract').valid"
-                                        ></i>    
+                                             
                                     </button>									
                             </h2>
                         </div>
@@ -771,6 +812,11 @@
                             <h2 class="mb-0">
                                 <button type="button" class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseSix">
                                     Concediu si salarii
+                                    <i class="fa fa-check" style="color: green;"
+                                    *ngIf="concediiSiSalariiValid()"
+                                    ></i>
+                                    <i class="fa fa-times" style="color:red"
+                                    *ngIf="concediiSiSalariiInvalid()"></i>
                                 </button>                     
                             </h2>
                         </div>
@@ -812,24 +858,6 @@
                                         </span>
                                         </mat-form-field>
                                     </div> 
-                                    
-                                    <div class="col-md-2">
-                                        <mat-form-field class="atribut-candidat">
-                                            <mat-label>{{atributCandidat.anulCurent}}</mat-label>
-                                        <input id="anulCurent" type = "text" 
-                                            matInput
-                                            formControlName='anulCurent'
-                                            [ngClass]="{'is-invalid': (candidatiGroup.get('anulCurent').touched ||
-                                                            candidatiGroup.get('anulCurent').dirty) &&
-                                                            !candidatiGroup.get('anulCurent').valid }"
-                                        />
-                                        <span class="invalid-feedback">
-                                            <span *ngIf="candidatiGroup.get('anulCurent').errors?.required">
-                                                Va rugam introduceti {{atributCandidat.anulCurent}}
-                                            </span>
-                                        </span>
-                                        </mat-form-field>
-                                    </div>  
                                 </div>                         
                             </div>
                         </div>
@@ -838,9 +866,11 @@
                             <h2 class="mb-0">
                                 <button type="button" class="btn btn-link" data-toggle="collapse" data-target="#collapseSeven">
                                     Alte clauze  
-                                        <i class="fa fa-check" style="color: green;"
-                                            *ngIf="candidatiGroup.get('nrContract').valid"
-                                        ></i>    
+                                    <i class="fa fa-check" style="color: green;"
+                                    *ngIf="alteClauzeValid()"
+                                    ></i>
+                                    <i class="fa fa-times" style="color:red"
+                                    *ngIf="alteClauzeInvalid()"></i>      
                                     </button>									
                             </h2>
                         </div>
@@ -908,9 +938,11 @@
                             <h2 class="mb-0">
                                 <button type="button" class="btn btn-link" data-toggle="collapse" data-target="#collapseEight">
                                     Nr de ordine - anexe CIM 
-                                        <i class="fa fa-check" style="color: green;"
-                                            *ngIf="candidatiGroup.get('nrContract').valid"
-                                        ></i>    
+                                    <i class="fa fa-check" style="color: green;"
+                                    *ngIf="nrOrdineValid()"
+                                    ></i>
+                                    <i class="fa fa-times" style="color:red"
+                                    *ngIf="nrOrdineInvalid()"></i>       
                                     </button>									
                             </h2>
                         </div>
