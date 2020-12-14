@@ -21,7 +21,7 @@ export class FirmeDetaliiComponent implements OnInit {
   constructor(
     private route: ActivatedRoute,
     private router: Router,
-    private auth: AuthService,
+    public auth: AuthService,
     private filesService: FilesService
     ) {
 
@@ -32,7 +32,8 @@ export class FirmeDetaliiComponent implements OnInit {
     this.route.queryParams.subscribe(params => {
       this.numeFirma = params.nume;
   });
-
+  console.log('acu chemam');
+    this.auth.callFunction();
     this.filesService.getTemplates(this.currentId).subscribe({
       next: templates => {
         this.templates = templates;

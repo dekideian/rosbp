@@ -453,6 +453,7 @@
                                         <mat-form-field class="atribut-candidat">
                                             <mat-label>{{atributCandidat.cnp}}</mat-label>
                                         <input id="cnp" type = "text" 
+                                        (keyup)="onValidCnp($event.target.value)" 
                                             matInput
                                             formControlName='cnp'
                                             [ngClass]="{'is-invalid': (candidatiGroup.get('cnp').touched ||
@@ -460,6 +461,9 @@
                                                             !candidatiGroup.get('cnp').valid }"
                                         />
                                         <span class="invalid-feedback">
+                                            <span *ngIf="candidatiGroup.get('cnp').errors?.cnpvalid">
+                                                {{atributCandidat.cnp}} introdus nu e valid
+                                            </span>
                                             <span *ngIf="candidatiGroup.get('cnp').errors?.required">
                                                 Va rugam introduceti {{atributCandidat.cnp}}
                                             </span>
@@ -1086,22 +1090,33 @@
                             <div class="card-body">
                                 <!-- Rand 9   -->
                                 <div class="form-group row mb-12">
-                                    <div class="col-md-2">
-                                        <mat-form-field class="atribut-candidat">
-                                            <mat-label>{{atributCandidat.platitorDeImpozit}}</mat-label>
-                                        <input id="platitorDeImpozit" type = "text" 
-                                            matInput
-                                            formControlName='platitorDeImpozit'
-                                            [ngClass]="{'is-invalid': (candidatiGroup.get('platitorDeImpozit').touched ||
-                                                            candidatiGroup.get('platitorDeImpozit').dirty) &&
-                                                            !candidatiGroup.get('platitorDeImpozit').valid }"
-                                        />
-                                        <span class="invalid-feedback">
-                                            <span *ngIf="candidatiGroup.get('platitorDeImpozit').errors?.required">
-                                                Va rugam introduceti {{atributCandidat.platitorDeImpozit}}
-                                            </span>
-                                        </span>
-                                        </mat-form-field>
+                                    <div class="col-md-2" style=" vertical-align: bottom;" >
+                                        <!-- <mat-form-field class="atribut-candidat"> -->
+                                            <!-- <mat-label>{{atributCandidat.platitorDeImpozit}}</mat-label> -->
+                                            <mat-checkbox 
+                                                style="margin-top:100px;margin-bottom: 0;vertical-align: -15px; text-align: -30px;"
+                                                class="example-margin"
+                                                color="primary"
+                                                matInput
+                                                id="platitorDeImpozit" 
+                                                [(ngModel)] = "defaultCheckboxValue"
+                                                formControlName='platitorDeImpozit'
+                                            >{{atributCandidat.platitorDeImpozit}}
+                                            </mat-checkbox>
+                                        
+                                        <!-- </mat-form-field> -->
+<!-- 
+                                        <mat-select 
+                                        [(ngModel)]="listaJudete[36]"
+
+                                        formControlName="judet">
+                                      <mat-option 
+                                        *ngFor="let judet of listaJudete" 
+                                        [value]="judet">
+                                        {{judet}}
+                                      </mat-option>
+                                    </mat-select> -->
+
                                     </div> 
                                     <div class="col-md-2">
                                         <mat-form-field class="atribut-candidat">
@@ -1345,6 +1360,7 @@
                                     [disabled]="!candidatiGroup.valid"
                 >Salvează salariat</button> 
             </form>
+            platitor de tva?  {{platitorDeImpozit()}}
           </div>
         </div>
     </div>

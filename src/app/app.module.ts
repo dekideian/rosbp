@@ -10,6 +10,11 @@ import { CandidatiModule } from './candidati/candidati.module';
 import { AuthComponent } from './shared/auth/auth.component';
 import { AngularFireModule } from '@angular/fire';
 import { environment } from "../environments/environment";
+import * as firebase from 'firebase';
+    
+      // Initialize Firebase
+       
+      firebase.default.initializeApp(environment.firebaseConfig); 
 
 const routes: Routes = [
   { path: 'welcome', component: WelcomeComponent },
@@ -27,8 +32,8 @@ const routes: Routes = [
     AuthComponent
   ],
   imports: [
-    AngularFireModule.initializeApp(environment.firebaseConfig, 'cloud'),
     BrowserModule,
+    AngularFireModule.initializeApp(environment.firebaseConfig, 'cloud'),
     AngajatiModule,
     FirmeModule,
     CandidatiModule,

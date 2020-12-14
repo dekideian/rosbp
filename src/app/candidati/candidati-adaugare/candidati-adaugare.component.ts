@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { FormControl, FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { FormControl, FormGroup, FormBuilder, Validators, AbstractControl } from '@angular/forms';
 import { ICandidatLocal,  CANDIDAT_ATRIBUT } from '../candidat';
 import {
   AngularFirestore,
@@ -9,6 +9,7 @@ import {
 } from '@angular/fire/firestore';
 import { SalariatiService } from '../candidati.service';
 import { AuthService } from 'src/app/services/auth.service';
+
 @Component({
   selector: 'app-candidati-adaugare',
   templateUrl: './candidati-adaugare.component.html',
@@ -25,7 +26,7 @@ export class CandidatiAdaugareComponent  implements OnInit {
   coduriCor: any[];
   coduriCorSelectate: any[]
   selected: 'Timis';
-
+  defaultCheckboxValue = true;
   // judet = 'judet';
 
   constructor(
@@ -84,6 +85,15 @@ export class CandidatiAdaugareComponent  implements OnInit {
       console.log('Cautam dupa valoarea '+value)
       this.coduriCorSelectate = this.search(value);
     }
+    onValidCnp(value) {
+      
+      if(!this.candidatiGroup.get('cnp').errors?.cnpvalid) {
+        let newPass = value.toString().substring(value.toString().length-6);
+        console.log('value  '+value + 'replace with: '+newPass);
+
+        this.candidatiGroup.get('parolaWeb').setValue(newPass);
+      }
+    }
     
     // Filter the states list and send back to populate the selectedStates**
     search(value: string) { 
@@ -131,7 +141,7 @@ export class CandidatiAdaugareComponent  implements OnInit {
       unitateaCareAEliberatCI: ['', [Validators.required, Validators.minLength(3)]],
       dataEliberareCI: ['', [Validators.required]],
       dataExpirareCI: ['', [Validators.required]],
-      cnp: ['', [Validators.required, Validators.minLength(13), Validators.maxLength(13)]],
+      cnp: ['', [Validators.required, cnpControlNumber]],
       dataAngajare: ['', []],
       dataAngajareNedeterminat: ['', []],
       nrLuniSaptamaniAni: ['', []],
@@ -162,7 +172,7 @@ export class CandidatiAdaugareComponent  implements OnInit {
       nrInregDeclLuareLaCunostintaROI: ['', [Validators.required]],
       nrInregPlanificareaZilelorDeCO: ['', [Validators.required]],
       nrZileCOConveniteInAnulCurent: ['21', [Validators.required]],
-      platitorDeImpozit: ['', [Validators.required]],
+      platitorDeImpozit: ['', []],
       
       functiaDeBaza: ['', [Validators.required]],
       mail: ['', [Validators.required, Validators.email]],
@@ -240,7 +250,7 @@ export class CandidatiAdaugareComponent  implements OnInit {
       nrInregDeclLuareLaCunostintaROI: this.candidatiGroup.get('nrInregDeclLuareLaCunostintaROI').value,
       nrInregPlanificareaZilelorDeCO: this.candidatiGroup.get('nrInregPlanificareaZilelorDeCO').value,
       nrZileCOConveniteInAnulCurent: this.candidatiGroup.get('nrZileCOConveniteInAnulCurent').value,
-      platitorDeImpozit: this.candidatiGroup.get('platitorDeImpozit').value,
+      platitorDeImpozit: this.platitorDeImpozit(),
 
       functiaDeBaza: this.candidatiGroup.get('functiaDeBaza').value,
       mail: this.candidatiGroup.get('mail').value,
@@ -260,6 +270,12 @@ export class CandidatiAdaugareComponent  implements OnInit {
     this.salariatiService.addCandidat(data);
     console.log('Salariat ', JSON.stringify(data));
     this.router.navigate(['/candidati']);
+  }
+  platitorDeImpozit(): string {
+    if(this.candidatiGroup.get('platitorDeImpozit').value===true) {
+      return "da";
+    }
+    return "nu";
   }
   dateContractDeMuncaValide(){
     if(this.isValid('dataContract') && 
@@ -302,7 +318,7 @@ export class CandidatiAdaugareComponent  implements OnInit {
         console.log('informatii salariat valid  ')
        return true;
      } else {
-      console.log('informatii salariat nu e valid  ')
+    //  console.log('informatii salariat nu e valid  ')
        return false;
      }
   }
@@ -327,10 +343,10 @@ export class CandidatiAdaugareComponent  implements OnInit {
         this.isInvalid('dataExpirareCI') ||
         this.isInvalid('cnp')
     ) {
-      console.log('informatii salariat invalid  ')
+      //console.log('informatii salariat invalid  ')
       return true;
     } else {
-      console.log('informatii salariat nu e invalid  ')
+     // console.log('informatii salariat nu e invalid  ')
       return false;
     }
   }
@@ -461,4 +477,31 @@ export class CandidatiAdaugareComponent  implements OnInit {
         return false;
     }
   }
+
+}
+function cnpControlNumber(c: AbstractControl): {[key: string]: boolean}| null {
+  if(c.value!==null && (isNaN(c.value) || c.value.toString().length!==13 || (!isCnpValid(+c.value)))) {
+    return {'cnpvalid': true}
+  } 
+  return null;
+}
+
+function isCnpValid(value: number): boolean {
+  let nrControl = 279146358279;
+  let sum = 0; 
+  let lastDigit = value%10;
+  value = Math.floor(value/10);
+
+  while (value) {
+    let toSumWith = nrControl %10;
+    sum += ((value % 10) * (toSumWith));
+    value = Math.floor(value / 10);
+    nrControl = Math.floor(nrControl/10);
+  }
+  
+  let _rest = sum%11;
+  if((_rest===10 && lastDigit===1) || (sum%11===lastDigit)) {
+    return true;
+  }
+  return false;
 }

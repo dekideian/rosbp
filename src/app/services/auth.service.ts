@@ -16,6 +16,8 @@ import '@firebase/database';
 // import Cloud Firestore (optional)
 import '@firebase/firestore';
 
+
+
 import { AngularFireAuth } from '@angular/fire/auth';
 import {
     AngularFirestore,
@@ -27,10 +29,9 @@ import { Observable, of, throwError } from 'rxjs';
 import { switchMap } from 'rxjs/operators';
 import { User, rosbp, admin } from '../shared/user.model';
 import { HttpErrorResponse } from '@angular/common/http';
-import { JsonPipe } from '@angular/common';
 import { FirmeService } from '../firme/firme.service';
-import { stringify } from 'querystring';
-
+import '@firebase/functions';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
     providedIn: 'root'
@@ -39,12 +40,13 @@ import { stringify } from 'querystring';
     // userList$: Observable<any>;
     user$: Observable<User>;
     loggedInUser$: Observable<User>;
-
+    count: string;
     userCompany: string;
     userEmail: string; 
 
     constructor(
       private router: Router,
+      
       private afs: AngularFirestore,
       private afAuth: AngularFireAuth,
       private firmeService: FirmeService
@@ -62,8 +64,41 @@ import { stringify } from 'querystring';
         })
       );
       this.storeUserInfo();
+     // let functions = firebase?.functions();
      // this.readUsers(); // do we actually want to read all users ?: P
     }
+
+    callFunction() {
+  
+      console.log('first read message')
+      let addMessage = firebase.functions().httpsCallable('readMessage');
+      addMessage({})
+        .then(function(result){
+          
+          console.log('Am primit de la functie '+JSON.stringify(result));
+      })
+      .catch((error) => {
+        // Getting the Error details.
+        var code = error.code;
+        var message = error.message;
+        var details = error.details;
+        // ...
+      });
+
+      console.log('second write message')
+      let writeCount = firebase.functions().httpsCallable('writeMessage');
+      writeCount({'count':2})
+        .then(function(result){
+          console.log('Am primit de la count '+JSON.stringify(result));
+      })
+      .catch((error) => {
+        // Getting the Error details.
+        var code = error.code;
+        var message = error.message;
+        var details = error.details;
+        // ...
+      });
+    } 
 
     getLoggedInUser(userEmail: string): Observable<User> {
       const userRef: AngularFirestoreDocument<User> = this.afs.doc(`users/${userEmail}`);
@@ -96,7 +131,7 @@ import { stringify } from 'querystring';
     }
 
     async googleSignin() {
-
+      
       const provider = new firebase.auth.GoogleAuthProvider();
       const credential = await this.afAuth.signInWithPopup(provider);
       return this.updateUserData(credential.user);
