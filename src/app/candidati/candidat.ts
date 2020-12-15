@@ -272,6 +272,9 @@ export const CANDIDAT_ATRIBUT = {
     ticheteDeMasa: 'Tichete de masă',
     studiiSCED: 'Studii ISCED (SAGA)',
 }
+export class FuncResp {
+    data: number
+}
 export class CandidatCSV {
     nrContract: string;
     dataContract: string;

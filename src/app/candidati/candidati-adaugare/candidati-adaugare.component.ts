@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { FormControl, FormGroup, FormBuilder, Validators, AbstractControl } from '@angular/forms';
-import { ICandidatLocal,  CANDIDAT_ATRIBUT } from '../candidat';
+import { ICandidatLocal,  CANDIDAT_ATRIBUT, FuncResp } from '../candidat';
+// import core firebase client (required)
+import firebase from '@firebase/app';
 import {
   AngularFirestore,
   AngularFirestoreDocument
@@ -17,6 +19,7 @@ import { AuthService } from 'src/app/services/auth.service';
 })
 export class CandidatiAdaugareComponent  implements OnInit {
   candidatiGroup: FormGroup;
+  nextNrContract="?";
   candidat: ICandidatLocal;
   atributCandidat;
   codFirma: string;
@@ -120,7 +123,7 @@ export class CandidatiAdaugareComponent  implements OnInit {
     });
 
     this.candidatiGroup = this.fb.group({
-      nrContract:     ['', [Validators.required, Validators.minLength(1)]],
+      nrContract:     [this.nextNrContract, [Validators.required, Validators.minLength(1)]],
       dataContract:     ['', [Validators.required]],
       numeSalariat:  ['', [Validators.required, Validators.minLength(3)]],
       prenumeSalariat:  ['', [Validators.required, Validators.minLength(3)]],
@@ -188,6 +191,38 @@ export class CandidatiAdaugareComponent  implements OnInit {
       ticheteDeMasa: ['', [Validators.required]],
       studiiSCED: ['', [Validators.required]]
     });
+
+    console.log('first read message')
+    let addMessage = firebase.functions().httpsCallable('readMessage');
+    addMessage({})
+    .then(result=>{
+      console.log('before caca'+result);
+      let nr = result["data"];
+      console.log('Nr este '+nr)
+      this.nextNrContract = result["data"];   
+      this.setareNrContractSiAlteNr(nr);
+      
+    }).catch((error) => {
+      // Getting the Error details.
+      
+      console.log('ce rahat de eroare avem? ' + error);
+      var code = error.code;
+      var message = error.message;
+      var details = error.details;
+      // ...
+    });
+  }
+
+// TODO on key update if one is updated, update all ?
+// on submit, .. write with current NR. 
+  setareNrContractSiAlteNr(nr: number) {
+    this.candidatiGroup.get('nrContract').setValue(nr);
+    this.candidatiGroup.get('nrInregCerereDeAngajare').setValue(nr);
+    this.candidatiGroup.get('nrInregDeclaratieFunctieDeBaza').setValue(nr);
+    this.candidatiGroup.get('nrInregDeclaratiePersoaneInIntretinere').setValue(nr);
+    this.candidatiGroup.get('nrInregDeclaratieCasaDeSanatate').setValue(nr);
+    this.candidatiGroup.get('nrInregDeclLuareLaCunostintaROI').setValue(nr);
+    this.candidatiGroup.get('nrInregPlanificareaZilelorDeCO').setValue(nr);
   }
 
   goBack() {

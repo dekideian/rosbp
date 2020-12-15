@@ -1,6 +1,5 @@
 import * as functions from 'firebase-functions';
 import * as admin from 'firebase-admin';
-import { FunctionBuilder } from 'firebase-functions';
 admin.initializeApp();
 // // Start writing Firebase Functions
 // // https://firebase.google.com/docs/functions/typescript
@@ -13,33 +12,41 @@ admin.initializeApp();
 exports.readMessage = functions.https.onCall((data,context)=>{
     
     const utilsRealtimeDb = admin.database().ref('utils/1');
-    return utilsRealtimeDb.once('value').then((snapshot) => {
-        // var username = (snapshot.val() && snapshot.val().username) || 'Anonymous';
+    return utilsRealtimeDb.once('value').then((snapshot) => {    
         console.log('val is '+JSON.stringify(snapshot.val()));
-        return JSON.stringify(snapshot.val());
+        return (+snapshot.val().nrContract) + 1;
       }).catch(error=>{
-          console.log('bla');
+          console.log('An error appeared when reading the count');
       });
 });
 
 exports.writeMessage = functions.https.onCall((data,context)=>{
     
     console.log('Write message..'+data.count)
-    let newCount = data.count++;
-
+    let receivedNr = data.count;
+    let nextNr = 0;
+    const utilsRealtimeDb = admin.database().ref('utils/1');
+    return utilsRealtimeDb.once('value').then((snapshot) => {    
+        console.log('val is '+JSON.stringify(snapshot.val()));
+        nextNr = (+snapshot.val().nrContract) + 1
+        nextNr = (nextNr>receivedNr)?nextNr:receivedNr;
+        return admin.database().ref('utils/1').set({
+            nrContract: nextNr,
+        })
+        .then((result) => {
+            console.log('Am salvat '+nextNr);
+            return nextNr;
+        }).catch((error: any)=>{
+            console.log('some errr appeared '+error);
+            throw new functions.https.HttpsError('unknown', error.message, error);
+        });
+    
+      }).catch(error=>{
+          console.log('An error appeared when reading the count');
+      });
     
 
-    return admin.database().ref('utils/1').set({
-        nrContract: data.count,
-    })
-    .then((result) => {
-        console.log('Am adaugat '+newCount);
-        return "OK :"+JSON.stringify(result) ;
-    }).catch((error: any)=>{
-        console.log('some errr appeared '+error);
-        throw new functions.https.HttpsError('unknown', error.message, error);
-    });
-
+    
 
     // return {
     //     count: newCount,

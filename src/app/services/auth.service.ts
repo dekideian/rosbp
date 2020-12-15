@@ -70,24 +70,12 @@ import { environment } from 'src/environments/environment';
 
     callFunction() {
   
-      console.log('first read message')
-      let addMessage = firebase.functions().httpsCallable('readMessage');
-      addMessage({})
-        .then(function(result){
-          
-          console.log('Am primit de la functie '+JSON.stringify(result));
-      })
-      .catch((error) => {
-        // Getting the Error details.
-        var code = error.code;
-        var message = error.message;
-        var details = error.details;
-        // ...
-      });
+      
 
       console.log('second write message')
+      let nextNrNumber = 0;
       let writeCount = firebase.functions().httpsCallable('writeMessage');
-      writeCount({'count':2})
+      writeCount({'count':nextNrNumber})
         .then(function(result){
           console.log('Am primit de la count '+JSON.stringify(result));
       })
