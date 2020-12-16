@@ -1,6 +1,7 @@
 # Rosbp
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 9.0.3.
+![RosBP CI](https://github.com/dekideian/rosbp/workflows/RosBP%20CI/badge.svg)
 
 ## Development server
 
