@@ -196,7 +196,6 @@ export class CandidatiAdaugareComponent  implements OnInit {
     let addMessage = firebase.functions().httpsCallable('readMessage');
     addMessage({})
     .then(result=>{
-      console.log('before caca'+result);
       let nr = result["data"];
       console.log('Nr este '+nr)
       this.nextNrContract = result["data"];   
