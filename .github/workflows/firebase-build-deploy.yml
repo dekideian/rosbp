@@ -1,0 +1,24 @@
+
+name: RosBP CI
+
+on:
+  push:
+    branches: [ master ] 
+
+jobs:
+  build-and-deploy:
+    name: Build and deploy
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v2
+      - name: Install dependencies
+        run: npm install 
+      - name: Build project
+        run: npm run-script build
+      - name: Deploy to firebase   
+        uses: w9jds/firebase-action@master
+        with:
+          args: deploy
+        env: 
+          FIREBASE_TOKEN: ${{ secrets.FIREBASE_TOKEN}}  
