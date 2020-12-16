@@ -192,7 +192,7 @@ export class CandidatiAdaugareComponent  implements OnInit {
       studiiSCED: ['', [Validators.required]]
     });
     this.candidatiGroup.get('nrContract').disable();
-    console.log('first read message')
+    
     let addMessage = firebase.functions().httpsCallable('readMessage');
     addMessage({})
     .then(result=>{
@@ -229,81 +229,97 @@ export class CandidatiAdaugareComponent  implements OnInit {
   }
 
   save() {
-//avem aici logged in user company .. in ce forma oare?..
     // this.auth.userCompany
+    
+    console.log('Am trimis val '+this.candidatiGroup.get('nrContract').value)
+    let writeMessage = firebase.functions().httpsCallable('writeMessage');
+    writeMessage({count: this.candidatiGroup.get('nrContract').value})
+    .then(result=>{
+      let nr = result["data"];
+      console.log('Nr returnat este '+nr)
+      this.setareNrContractSiAlteNr(nr);
+      const data: ICandidatLocal = {
+        uid: null,
+        nrContract: this.candidatiGroup.get('nrContract').value,
+        dataContract: this.candidatiGroup.get('dataContract').value,
+        numeSalariat: this.candidatiGroup.get('numeSalariat').value,
+        prenumeSalariat: this.candidatiGroup.get('prenumeSalariat').value,
+        marca: this.candidatiGroup.get('marca').value,
+        tara: this.candidatiGroup.get('tara').value,
+        judet: this.candidatiGroup.get('judet').value,
+        localitate: this.candidatiGroup.get('localitate').value,
+        strada: this.candidatiGroup.get('strada').value,
+        numar: this.candidatiGroup.get('numar').value,
+        bloc: this.candidatiGroup.get('bloc').value,
+        scara: this.candidatiGroup.get('scara').value,
+        etaj: this.candidatiGroup.get('etaj').value,
+        apartament: this.candidatiGroup.get('apartament').value,
+        actIdentitate: this.candidatiGroup.get('actIdentitate').value,
+        serieCI: this.candidatiGroup.get('serieCI').value,
+        numarCI: this.candidatiGroup.get('numarCI').value,
+        unitateaCareAEliberatCI: this.candidatiGroup.get('unitateaCareAEliberatCI').value,
+        dataEliberareCI: this.candidatiGroup.get('dataEliberareCI').value,
+        dataExpirareCI: this.candidatiGroup.get('dataExpirareCI').value,
+        cnp: this.candidatiGroup.get('cnp').value,
+        dataAngajare: this.candidatiGroup.get('dataAngajare').value,
+        dataAngajareNedeterminat: this.candidatiGroup.get('dataAngajareNedeterminat').value,
+        nrLuniSaptamaniAni: this.candidatiGroup.get('nrLuniSaptamaniAni').value,
+        dataInceputCimDeteriminat: this.candidatiGroup.get('dataInceputCimDeteriminat').value,
+        dataSfarsitCimDeterminat: this.candidatiGroup.get('dataSfarsitCimDeterminat').value,
+        departament: this.candidatiGroup.get('departament').value,
+        locDeMunca: this.candidatiGroup.get('locDeMunca').value,
+        functia: this.candidatiGroup.get('codCOR').value.nume,
+        codCOR: this.candidatiGroup.get('codCOR').value.cod,
+        normaIntreagaDeLucruOreZi: this.candidatiGroup.get('normaIntreagaDeLucruOreZi').value,
+        normaIntreagaDeLucruOreSapt: this.candidatiGroup.get('normaIntreagaDeLucruOreSapt').value,
+        normaPartiala: this.candidatiGroup.get('normaPartiala').value,
+        repartizareProgramPtNormaPartiala: this.candidatiGroup.get('repartizareProgramPtNormaPartiala').value,
+        repartizareTimpMunca: this.candidatiGroup.get('repartizareTimpMunca').value,
+        tipIntervalRepartizare: this.candidatiGroup.get('tipIntervalRepartizare').value,
+  
+        durataConcediuDeOdihna: this.candidatiGroup.get('durataConcediuDeOdihna').value,
+        salariulDeBazaBrut: this.candidatiGroup.get('salariulDeBazaBrut').value,
+        perioadaDeProba: this.candidatiGroup.get('perioadaDeProba').value,
+        perioadaDePreavizInCazulConcedierii: this.candidatiGroup.get('perioadaDePreavizInCazulConcedierii').value,
+        perioadaDePreavizInCazulDemisiei: this.candidatiGroup.get('perioadaDePreavizInCazulDemisiei').value,
+        anulCurent:  new Date().getFullYear()+'',
+        nrInregCerereDeAngajare: this.candidatiGroup.get('nrInregCerereDeAngajare').value,
+        nrInregDeclaratieFunctieDeBaza: this.candidatiGroup.get('nrInregDeclaratieFunctieDeBaza').value,
+        nrInregDeclaratiePersoaneInIntretinere: this.candidatiGroup.get('nrInregDeclaratiePersoaneInIntretinere').value,
+        nrInregDeclaratieCasaDeSanatate: this.candidatiGroup.get('nrInregDeclaratieCasaDeSanatate').value,
+        nrInregDeclLuareLaCunostintaROI: this.candidatiGroup.get('nrInregDeclLuareLaCunostintaROI').value,
+        nrInregPlanificareaZilelorDeCO: this.candidatiGroup.get('nrInregPlanificareaZilelorDeCO').value,
+        nrZileCOConveniteInAnulCurent: this.candidatiGroup.get('nrZileCOConveniteInAnulCurent').value,
+        platitorDeImpozit: this.platitorDeImpozit(),
+  
+        functiaDeBaza: this.candidatiGroup.get('functiaDeBaza').value,
+        mail: this.candidatiGroup.get('mail').value,
+        parolaWeb: this.candidatiGroup.get('parolaWeb').value,
+        locatiePlata: this.candidatiGroup.get('locatiePlata').value,
+        bancaAngajator: this.candidatiGroup.get('bancaAngajator').value,
+        iban: this.candidatiGroup.get('iban').value,
+        tipContract: this.candidatiGroup.get('tipContract').value,
+        sablonContractNexus: this.candidatiGroup.get('sablonContractNexus').value,
+        angajatorNexus: this.candidatiGroup.get('angajatorNexus').value,
+        cuiAngajator: this.candidatiGroup.get('cuiAngajator').value,
+        cuiLocDeMunca: this.candidatiGroup.get('cuiLocDeMunca').value,
+        ticheteDeMasa: this.candidatiGroup.get('ticheteDeMasa').value,
+        studiiSCED: this.candidatiGroup.get('studiiSCED').value,
+        codFirma: this.codFirma
+      };
+      this.salariatiService.addCandidat(data);
+      console.log('Salariat ', JSON.stringify(data));
+      this.router.navigate(['/candidati']);
+    }).catch((error) => {
+      // Getting the Error details.
+      
+      var code = error.code;
+      var message = error.message;
+      var details = error.details;
+      console.log('Eroare ' + error);
+    });
 
-    const data: ICandidatLocal = {
-      uid: null,
-      nrContract: this.candidatiGroup.get('nrContract').value,
-      dataContract: this.candidatiGroup.get('dataContract').value,
-      numeSalariat: this.candidatiGroup.get('numeSalariat').value,
-      prenumeSalariat: this.candidatiGroup.get('prenumeSalariat').value,
-      marca: this.candidatiGroup.get('marca').value,
-      tara: this.candidatiGroup.get('tara').value,
-      judet: this.candidatiGroup.get('judet').value,
-      localitate: this.candidatiGroup.get('localitate').value,
-      strada: this.candidatiGroup.get('strada').value,
-      numar: this.candidatiGroup.get('numar').value,
-      bloc: this.candidatiGroup.get('bloc').value,
-      scara: this.candidatiGroup.get('scara').value,
-      etaj: this.candidatiGroup.get('etaj').value,
-      apartament: this.candidatiGroup.get('apartament').value,
-      actIdentitate: this.candidatiGroup.get('actIdentitate').value,
-      serieCI: this.candidatiGroup.get('serieCI').value,
-      numarCI: this.candidatiGroup.get('numarCI').value,
-      unitateaCareAEliberatCI: this.candidatiGroup.get('unitateaCareAEliberatCI').value,
-      dataEliberareCI: this.candidatiGroup.get('dataEliberareCI').value,
-      dataExpirareCI: this.candidatiGroup.get('dataExpirareCI').value,
-      cnp: this.candidatiGroup.get('cnp').value,
-      dataAngajare: this.candidatiGroup.get('dataAngajare').value,
-      dataAngajareNedeterminat: this.candidatiGroup.get('dataAngajareNedeterminat').value,
-      nrLuniSaptamaniAni: this.candidatiGroup.get('nrLuniSaptamaniAni').value,
-      dataInceputCimDeteriminat: this.candidatiGroup.get('dataInceputCimDeteriminat').value,
-      dataSfarsitCimDeterminat: this.candidatiGroup.get('dataSfarsitCimDeterminat').value,
-      departament: this.candidatiGroup.get('departament').value,
-      locDeMunca: this.candidatiGroup.get('locDeMunca').value,
-      functia: this.candidatiGroup.get('codCOR').value.nume,
-      codCOR: this.candidatiGroup.get('codCOR').value.cod,
-      normaIntreagaDeLucruOreZi: this.candidatiGroup.get('normaIntreagaDeLucruOreZi').value,
-      normaIntreagaDeLucruOreSapt: this.candidatiGroup.get('normaIntreagaDeLucruOreSapt').value,
-      normaPartiala: this.candidatiGroup.get('normaPartiala').value,
-      repartizareProgramPtNormaPartiala: this.candidatiGroup.get('repartizareProgramPtNormaPartiala').value,
-      repartizareTimpMunca: this.candidatiGroup.get('repartizareTimpMunca').value,
-      tipIntervalRepartizare: this.candidatiGroup.get('tipIntervalRepartizare').value,
-
-      durataConcediuDeOdihna: this.candidatiGroup.get('durataConcediuDeOdihna').value,
-      salariulDeBazaBrut: this.candidatiGroup.get('salariulDeBazaBrut').value,
-      perioadaDeProba: this.candidatiGroup.get('perioadaDeProba').value,
-      perioadaDePreavizInCazulConcedierii: this.candidatiGroup.get('perioadaDePreavizInCazulConcedierii').value,
-      perioadaDePreavizInCazulDemisiei: this.candidatiGroup.get('perioadaDePreavizInCazulDemisiei').value,
-      anulCurent:  new Date().getFullYear()+'',
-      nrInregCerereDeAngajare: this.candidatiGroup.get('nrInregCerereDeAngajare').value,
-      nrInregDeclaratieFunctieDeBaza: this.candidatiGroup.get('nrInregDeclaratieFunctieDeBaza').value,
-      nrInregDeclaratiePersoaneInIntretinere: this.candidatiGroup.get('nrInregDeclaratiePersoaneInIntretinere').value,
-      nrInregDeclaratieCasaDeSanatate: this.candidatiGroup.get('nrInregDeclaratieCasaDeSanatate').value,
-      nrInregDeclLuareLaCunostintaROI: this.candidatiGroup.get('nrInregDeclLuareLaCunostintaROI').value,
-      nrInregPlanificareaZilelorDeCO: this.candidatiGroup.get('nrInregPlanificareaZilelorDeCO').value,
-      nrZileCOConveniteInAnulCurent: this.candidatiGroup.get('nrZileCOConveniteInAnulCurent').value,
-      platitorDeImpozit: this.platitorDeImpozit(),
-
-      functiaDeBaza: this.candidatiGroup.get('functiaDeBaza').value,
-      mail: this.candidatiGroup.get('mail').value,
-      parolaWeb: this.candidatiGroup.get('parolaWeb').value,
-      locatiePlata: this.candidatiGroup.get('locatiePlata').value,
-      bancaAngajator: this.candidatiGroup.get('bancaAngajator').value,
-      iban: this.candidatiGroup.get('iban').value,
-      tipContract: this.candidatiGroup.get('tipContract').value,
-      sablonContractNexus: this.candidatiGroup.get('sablonContractNexus').value,
-      angajatorNexus: this.candidatiGroup.get('angajatorNexus').value,
-      cuiAngajator: this.candidatiGroup.get('cuiAngajator').value,
-      cuiLocDeMunca: this.candidatiGroup.get('cuiLocDeMunca').value,
-      ticheteDeMasa: this.candidatiGroup.get('ticheteDeMasa').value,
-      studiiSCED: this.candidatiGroup.get('studiiSCED').value,
-      codFirma: this.codFirma
-    };
-    this.salariatiService.addCandidat(data);
-    console.log('Salariat ', JSON.stringify(data));
-    this.router.navigate(['/candidati']);
+    
   }
   platitorDeImpozit(): string {
     if(this.candidatiGroup.get('platitorDeImpozit').value===true) {
