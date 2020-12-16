@@ -21,3 +21,15 @@
    /* background-color: gray; */
    border-color: gray;
  }
+ .mat-radio-group {
+   align-items: left; 
+   flex-direction: column;
+}
+
+.mat-radio-button {
+  /* width: 100%; */
+  /* height: 48px; */
+
+  /* display: flex; */
+  align-items: left;
+}

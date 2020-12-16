@@ -30,6 +30,9 @@ export class CandidatiAdaugareComponent  implements OnInit {
   coduriCorSelectate: any[]
   selected: 'Timis';
   defaultCheckboxValue = true;
+  defaultContractDeterminat = false;
+  
+  
   // judet = 'judet';
 
   constructor(
@@ -83,6 +86,7 @@ export class CandidatiAdaugareComponent  implements OnInit {
             "Vrancea"
         ];
     }
+
     // Receive user input and send to search method**
     onKey(value) { 
       console.log('Cautam dupa valoarea '+value)
@@ -145,16 +149,18 @@ export class CandidatiAdaugareComponent  implements OnInit {
       dataEliberareCI: ['', [Validators.required]],
       dataExpirareCI: ['', [Validators.required]],
       cnp: ['', [Validators.required, cnpControlNumber]],
-      dataAngajare: ['', []],
-      dataAngajareNedeterminat: ['', []],
-      nrLuniSaptamaniAni: ['', []],
-      dataInceputCimDeteriminat: ['', []],
-      dataSfarsitCimDeterminat: ['', []],
+      dataAngajare: ['', [Validators.required]],
+      dataAngajareNedeterminat: ['', [Validators.required]],
+      nrLuniSaptamaniAni: ['', [Validators.required]],
+      dataInceputCimDeteriminat: ['', [Validators.required]],
+      dataSfarsitCimDeterminat: ['', [Validators.required]],
+      contractDeterminat: ['', []],
 
       departament: ['', [Validators.required]],
       locDeMunca: ['', [Validators.required]],
       // functia: ['', [Validators.required]],
       codCOR: ['', [Validators.required]],
+      normaIntreaga: ['true', []],
       normaIntreagaDeLucruOreZi: ['', [Validators.required]],
       normaIntreagaDeLucruOreSapt: ['', [Validators.required]],
       normaPartiala: ['', [Validators.required]],
@@ -191,7 +197,15 @@ export class CandidatiAdaugareComponent  implements OnInit {
       ticheteDeMasa: ['', [Validators.required]],
       studiiSCED: ['', [Validators.required]]
     });
-    this.candidatiGroup.get('nrContract').disable();
+    
+    // this.candidatiGroup.get('contractDeterminat').valueChanges.subscribe(val=>{
+    //   if(val==true) {
+
+    //   } else {
+
+    //   }
+    // })
+    this.disableNrContractSiAltele();
     
     let addMessage = firebase.functions().httpsCallable('readMessage');
     addMessage({})
@@ -210,6 +224,17 @@ export class CandidatiAdaugareComponent  implements OnInit {
       var details = error.details;
       console.log('Eroare ' + error);
     });
+  }
+
+  //TODO on key press.. any other value added for nrContract should update the rest..
+  disableNrContractSiAltele() {
+    this.candidatiGroup.get('nrContract').disable();
+    // this.candidatiGroup.get('nrInregCerereDeAngajare').disable();
+    // this.candidatiGroup.get('nrInregDeclaratieFunctieDeBaza').disable();
+    // this.candidatiGroup.get('nrInregDeclaratiePersoaneInIntretinere').disable();
+    // this.candidatiGroup.get('nrInregDeclaratieCasaDeSanatate').disable();
+    // this.candidatiGroup.get('nrInregDeclLuareLaCunostintaROI').disable();
+    // this.candidatiGroup.get('nrInregPlanificareaZilelorDeCO').disable();
   }
 
 // TODO on key update if one is updated, update all ?
@@ -261,11 +286,11 @@ export class CandidatiAdaugareComponent  implements OnInit {
         dataEliberareCI: this.candidatiGroup.get('dataEliberareCI').value,
         dataExpirareCI: this.candidatiGroup.get('dataExpirareCI').value,
         cnp: this.candidatiGroup.get('cnp').value,
-        dataAngajare: this.candidatiGroup.get('dataAngajare').value,
-        dataAngajareNedeterminat: this.candidatiGroup.get('dataAngajareNedeterminat').value,
-        nrLuniSaptamaniAni: this.candidatiGroup.get('nrLuniSaptamaniAni').value,
-        dataInceputCimDeteriminat: this.candidatiGroup.get('dataInceputCimDeteriminat').value,
-        dataSfarsitCimDeterminat: this.candidatiGroup.get('dataSfarsitCimDeterminat').value,
+        dataAngajare: this.candidatiGroup.get('contractDeterminat').value?this.candidatiGroup.get('dataAngajare').value:'-',
+        dataAngajareNedeterminat:this.candidatiGroup.get('contractDeterminat').value?'-':this.candidatiGroup.get('dataAngajareNedeterminat').value,
+        nrLuniSaptamaniAni: this.candidatiGroup.get('contractDeterminat').value?this.candidatiGroup.get('nrLuniSaptamaniAni').value:'-',
+        dataInceputCimDeteriminat: this.candidatiGroup.get('contractDeterminat').value?this.candidatiGroup.get('dataInceputCimDeteriminat').value:'-',
+        dataSfarsitCimDeterminat: this.candidatiGroup.get('contractDeterminat').value?this.candidatiGroup.get('dataSfarsitCimDeterminat').value:'-',
         departament: this.candidatiGroup.get('departament').value,
         locDeMunca: this.candidatiGroup.get('locDeMunca').value,
         functia: this.candidatiGroup.get('codCOR').value.nume,
@@ -401,28 +426,45 @@ export class CandidatiAdaugareComponent  implements OnInit {
     }
   }
   durataContractValid() {
-    if(this.isValid('dataAngajare') && 
-       this.isValid('dataAngajareNedeterminat') &&
+    if(this.candidatiGroup.get('contractDeterminat').value) {
+      if(this.isValid('dataAngajare') && 
        this.isValid('nrLuniSaptamaniAni') &&
        this.isValid('dataInceputCimDeteriminat') &&
        this.isValid('dataSfarsitCimDeterminat') 
        ){
-      return true;
+        return true;
+      } else {
+        return false;
+      }
     } else {
-      return false;
-    }
+      if( this.isValid('dataAngajareNedeterminat')){
+        return true;
+      } else {
+        return false;
+      }
+    }    
   }
   durataContractInvalid() {
-    if(this.isInvalid('dataAngajare') ||  
-       this.isInvalid('dataAngajareNedeterminat') ||
-       this.isInvalid('nrLuniSaptamaniAni') ||
-        this.isInvalid('dataInceputCimDeteriminat') ||
-        this.isInvalid('dataSfarsitCimDeterminat')  
-    ) {
-      return true;
+    if(this.candidatiGroup.get('contractDeterminat').value) {
+      if(this.isInvalid('dataAngajare') ||  
+        this.isInvalid('nrLuniSaptamaniAni') ||
+         this.isInvalid('dataInceputCimDeteriminat') ||
+         this.isInvalid('dataSfarsitCimDeterminat')  
+       ) {
+         return true;
+       } else {
+         return false;
+       }
     } else {
-      return false;
+      if( this.isInvalid('dataAngajareNedeterminat')) {
+        return true;
+      } else {
+        return false;
+      }
     }
+
+
+    
   }
   loculSiFelulMunciiValid() {
     if(this.isValid('departament') && 
@@ -526,6 +568,23 @@ export class CandidatiAdaugareComponent  implements OnInit {
         return true;
     } else {
         return false;
+    }
+  }
+//TODO add the 2 categories left in the validation  
+  allCategoriesAreValid() {
+    if(this.dateContractDeMuncaValide() &&
+    this.informatiiSalariatValid() &&
+    this.durataContractValid() &&
+    this.loculSiFelulMunciiValid() &&
+    true &&
+    this.concediiSiSalariiValid() &&
+    this.alteClauzeValid && 
+    this.nrOrdineValid() &&
+    true
+    ) {
+      return true;
+    } else {
+      return false;
     }
   }
 

@@ -499,9 +499,32 @@
                         </div>
                         <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordionExample">
                             <div class="card-body">
+                                <div class="form-group row mb-12">
+                                    <div class="col-md-2">
+
+                                        <mat-radio-group
+                                            id = 'contractDeterminatId'
+                                            name = 'contractDeterminatName'
+                                            layout="column"
+                                            color="primary"
+                                            aria-labelledby="example-radio-group-label"
+                                            class="example-radio-group"
+                                            formControlName='contractDeterminat'
+                                            >
+                                            <mat-radio-button class="example-radio-button" [value]="false" [checked]=true>
+                                                {{atributCandidat.contractNedeterminat}}
+                                            </mat-radio-button>
+                                            <br>
+
+                                            <mat-radio-button class="example-radio-button"  [value]="true">
+                                                {{atributCandidat.contractDeterminat}} &nbsp; &nbsp;&nbsp;
+                                            </mat-radio-button>
+                                            </mat-radio-group>
+                                    </div>
+                                </div>
                                 <!-- Rand 4   -->
                                 <div class="form-group row mb-12"> 
-                                    <div class="col-md-2">
+                                    <div class="col-md-2" [hidden]="!this.candidatiGroup.get('contractDeterminat').value">
                                         <mat-form-field class="atribut-candidat">
                                             <mat-label>{{atributCandidat.dataAngajare}}</mat-label>
                                         <input id="dataAngajare" type = "date" 
@@ -518,7 +541,7 @@
                                         </span>
                                         </mat-form-field>
                                     </div>
-                                    <div class="col-md-2">
+                                    <div class="col-md-2" [hidden]="this.candidatiGroup.get('contractDeterminat').value">
                                         <mat-form-field class="atribut-candidat">
                                             <mat-label>{{atributCandidat.dataAngajareNedeterminat}}</mat-label>
                                         <input id="dataAngajareNedeterminat" type = "date" 
@@ -535,7 +558,7 @@
                                         </span>
                                         </mat-form-field>
                                     </div>
-                                    <div class="col-md-2">
+                                    <div class="col-md-2" [hidden]="!this.candidatiGroup.get('contractDeterminat').value">
                                         <mat-form-field class="atribut-candidat">
                                             <mat-label>{{atributCandidat.nrLuniSaptamaniAni}}</mat-label>
                                         <input id="nrLuniSaptamaniAni" type = "text" 
@@ -552,7 +575,7 @@
                                         </span>
                                         </mat-form-field>
                                     </div>
-                                    <div class="col-md-2">
+                                    <div class="col-md-2" [hidden]="!this.candidatiGroup.get('contractDeterminat').value">
                                         <mat-form-field class="atribut-candidat">
                                             <mat-label>{{atributCandidat.dataInceputCimDeteriminat}}</mat-label>
                                         <input id="dataInceputCimDeteriminat" type = "date" 
@@ -569,7 +592,7 @@
                                         </span>
                                         </mat-form-field>
                                     </div>
-                                    <div class="col-md-2">
+                                    <div class="col-md-2" [hidden]="!this.candidatiGroup.get('contractDeterminat').value">
                                         <mat-form-field class="atribut-candidat">
                                             <mat-label>{{atributCandidat.dataSfarsitCimDeterminat}}</mat-label>
                                         <input id="dataSfarsitCimDeterminat" type = "date" 
@@ -695,17 +718,39 @@
                         <div class="card-header" id="headingFive">
                             <h2 class="mb-0">
                                 <button type="button" class="btn btn-link" data-toggle="collapse" data-target="#collapseFive">
-                                    Durata muncii  
-                                             
+                                    Durata muncii       
                                     </button>									
                             </h2>
                         </div>
                         <div id="collapseFive" class="collapse" aria-labelledby="headingFive" data-parent="#accordionExample">
                             <div class="card-body">
+                                <div class="form-group row mb-12">
+                                    <div class="col-md-2">
+
+                                         <mat-radio-group
+                                            id = 'normaIntreagaId'
+                                            nume = normaIntreagaNume
+                                            layout="column"
+                                            color="primary"
+                                            aria-labelledby="example-radio-group-label-Norma"
+                                            class="example-radio-group"
+                                            formControlName='normaIntreaga'
+                                            >
+                                            <mat-radio-button class="example-radio-button" [value]="true" [checked]="true">
+                                                {{atributCandidat.normaIntreaga}}
+                                            </mat-radio-button>
+                                            <br>
+
+                                            <mat-radio-button class="example-radio-button"  [value]="false">
+                                                {{atributCandidat.normaPartiala}} &nbsp; 
+                                            </mat-radio-button>
+                                        </mat-radio-group>  
+                                    </div>
+                                </div>
                                 <!-- Rand 1 -->
                                 <div class="form-group row mb-12">
-                                    <div class="form-group row mb-12">
-                                        <div class="col-md-2">
+                                  
+                                        <div class="col-md-2" [hidden]="!this.candidatiGroup.get('normaIntreaga').value">
                                             <mat-form-field class="atribut-candidat">
                                                 <mat-label>{{atributCandidat.normaIntreagaDeLucruOreZi}}</mat-label>
                                             <input id="normaIntreagaDeLucruOreZi" type = "text" 
@@ -722,7 +767,7 @@
                                             </span>
                                             </mat-form-field>
                                         </div> 
-                                        <div class="col-md-2">
+                                        <div class="col-md-2" [hidden]="!this.candidatiGroup.get('normaIntreaga').value">
                                             <mat-form-field class="atribut-candidat">
                                                 <mat-label>{{atributCandidat.normaIntreagaDeLucruOreSapt}}</mat-label>
                                             <input id="normaIntreagaDeLucruOreSapt" type = "text" 
@@ -739,7 +784,8 @@
                                             </span>
                                             </mat-form-field>
                                         </div> 
-                                        <div class="col-md-2">
+                                        <!-- TODO normaPartiala asta o luam din norma intreaga, e doar flag da/nu -->
+                                        <!-- <div class="col-md-2">
                                             <mat-form-field class="atribut-candidat">
                                                 <mat-label>{{atributCandidat.normaPartiala}}</mat-label>
                                             <input id="normaPartiala" type = "text" 
@@ -755,8 +801,8 @@
                                                 </span>
                                             </span>
                                             </mat-form-field>
-                                        </div> 
-                                        <div class="col-md-2">
+                                        </div>  -->
+                                        <div class="col-md-2" [hidden]="this.candidatiGroup.get('normaIntreaga').value">
                                             <mat-form-field class="atribut-candidat">
                                                 <mat-label>{{atributCandidat.repartizareProgramPtNormaPartiala}}</mat-label>
                                             <input id="repartizareProgramPtNormaPartiala" type = "text" 
@@ -773,7 +819,7 @@
                                             </span>
                                             </mat-form-field>
                                         </div> 
-                                        <div class="col-md-2">
+                                        <div class="col-md-2" [hidden]="this.candidatiGroup.get('normaIntreaga').value">
                                             <mat-form-field class="atribut-candidat">
                                                 <mat-label>{{atributCandidat.repartizareTimpMunca}}</mat-label>
                                             <input id="repartizareTimpMunca" type = "text" 
@@ -790,7 +836,7 @@
                                             </span>
                                             </mat-form-field>
                                         </div> 
-                                        <div class="col-md-2">
+                                        <div class="col-md-2" [hidden]="this.candidatiGroup.get('normaIntreaga').value">
                                             <mat-form-field class="atribut-candidat">
                                                 <mat-label>{{atributCandidat.tipIntervalRepartizare}}</mat-label>
                                             <input id="tipIntervalRepartizare" type = "text" 
@@ -807,7 +853,7 @@
                                             </span>
                                             </mat-form-field>
                                         </div> 
-                                    </div> 
+                                    
                                 </div>          
                             </div>
                         </div>                        
@@ -1357,11 +1403,12 @@
                                     style="width: 103%; margin-left: -24px; margin-top:15px;" 
                                     type="submit"
                                     title="Salvarea datelor este posibila dupa ce toate datele sunt introduse corect"
-                                    [disabled]="!candidatiGroup.valid"
+                                    [disabled]="!allCategoriesAreValid()"
                 >Salvează salariat</button> 
             </form>
           </div>
         </div>
+        contract: {{this.candidatiGroup.get('contractDeterminat').value}}
     </div>
     <div class='card-footer'>       
         <button class="btn btn-outline-secondary" (click)="goBack();">

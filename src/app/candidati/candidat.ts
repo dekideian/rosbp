@@ -239,6 +239,7 @@ export const CANDIDAT_ATRIBUT = {
     normaIntreagaDeLucruOreZi: 'Normă intreagă de lucru (ore/zi)',
     normaIntreagaDeLucruOreSapt: 'Normă intreagă de lucru (ore/sapt)',
     normaPartiala: 'Norma parțială',
+    normaIntreaga: 'Norma intreaga',
     repartizareProgramPtNormaPartiala: 'Repartizarea programului pt normă parțială',
     repartizareTimpMunca: 'Repartizare timp muncă',
     tipIntervalRepartizare: 'Tip interval repartizare',
@@ -257,7 +258,8 @@ export const CANDIDAT_ATRIBUT = {
     nrInregPlanificareaZilelorDeCO: 'Nr. Inreg planificarea zilelor de CO',
     nrZileCOConveniteInAnulCurent: 'Nr. Zile CO cuvenite in anul curent',
     platitorDeImpozit: 'Plătitor de impozit',
-
+    contractDeterminat: 'Contract determinat',
+    contractNedeterminat: 'Contract nedeterminat',
     functiaDeBaza: 'Funcția de baza',
     mail: 'Mail',
     parolaWeb: 'Parolă web',
