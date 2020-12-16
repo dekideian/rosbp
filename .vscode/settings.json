@@ -2,21 +2,32 @@
     "cSpell.words": [
         "Adaugare",
         "Angajati",
+        "Avem",
         "Candidati",
         "Detalii",
+        "Esti",
         "Firestore",
         "Firme",
         "ROSBP",
         "Salariat",
+        "Timis",
         "adauga",
         "atribut",
         "campuri",
         "candidat",
+        "clienti",
         "deeppurple",
+        "fisiere",
+        "fullname",
         "ifirma",
         "judet",
+        "judete",
         "marca",
         "nume",
-        "prenume"
+        "parola",
+        "pdfs",
+        "prenume",
+        "responsabili",
+        "salariati"
     ]
 }

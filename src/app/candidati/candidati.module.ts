@@ -7,19 +7,24 @@ import { CandidatiDetailsGuard } from './candidati-details.guard';
 import { FormsModule } from '@angular/forms';
 import { ReactiveFormsModule } from '@angular/forms';
 import { CandidatiAdaugareComponent } from './candidati-adaugare/candidati-adaugare.component';
-
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { MatSliderModule } from '@angular/material/slider';
-import { MatFormFieldModule } from '@angular/material/form-field';
+import { SharedModule } from '../shared/shared.module';
+
 import {platformBrowserDynamic} from '@angular/platform-browser-dynamic';
-import {MatNativeDateModule} from '@angular/material/core';
-import {MAT_FORM_FIELD_DEFAULT_OPTIONS} from '@angular/material/form-field';
+
+import { MatSliderModule } from '@angular/material/slider';
+// import {MAT_FORM_FIELD_DEFAULT_OPTIONS} from '@angular/material/form-field';
+// import { MatFormFieldModule } from '@angular/material/form-field';
+// import {MatNativeDateModule} from '@angular/material/core';
 import { DemoMaterialModule } from './material-module';
+
+
+import { AngularFireModule } from '@angular/fire';
 
 
 const routes: Routes = [
   { path: 'candidati', component: CandidatiListComponent },
-  { path: 'candidati/adauga', component: CandidatiAdaugareComponent },
+  { path: 'candidati/adauga/:id', component: CandidatiAdaugareComponent },
   { path: 'candidati/:id', component: CandidatiDetaliiComponent }
   // { path: 'candidati/:id', canActivate: [CandidatiDetailsGuard], component: CandidatiDetaliiComponent }
 ];
@@ -31,11 +36,13 @@ const routes: Routes = [
     CandidatiAdaugareComponent
   ],
   imports: [
+    SharedModule,
+    AngularFireModule,
     DemoMaterialModule,
-    MatSliderModule,
-    MatFormFieldModule,
+    // MatSliderModule,
+    // MatFormFieldModule,
     BrowserAnimationsModule,
-    MatNativeDateModule,
+    // MatNativeDateModule,
 
 
     FormsModule,
@@ -44,13 +51,16 @@ const routes: Routes = [
     RouterModule.forChild(routes)
   ],
   exports: [
+    AngularFireModule,
     CandidatiListComponent,
     CandidatiDetaliiComponent,
     CandidatiAdaugareComponent,
+    DemoMaterialModule,
+    FormsModule,
     ReactiveFormsModule
   ],
-  providers: [
-    { provide: MAT_FORM_FIELD_DEFAULT_OPTIONS, useValue: { appearance: 'fill' } },
-  ]
+  // providers: [
+  //   { provide: MAT_FORM_FIELD_DEFAULT_OPTIONS, useValue: { appearance: 'fill' } },
+  // ]
 })
 export class CandidatiModule { }

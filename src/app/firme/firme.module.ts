@@ -9,8 +9,14 @@ import { FormsModule } from '@angular/forms';
 import { ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { FirmeAdaugareComponent } from './firme-adaugare/firme-adaugare.component';
-import { MatFormFieldModule } from '@angular/material/form-field';
+// import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatSelectModule } from '@angular/material/select';
+import { DemoMaterialModule } from '../candidati/material-module';
+import { SharedModule } from '../shared/shared.module';
+import { AddResponsibleComponent } from './add-responsible/add-responsible.component';
+import { AddClientComponent } from './add-client/add-client.component';
+import { UploadFileComponent } from '../shared/upload-file/upload-file.component';
+
 const routes: Routes = [
   { path: 'firme', component: FirmeListComponent },
   { path: 'firme/adauga', component: FirmeAdaugareComponent },
@@ -22,9 +28,13 @@ const routes: Routes = [
   declarations: [
     FirmeListComponent,
     FirmeDetaliiComponent,
-    FirmeAdaugareComponent],
+    FirmeAdaugareComponent,
+    AddResponsibleComponent,
+    AddClientComponent],
   imports: [
-    MatFormFieldModule,
+    SharedModule,
+    DemoMaterialModule,
+    // MatFormFieldModule,
     MatSelectModule,
     HttpClientModule,
     FormsModule,
@@ -34,6 +44,8 @@ const routes: Routes = [
     RouterModule.forChild(routes)
   ],
   exports: [
+    AddResponsibleComponent,
+    DemoMaterialModule,
     RouterModule,
     ReactiveFormsModule,
     FirmeListComponent,

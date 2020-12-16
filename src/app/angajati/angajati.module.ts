@@ -5,6 +5,7 @@ import { AngajatiDetaliiComponent } from './angajati-detalii/angajati-detalii.co
 import { AngajatiListComponent } from './angajati-list/angajati-list.component';
 import { AngajatiDetailsGuard } from './angajati-details.guard';
 import { FormsModule } from '@angular/forms';
+import { DemoMaterialModule } from '../candidati/material-module';
 import { ReactiveFormsModule } from '@angular/forms';
 import { AngajatiAdaugareComponent } from './angajati-adaugare/angajati-adaugare.component';
 const routes: Routes = [
@@ -21,6 +22,7 @@ const routes: Routes = [
     AngajatiAdaugareComponent
   ],
   imports: [
+    DemoMaterialModule,
     FormsModule,
     ReactiveFormsModule,
     CommonModule,

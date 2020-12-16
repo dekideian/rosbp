@@ -22,12 +22,13 @@
                                 <td title="Nume">{{user.displayName}}</td>
                             </tr><tr>
                                 <td title="Email">{{user.uid}}</td>
-                            </tr><tr>
-                                <td title="Compania la care lucrati">{{user.company}}</td>
+                            </tr>
+                            <tr>
+                                <td title="Rol ">{{auth.role()}}</td>
                             </tr>
                         </tbody>
                     </table>
-                    <div *ngIf="!auth.isAnyEmployee(auth.user$ | async)">
+                    <div *ngIf="auth.isUnknownUser(auth.user$ | async)">
                         Va rugam contactati un angajat RosBP pentru a primi drepturi pentru firma
                         la care lucrati. 
                     </div>
@@ -35,7 +36,9 @@
                 <button class="btn btn-outline-info" (click)="auth.signOut()">Sign out</button>
               </div>
               <ng-template #login>
+                  <br>
                 <div class="text-left">E nevoie de autentificare pentru a putea accesa informatiile dorite</div>
+                <br>
                 <div class="text-left">
                     <button class="btn btn-outline-info" (click)="auth.googleSignin()">Login with gmail</button>
                 </div>

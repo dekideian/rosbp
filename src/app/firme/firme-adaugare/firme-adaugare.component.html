@@ -5,81 +5,120 @@
     <div class="card-body">
         <div class="container-fluid">
           <div class="text-left">
-            <form (ngSubmit)="save()" [formGroup]="firmeGroup">
-                <div class="form-group row mb-2">
-                    <!-- <label for="firmaName" class="col-md-3 col-form-label">First Name</label> -->
-                    <div class="col-md-8">
-                        <input id="firmaName" type = "text" 
-                            placeholder="Nume firma"
-                            formControlName="firmaName"
-                            style="width:250px;"
-                            [ngClass]="{'is-invalid': (firmeGroup.get('firmaName').touched ||
-                                            firmeGroup.get('firmaName').dirty) &&
-                                            !firmeGroup.get('firmaName').valid }"
-                        /> 
-                        <span class="invalid-feedback">
-                            <span *ngIf="firmeGroup.get('firmaName').errors?.required">
-                                Va rugam introduceti un nume de firma
-                            </span>
-                            <span *ngIf="firmeGroup.get('firmaName').errors?.minlength">
-                                Minim 3 caractere
-                            </span>
-                        </span> 
-                    </div>
-                </div>        
-                <div class="form-group row mb-2">
-                    <!-- <label for="angajatRosEmail"  class="col-md-3 col-form-label">Email angajat rosBP</label> -->
-                    <div class="col-md-8">
-                        <input id="angajatRosEmail" type = "text" 
-                            placeholder="Email angajat RosBP"
-                            formControlName="angajatRosEmail"
-                            style="width:250px;"
-                            [ngClass]="{'is-invalid': (firmeGroup.get('angajatRosEmail').touched ||
-                                            firmeGroup.get('angajatRosEmail').dirty) &&
-                                            !firmeGroup.get('angajatRosEmail').valid }"
-                        />
-                        <span class="invalid-feedback">
-                            <span *ngIf="firmeGroup.get('angajatRosEmail').errors?.required">
-                                Va rugam introduceti un reprezentant RosBP
-                            </span>
-                            <span *ngIf="firmeGroup.get('angajatRosEmail').errors?.email">
-                                Emailul introdus nu e valid
-                            </span>
-                        </span>
+            <form (ngSubmit)="save()" [formGroup]="firmeGroup"> 
+                
+                <div class="form-group row mb-12">
+                    <div class="col-md-3">
+                        <mat-form-field class="atribut-candidat">
+                            <mat-label>Nume firma</mat-label>
+                            <input id="firmaName" 
+                                type = "text" 
+                                matInput 
+                                formControlName="firmaName"
+                                [ngClass]="{'is-invalid': (firmeGroup.get('firmaName').touched ||
+                                firmeGroup.get('firmaName').dirty) &&
+                                !firmeGroup.get('firmaName').valid }"
+                                >
+                                <span class="invalid-feedback">
+                                    <span *ngIf="firmeGroup.get('firmaName').errors?.required">
+                                        Va rugam introduceti numele firmei client
+                                    </span>
+                                    <span *ngIf="firmeGroup.get('firmaName').errors?.minlength">
+                                        Numele firmei client are lungimea minima 2 caractere
+                                    </span>
+                                </span>  
+                        </mat-form-field>
                     </div>
                 </div>
-                <div class="form-group row mb-2">
-                    <!-- <label for="angajatFirmaExtEmail"  class="col-md-3 col-form-label">Email HR client</label> -->
-                    <div class="col-md-8">
-                        <input id="angajatFirmaExtEmail" type = "text" 
-                            placeholder="Email HR client"
-                            style="width:250px;"
-                            formControlName="angajatFirmaExtEmail"
-                            [ngClass]="{'is-invalid': (firmeGroup.get('angajatFirmaExtEmail').touched ||
-                                            firmeGroup.get('angajatFirmaExtEmail').dirty) &&
-                                            !firmeGroup.get('angajatFirmaExtEmail').valid }"
-                        /> 
-                        <span class="invalid-feedback">
-                            <span *ngIf="firmeGroup.get('angajatFirmaExtEmail').errors?.required">
-                                Va rugam introduceti un reprezentant pentru firma client
-                            </span>
-                            <span *ngIf="firmeGroup.get('angajatFirmaExtEmail').errors?.email">
-                                Emailul introdus nu e valid
-                            </span>
-                        </span>
-                     </div>
+
+                <!-- <div class="form-group row mb-12">
+                    <div class="col-md-3">
+                        <mat-form-field class="atribut-candidat">
+                            <mat-label>Cod firma (ex TSC)</mat-label>
+                            <input id="codFirma" 
+                                type = "text" 
+                                matInput 
+                                placeholder="Codul firmei - fara spatii"
+                                formControlName="codFirma"
+                                [ngClass]="{'is-invalid': (firmeGroup.get('codFirma').touched ||
+                                firmeGroup.get('codFirma').dirty) &&
+                                !firmeGroup.get('codFirma').valid }"
+                                >
+                                <span class="invalid-feedback">
+                                    <span *ngIf="firmeGroup.get('codFirma').errors?.required">
+                                        Va rugam introduceti un cod de firma, fara spatii
+                                    </span>
+                                    <span *ngIf="firmeGroup.get('codFirma').errors?.minlength">
+                                        Codul firmei client are lungimea minima 2 caractere
+                                    </span>
+                                </span>  
+                        </mat-form-field>
+                    </div>
                 </div>
-                <div class="form-group row mb-2">
+
+                <div class="form-group row mb-12">
+                    <div class="col-md-3">
+                        <mat-form-field class="atribut-candidat">
+                            <mat-label>Email angajat RosBP</mat-label>
+                            <input id="angajatRosEmail" 
+                                type = "text" 
+                                matInput 
+                                formControlName="angajatRosEmail"
+                                [ngClass]="{'is-invalid': (firmeGroup.get('angajatRosEmail').touched ||
+                                firmeGroup.get('angajatRosEmail').dirty) &&
+                                !firmeGroup.get('angajatRosEmail').valid }"
+                                >
+                                <span class="invalid-feedback">
+                                    <span *ngIf="firmeGroup.get('angajatRosEmail').errors?.required">
+                                        Va rugam introduceti un reprezentant RosBP
+                                    </span>
+                                    <span *ngIf="firmeGroup.get('angajatRosEmail').errors?.email">
+                                        Emailul introdus nu e valid
+                                    </span>
+                                </span>  
+                        </mat-form-field>
+                    </div>
+                </div>
+        
+                <div class="form-group row mb-12">
+                    <div class="col-md-3">
+                        <mat-form-field class="atribut-candidat">
+                            <mat-label>Email client - HR</mat-label>
+                            <input id="angajatFirmaExtEmail" 
+                                type = "text" 
+                                matInput 
+                                formControlName="angajatFirmaExtEmail"
+                                [ngClass]="{'is-invalid': (firmeGroup.get('angajatFirmaExtEmail').touched ||
+                                firmeGroup.get('angajatFirmaExtEmail').dirty) &&
+                                !firmeGroup.get('angajatFirmaExtEmail').valid }"
+                                >
+                                <span class="invalid-feedback">
+                                    <span *ngIf="firmeGroup.get('angajatFirmaExtEmail').errors?.required">
+                                        Va rugam introduceti un reprezentant pentru firma client
+                                    </span>
+                                    <span *ngIf="firmeGroup.get('angajatFirmaExtEmail').errors?.email">
+                                        Emailul introdus nu e valid
+                                    </span>
+                                </span>  
+                        </mat-form-field>
+                    </div>
+                </div> -->
+                <div class="form-group row mb-12">
+                    <div class="col-md-3">
                     <!-- <div class="col-md-1 col-form-label"></div> -->
                     <button class="btn btn-outline-info col-form-label"
-                        style="margin-left: 14px; width: 250px;" 
+                        style=" width: 100%;" 
                         type="submit"
                         [disabled]="!firmeGroup.valid"
                         >Salveaza Firma</button>
-                </div>          
+                    </div>
+                </div>  
             </form>
           </div>
         </div>
+ 
+    
+<br>
     </div>
     <div class='card-footer'>       
         <button class="btn btn-outline-secondary" (click)="goBack();">

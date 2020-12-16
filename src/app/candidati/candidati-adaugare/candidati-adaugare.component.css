@@ -1,4 +1,4 @@
-@import '@angular/material/prebuilt-themes/deeppurple-amber.css';
+/* @import '@angular/material/prebuilt-themes/deeppurple-amber.css'; */
 .example-form {
     min-width: 150px;
     max-width: 500px;
@@ -9,5 +9,15 @@
     height:60px;
  } 
  .bs-example{
-   margin: 20px;
+   margin: 0px;
 }  
+
+.btn-outline-info {
+   color: rgb(0, 0, 255);
+   border-color: #CCCCCC;
+ }
+ .btn-outline-info:hover {
+   color: rgba(33, 33, 214, 0.934);
+   /* background-color: gray; */
+   border-color: gray;
+ }

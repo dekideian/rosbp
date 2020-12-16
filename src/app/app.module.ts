@@ -9,6 +9,12 @@ import { FirmeModule } from './firme/firme.module';
 import { CandidatiModule } from './candidati/candidati.module';
 import { AuthComponent } from './shared/auth/auth.component';
 import { AngularFireModule } from '@angular/fire';
+import { environment } from "../environments/environment";
+import * as firebase from 'firebase';
+    
+      // Initialize Firebase
+       
+      firebase.default.initializeApp(environment.firebaseConfig); 
 
 const routes: Routes = [
   { path: 'welcome', component: WelcomeComponent },
@@ -26,17 +32,8 @@ const routes: Routes = [
     AuthComponent
   ],
   imports: [
-    AngularFireModule.initializeApp({
-      apiKey: "AIzaSyBMrk9KPkfkgSnl1yG3u3hO_n358MEkVcE",
-      authDomain: "ros-bp.firebaseapp.com",
-      databaseURL: "https://ros-bp.firebaseio.com",
-      projectId: "ros-bp",
-      storageBucket: "ros-bp.appspot.com",
-      messagingSenderId: "769301585939",
-      appId: "1:769301585939:web:f98fd9c70f3d15b4fa9fe6",
-      measurementId: "G-D9YYS9W5X2"
-    }),
     BrowserModule,
+    AngularFireModule.initializeApp(environment.firebaseConfig, 'cloud'),
     AngajatiModule,
     FirmeModule,
     CandidatiModule,
