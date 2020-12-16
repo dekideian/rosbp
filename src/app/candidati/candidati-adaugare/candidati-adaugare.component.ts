@@ -191,7 +191,7 @@ export class CandidatiAdaugareComponent  implements OnInit {
       ticheteDeMasa: ['', [Validators.required]],
       studiiSCED: ['', [Validators.required]]
     });
-
+    this.candidatiGroup.get('nrContract').disable();
     console.log('first read message')
     let addMessage = firebase.functions().httpsCallable('readMessage');
     addMessage({})
@@ -199,16 +199,16 @@ export class CandidatiAdaugareComponent  implements OnInit {
       let nr = result["data"];
       console.log('Nr este '+nr)
       this.nextNrContract = result["data"];   
+      this.candidatiGroup.get('nrContract').enable();
       this.setareNrContractSiAlteNr(nr);
       
     }).catch((error) => {
       // Getting the Error details.
       
-      console.log('ce rahat de eroare avem? ' + error);
       var code = error.code;
       var message = error.message;
       var details = error.details;
-      // ...
+      console.log('Eroare ' + error);
     });
   }
 
@@ -497,7 +497,8 @@ export class CandidatiAdaugareComponent  implements OnInit {
     }
   }
   isValid(fieldName: string) {
-    if(this.candidatiGroup.get(fieldName).valid && this.candidatiGroup.get(fieldName).touched) {
+    if(this.candidatiGroup.get(fieldName).valid && 
+    (this.candidatiGroup.get(fieldName).touched || this.candidatiGroup.get(fieldName).value)) {
         return true;
     } else {
 
