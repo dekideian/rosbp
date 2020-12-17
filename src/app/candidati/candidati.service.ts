@@ -10,6 +10,7 @@ import { FileDetails } from '../shared/upload-file/uploadedFileDetails';
   providedIn: 'root'
 })
 export class SalariatiService {
+  
 
   salariati$: Observable<Candidat[]>;
   candidatiUrl = 'api/candidati.json';
@@ -80,8 +81,12 @@ export class SalariatiService {
     this.afs.collection(`candidati`).add(data);
   }
 
-  remove(idCandidat: string) {
-    this.afs.collection(`candidati`).doc(`${idCandidat}`).delete();
+  actualizeazaCandidat(salariatId: string, data: ICandidatLocal) {
+    this.afs.collection(`candidati`).doc(`${salariatId}`).set(data);
+  }
+
+  remove(salariatId: string) {
+    this.afs.collection(`candidati`).doc(`${salariatId}`).delete();
     // throw new Error('Method not implemented.');
   }
 }

@@ -1,11 +1,11 @@
 <div class='card'>
     <div class='card-header'>
-        Adaugă salariat {{numeFirma}}
+        Editare salariat - {{this.salariat?.prenumeSalariat}} {{this.salariat?.numeSalariat}} 
     </div>
     <div class="card-body">
         <div class="container-fluid">
           <div class="text-center">
-            <form (ngSubmit)="save()" [formGroup]="candidatiGroup">
+            <form (ngSubmit)="save()" [formGroup]="candidatiGroup" *ngIf="candidatiGroup">
                 <div class="accordion" id="accordionExample">
                     <div class="card" style="margin-left:-25px; margin-right:-25px;margin-top:-13px; margin-bottom: 10px;">
 <!-- Date contract de munca -->
@@ -160,30 +160,10 @@
                                         </mat-form-field>
                                     </div>
                                     <div class="col-md-2">
-                                        <!-- <mat-form-field class="atribut-candidat">
-                                            <mat-label>{{atributCandidat.judet}}</mat-label>
-                                        <input id="judet" type = "text" 
-                                            matInput
-                                            formControlName='judet'
-                                            [ngClass]="{'is-invalid': (candidatiGroup.get('judet').touched ||
-                                                            candidatiGroup.get('judet').dirty) &&
-                                                            !candidatiGroup.get('judet').valid }"
-                                        />
-                                        <span class="invalid-feedback">
-                                            <span *ngIf="candidatiGroup.get('judet').errors?.required">
-                                                Va rugam introduceti {{atributCandidat.judet}}
-                                            </span>
-                                            <span *ngIf="candidatiGroup.get('judet').errors?.minlength">
-                                                Minim 2 caractere
-                                            </span>
-                                        </span>
-                                        </mat-form-field> -->
-
                                         <mat-form-field appearance="fill" style="width: 100%;">
                                             <mat-label>Judet</mat-label>
                                             <mat-select 
                                                 [(ngModel)]="listaJudete[36]"
-
                                                 formControlName="judet">
                                               <mat-option 
                                                 *ngFor="let judet of listaJudete" 
@@ -663,42 +643,13 @@
                                         </span>
                                         </mat-form-field>
                                     </div> 
-                                    <!-- <div class="col-md-2">
-                                        <mat-form-field class="atribut-candidat">
-                                            <mat-label>{{atributCandidat.functia}}</mat-label>
-                                        <input id="functia" type = "text" 
-                                            matInput
-                                            formControlName='functia'
-                                            [ngClass]="{'is-invalid': (candidatiGroup.get('functia').touched ||
-                                                            candidatiGroup.get('functia').dirty) &&
-                                                            !candidatiGroup.get('functia').valid }"
-                                        />
-                                        <span class="invalid-feedback">
-                                            <span *ngIf="candidatiGroup.get('functia').errors?.required">
-                                                Va rugam introduceti {{atributCandidat.functia}}
-                                            </span>
-                                        </span>
-                                        </mat-form-field>
-                                    </div>  -->
                                     <div class="col-md-4">
-                                        <!-- <mat-form-field class="atribut-candidat">
-                                            <mat-label>{{atributCandidat.codCOR}}</mat-label>
-                                        <input id="codCOR" type = "text" 
-                                            matInput
-                                            formControlName='codCOR'
-                                            [ngClass]="{'is-invalid': (candidatiGroup.get('codCOR').touched ||
-                                                            candidatiGroup.get('codCOR').dirty) &&
-                                                            !candidatiGroup.get('codCOR').valid }"
-                                        />
-                                        <span class="invalid-feedback">
-                                            <span *ngIf="candidatiGroup.get('codCOR').errors?.required">
-                                                Va rugam introduceti {{atributCandidat.codCOR}}
-                                            </span>
-                                        </span>
-                                        </mat-form-field> -->
                                         <mat-form-field style="width:100%">
                                             <mat-label>Functia si codul COR</mat-label>
-                                            <mat-select formControlName="codCOR">
+                                            <mat-select 
+                                            [(value)] = "codCorSiFunctia"
+                                            formControlName="codCOR"
+                                            >
                                                 <mat-label style="padding-left: 10px;padding-top:15px;">Cod sau nume functie</mat-label>
                                                <input 
                                                style="margin-left:10px; margin-top:5px;"
@@ -707,7 +658,7 @@
                                                 style="width:100%; margin-top:5px;" 
                                               > 
                                               <mat-option>None</mat-option>
-                                              <mat-option *ngFor="let state of coduriCorSelectate" [value]="state">{{state.cod}} - {{state.nume}}</mat-option>
+                                              <mat-option *ngFor="let state of coduriCorSelectate" [value]="state.cod">{{state.cod}} - {{state.nume}}</mat-option>
                                             </mat-select>
                                           </mat-form-field>
                                     </div> 
@@ -1147,8 +1098,6 @@
                                 <!-- Rand 9   -->
                                 <div class="form-group row mb-12">
                                     <div class="col-md-2" style=" vertical-align: bottom;" >
-                                        <!-- <mat-form-field class="atribut-candidat"> -->
-                                            <!-- <mat-label>{{atributCandidat.platitorDeImpozit}}</mat-label> -->
                                             <mat-checkbox 
                                                 style="margin-top:100px;margin-bottom: 0;vertical-align: -15px; align-content: -50px;"
                                                 class="example-margin"
@@ -1159,20 +1108,6 @@
                                                 formControlName='platitorDeImpozit'
                                             >{{atributCandidat.platitorDeImpozit}}
                                             </mat-checkbox>
-                                        
-                                        <!-- </mat-form-field> -->
-<!-- 
-                                        <mat-select 
-                                        [(ngModel)]="listaJudete[36]"
-
-                                        formControlName="judet">
-                                      <mat-option 
-                                        *ngFor="let judet of listaJudete" 
-                                        [value]="judet">
-                                        {{judet}}
-                                      </mat-option>
-                                    </mat-select> -->
-
                                     </div> 
                                     <div class="col-md-2">
                                         <mat-form-field class="atribut-candidat">
@@ -1414,15 +1349,14 @@
                                     type="submit"
                                     title="Salvarea datelor este posibila dupa ce toate datele sunt introduse corect"
                                     [disabled]="!allCategoriesAreValid()"
-                >Salvează salariat</button> 
+                >Actualizeaza informatii salariat</button> 
             </form>
           </div>
         </div>
 
     </div>
-    <div class='card-footer'>       
+    <div class='card-footer'>
         <button class="btn btn-outline-secondary" (click)="goBack();">
-            <i class="fa fa-chevron-left"></i> Listă salariați </button>
-    </div>    
+            <i class="fa fa-chevron-left"></i> Candidati</button>
+    </div>
 </div>
-

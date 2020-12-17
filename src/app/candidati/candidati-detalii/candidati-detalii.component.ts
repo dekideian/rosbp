@@ -155,8 +155,6 @@ export class CandidatiDetaliiComponent implements OnInit {
 
   }
 
-
-
   deleteFile(fileId: string, documentURL: string) {
     this.filesService.removeFile(fileId, documentURL);
   }

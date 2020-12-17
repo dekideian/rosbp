@@ -89,6 +89,12 @@ export class CandidatiAdaugareComponent  implements OnInit {
       console.log('Cautam dupa valoarea '+value)
       this.coduriCorSelectate = this.search(value);
     }
+        // Filter the functions list and send back to populate the selected function**
+    search(value: string) { 
+      let filter = value.toLowerCase();
+      return this.coduriCor.filter(option => option.cod.startsWith(filter) || 
+                                                 option.nume.toLowerCase().includes(filter) );
+    }
     onValidCnp(value) {
       
       if(!this.candidatiGroup.get('cnp').errors?.cnpvalid) {
@@ -97,13 +103,6 @@ export class CandidatiAdaugareComponent  implements OnInit {
 
         this.candidatiGroup.get('parolaWeb').setValue(newPass);
       }
-    }
-    
-    // Filter the functions list and send back to populate the selected function**
-    search(value: string) { 
-      let filter = value.toLowerCase();
-      return this.coduriCor.filter(option => option.cod.startsWith(filter) || 
-                                             option.nume.toLowerCase().includes(filter) );
     }
 
   ngOnInit(): void {
@@ -195,13 +194,6 @@ export class CandidatiAdaugareComponent  implements OnInit {
       studiiSCED: ['', [Validators.required]]
     });
     
-    // this.candidatiGroup.get('contractDeterminat').valueChanges.subscribe(val=>{
-    //   if(val==true) {
-
-    //   } else {
-
-    //   }
-    // })
     this.disableNrContractSiAltele();
     
     let addMessage = firebase.functions().httpsCallable('readMessage');
@@ -387,7 +379,7 @@ export class CandidatiAdaugareComponent  implements OnInit {
        this.isValid('dataExpirareCI') &&
        this.isValid('cnp') 
        ){
-        console.log('informatii salariat valid  ')
+        
        return true;
      } else {
     //  console.log('informatii salariat nu e valid  ')
@@ -595,6 +587,45 @@ export class CandidatiAdaugareComponent  implements OnInit {
       return false;
     }
   }
+
+  diverseValid() {
+
+    if(this.isValid('functiaDeBaza') && 
+       this.isValid('mail') &&
+       this.isValid('parolaWeb') && 
+       this.isValid('locatiePlata') &&
+       this.isValid('iban') &&
+       this.isValid('tipContract') &&
+       this.isValid('sablonContractNexus') &&
+       this.isValid('angajatorNexus') &&
+       this.isValid('cuiAngajator') &&
+       this.isValid('ticheteDeMasa') &&
+       this.isValid('studiiSCED') 
+       ){
+      return true;
+    } else {
+      return false;
+    }
+  }
+  diverseInvalid() {
+    if(this.isInvalid('functiaDeBaza') ||  
+       this.isInvalid('mail') ||
+       this.isInvalid('parolaWeb') ||
+       this.isInvalid('locatiePlata') ||
+       this.isInvalid('iban') ||
+       this.isInvalid('tipContract') ||
+       this.isInvalid('sablonContractNexus') ||
+       this.isInvalid('angajatorNexus') ||
+       this.isInvalid('cuiAngajator') ||
+       this.isInvalid('ticheteDeMasa') ||
+       this.isInvalid('studiiSCED') 
+    ) {
+      return true;
+    } else {
+      return false;
+    }
+  }
+
   isValid(fieldName: string) {
     if(this.candidatiGroup.get(fieldName).valid && 
     (this.candidatiGroup.get(fieldName).touched || this.candidatiGroup.get(fieldName).value)) {
@@ -611,7 +642,7 @@ export class CandidatiAdaugareComponent  implements OnInit {
         return false;
     }
   }
-//TODO add the 2 categories left in the validation  
+ 
   allCategoriesAreValid() {
     if(this.dateContractDeMuncaValide() &&
     this.informatiiSalariatValid() &&
@@ -621,7 +652,7 @@ export class CandidatiAdaugareComponent  implements OnInit {
     this.concediiSiSalariiValid() &&
     this.alteClauzeValid && 
     this.nrOrdineValid() &&
-    true
+    this.diverseValid
     ) {
       return true;
     } else {

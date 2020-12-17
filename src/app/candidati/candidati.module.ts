@@ -20,12 +20,14 @@ import { DemoMaterialModule } from './material-module';
 
 
 import { AngularFireModule } from '@angular/fire';
+import { CandidatiEditareComponent } from './candidati-editare/candidati-editare.component';
 
 
 const routes: Routes = [
   { path: 'candidati', component: CandidatiListComponent },
   { path: 'candidati/adauga/:id', component: CandidatiAdaugareComponent },
-  { path: 'candidati/:id', component: CandidatiDetaliiComponent }
+  { path: 'candidati/:id', component: CandidatiDetaliiComponent },
+  { path: 'candidati/editare/:id', component: CandidatiEditareComponent }
   // { path: 'candidati/:id', canActivate: [CandidatiDetailsGuard], component: CandidatiDetaliiComponent }
 ];
 
@@ -33,18 +35,14 @@ const routes: Routes = [
   declarations: [
     CandidatiListComponent,
     CandidatiDetaliiComponent,
-    CandidatiAdaugareComponent
+    CandidatiAdaugareComponent,
+    CandidatiEditareComponent
   ],
   imports: [
     SharedModule,
     AngularFireModule,
     DemoMaterialModule,
-    // MatSliderModule,
-    // MatFormFieldModule,
     BrowserAnimationsModule,
-    // MatNativeDateModule,
-
-
     FormsModule,
     ReactiveFormsModule,
     CommonModule,

@@ -5,6 +5,7 @@ import { IFirma } from 'src/app/firme/ifirma.model';
 import { AuthService } from 'src/app/services/auth.service';
 import { ICandidatLocal } from '../candidat';
 import { SalariatiService } from '../candidati.service';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-candidati-list',
@@ -23,6 +24,7 @@ export class CandidatiListComponent implements OnInit {
   listFilterField = '';
   errorMessage = '';
   constructor(
+    private router: Router,
     private candidatiService: SalariatiService,
     private firmeService: FirmeService,
     private auth: AuthService
@@ -118,5 +120,10 @@ export class CandidatiListComponent implements OnInit {
   }
   delete(idCandidat: string) {
     this.candidatiService.remove(idCandidat);
+  }
+
+  editare(idCandidat: string) {
+    
+   this.router.navigate([`/candidati/editare/${idCandidat}`]);
   }
 }
