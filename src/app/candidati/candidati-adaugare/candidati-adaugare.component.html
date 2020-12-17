@@ -25,7 +25,7 @@
                             <div class="card-body">
                                 <!-- Rand 1 -->
                                 <div class="form-group row mb-12">
-                                    <div class="col-md-2">
+                                    <div class="col-md-3">
                                         <mat-form-field class="atribut-candidat">
                                             <mat-label>{{atributCandidat.nrContract}}</mat-label>
                                             <input id="nrContract" type = "text" 
@@ -45,7 +45,7 @@
                                                 </span>   
                                             </mat-form-field>
                                     </div>
-                                    <div class="col-md-2">
+                                    <div class="col-md-3">
                                         <mat-form-field class="atribut-candidat">
                                             <mat-label>{{atributCandidat.dataContract}}</mat-label>
                                             <input id="dataContract" type = "date" 
@@ -524,7 +524,7 @@
                                 </div>
                                 <!-- Rand 4   -->
                                 <div class="form-group row mb-12"> 
-                                    <div class="col-md-2" [hidden]="!this.candidatiGroup.get('contractDeterminat').value">
+                                    <div class="col-md-3" [hidden]="!this.candidatiGroup.get('contractDeterminat').value">
                                         <mat-form-field class="atribut-candidat">
                                             <mat-label>{{atributCandidat.dataAngajare}}</mat-label>
                                         <input id="dataAngajare" type = "date" 
@@ -541,7 +541,7 @@
                                         </span>
                                         </mat-form-field>
                                     </div>
-                                    <div class="col-md-2" [hidden]="this.candidatiGroup.get('contractDeterminat').value">
+                                    <div class="col-md-3" [hidden]="this.candidatiGroup.get('contractDeterminat').value">
                                         <mat-form-field class="atribut-candidat">
                                             <mat-label>{{atributCandidat.dataAngajareNedeterminat}}</mat-label>
                                         <input id="dataAngajareNedeterminat" type = "date" 
@@ -558,7 +558,7 @@
                                         </span>
                                         </mat-form-field>
                                     </div>
-                                    <div class="col-md-2" [hidden]="!this.candidatiGroup.get('contractDeterminat').value">
+                                    <div class="col-md-3" [hidden]="!this.candidatiGroup.get('contractDeterminat').value">
                                         <mat-form-field class="atribut-candidat">
                                             <mat-label>{{atributCandidat.nrLuniSaptamaniAni}}</mat-label>
                                         <input id="nrLuniSaptamaniAni" type = "text" 
@@ -575,24 +575,24 @@
                                         </span>
                                         </mat-form-field>
                                     </div>
-                                    <div class="col-md-2" [hidden]="!this.candidatiGroup.get('contractDeterminat').value">
+                                    <div class="col-md-3" [hidden]="!this.candidatiGroup.get('contractDeterminat').value">
                                         <mat-form-field class="atribut-candidat">
-                                            <mat-label>{{atributCandidat.dataInceputCimDeteriminat}}</mat-label>
-                                        <input id="dataInceputCimDeteriminat" type = "date" 
+                                            <mat-label>{{atributCandidat.dataInceputCimDeterminat}}</mat-label>
+                                        <input id="dataInceputCimDeterminat" type = "date" 
                                             matInput
-                                            formControlName='dataInceputCimDeteriminat'
-                                            [ngClass]="{'is-invalid': (candidatiGroup.get('dataInceputCimDeteriminat').touched ||
-                                                            candidatiGroup.get('dataInceputCimDeteriminat').dirty) &&
-                                                            !candidatiGroup.get('dataInceputCimDeteriminat').valid }"
+                                            formControlName='dataInceputCimDeterminat'
+                                            [ngClass]="{'is-invalid': (candidatiGroup.get('dataInceputCimDeterminat').touched ||
+                                                            candidatiGroup.get('dataInceputCimDeterminat').dirty) &&
+                                                            !candidatiGroup.get('dataInceputCimDeterminat').valid }"
                                         />
                                         <span class="invalid-feedback">
-                                            <span *ngIf="candidatiGroup.get('dataInceputCimDeteriminat').errors?.required">
-                                                Va rugam introduceti {{atributCandidat.dataInceputCimDeteriminat}}
+                                            <span *ngIf="candidatiGroup.get('dataInceputCimDeterminat').errors?.required">
+                                                Va rugam introduceti {{atributCandidat.dataInceputCimDeterminat}}
                                             </span>
                                         </span>
                                         </mat-form-field>
                                     </div>
-                                    <div class="col-md-2" [hidden]="!this.candidatiGroup.get('contractDeterminat').value">
+                                    <div class="col-md-3" [hidden]="!this.candidatiGroup.get('contractDeterminat').value">
                                         <mat-form-field class="atribut-candidat">
                                             <mat-label>{{atributCandidat.dataSfarsitCimDeterminat}}</mat-label>
                                         <input id="dataSfarsitCimDeterminat" type = "date" 
@@ -629,7 +629,7 @@
                             <div class="card-body">
                                 <!-- Rand 1 -->
                                 <div class="form-group row mb-12">
-                                    <div class="col-md-2">
+                                    <div class="col-md-3">
                                         <mat-form-field class="atribut-candidat">
                                             <mat-label>{{atributCandidat.departament}}</mat-label>
                                         <input id="departament" type = "text" 
@@ -646,7 +646,7 @@
                                         </span>
                                         </mat-form-field>
                                     </div> 
-                                    <div class="col-md-2">
+                                    <div class="col-md-3">
                                         <mat-form-field class="atribut-candidat">
                                             <mat-label>{{atributCandidat.locDeMunca}}</mat-label>
                                         <input id="locDeMunca" type = "text" 
@@ -718,14 +718,19 @@
                         <div class="card-header" id="headingFive">
                             <h2 class="mb-0">
                                 <button type="button" class="btn btn-link" data-toggle="collapse" data-target="#collapseFive">
-                                    Durata muncii       
+                                    Durata muncii  
+                                    <i class="fa fa-check" style="color: green;"
+                                            *ngIf="durataMunciiValide()"
+                                        ></i>
+                                        <i class="fa fa-times" style="color:red"
+                                        *ngIf="durataMunciiInvalide()"></i>         
                                     </button>									
                             </h2>
                         </div>
                         <div id="collapseFive" class="collapse" aria-labelledby="headingFive" data-parent="#accordionExample">
                             <div class="card-body">
                                 <div class="form-group row mb-12">
-                                    <div class="col-md-2">
+                                    <div class="col-md-3">
 
                                          <mat-radio-group
                                             id = 'normaIntreagaId'
@@ -750,7 +755,7 @@
                                 <!-- Rand 1 -->
                                 <div class="form-group row mb-12">
                                   
-                                        <div class="col-md-2" [hidden]="!this.candidatiGroup.get('normaIntreaga').value">
+                                        <div class="col-md-3" [hidden]="!this.candidatiGroup.get('normaIntreaga').value">
                                             <mat-form-field class="atribut-candidat">
                                                 <mat-label>{{atributCandidat.normaIntreagaDeLucruOreZi}}</mat-label>
                                             <input id="normaIntreagaDeLucruOreZi" type = "text" 
@@ -767,7 +772,7 @@
                                             </span>
                                             </mat-form-field>
                                         </div> 
-                                        <div class="col-md-2" [hidden]="!this.candidatiGroup.get('normaIntreaga').value">
+                                        <div class="col-md-3" [hidden]="!this.candidatiGroup.get('normaIntreaga').value">
                                             <mat-form-field class="atribut-candidat">
                                                 <mat-label>{{atributCandidat.normaIntreagaDeLucruOreSapt}}</mat-label>
                                             <input id="normaIntreagaDeLucruOreSapt" type = "text" 
@@ -784,8 +789,8 @@
                                             </span>
                                             </mat-form-field>
                                         </div> 
-                                        <!-- TODO normaPartiala asta o luam din norma intreaga, e doar flag da/nu -->
-                                        <!-- <div class="col-md-2">
+                                        
+                                        <div class="col-md-3" [hidden]="this.candidatiGroup.get('normaIntreaga').value">
                                             <mat-form-field class="atribut-candidat">
                                                 <mat-label>{{atributCandidat.normaPartiala}}</mat-label>
                                             <input id="normaPartiala" type = "text" 
@@ -801,8 +806,8 @@
                                                 </span>
                                             </span>
                                             </mat-form-field>
-                                        </div>  -->
-                                        <div class="col-md-2" [hidden]="this.candidatiGroup.get('normaIntreaga').value">
+                                        </div>
+                                        <div class="col-md-3" [hidden]="this.candidatiGroup.get('normaIntreaga').value">
                                             <mat-form-field class="atribut-candidat">
                                                 <mat-label>{{atributCandidat.repartizareProgramPtNormaPartiala}}</mat-label>
                                             <input id="repartizareProgramPtNormaPartiala" type = "text" 
@@ -819,7 +824,7 @@
                                             </span>
                                             </mat-form-field>
                                         </div> 
-                                        <div class="col-md-2" [hidden]="this.candidatiGroup.get('normaIntreaga').value">
+                                        <div class="col-md-3" [hidden]="this.candidatiGroup.get('normaIntreaga').value">
                                             <mat-form-field class="atribut-candidat">
                                                 <mat-label>{{atributCandidat.repartizareTimpMunca}}</mat-label>
                                             <input id="repartizareTimpMunca" type = "text" 
@@ -836,7 +841,7 @@
                                             </span>
                                             </mat-form-field>
                                         </div> 
-                                        <div class="col-md-2" [hidden]="this.candidatiGroup.get('normaIntreaga').value">
+                                        <div class="col-md-3" [hidden]="this.candidatiGroup.get('normaIntreaga').value">
                                             <mat-form-field class="atribut-candidat">
                                                 <mat-label>{{atributCandidat.tipIntervalRepartizare}}</mat-label>
                                             <input id="tipIntervalRepartizare" type = "text" 
@@ -874,7 +879,7 @@
                             <div class="card-body">
                                 <!-- Rand 7   -->
                                 <div class="form-group row mb-12">
-                                    <div class="col-md-2">
+                                    <div class="col-md-3">
                                         <mat-form-field class="atribut-candidat">
                                             <mat-label>{{atributCandidat.durataConcediuDeOdihna}}</mat-label>
                                         <input id="durataConcediuDeOdihna" type = "text" 
@@ -891,7 +896,7 @@
                                         </span>
                                         </mat-form-field>
                                     </div>
-                                    <div class="col-md-2">
+                                    <div class="col-md-3">
                                         <mat-form-field class="atribut-candidat">
                                             <mat-label>{{atributCandidat.salariulDeBazaBrut}}</mat-label>
                                         <input id="salariulDeBazaBrut" type = "text" 
@@ -928,7 +933,7 @@
                             <div class="card-body">
                                 <!-- Rand 1 -->
                                 <div class="form-group row mb-12">
-                                    <div class="col-md-2">
+                                    <div class="col-md-3">
                                         <mat-form-field class="atribut-candidat">
                                             <mat-label>{{atributCandidat.perioadaDeProba}}</mat-label>
                                         <input id="perioadaDeProba" type = "text" 
@@ -945,7 +950,7 @@
                                         </span>
                                         </mat-form-field>
                                     </div> 
-                                    <div class="col-md-2">
+                                    <div class="col-md-3">
                                         <mat-form-field class="atribut-candidat">
                                             <mat-label>{{atributCandidat.perioadaDePreavizInCazulConcedierii}}</mat-label>
                                         <input id="perioadaDePreavizInCazulConcedierii" type = "text" 
@@ -962,7 +967,7 @@
                                         </span>
                                         </mat-form-field>
                                     </div> 
-                                    <div class="col-md-2">
+                                    <div class="col-md-3">
                                         <mat-form-field class="atribut-candidat">
                                             <mat-label>{{atributCandidat.perioadaDePreavizInCazulDemisiei}}</mat-label>
                                         <input id="perioadaDePreavizInCazulDemisiei" type = "text" 
@@ -1408,7 +1413,7 @@
             </form>
           </div>
         </div>
-        contract: {{this.candidatiGroup.get('contractDeterminat').value}}
+         ontract: si data sfarsit {{candidatiGroup.get('dataSfarsitCimDeterminat')?.value}} 
     </div>
     <div class='card-footer'>       
         <button class="btn btn-outline-secondary" (click)="goBack();">

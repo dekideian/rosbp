@@ -24,7 +24,7 @@
 //     dataAngajare: string;
 //     dataAngajareNedeterminat: string;
 //     nrLuniSaptamaniAni: string;
-//     dataInceputCimDeteriminat: string;
+//     dataInceputCimDeterminat: string;
 //     dataSfarsitCimDeterminat: string;
 //     departament: string;
 //     locDeMunca: string;
@@ -93,7 +93,7 @@ export interface ICandidatLocal {
     dataAngajare: string;
     dataAngajareNedeterminat: string;
     nrLuniSaptamaniAni: string;
-    dataInceputCimDeteriminat: string;
+    dataInceputCimDeterminat: string;
     dataSfarsitCimDeterminat: string;
     departament: string;
     locDeMunca: string;
@@ -163,7 +163,7 @@ export class Candidat implements ICandidatLocal {
     dataAngajare: string;
     dataAngajareNedeterminat: string;
     nrLuniSaptamaniAni: string;
-    dataInceputCimDeteriminat: string;
+    dataInceputCimDeterminat: string;
     dataSfarsitCimDeterminat: string;
     departament: string;
     locDeMunca: string;
@@ -230,7 +230,7 @@ export const CANDIDAT_ATRIBUT = {
     dataAngajare: 'Dată angajare',
     dataAngajareNedeterminat: 'Dată angajare nedeterminat',
     nrLuniSaptamaniAni: 'Nr sapt/luni/ani',
-    dataInceputCimDeteriminat: 'Dată inceput (determinat)',
+    dataInceputCimDeterminat: 'Dată inceput (determinat)',
     dataSfarsitCimDeterminat: 'Dată sfarsit (determinat)',
     departament: 'Departament',
     locDeMunca: 'Loc de muncă',
@@ -302,7 +302,7 @@ export class CandidatCSV {
     dataAngajare: string;
     dataAngajareNedeterminat: string;
     nrLuniSaptamaniAni: string;
-    dataInceputCimDeteriminat: string;
+    dataInceputCimDeterminat: string;
     dataSfarsitCimDeterminat: string;
     departament: string;
     locDeMunca: string;
