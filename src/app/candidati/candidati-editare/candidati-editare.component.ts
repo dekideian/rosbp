@@ -21,6 +21,7 @@ export class CandidatiEditareComponent implements OnInit {
   coduriCorSelectate: any[];
   codCorSiFunctia;
   defaultCheckboxValue = true;
+  defaultFunctieDeConducere;
   defaultContractDeterminat = false;
 
   constructor( private auth: AuthService,
@@ -120,6 +121,7 @@ export class CandidatiEditareComponent implements OnInit {
           departament: [this.salariat.departament, [Validators.required]],
           locDeMunca: [this.salariat.locDeMunca, [Validators.required]],
           codCOR: [this.salariat.codCOR, [Validators.required]],
+          functieDeConducere: [this.salariat.functieDeConducere],
           normaIntreaga: ['true', []],
           normaIntreagaDeLucruOreZi: [this.salariat.normaIntreagaDeLucruOreZi, [Validators.required]],
           normaIntreagaDeLucruOreSapt: [this.salariat.normaIntreagaDeLucruOreSapt, [Validators.required]],
@@ -157,6 +159,8 @@ export class CandidatiEditareComponent implements OnInit {
           ticheteDeMasa: [this.salariat.ticheteDeMasa, [Validators.required]],
           studiiSCED: [this.salariat.studiiSCED, [Validators.required]]
         });
+        this.defaultCheckboxValue = this.salariat.platitorDeImpozit==='da'?true:false;
+        this.defaultFunctieDeConducere = this.salariat.functieDeConducere;
         this.candidatiGroup.get('codCOR').setValue(this.salariat.codCOR);
         this.disableNrContractSiAltele();
         console.log('Salariatul are numele '+this.salariat.codCOR+' - '+this.salariat.functia);
@@ -551,6 +555,7 @@ gasesteFunctiePtCod(codCOR: string) {
         locDeMunca: this.candidatiGroup.get('locDeMunca').value,
         functia: functieCorAles,
         codCOR: codCorAles,
+        functieDeConducere: this.candidatiGroup.get('functieDeConducere').value,
         normaIntreagaDeLucruOreZi:this.candidatiGroup.get('normaIntreaga').value?this.candidatiGroup.get('normaIntreagaDeLucruOreZi').value:'-',
         normaIntreagaDeLucruOreSapt: this.candidatiGroup.get('normaIntreaga').value?this.candidatiGroup.get('normaIntreagaDeLucruOreSapt').value:'-',
         normaPartiala: this.candidatiGroup.get('normaIntreaga').value?'-':this.candidatiGroup.get('normaPartiala').value,
@@ -593,6 +598,39 @@ gasesteFunctiePtCod(codCOR: string) {
   }
   goBack() {
     this.router.navigate(['/candidati']);
+  }
+  onLuniCompleted(nrLuni: string) {
+    console.log('am pus valoarea '+nrLuni);
+    if(nrLuni!==''){
+      let nr:number = +nrLuni;
+      if(nr < +3) {
+        this.candidatiGroup.get('perioadaDeProba').setValue('5');
+      } else if((+3 <= nr) && (nr < +6)) {
+        this.candidatiGroup.get('perioadaDeProba').setValue('15');
+      } else if(nr => +6) {
+        if(this.candidatiGroup.get('functieDeConducere').value) {
+          this.candidatiGroup.get('perioadaDeProba').setValue('45');
+        } else {
+          this.candidatiGroup.get('perioadaDeProba').setValue('30');
+        }
+      } 
+    }
+  }
+  functieDeConducere(func) {
+    let functieDeConducere = !this.candidatiGroup.get('functieDeConducere').value;
+    console.log('Functie de conducere.. '+ functieDeConducere);
+    if(this.candidatiGroup.get('contractDeterminat').value) {
+      
+      let contractLength = +this.candidatiGroup.get('nrLuniSaptamaniAni').value;
+      console.log('avem determinat , luni: '+contractLength);
+      if(contractLength>=+6) {
+        if(functieDeConducere) {
+          this.candidatiGroup.get('perioadaDeProba').setValue('45');
+        } else {
+          this.candidatiGroup.get('perioadaDeProba').setValue('30');
+        }
+      }
+    }
   }
 }
 

@@ -561,9 +561,10 @@
                                     <div class="col-md-3" [hidden]="!this.candidatiGroup.get('contractDeterminat').value">
                                         <mat-form-field class="atribut-candidat">
                                             <mat-label>{{atributCandidat.nrLuniSaptamaniAni}}</mat-label>
-                                        <input id="nrLuniSaptamaniAni" type = "text" 
+                                        <input id="nrLuniSaptamaniAni" type = "number" 
                                             matInput
                                             formControlName='nrLuniSaptamaniAni'
+                                            (keyup)="onLuniCompleted($event.target.value)"
                                             [ngClass]="{'is-invalid': (candidatiGroup.get('nrLuniSaptamaniAni').touched ||
                                                             candidatiGroup.get('nrLuniSaptamaniAni').dirty) &&
                                                             !candidatiGroup.get('nrLuniSaptamaniAni').valid }"
@@ -663,39 +664,7 @@
                                         </span>
                                         </mat-form-field>
                                     </div> 
-                                    <!-- <div class="col-md-2">
-                                        <mat-form-field class="atribut-candidat">
-                                            <mat-label>{{atributCandidat.functia}}</mat-label>
-                                        <input id="functia" type = "text" 
-                                            matInput
-                                            formControlName='functia'
-                                            [ngClass]="{'is-invalid': (candidatiGroup.get('functia').touched ||
-                                                            candidatiGroup.get('functia').dirty) &&
-                                                            !candidatiGroup.get('functia').valid }"
-                                        />
-                                        <span class="invalid-feedback">
-                                            <span *ngIf="candidatiGroup.get('functia').errors?.required">
-                                                Va rugam introduceti {{atributCandidat.functia}}
-                                            </span>
-                                        </span>
-                                        </mat-form-field>
-                                    </div>  -->
-                                    <div class="col-md-4">
-                                        <!-- <mat-form-field class="atribut-candidat">
-                                            <mat-label>{{atributCandidat.codCOR}}</mat-label>
-                                        <input id="codCOR" type = "text" 
-                                            matInput
-                                            formControlName='codCOR'
-                                            [ngClass]="{'is-invalid': (candidatiGroup.get('codCOR').touched ||
-                                                            candidatiGroup.get('codCOR').dirty) &&
-                                                            !candidatiGroup.get('codCOR').valid }"
-                                        />
-                                        <span class="invalid-feedback">
-                                            <span *ngIf="candidatiGroup.get('codCOR').errors?.required">
-                                                Va rugam introduceti {{atributCandidat.codCOR}}
-                                            </span>
-                                        </span>
-                                        </mat-form-field> -->
+                                    <div class="col-md-3">
                                         <mat-form-field style="width:100%">
                                             <mat-label>Functia si codul COR</mat-label>
                                             <mat-select formControlName="codCOR">
@@ -711,6 +680,19 @@
                                             </mat-select>
                                           </mat-form-field>
                                     </div> 
+                                    <div class="col-md-3">
+                                        <mat-checkbox 
+                                            style="margin-top:100px;margin-bottom: 0;vertical-align: -15px; align-content: -50px;"
+                                            class="example-margin"
+                                            color="primary"
+                                            matInput
+                                            (click)="functieDeConducere($event.target.value)"
+                                            id="functieDeConducere" 
+                                            formControlName='functieDeConducere'
+                                        >{{atributCandidat.functieDeConducere}}
+                                        </mat-checkbox>
+                                    </div>
+
                                 </div>          
                             </div>
                         </div>
@@ -938,6 +920,7 @@
                                             <mat-label>{{atributCandidat.perioadaDeProba}}</mat-label>
                                         <input id="perioadaDeProba" type = "text" 
                                             matInput
+                                            placeholder="Functiile de conducere pentru contracte > 6 luni, au perioada proba > 45 de zile"
                                             formControlName='perioadaDeProba'
                                             [ngClass]="{'is-invalid': (candidatiGroup.get('perioadaDeProba').touched ||
                                                             candidatiGroup.get('perioadaDeProba').dirty) &&
@@ -1157,7 +1140,7 @@
                                                 id="platitorDeImpozit" 
                                                 [(ngModel)] = "defaultCheckboxValue"
                                                 formControlName='platitorDeImpozit'
-                                            >{{atributCandidat.platitorDeImpozit}}
+                                            >Bla {{atributCandidat.platitorDeImpozit}}
                                             </mat-checkbox>
                                         
                                         <!-- </mat-form-field> -->

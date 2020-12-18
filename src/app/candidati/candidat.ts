@@ -99,6 +99,7 @@ export interface ICandidatLocal {
     locDeMunca: string;
     functia: string;
     codCOR: string;
+    functieDeConducere: string;
     normaIntreagaDeLucruOreZi: string;
     normaIntreagaDeLucruOreSapt: string;
     normaPartiala: string;
@@ -169,6 +170,7 @@ export class Candidat implements ICandidatLocal {
     locDeMunca: string;
     functia: string;
     codCOR: string;
+    functieDeConducere: string;
     normaIntreagaDeLucruOreZi: string;
     normaIntreagaDeLucruOreSapt: string;
     normaPartiala: string;
@@ -229,13 +231,14 @@ export const CANDIDAT_ATRIBUT = {
     cnp: 'CNP',
     dataAngajare: 'Dată angajare',
     dataAngajareNedeterminat: 'Dată angajare nedeterminat',
-    nrLuniSaptamaniAni: 'Nr sapt/luni/ani',
+    nrLuniSaptamaniAni: 'Nr luni',
     dataInceputCimDeterminat: 'Dată inceput (determinat)',
     dataSfarsitCimDeterminat: 'Dată sfarsit (determinat)',
     departament: 'Departament',
     locDeMunca: 'Loc de muncă',
     functia: 'Funcția',
     codCOR: 'Cod COR',
+    functieDeConducere: 'Functie de conducere',
     normaIntreagaDeLucruOreZi: 'Normă intreagă de lucru (ore/zi)',
     normaIntreagaDeLucruOreSapt: 'Normă intreagă de lucru (ore/sapt)',
     normaPartiala: 'Norma parțială',

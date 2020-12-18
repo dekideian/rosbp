@@ -104,7 +104,36 @@ export class CandidatiAdaugareComponent  implements OnInit {
         this.candidatiGroup.get('parolaWeb').setValue(newPass);
       }
     }
-
+  onLuniCompleted(nrLuni: string) {
+    console.log('am pus valoarea '+nrLuni);
+    if(nrLuni!==''){
+      let nr:number = +nrLuni;
+      if(nr < +3) {
+        this.candidatiGroup.get('perioadaDeProba').setValue('5');
+      } else if((+3 <= nr) && (nr < +6)) {
+        this.candidatiGroup.get('perioadaDeProba').setValue('15');
+      } else if(nr => +6) {
+        if(this.candidatiGroup.get('functieDeConducere').value) {
+          this.candidatiGroup.get('perioadaDeProba').setValue('45');
+        } else {
+          this.candidatiGroup.get('perioadaDeProba').setValue('30');
+        }
+      } 
+    }
+  }
+  functieDeConducere(value) {
+    
+    if(this.candidatiGroup.get('contractDeterminat').value) {
+      let contractLength = +this.candidatiGroup.get('nrLuniSaptamaniAni');
+      if(contractLength>=6) {
+        if(value) {
+          this.candidatiGroup.get('perioadaDeProba').setValue('45');
+        } else {
+          this.candidatiGroup.get('perioadaDeProba').setValue('30');
+        }
+      }
+    }
+  }
   ngOnInit(): void {
   
     this.codFirma = this.route.snapshot.paramMap.get('id');
@@ -156,6 +185,7 @@ export class CandidatiAdaugareComponent  implements OnInit {
       locDeMunca: ['', [Validators.required]],
       // functia: ['', [Validators.required]],
       codCOR: ['', [Validators.required]],
+      functieDeConducere: ['',[]],
       normaIntreaga: ['true', []],
       normaIntreagaDeLucruOreZi: ['', [Validators.required]],
       normaIntreagaDeLucruOreSapt: ['', [Validators.required]],
@@ -284,6 +314,7 @@ export class CandidatiAdaugareComponent  implements OnInit {
         locDeMunca: this.candidatiGroup.get('locDeMunca').value,
         functia: this.candidatiGroup.get('codCOR').value.nume,
         codCOR: this.candidatiGroup.get('codCOR').value.cod,
+        functieDeConducere: this.candidatiGroup.get('functieDeConducere').value,
         normaIntreagaDeLucruOreZi:this.candidatiGroup.get('normaIntreaga').value?this.candidatiGroup.get('normaIntreagaDeLucruOreZi').value:'-',
         normaIntreagaDeLucruOreSapt: this.candidatiGroup.get('normaIntreaga').value?this.candidatiGroup.get('normaIntreagaDeLucruOreSapt').value:'-',
         normaPartiala: this.candidatiGroup.get('normaIntreaga').value?'-':this.candidatiGroup.get('normaPartiala').value,
@@ -337,9 +368,9 @@ export class CandidatiAdaugareComponent  implements OnInit {
   }
   platitorDeImpozit(): string {
     if(this.candidatiGroup.get('platitorDeImpozit').value===true) {
-      return "da";
+      return "Da";
     }
-    return "nu";
+    return "Nu";
   }
   dateContractDeMuncaValide(){
     if(this.isValid('dataContract') && 
@@ -659,7 +690,9 @@ export class CandidatiAdaugareComponent  implements OnInit {
       return false;
     }
   }
-
+  avemContractDeterminat() {
+    console.log('contract determinat');
+  }
 }
 function cnpControlNumber(c: AbstractControl): {[key: string]: boolean}| null {
   if(c.value!==null && (isNaN(c.value) || c.value.toString().length!==13 || (!isCnpValid(+c.value)))) {

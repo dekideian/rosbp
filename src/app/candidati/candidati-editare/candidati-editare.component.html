@@ -541,9 +541,10 @@
                                     <div class="col-md-3" [hidden]="!this.candidatiGroup.get('contractDeterminat').value">
                                         <mat-form-field class="atribut-candidat">
                                             <mat-label>{{atributCandidat.nrLuniSaptamaniAni}}</mat-label>
-                                        <input id="nrLuniSaptamaniAni" type = "text" 
+                                        <input id="nrLuniSaptamaniAni" type = "number" 
                                             matInput
                                             formControlName='nrLuniSaptamaniAni'
+                                            (keyup)="onLuniCompleted($event.target.value)"
                                             [ngClass]="{'is-invalid': (candidatiGroup.get('nrLuniSaptamaniAni').touched ||
                                                             candidatiGroup.get('nrLuniSaptamaniAni').dirty) &&
                                                             !candidatiGroup.get('nrLuniSaptamaniAni').valid }"
@@ -643,7 +644,7 @@
                                         </span>
                                         </mat-form-field>
                                     </div> 
-                                    <div class="col-md-4">
+                                    <div class="col-md-3">
                                         <mat-form-field style="width:100%">
                                             <mat-label>Functia si codul COR</mat-label>
                                             <mat-select 
@@ -662,6 +663,20 @@
                                             </mat-select>
                                           </mat-form-field>
                                     </div> 
+                                    <div class="col-md-3">
+                                        <mat-checkbox 
+                                            style="margin-top:100px;margin-bottom: 0;vertical-align: -15px; align-content: -50px;"
+                                            class="example-margin"
+                                            color="primary"
+                                            matInput
+                                            [(ngModel)] = "defaultFunctieDeConducere"
+                                            (click)="functieDeConducere($event)"
+                                            id="functieDeConducere" 
+                                            formControlName='functieDeConducere'
+                                        >{{atributCandidat.functieDeConducere}}
+                                        </mat-checkbox>
+                                    </div>
+
                                 </div>          
                             </div>
                         </div>
