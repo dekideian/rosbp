@@ -127,12 +127,12 @@ export class CandidatiAdaugareComponent  implements OnInit {
       } 
     }
   }
-  functieDeConducere(value) {
-    
+  functieDeConducere() {
     if(this.candidatiGroup.get('contractDeterminat').value) {
-      let contractLength = +this.candidatiGroup.get('nrLuniSaptamaniAni');
-      if(contractLength>=6) {
-        if(value) {
+      let contractLength = +this.candidatiGroup.get('nrLuniSaptamaniAni').value;
+      console.log('Contract length '+contractLength + 'iar butonul:'+this.candidatiGroup.get('functieDeConducere').value)
+      if(contractLength>=+6) {
+        if(this.candidatiGroup.get('functieDeConducere').value === true) {
           this.candidatiGroup.get('perioadaDeProba').setValue('45');
         } else {
           this.candidatiGroup.get('perioadaDeProba').setValue('30');
@@ -140,6 +140,7 @@ export class CandidatiAdaugareComponent  implements OnInit {
       }
     }
   }
+ 
   ngOnInit(): void {
   
     this.codFirma = this.route.snapshot.paramMap.get('id');
