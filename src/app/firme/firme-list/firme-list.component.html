@@ -26,7 +26,8 @@
                             <td>
                                 <a 
                                   [routerLink]="['/firme', firma.uid]"
-                                  [queryParams]="{ nume: firma.nume }"  
+                                  [queryParams]="{ nume: firma.nume, 
+                                    sediu: firma.sediu, regComert:firma.regComert, nr: firma.nr, CUI: firma.CUI, rep: firma.rep, telefon: firma.telefon }"  
                                        > {{firma.nume}}
                                   </a></td>  
                             <td>

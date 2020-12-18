@@ -5,15 +5,40 @@
     <div class="card-body">
         <div class="container-fluid">
           <div class="text-left">
+            <h2>Detalii firma </h2>
+            <ul>
+                <li>
+                    Nume - {{this.numeFirma}}
+                </li>
+                <li>
+                   Sediul - {{this.sediu}}
+               </li>
+               <li>
+                   Inregistrat la reg comertului din - {{this.regComert}}
+               </li>
+               <li>
+                   Nr firma - {{this.nr}}
+               </li>
+               <li>
+                   CUI - {{this.CUI}}
+               </li>
+               <li>
+                   Reprezentant legal - {{this.rep}}
+               </li>
+               <li>
+                   Telefon - {{this.telefon}}
+               </li>
+            </ul>
 <!-- contact client               -->
+<hr>
             <div class="form-group row mb-12">
-                <div class="col-md-3" >
-                    <h3>Contact {{numeFirma}}</h3>
+                <div class="col-md-4" >
+                    <h2>Contact {{numeFirma}}</h2>
                         <app-add-client [firmaUID]="currentId" [numeFirma] = "numeFirma">
                         </app-add-client>
                 </div>
 
-                <div class="col-md-9" style="margin-top:-9px;">
+                <div class="col-md-8" style="margin-top:-9px;">
                     <div class="table-responsive">
                         <table class="table" *ngIf='clienti && clienti.length'>
                             <thead>
@@ -44,12 +69,12 @@
         <hr><br>
 <!-- responsabili RosBP -->
         <div class="form-group row mb-12">
-            <div class="col-md-3">
+            <div class="col-md-4">
                 <h3>Angajati RosBP, responsabili {{numeFirma}}</h3>
                     <app-add-responsible [firmaUID]="currentId" [numeFirma] = "numeFirma">
                     </app-add-responsible> 
             </div>
-            <div class="col-md-9" style="margin-top:-9px;">
+            <div class="col-md-8" style="margin-top:-9px;">
                 <div class="table-responsive">
                     <table class="table" *ngIf='responsabili && responsabili.length'>
                         <thead>
@@ -80,14 +105,14 @@
         <h3>Fisier Cadru CIM</h3>    
         <!-- Upload file  -->
         <div class="form-group row mb-12">
-             <div class="col-md-3">
+             <div class="col-md-4">
                  <app-upload-file [filePath] = "'templates'" 
                      (uploadedFile)="newFileUploaded($event)">
                  </app-upload-file>
              </div>
          
          <!-- DISPLAY DATA -->
-         <div class="col-md-9" style="margin-top:-9px;">
+         <div class="col-md-8" style="margin-top:-9px;">
              <div class="table-responsive">
                  <table class="table" *ngIf='templates && templates.length'>
                      <thead>
@@ -124,7 +149,6 @@
          
      </div> 
 <br>
-     <h2>Hello nurse </h2>
       
     </div>
     <div class='card-footer'>

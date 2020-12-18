@@ -591,7 +591,14 @@ gasesteFunctiePtCod(codCOR: string) {
         cuiLocDeMunca: this.candidatiGroup.get('cuiLocDeMunca').value,
         ticheteDeMasa: this.candidatiGroup.get('ticheteDeMasa').value,
         studiiSCED: this.candidatiGroup.get('studiiSCED').value,
-        codFirma: this.salariat.codFirma
+        codFirma: this.salariat.codFirma,
+        numeFirma: this.salariat.numeFirma,
+        sediuFirma: this.salariat.sediuFirma,
+        regComertFirma: this.salariat.regComertFirma,
+        nrFirma: this.salariat.nrFirma,
+        cuiFirma: this.salariat.cuiFirma,
+        repFirma: this.salariat.repFirma,
+        telefonFirma: this.salariat.telefonFirma
        };
     this.salariatiService.actualizeazaCandidat(this.salariatId, data);
     this.router.navigate(['/candidati']);

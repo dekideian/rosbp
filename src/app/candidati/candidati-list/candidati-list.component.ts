@@ -73,6 +73,12 @@ export class CandidatiListComponent implements OnInit {
             let result = new ContactInformation();
             result.firmaUID = oFirma.uid;
             result.numeFirma = oFirma.nume;
+            result.sediu = oFirma.sediu;
+            result.regComert = oFirma.regComert;
+            result.nr = oFirma.nr;
+            result.cui = oFirma.CUI;
+            result.rep = oFirma.rep;
+            result.telefon = oFirma.telefon;
             console.log('adaugam contact info '+JSON.stringify(result));
             return result;
           });

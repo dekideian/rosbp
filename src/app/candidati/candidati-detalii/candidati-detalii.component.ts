@@ -144,7 +144,15 @@ export class CandidatiDetaliiComponent implements OnInit {
             cuiAngajator: this.salariat.cuiAngajator,
             cuiLocDeMunca: this.salariat.cuiLocDeMunca,
             ticheteDeMasa: this.salariat.ticheteDeMasa,
-            studiiSCED: this.salariat.studiiSCED
+            studiiSCED: this.salariat.studiiSCED,
+
+            numeFirma: this.salariat.numeFirma,
+            sediuFirma: this.salariat.sediuFirma,
+            regComertFirma: this.salariat.regComertFirma,
+            nrFirma: this.salariat.nrFirma,
+            cuiFirma: this.salariat.cuiFirma,
+            repFirma: this.salariat.repFirma,
+            telefonFirma: this.salariat.telefonFirma
           }]
       };
     const response = await fetch(this.templateDetails.documentUrl);

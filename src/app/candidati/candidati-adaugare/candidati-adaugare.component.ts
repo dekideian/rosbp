@@ -24,6 +24,12 @@ export class CandidatiAdaugareComponent  implements OnInit {
   atributCandidat;
   codFirma: string;
   numeFirma: string;
+  sediuFirma: string;
+  regComertFirma: string;
+  nrFirma: string;
+  cuiFirma: string;
+  repFirma: string;
+  telefonFirma: string;
   errorMessage: string;
   listaJudete;
   coduriCor: any[];
@@ -139,6 +145,12 @@ export class CandidatiAdaugareComponent  implements OnInit {
     this.codFirma = this.route.snapshot.paramMap.get('id');
     this.route.queryParams.subscribe(params => {
       this.numeFirma = params.nume;
+      this.sediuFirma = params.sediu;
+      this.regComertFirma = params.regComert;
+      this.nrFirma = params.nr;
+      this.cuiFirma = params.cui;
+      this.repFirma = params.rep;
+      this.telefonFirma = params.telefon;
   });
     this.atributCandidat = CANDIDAT_ATRIBUT;
     this.salariatiService.getCoduriCor().subscribe({
@@ -350,7 +362,14 @@ export class CandidatiAdaugareComponent  implements OnInit {
         cuiLocDeMunca: this.candidatiGroup.get('cuiLocDeMunca').value,
         ticheteDeMasa: this.candidatiGroup.get('ticheteDeMasa').value,
         studiiSCED: this.candidatiGroup.get('studiiSCED').value,
-        codFirma: this.codFirma
+        codFirma: this.codFirma,
+        numeFirma: this.numeFirma,
+        sediuFirma: this.sediuFirma,
+        regComertFirma: this.regComertFirma,
+        nrFirma: this.nrFirma,
+        cuiFirma: this.cuiFirma,
+        repFirma: this.repFirma,
+        telefonFirma: this.telefonFirma,
       };
       this.salariatiService.addCandidat(data);
       console.log('Salariat ', JSON.stringify(data));

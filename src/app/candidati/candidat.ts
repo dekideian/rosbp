@@ -136,6 +136,13 @@ export interface ICandidatLocal {
     ticheteDeMasa: string;
     studiiSCED: string;
     codFirma: string;
+    numeFirma: string;
+    sediuFirma: string;
+    regComertFirma: string;
+    nrFirma: string;
+    cuiFirma: string;
+    repFirma: string;
+    telefonFirma: string;
 }
 
 export class Candidat implements ICandidatLocal {
@@ -205,6 +212,13 @@ export class Candidat implements ICandidatLocal {
     ticheteDeMasa: string;
     studiiSCED: string;
     codFirma: string;
+    numeFirma: string;
+    sediuFirma: string;
+    regComertFirma: string;
+    nrFirma: string;
+    cuiFirma: string;
+    repFirma: string;
+    telefonFirma: string;
 }
 
 export const CANDIDAT_ATRIBUT = {

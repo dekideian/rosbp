@@ -13,6 +13,12 @@ import { IFirma } from '../ifirma.model';
 export class FirmeDetaliiComponent implements OnInit {
   currentId: string;
   numeFirma: string;
+  sediu: string;
+  regComert: string;
+  nr: string;
+  CUI: string;
+  rep: string;
+  telefon: string;
   errorMessage: string;
   templates: TemplateDetails[];
   clienti: ContactInformation[];
@@ -31,6 +37,12 @@ export class FirmeDetaliiComponent implements OnInit {
     this.currentId = this.route.snapshot.paramMap.get('id');
     this.route.queryParams.subscribe(params => {
       this.numeFirma = params.nume;
+      this.sediu = params.sediu;
+      this.regComert = params.regComert;
+      this.nr = params.nr;
+      this.CUI = params.CUI;
+      this.rep = params.rep;
+      this.telefon = params.telefon;
   });
   console.log('acu chemam');
     this.auth.callFunction();

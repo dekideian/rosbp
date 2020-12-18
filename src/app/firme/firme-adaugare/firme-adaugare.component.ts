@@ -29,7 +29,13 @@ export class FirmeAdaugareComponent implements OnInit {
   ngOnInit(): void {
     //  this.firmeGroup = new FormGroup({
      this.firmeGroup = this.fb.group({
-      firmaName:  ['', [Validators.required, Validators.minLength(2)]]
+      firmaName:  ['', [Validators.required, Validators.minLength(2)]],
+      sediu:  ['', [Validators.required, Validators.minLength(2)]],
+      regComert:  ['', [Validators.required, Validators.minLength(2)]],
+      nr:  ['', [Validators.required, Validators.minLength(2)]],
+      cui:  ['', [Validators.required, Validators.minLength(2)]],
+      rep:  ['', [Validators.required, Validators.minLength(2)]],
+      telefon:  ['', [Validators.required, Validators.minLength(2)]]
       // codFirma:  ['', [Validators.required, Validators.minLength(2)]],
       // angajatRosEmail: ['', [Validators.required, Validators.email]],
       // angajatFirmaExtEmail: ['', [Validators.required, Validators.email]],
@@ -43,7 +49,13 @@ export class FirmeAdaugareComponent implements OnInit {
   save() {
     const data = {
       uid: null,
-      nume: this.firmeGroup.get('firmaName').value
+      nume: this.firmeGroup.get('firmaName').value,
+      sediu: this.firmeGroup.get('sediu').value,
+      regComert: this.firmeGroup.get('regComert').value,
+      nr: this.firmeGroup.get('nr').value,
+      CUI: this.firmeGroup.get('cui').value,
+      rep: this.firmeGroup.get('rep').value,
+      telefon: this.firmeGroup.get('telefon').value
       // codFirma: this.firmeGroup.get('codFirma').value,
       // angajatFirma: this.firmeGroup.get('angajatFirmaExtEmail').value,
       // angajatRos: this.firmeGroup.get('angajatRosEmail').value

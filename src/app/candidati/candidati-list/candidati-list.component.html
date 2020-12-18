@@ -23,11 +23,18 @@
       </div>
       <button class="btn btn-outline-primary" 
       [routerLink]="['/candidati/adauga', contactInformation.firmaUID]"
-      [queryParams]="{ nume: contactInformation.numeFirma }" >
+      [queryParams]="{ nume: contactInformation.numeFirma,
+        sediu: contactInformation.sediu,
+        regComert: contactInformation.regComert,
+        nr: contactInformation.nr,
+        cui: contactInformation.cui,
+        rep: contactInformation.rep,
+        telefon: contactInformation.telefon
+      }" >
         <i class="fa fa-plus" aria-hidden="true"></i> 
         Adauga salariat
     </button>
-      <div attr.id="collapseOne_{{i}}" class="collapse" attr.aria-labelledby="headingOne_{{i}}" data-parent="#accordionExample">
+      <div attr.id="collapseOne_{{i}}" class="collapse show" attr.aria-labelledby="headingOne_{{i}}" data-parent="#accordionExample">
       <!-- <div *ngIf="i!=0" id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordionExample"> -->
         <div class="card-body">
             <!-- Rand 1 -->
