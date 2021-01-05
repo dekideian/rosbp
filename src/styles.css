@@ -25,6 +25,7 @@ body {
   margin: 0; 
   height: 100%;
   font-family: Roboto, Arial, sans-serif;
+  font-size: medium;
   background-image: repeating-linear-gradient(90deg, #eeeeee,white 0.4%)!important;
 }
 
@@ -44,9 +45,26 @@ body {
   padding-bottom: 10px;
   margin-left:-20px; margin-right:-20px; margin-top:-13px; margin-bottom: -13px;
 }
-/* .align-menu-items-right {
-  display: inline;
-  justify-content: right;
-  vertical-align: bottom;
-  align-items: right;
-} */
+
+.btn-outline-info {
+  font-size: medium;
+  color: royalblue;
+  border-color: royalblue!important;
+}
+
+.btn-outline-info:hover {
+  font-size: medium;
+  color:royalblue;
+  background-color: #eeeeee;
+}
+
+
+.btn-outline-info:focus {
+  box-shadow: 0px 0px 2px 2px #dddddd!important;
+}
+
+.btn-outline-info:active {
+  color:royalblue;
+  background-color: royalblue!important;
+  box-shadow: 0px 0px 2px 2px #dddddd!important;
+}

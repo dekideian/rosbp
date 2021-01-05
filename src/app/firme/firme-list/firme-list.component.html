@@ -3,12 +3,28 @@
         Lista firmelor 
     </div>
     <div class="card-body">
+
       <div class='row'>
-        <div class ='col-md-2' style="margin-left:0px;">Filtrare dupa nume:</div>
-        <div class = 'col-md-4'>    
-            <input type="text" [(ngModel)] = 'listFilter'>  
+        <div class ='col-md-4' style="margin-left:0px;">
+            <button class="btn btn-outline-info"
+            style="width: 100%;" 
+            type="submit"
+            (click)="adaugaFirma()"
+            >Adaugă Firmă</button>
         </div>
       </div>
+      <br>
+      <div class='row'>
+        <div class ='col-md-2' >
+            <p style="font-size: medium;">
+            Filtrare dupa nume:
+            </p>
+        </div>
+        <div class ='col-md-2'>    
+            <input type="text" [(ngModel)] = 'listFilter' style="width:100%;">  
+        </div>
+      </div>
+
     </div>
 
     
@@ -17,13 +33,13 @@
                 <table class="table" *ngIf='firmeFiltrate && firmeFiltrate.length'>
                     <thead>
                         <tr>
-                            <th>Nume firma</th>
-                            <th>Stergere</th>
+                            <th style="font-size: medium;">Nume firma</th>
+                            <th style="font-size: medium;">Stergere</th>
                         </tr>        
                     </thead>
                     <tbody>
                         <tr *ngFor='let firma of firmeFiltrate'>
-                            <td>
+                            <td style="font-size: medium; vertical-align: middle;">
                                 <a 
                                   [routerLink]="['/firme', firma.uid]"
                                   [queryParams]="{ nume: firma.nume, 
@@ -31,10 +47,11 @@
                                        > {{firma.nume}}
                                   </a></td>  
                             <td>
-                              <button (click)="delete(firma.uid)" class="btn btn-outline-danger" 
+                              <button (click)="delete(firma.uid)" class="btn btn-outline-danger"
+                                style="width: 100%;" 
                               
                               >
-                                  <i class="fa fa-minus-circle"> Stergere</i>
+                                  <i class="fa fa-minus-circle" style="font-size: medium;"> Stergere</i>
                               </button>
                           </td>
                         </tr>

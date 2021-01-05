@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { AuthService } from 'src/app/services/auth.service';
 import { IFirma } from '../ifirma.model';
 import { FirmeService } from '../firme.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-firme-list',
@@ -14,7 +15,9 @@ export class FirmeListComponent implements OnInit {
   firmeFiltrate: IFirma[];
   listFilterField = '';
   errorMessage = '';
-  constructor(private firmeService: FirmeService,
+  constructor(
+              private router: Router,
+              private firmeService: FirmeService,
               public auth: AuthService) { }
 
   get listFilter(): string {
@@ -40,6 +43,9 @@ export class FirmeListComponent implements OnInit {
         this.errorMessage = err;
       }
     });
+  }
+  adaugaFirma() {
+    this.router.navigate(['/firme/adauga'])
   }
   delete(uidFirma: string) {
     const result = confirm("Esti sigur ca vrei sa stergi ? ");
