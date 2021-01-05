@@ -16,12 +16,13 @@ import { SharedModule } from '../shared/shared.module';
 import { AddResponsibleComponent } from './add-responsible/add-responsible.component';
 import { AddClientComponent } from './add-client/add-client.component';
 import { UploadFileComponent } from '../shared/upload-file/upload-file.component';
+import { AuthFirmeGuardService } from './guards/auth-firme-guard.service';
 
 const routes: Routes = [
-  { path: 'firme', component: FirmeListComponent },
-  { path: 'firme/adauga', component: FirmeAdaugareComponent },
+  { path: 'firme', canActivate: [AuthFirmeGuardService], component: FirmeListComponent },
+  { path: 'firme/adauga', canActivate: [AuthFirmeGuardService], component: FirmeAdaugareComponent },
   // { path: 'firme/:id', canActivate: [FirmeDetailsGuard], component: FirmeDetaliiComponent }
-  { path: 'firme/:id', component: FirmeDetaliiComponent }
+  { path: 'firme/:id', canActivate: [AuthFirmeGuardService], component: FirmeDetaliiComponent }
 ]
 
 @NgModule({

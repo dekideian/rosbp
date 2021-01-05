@@ -21,13 +21,14 @@ import { DemoMaterialModule } from './material-module';
 
 import { AngularFireModule } from '@angular/fire';
 import { CandidatiEditareComponent } from './candidati-editare/candidati-editare.component';
+import { AuthCandidatiGuardService } from './guards/auth-candidati-guard.service';
 
 
 const routes: Routes = [
-  { path: 'candidati', component: CandidatiListComponent },
-  { path: 'candidati/adauga/:id', component: CandidatiAdaugareComponent },
-  { path: 'candidati/:id', component: CandidatiDetaliiComponent },
-  { path: 'candidati/editare/:id', component: CandidatiEditareComponent }
+  { path: 'candidati', canActivate: [AuthCandidatiGuardService], component: CandidatiListComponent },
+  { path: 'candidati/adauga/:id', canActivate: [AuthCandidatiGuardService], component: CandidatiAdaugareComponent },
+  { path: 'candidati/:id', canActivate: [AuthCandidatiGuardService], component: CandidatiDetaliiComponent },
+  { path: 'candidati/editare/:id', canActivate: [AuthCandidatiGuardService], component: CandidatiEditareComponent }
   // { path: 'candidati/:id', canActivate: [CandidatiDetailsGuard], component: CandidatiDetaliiComponent }
 ];
 

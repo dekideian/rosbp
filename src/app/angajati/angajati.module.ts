@@ -8,10 +8,11 @@ import { FormsModule } from '@angular/forms';
 import { DemoMaterialModule } from '../candidati/material-module';
 import { ReactiveFormsModule } from '@angular/forms';
 import { AngajatiAdaugareComponent } from './angajati-adaugare/angajati-adaugare.component';
+import { AuthAngajatiGuardService } from './guards/auth-angajati-guard.service';
 const routes: Routes = [
-  { path: 'angajati', component: AngajatiListComponent },
-  { path: 'angajati/adauga', component: AngajatiAdaugareComponent },
-  { path: 'angajati/:id', component: AngajatiDetaliiComponent }
+  { path: 'angajati', canActivate: [AuthAngajatiGuardService], component: AngajatiListComponent },
+  { path: 'angajati/adauga', canActivate: [AuthAngajatiGuardService], component: AngajatiAdaugareComponent },
+  { path: 'angajati/:id', canActivate: [AuthAngajatiGuardService], component: AngajatiDetaliiComponent }
   // { path: 'angajati/:id', canActivate: [AngajatiDetailsGuard], component: AngajatiDetaliiComponent }
 ];
 
