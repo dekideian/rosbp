@@ -46,7 +46,6 @@ import { environment } from 'src/environments/environment';
 
     constructor(
       private router: Router,
-      
       private afs: AngularFirestore,
       private afAuth: AngularFireAuth,
       private firmeService: FirmeService
@@ -68,10 +67,14 @@ import { environment } from 'src/environments/environment';
      // this.readUsers(); // do we actually want to read all users ?: P
     }
 
+    async storeUserInfo() {
+      this.user$.subscribe(val => {
+        this.userCompany = val?.company;
+      });
+    }
+
     callFunction() {
   
-      
-
       console.log('second write message')
       let nextNrNumber = 0;
       let writeCount = firebase.functions().httpsCallable('writeMessage');
@@ -112,11 +115,6 @@ import { environment } from 'src/environments/environment';
 
     //   // .subscribe(val => console.log(val));//only value
     // }
-    async storeUserInfo() {
-      this.user$.subscribe(val => {
-        this.userCompany = val?.company;
-      });
-    }
 
     async googleSignin() {
       

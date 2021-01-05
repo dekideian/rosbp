@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { IFirma } from './ifirma.model';
 import { Observable, throwError } from 'rxjs';
-import { tap, catchError, map } from 'rxjs/operators';
+import { tap, catchError, map, mergeAll } from 'rxjs/operators';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { AngularFirestore } from '@angular/fire/firestore';
 import { Firma } from './firma.model';
@@ -12,6 +12,19 @@ import { UsersService } from '../services/users.service';
   providedIn: 'root'
 })
 export class FirmeService {
+  
+  getFirma(codFirma: string): Observable<any> {
+    // return this.afs.collection(`firme`).doc(`${codFirma}`).get();
+
+   return this.firme$.pipe(
+      map(ob => {
+         return ob.filter(bla => bla.uid === codFirma);
+      }),
+      mergeAll(),
+      tap(val => console.log('Avem 1 salariati ', JSON.stringify(val.uid))),
+      catchError(this.handleError)
+    );
+  }
 
   firme$: Observable<Firma[]>;
   responsabili$: Observable<ContactInformation[]>;

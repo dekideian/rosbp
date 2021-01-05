@@ -12,9 +12,8 @@ import { AngularFireModule } from '@angular/fire';
 import { environment } from "../environments/environment";
 import * as firebase from 'firebase';
     
-      // Initialize Firebase
-       
-      firebase.default.initializeApp(environment.firebaseConfig); 
+// Initialize Firebase       
+firebase.default.initializeApp(environment.firebaseConfig); 
 
 const routes: Routes = [
   { path: 'welcome', component: WelcomeComponent },

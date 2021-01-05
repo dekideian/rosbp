@@ -11,6 +11,9 @@ import {
 } from '@angular/fire/firestore';
 import { SalariatiService } from '../candidati.service';
 import { AuthService } from 'src/app/services/auth.service';
+import { FirmeService } from 'src/app/firme/firme.service';
+import { Firma } from 'src/app/firme/firma.model';
+import { identifierName } from '@angular/compiler';
 
 @Component({
   selector: 'app-candidati-adaugare',
@@ -42,6 +45,7 @@ export class CandidatiAdaugareComponent  implements OnInit {
     private router: Router,
     private route: ActivatedRoute,
     private salariatiService: SalariatiService,
+    private firmeService: FirmeService,
     private fb: FormBuilder,
     public auth: AuthService
     ) {
@@ -144,15 +148,23 @@ export class CandidatiAdaugareComponent  implements OnInit {
   ngOnInit(): void {
   
     this.codFirma = this.route.snapshot.paramMap.get('id');
-    this.route.queryParams.subscribe(params => {
-      this.numeFirma = params.nume;
-      this.sediuFirma = params.sediu;
-      this.regComertFirma = params.regComert;
-      this.nrFirma = params.nr;
-      this.cuiFirma = params.cui;
-      this.repFirma = params.rep;
-      this.telefonFirma = params.telefon;
-  });
+    this.firmeService.getFirma(this.codFirma).subscribe({
+      next: firma=>{
+        console.log('citire firma '+JSON.stringify(firma));
+        this.numeFirma = firma.nume;
+        this.sediuFirma = firma.sediu;
+        this.regComertFirma = firma.regComert;
+        this.nrFirma = firma.nr;
+        this.cuiFirma = firma.CUI;
+        this.repFirma = firma.rep;
+        this.telefonFirma = firma.telefon;
+      },
+      error: err => {
+        this.errorMessage = err;
+        console.log('ceva Eroare: '+err)
+      }
+    });
+
     this.atributCandidat = CANDIDAT_ATRIBUT;
     this.salariatiService.getCoduriCor().subscribe({
       next: coduriCor => {

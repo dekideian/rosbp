@@ -1,66 +1,53 @@
-<nav class="navbar navbar-expand navbar-toggler bg-light" style="margin-left: 100px; margin-right: 100px;">
-  <a class = 'navbar-brand'>
-    <div class="text-left">
-      <img src="./assets/images/logo.png"
+<div class='card' style="margin-top:0px!important;">
+  <div class='card-header' style="margin-top:-5px;">
+    <nav class="navbar navbar-expand-lg navbar-light feedback-nav">
+        <img src="./assets/images/logo.png"
            class="img-responsive left-block"
            style="max-height:300px;padding-left:10px" />
-    </div>
-  </a>
-  <!-- nav tabs -->
-  <ul class="nav nav-tabs">
-    <!-- nav link -->
-    <li><a class="nav-link" [routerLink]="['/welcome']">Acasa</a></li>
-    <li *ngIf="auth.isAdmin() || 
-               auth.isRosBpEmployee() ">
-        <a class="nav-link" [routerLink]="['/firme']">
-            Firme
-        </a>
-    </li>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+    
+      <div class="collapse navbar-collapse align-items-baseline" id="navbarTogglerDemo02" style="padding-top:40px; " >
+        <ul class="navbar-nav my-2 my-lg-0 nav-tabs nav-fill"  >
+          
+        </ul>
+        <ul class="navbar-nav ml-auto">
+          <li class="nav-item">
+            <a class="nav-link" [routerLink]="['/welcome']">Acasa</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" [routerLink]="['/firme']" *ngIf="auth.isAdmin()">Firme</a>
+          </li>
+          <li class="nav-item"><!-- doar admini, dar inside angajati-->
+            <a class="nav-link" [routerLink]="['/firme/adauga']" *ngIf="auth.isAdmin()">Adaugă Firmă</a>
+          </li>
+          <li class="nav-item"><!-- doar admini, dar inside angajati-->
+            <a class="nav-link" [routerLink]="['/angajati']" *ngIf="auth.isAdmin()">Angajați</a>
+          </li>
+          <li class="nav-item"><!-- doar admini, dar inside angajati-->
+            <a class="nav-link" [routerLink]="['/angajati/adauga']" *ngIf="auth.isAdmin()">Adaugă Angajat</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" [routerLink]="['/candidati']" *ngIf="auth.isAdmin() || 
+            auth.isRosBpEmployee() || 
+            auth.isAnyEmployee()">Salariați</a>
+          </li>
 
-    <li *ngIf="auth.isAdmin()">
-        <a class="nav-link" [routerLink]="['/firme/adauga']">
-            Adaugă Firmă
-        </a>
-    </li>
-    <li *ngIf="auth.isAdmin() || 
-               auth.isRosBpEmployee()">
-      <a class="nav-link" [routerLink]="['/angajati']">
-        Angajați
-      </a>
-    </li>
-    <li *ngIf="auth.isAdmin()">
-      <a class="nav-link" [routerLink]="['/angajati/adauga']">
-        Adaugă Angajat
-      </a>
-    </li>
-    <li *ngIf="auth.isAdmin() || 
-               auth.isRosBpEmployee() || 
-               auth.isAnyEmployee()">
-      <a class="nav-link" [routerLink]="['/candidati']">
-          Salariați
-      </a>
-    </li>
-    <!-- <li *ngIf="auth.isAdmin() || 
-               auth.isRosBpEmployee() || 
-               auth.isAnyEmployee()">
-        <a class="nav-link" [routerLink]="['/candidati/adauga']">
-          Adaugă salariat
-        </a>
-    </li> -->
-    <li *ngIf="auth.user$ | async as user; else loginMain">
-      <a class="nav-link" [routerLink]="['/auth']"><i class="fa fa-user"></i> 
-          Info ({{user.displayName}})
-      </a>
-       <!-- <a class="nav-link" (click)="auth.signOut()">
-          <i class="fa fa-user"></i> Logout ({{user.displayName}})
-        </a> -->
-    </li>
-    <ng-template #loginMain>
-      <li><a class="nav-link" [routerLink]="['/auth']"><i class="fa fa-user"></i> Login</a></li>
-  </ng-template>
+          <li *ngIf="auth.user$ | async as user; else loginMain" class="nav-item">
+            <a class="nav-link" [routerLink]="['/auth']"><i class="fa fa-user"></i> 
+                Info ({{user.displayName}})
+            </a>
+          </li>
+          <ng-template #loginMain>
+            <li class="nav-item"><a class="nav-link" [routerLink]="['/auth']"><i class="fa fa-user"></i> Autentificare</a></li>
+          </ng-template>
+        </ul>
+      </div>
+    </nav>
+  </div>
+</div>
 
-  </ul>
-</nav>
 <router-outlet></router-outlet>
 
 <!-- <td>  image width set as attribute to ~ 50 ? maybe :). 

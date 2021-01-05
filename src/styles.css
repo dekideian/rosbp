@@ -9,9 +9,12 @@ div.card-header {
    }
    
    div.card {
-     margin-top: 10px;
-     margin-left: 100px;
-     margin-right: 100px;
+      margin-top: 10px;
+      margin-left: 15%;
+      margin-right: 15%;
+      background:rgba(255,255,255,0.7);
+      border-radius: 5px 5px 5px 5px;
+      box-shadow: 0px 0px 2px 2px #dddddd;
    }
    
    .table {
@@ -20,7 +23,9 @@ div.card-header {
 html, body { height: 100%; }
 body { 
   margin: 0; 
+  height: 100%;
   font-family: Roboto, Arial, sans-serif;
+  background-image: repeating-linear-gradient(90deg, #eeeeee,white 0.4%)!important;
 }
 
 .basic-container {
@@ -31,3 +36,17 @@ body {
   float: right;
   margin: 8px;
 }
+.feedback-nav {
+  background:rgba(255,255,255,0.7);
+  color: white;
+  margin-top: 40px;
+  border-radius: 0px 0px 5px 5px;
+  padding-bottom: 10px;
+  margin-left:-20px; margin-right:-20px; margin-top:-13px; margin-bottom: -13px;
+}
+/* .align-menu-items-right {
+  display: inline;
+  justify-content: right;
+  vertical-align: bottom;
+  align-items: right;
+} */

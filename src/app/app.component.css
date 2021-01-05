@@ -1,0 +1,10 @@
+a.nav-link{
+    color: #666666!important;
+    font-family: Roboto, Arial, sans-serif!important;
+    font-size: large;
+    background-color:white;
+}
+a.nav-link:hover{
+    color: blue!important;
+    background-color:white;
+}
