@@ -29,6 +29,7 @@ const routes: Routes = [
     RouterModule.forChild(routes)
   ],
   exports: [
+    RouterModule,
     AngajatiDetaliiComponent,
     AngajatiListComponent,
     ReactiveFormsModule

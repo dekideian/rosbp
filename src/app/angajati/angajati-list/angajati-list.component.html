@@ -4,9 +4,24 @@
   </div>
   <div class="card-body">
     <div class='row'>
-      <div class ='col-md-2'>Filtrare dupa nume:</div>
-      <div class = 'col-md-4'>
-          <input type="text" [(ngModel)] = 'listFilter'>  
+      <div class ='col-md-4' style="margin-left:0px;">
+          <button class="btn btn-outline-info"
+          style="width: 100%;" 
+          type="submit"
+          (click)="adaugaAngajat()"
+          >Adaugă Angajat</button>
+      </div>
+    </div>
+    <br>
+
+    <div class='row'>
+      <div class ='col-md-2'>
+        <p>
+          Filtrare dupa nume:
+        </p>
+      </div>
+      <div class = 'col-md-2'>
+          <input type="text" [(ngModel)] = 'listFilter' style="width:100%;">  
       </div>
     </div>
   </div>
@@ -15,9 +30,8 @@
     <table class="table" *ngIf='angajatiFiltrate && angajatiFiltrate.length'>
         <thead>
             <tr>
-                <th>Nume Angajat</th>
+                <th style="font-size: medium;">Nume Angajat</th>
                 <th>Email</th>
-                <th>Firma</th>
                 <th>Stergere</th>
             </tr>        
         </thead>
@@ -25,7 +39,6 @@
             <tr *ngFor='let angajat of angajatiFiltrate'>
                 <td><a [routerLink]="['/angajati', angajat.email]"> {{angajat.nume}}</a></td>
                 <td>{{angajat.email}}</td>
-                <td>RosBP</td>
                 <td>
                   <button (click)="delete(angajat.email)" class="btn btn-outline-danger">
                       <i class="fa fa-minus-circle"> Stergere</i>

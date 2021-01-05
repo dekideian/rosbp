@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { IAngajat } from '../angajat';
 import { AngajatiService } from '../angajati.service';
 
@@ -12,7 +13,10 @@ export class AngajatiListComponent implements OnInit {
   angajatiFiltrate: IAngajat[];
   listFilterField = '';
   errorMessage = '';
-  constructor(private angajatiService: AngajatiService) { }
+  constructor(
+    private router: Router,
+    private angajatiService: AngajatiService
+    ) { }
 
   get listFilter(): string {
     return this.listFilterField;
@@ -25,6 +29,10 @@ export class AngajatiListComponent implements OnInit {
     filterBy = filterBy.toLocaleLowerCase();
     return this.angajati.filter((firma: IAngajat) =>
         firma.nume.toLocaleLowerCase().indexOf(filterBy) !== -1);
+  }
+
+  adaugaAngajat() {
+    this.router.navigate(['/angajati/adauga'])
   }
 
   ngOnInit(): void {

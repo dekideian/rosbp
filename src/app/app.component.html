@@ -14,7 +14,7 @@
         </ul>
         <ul class="navbar-nav ml-auto">
           <li class="nav-item">
-            <a class="nav-link" [routerLink]="['/welcome']">Acasa</a>
+            <a class="nav-link" [routerLink]="['/welcome']">Acasă</a>
           </li>
           <li class="nav-item">
             <a class="nav-link" [routerLink]="['/firme']" *ngIf="auth.isAdmin()">Firme</a>
@@ -23,7 +23,7 @@
             <a class="nav-link" [routerLink]="['/angajati']" *ngIf="auth.isAdmin()">Angajați</a>
           </li>
           <li class="nav-item"><!-- doar admini, dar inside angajati-->
-            <a class="nav-link" [routerLink]="['/angajati/adauga']" *ngIf="auth.isAdmin()">Adaugă Angajat</a>
+            <!-- <a class="nav-link" [routerLink]="['/angajati/adauga']" *ngIf="auth.isAdmin()">Adaugă Angajat</a> -->
           </li>
           <li class="nav-item">
             <a class="nav-link" [routerLink]="['/candidati']" *ngIf="auth.isAdmin() || 
