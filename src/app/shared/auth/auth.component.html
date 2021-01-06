@@ -9,40 +9,48 @@
           <div class="text-left">
             <div *ngIf="auth.user$ | async as user; else login"> 
                 <!-- {{user|json}}  -->               
-                <div class="table-responsive" [style.width.px]='500'>
-                    <table class="table">
-                        <tbody>
-                            <tr>
-                                <th rowspan="3">
-                                    <img *ngIf='user.photoURL ; else login2'  style="border-radius: 50%;" [src]='user.photoURL' [title]='user.displayName' [style.width.px]='150' [style.margin.px]='10'>
-                                    <ng-template #login2>
-                                        <img style="border-radius: 50%;" src="./assets/images/defaultUser.jpg" [title]='user.displayName' [style.width.px]='150' [style.margin.px]='10'>
-                                    </ng-template>
-                                </th>
-                                <td title="Nume">{{user.displayName}}</td>
-                            </tr><tr>
-                                <td title="Email">{{user.uid}}</td>
-                            </tr>
-                            <tr>
-                                <td title="Rol ">{{auth.role()}}</td>
-                            </tr>
-                        </tbody>
-                    </table>
-                    <div *ngIf="auth.isUnknownUser(auth.user$ | async)">
-                        Va rugam contactati un angajat RosBP pentru a primi drepturi pentru firma
-                        la care lucrati. 
+                <div>
+                    <div class="row">
+                       <div  class ='col-md-2'>
+                            <img *ngIf='user.photoURL ; else login2'  style="border-radius: 50%;" [src]='user.photoURL' [title]='user.displayName' [style.margin.px]='10'>
+                            <ng-template #login2>
+                                <img style="border-radius: 50%;" src="./assets/images/defaultUser.jpg" [title]='user.displayName' [style.width.px]='150' [style.margin.px]='10'>
+                            </ng-template>
+                       </div>
+                       <div  class ='col-md-4' >
+                           <div class="row">
+                            <div  class ='col-md-12'><strong> Nume: </strong> {{user.displayName}}</div>
+                            <div>&nbsp;</div>
+                            <div  class ='col-md-12'><strong> Email: </strong>{{user.uid}}</div>
+                            <div>&nbsp;</div>
+                            <div  class ='col-md-12'><strong> Rol: </strong>{{auth.role()}}</div>
+                           </div>
+                       </div>
+                    </div>
+                    <br>
+
+                    <div class="row" *ngIf="auth.isUnknownUser(auth.user$ | async)">
+                        <div  class ='col-md-4' >
+                            Va rugam contactati un angajat RosBP pentru a primi drepturi pentru firma
+                            la care lucrati. 
+                        </div>
                     </div>
                 </div>
-                <button class="btn btn-outline-info" (click)="auth.signOut()">Sign out</button>
-              </div>
-              <ng-template #login>
-                  <br>
-                <div class="text-left">E nevoie de autentificare pentru a putea accesa informatiile dorite</div>
-                <br>
-                <div class="text-left">
-                    <button class="btn btn-outline-info" (click)="auth.googleSignin()">Login with gmail</button>
+                <div class="row">
+                    <div  class ='col-md-4' >
+                        <button class="btn btn-outline-info" (click)="auth.signOut()" style="width:100%;">Deconectare</button>
+                    </div>
                 </div>
-              </ng-template>
+            </div>
+              
+                <ng-template #login>
+                  <br>
+                    <div class="text-left">E nevoie de autentificare pentru a putea accesa informatiile dorite</div>
+                    <br>
+                    <div class="text-left">
+                        <button class="btn btn-outline-info" (click)="auth.googleSignin()">Autentificare cu gmail</button>
+                    </div>
+                </ng-template>
           </div>
       </div>
       
