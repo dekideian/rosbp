@@ -1,0 +1,14 @@
+i {
+    font-size: medium;
+}
+i:hover {
+    font-size: medium;
+    color:royalblue;
+    /* background-color: #eeeeee; */
+  }
+
+ .quote {
+     height: 10px;
+     font-size: small;
+     color:#666666;
+ }

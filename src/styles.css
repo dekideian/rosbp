@@ -24,7 +24,7 @@ html, body { height: 100%; }
 body { 
   margin: 0; 
   height: 100%;
-  font-family: Roboto, Arial, sans-serif;
+  font-family: Arial, sans-serif;
   font-size: medium;
   background-image: repeating-linear-gradient(90deg, #eeeeee,white 0.4%)!important;
 }

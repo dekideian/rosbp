@@ -4,155 +4,163 @@
     </div>
     <div class="card-body">
         <div class="container-fluid">
-          <div class="text-left">
-            <h2>Detalii firma </h2>
-            <ul>
-                <li>
-                    Nume - {{this.numeFirma}}
-                </li>
-                <li>
-                   Sediul - {{this.sediu}}
-               </li>
-               <li>
-                   Inregistrat la reg comertului din - {{this.regComert}}
-               </li>
-               <li>
-                   Nr firma - {{this.nr}}
-               </li>
-               <li>
-                   CUI - {{this.CUI}}
-               </li>
-               <li>
-                   Reprezentant legal - {{this.rep}}
-               </li>
-               <li>
-                   Telefon - {{this.telefon}}
-               </li>
-            </ul>
+            <div class="text-left">
+               <h2>Detalii firma </h2>
+               <ul>
+                   <li>
+                       Nume - {{this.numeFirma}}
+                   </li>
+                   <li>
+                       Sediul - {{this.sediu}}
+                   </li>
+                   <li>
+                       Inregistrat la reg comertului din - {{this.regComert}}
+                   </li>
+                   <li>
+                       Nr firma - {{this.nr}}
+                   </li>
+                   <li>
+                       CUI - {{this.CUI}}
+                   </li>
+                   <li>
+                       Reprezentant legal - {{this.rep}}
+                   </li>
+                   <li>
+                       Telefon - {{this.telefon}}
+                   </li>
+               </ul>
 <!-- contact client               -->
-<hr>
-            <div class="form-group row mb-12">
-                <div class="col-md-4" >
-                    <h2>Contact {{numeFirma}}</h2>
-                        <app-add-client [firmaUID]="currentId" [numeFirma] = "numeFirma">
-                        </app-add-client>
-                </div>
+               <hr>
+               <div class="form-group row mb-12">
+                   <div class="col-md-4" >
+                       <h2>Contact {{numeFirma}}</h2>
+                           <app-add-client [firmaUID]="currentId" [numeFirma] = "numeFirma">
+                           </app-add-client>
+                   </div>
 
-                <div class="col-md-8" style="margin-top:-9px;">
-                    <div class="table-responsive">
-                        <table class="table" *ngIf='clienti && clienti.length'>
-                            <thead>
-                                <tr>
-                                    <td>Nume</td>
-                                    <th>email</th>
-                                    <th>Stergere</th>
-                                </tr>        
-                            </thead>
-                            <tbody>
-                                <tr *ngFor="let client of clienti">
-                                    <td>{{client.nume}}</td>
-                                    <td>{{client.email}}</td>
-                                    <td>
-                                        <button (click)="deleteClient(client.uid)" class="btn btn-outline-danger">
-                                            <i class="fa fa-minus-circle"> Stergere</i>
-                                            </button>
-                                        </td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
-            </div>  
+                   <div class="col-md-8" style="margin-top:-9px;">
+                       <div class="table-responsive">
+                           <table class="table" *ngIf='clienti && clienti.length'>
+                               <thead>
+                                   <tr>
+                                       <td>Nume</td>
+                                       <th>email</th>
+                                       <th>Stergere</th>
+                                   </tr>        
+                               </thead>
+                               <tbody>
+                                   <tr *ngFor="let client of clienti">
+                                       <td>{{client.nume}}</td>
+                                       <td>{{client.email}}</td>
+                                       <td>
+                                           <button (click)="deleteClient(client.uid)" class="btn btn-outline-danger">
+                                               <i class="fa fa-minus-circle"> Stergere</i>
+                                               </button>
+                                           </td>
+                                   </tr>
+                               </tbody>
+                           </table>
+                       </div>
+                   </div>
+               </div>  
 
-       
-            <br>
-        <hr><br>
+               <br><hr><br>
 <!-- responsabili RosBP -->
-        <div class="form-group row mb-12">
-            <div class="col-md-4">
-                <h3>Angajati RosBP, responsabili {{numeFirma}}</h3>
-                    <app-add-responsible [firmaUID]="currentId" [numeFirma] = "numeFirma">
-                    </app-add-responsible> 
-            </div>
-            <div class="col-md-8" style="margin-top:-9px;">
-                <div class="table-responsive">
-                    <table class="table" *ngIf='responsabili && responsabili.length'>
-                        <thead>
-                            <tr>
-                                <td>Nume</td>
-                                <th>email</th>
-                                <th>Stergere</th>
-                            </tr>        
-                        </thead>
-                        <tbody>
-                            <tr *ngFor="let responsabil of responsabili">
-                                <td>{{responsabil.nume}}</td>
-                                <td>{{responsabil.email}}</td>
-                                <td>
-                                    <button (click)="deleteResponsabil(responsabil.uid)" class="btn btn-outline-danger">
-                                        <i class="fa fa-minus-circle"> Stergere</i>
-                                        </button>
-                                    </td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
+               <div class="form-group row mb-12">
+                   <div class="col-md-4">
+                       <h2>Angajati, responsabili pt {{numeFirma}}</h2>
+                           <app-add-responsible [firmaUID]="currentId" [numeFirma] = "numeFirma">
+                           </app-add-responsible> 
+                   </div>
+                   <div class="col-md-8" style="margin-top:-9px;">
+                       <div class="table-responsive">
+                           <table class="table" *ngIf='responsabili && responsabili.length'>
+                               <thead>
+                                   <tr>
+                                       <td>Nume</td>
+                                       <th>Email</th>
+                                       <th>Stergere</th>
+                                   </tr>        
+                               </thead>
+                               <tbody>
+                                   <tr *ngFor="let responsabil of responsabili">
+                                       <td>{{responsabil.nume}}</td>
+                                       <td>{{responsabil.email}}</td>
+                                       <td>
+                                           <button (click)="deleteResponsabil(responsabil.uid)" class="btn btn-outline-danger">
+                                               <i class="fa fa-minus-circle"> Stergere</i>
+                                               </button>
+                                           </td>
+                                   </tr>
+                               </tbody>
+                           </table>
+                       </div>
+                    </div>
+                </div>    
+               <br><hr><br>
+               <h2>Fisier Cadru CIM</h2>    
+<!-- Upload file  -->
+               <div class="form-group row mb-12">
+                   <div class="col-md-4">
+                       <app-upload-file [filePath] = "'templates'" 
+                           (uploadedFile)="newFileUploaded($event)">
+                       </app-upload-file>
+                   </div>
+    
+    <!-- DISPLAY DATA -->
+                   <div class="col-md-8" style="margin-top:-9px;">
+                       <div class="table-responsive">
+                           <table class="table" *ngIf='templates && templates.length'>
+                               <thead>
+                                   <tr>
+                                       <td>Nume</td>
+                                       <th>Data</th>
+                                       <th>Autor</th>
+                                       <th>Download</th>
+                                       <th>Stergere</th>
+                                   </tr>        
+                               </thead>
+                               <tbody>
+                                   <tr *ngFor='let file of templates'>
+                                   <td>
+                                       {{file.nume}}
+                                   </td>  
+                                   <td>{{file.data}}</td>
+                                   <td>{{file.autor}}</td>
+                                   <td><a href="{{file.documentUrl}}" 
+                                       target="_blank"
+                                       download="{{file.nume}}"
+                                       ><i class="fa fa-download" aria-hidden="true"></i></a></td>
+                                   <td>
+                                       <button (click)="deleteFile(file.uid, file.documentUrl)" class="btn btn-outline-danger">
+                                       <i class="fa fa-minus-circle"> Stergere</i>
+                                       </button>
+                                   </td>
+                                   </tr>
+                               </tbody>
+                           </table>
+                       </div>
+                   </div>
+               </div> 
+               <br>
+            <!-- ACTUAL END   -->
             </div>
         </div>
-        <br>
-        <hr>
-        <br>
-        <h3>Fisier Cadru CIM</h3>    
-        <!-- Upload file  -->
-        <div class="form-group row mb-12">
-             <div class="col-md-4">
-                 <app-upload-file [filePath] = "'templates'" 
-                     (uploadedFile)="newFileUploaded($event)">
-                 </app-upload-file>
-             </div>
-         
-         <!-- DISPLAY DATA -->
-         <div class="col-md-8" style="margin-top:-9px;">
-             <div class="table-responsive">
-                 <table class="table" *ngIf='templates && templates.length'>
-                     <thead>
-                         <tr>
-                             <td>Nume</td>
-                             <th>Data</th>
-                             <th>Autor</th>
-                             <th>Download</th>
-                             <th>Stergere</th>
-                         </tr>        
-                     </thead>
-                     <tbody>
-                         <tr *ngFor='let file of templates'>
-                         <td>
-                             {{file.nume}}
-                             <!-- <a [routerLink]="['/candidati', candidat.uid]">{{candidat.prenumeSalariat}} {{candidat.numeSalariat}}</a>         -->
-                         </td>  
-                         <td>{{file.data}}</td>
-                         <td>{{file.autor}}</td>
-                         <td><a href="{{file.documentUrl}}" 
-                             target="_blank"
-                             download="{{file.nume}}"
-                             ><i class="fa fa-download" aria-hidden="true"></i></a></td>
-                         <td>
-                             <button (click)="deleteFile(file.uid, file.documentUrl)" class="btn btn-outline-danger">
-                             <i class="fa fa-minus-circle"> Stergere</i>
-                             </button>
-                         </td>
-                         </tr>
-                     </tbody>
-                 </table>
-             </div>
-         </div>
-         
-     </div> 
-<br>
-      
+    </div>    
+<!-- END -->
+    <div class='card-footer' style="align-items:flex-end;"> 
+        <div>
+            <button class="btn btn-outline-secondary" (click)="goBack();">
+                <i class="fa fa-chevron-left"></i>  Lista firme</button>
+        </div>
+        <div class="text-right" >
+            <a target="_blank" style="color: gray;">
+                <i class="fa fa-facebook-f"></i> 
+              </a>
+            &nbsp;&nbsp;&nbsp;  
+            <a href="http://www.github.com/dekideian" target="_blank" class="footer-links" style="color: gray;">
+              <i class="fa fa-github"> </i>
+            </a>
+        </div>
     </div>
-    <div class='card-footer'>
-        <button class="btn btn-outline-secondary" (click)="goBack();">
-            <i class="fa fa-chevron-left"></i> Lista firme</button>
-    </div>
-</div>
+</div>    

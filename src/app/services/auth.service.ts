@@ -153,7 +153,6 @@ import { environment } from 'src/environments/environment';
       else {
         result = 'Rol necunoscut';
       }
-      console.log('rez: '+result)
       return result;
     }
     // TODO get info after subscribing to user, no need of sending | async from html
