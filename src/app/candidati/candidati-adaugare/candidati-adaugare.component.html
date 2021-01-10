@@ -564,7 +564,7 @@
                                         <input id="nrLuniSaptamaniAni" type = "number" 
                                             matInput
                                             formControlName='nrLuniSaptamaniAni'
-                                            (keyup)="onLuniCompleted($event.target.value)"
+                                            (change)="onLuniCompleted($event.target.value)"
                                             [ngClass]="{'is-invalid': (candidatiGroup.get('nrLuniSaptamaniAni').touched ||
                                                             candidatiGroup.get('nrLuniSaptamaniAni').dirty) &&
                                                             !candidatiGroup.get('nrLuniSaptamaniAni').valid }"
@@ -991,8 +991,9 @@
                                     <div class="col-md-2">
                                         <mat-form-field class="atribut-candidat">
                                             <mat-label>{{atributCandidat.nrInregCerereDeAngajare}}</mat-label>
-                                        <input id="nrInregCerereDeAngajare" type = "text" 
+                                        <input id="nrInregCerereDeAngajare" type = "number" 
                                             matInput
+                                            (change)="setNrInregCerereDeAngajare()"
                                             formControlName='nrInregCerereDeAngajare'
                                             [ngClass]="{'is-invalid': (candidatiGroup.get('nrInregCerereDeAngajare').touched ||
                                                             candidatiGroup.get('nrInregCerereDeAngajare').dirty) &&

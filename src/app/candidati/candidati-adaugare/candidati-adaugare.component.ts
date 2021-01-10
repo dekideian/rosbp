@@ -273,26 +273,30 @@ export class CandidatiAdaugareComponent  implements OnInit {
   //TODO on key press.. any other value added for nrContract should update the rest..
   disableNrContractSiAltele() {
     this.candidatiGroup.get('nrContract').disable();
-    // this.candidatiGroup.get('nrInregCerereDeAngajare').disable();
-    // this.candidatiGroup.get('nrInregDeclaratieFunctieDeBaza').disable();
-    // this.candidatiGroup.get('nrInregDeclaratiePersoaneInIntretinere').disable();
-    // this.candidatiGroup.get('nrInregDeclaratieCasaDeSanatate').disable();
-    // this.candidatiGroup.get('nrInregDeclLuareLaCunostintaROI').disable();
-    // this.candidatiGroup.get('nrInregPlanificareaZilelorDeCO').disable();
   }
 
 // TODO on key update if one is updated, update all ?
 // on submit, .. write with current NR. 
   setareNrContractSiAlteNr(nr: number) {
     this.candidatiGroup.get('nrContract').setValue(nr);
-    this.candidatiGroup.get('nrInregCerereDeAngajare').setValue(nr);
-    this.candidatiGroup.get('nrInregDeclaratieFunctieDeBaza').setValue(nr);
-    this.candidatiGroup.get('nrInregDeclaratiePersoaneInIntretinere').setValue(nr);
-    this.candidatiGroup.get('nrInregDeclaratieCasaDeSanatate').setValue(nr);
-    this.candidatiGroup.get('nrInregDeclLuareLaCunostintaROI').setValue(nr);
-    this.candidatiGroup.get('nrInregPlanificareaZilelorDeCO').setValue(nr);
+    // this.candidatiGroup.get('nrInregCerereDeAngajare').setValue(nr);
+    // this.candidatiGroup.get('nrInregDeclaratieFunctieDeBaza').setValue(nr);
+    // this.candidatiGroup.get('nrInregDeclaratiePersoaneInIntretinere').setValue(nr);
+    // this.candidatiGroup.get('nrInregDeclaratieCasaDeSanatate').setValue(nr);
+    // this.candidatiGroup.get('nrInregDeclLuareLaCunostintaROI').setValue(nr);
+    // this.candidatiGroup.get('nrInregPlanificareaZilelorDeCO').setValue(nr);
   }
 
+setNrInregCerereDeAngajare() {
+  let val =  this.candidatiGroup.get('nrInregCerereDeAngajare').value;
+  
+  this.candidatiGroup.get('nrInregDeclaratieFunctieDeBaza').setValue(val+1);
+  this.candidatiGroup.get('nrInregDeclaratiePersoaneInIntretinere').setValue(val+2);
+  this.candidatiGroup.get('nrInregDeclaratieCasaDeSanatate').setValue(val+3);
+  this.candidatiGroup.get('nrInregDeclLuareLaCunostintaROI').setValue(val+4);
+  this.candidatiGroup.get('nrInregPlanificareaZilelorDeCO').setValue(val+5);
+
+}
   goBack() {
     this.router.navigate(['/candidati']);
   }
