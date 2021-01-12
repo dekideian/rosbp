@@ -1,3 +1,4 @@
+<mat-progress-bar mode="indeterminate" *ngIf="isLoading"></mat-progress-bar>
 <div class='card'>
     <div class='card-header'>
         Adaugă salariat {{numeFirma}}
@@ -160,26 +161,7 @@
                                         </mat-form-field>
                                     </div>
                                     <div class="col-md-2">
-                                        <!-- <mat-form-field class="atribut-candidat">
-                                            <mat-label>{{atributCandidat.judet}}</mat-label>
-                                        <input id="judet" type = "text" 
-                                            matInput
-                                            formControlName='judet'
-                                            [ngClass]="{'is-invalid': (candidatiGroup.get('judet').touched ||
-                                                            candidatiGroup.get('judet').dirty) &&
-                                                            !candidatiGroup.get('judet').valid }"
-                                        />
-                                        <span class="invalid-feedback">
-                                            <span *ngIf="candidatiGroup.get('judet').errors?.required">
-                                                Va rugam introduceti {{atributCandidat.judet}}
-                                            </span>
-                                            <span *ngIf="candidatiGroup.get('judet').errors?.minlength">
-                                                Minim 2 caractere
-                                            </span>
-                                        </span>
-                                        </mat-form-field> -->
-
-                                        <mat-form-field appearance="fill" style="width: 100%;">
+                                        <mat-form-field style="width: 100%;">
                                             <mat-label>Judet</mat-label>
                                             <mat-select 
                                                 [(ngModel)]="listaJudete[36]"
@@ -631,6 +613,18 @@
                                 <!-- Rand 1 -->
                                 <div class="form-group row mb-12">
                                     <div class="col-md-3">
+                                        <mat-checkbox 
+                                            style="margin-top:100px;margin-bottom: 0;vertical-align: -15px; align-content: -50px;"
+                                            class="example-margin"
+                                            color="primary"
+                                            matInput
+                                            (change)="functieDeConducere()"
+                                            id="functieDeConducere" 
+                                            formControlName='functieDeConducere'
+                                        >{{atributCandidat.functieDeConducere}}
+                                        </mat-checkbox>
+                                    </div>
+                                    <div class="col-md-3">
                                         <mat-form-field class="atribut-candidat">
                                             <mat-label>{{atributCandidat.departament}}</mat-label>
                                         <input id="departament" type = "text" 
@@ -680,19 +674,6 @@
                                             </mat-select>
                                           </mat-form-field>
                                     </div> 
-                                    <div class="col-md-3">
-                                        <mat-checkbox 
-                                            style="margin-top:100px;margin-bottom: 0;vertical-align: -15px; align-content: -50px;"
-                                            class="example-margin"
-                                            color="primary"
-                                            matInput
-                                            (change)="functieDeConducere()"
-                                            id="functieDeConducere" 
-                                            formControlName='functieDeConducere'
-                                        >{{atributCandidat.functieDeConducere}}
-                                        </mat-checkbox>
-                                    </div>
-
                                 </div>          
                             </div>
                         </div>
@@ -1130,9 +1111,7 @@
                             <div class="card-body">
                                 <!-- Rand 9   -->
                                 <div class="form-group row mb-12">
-                                    <div class="col-md-2" style=" vertical-align: bottom;" >
-                                        <!-- <mat-form-field class="atribut-candidat"> -->
-                                            <!-- <mat-label>{{atributCandidat.platitorDeImpozit}}</mat-label> -->
+                                    <div class="col-md-2" style="vertical-align: bottom;" >
                                             <mat-checkbox 
                                                 style="margin-top:100px;margin-bottom: 0;vertical-align: -15px; align-content: -50px;"
                                                 class="example-margin"
@@ -1143,37 +1122,18 @@
                                                 formControlName='platitorDeImpozit'
                                             > {{atributCandidat.platitorDeImpozit}}
                                             </mat-checkbox>
-                                        
-                                        <!-- </mat-form-field> -->
-<!-- 
-                                        <mat-select 
-                                        [(ngModel)]="listaJudete[36]"
-
-                                        formControlName="judet">
-                                      <mat-option 
-                                        *ngFor="let judet of listaJudete" 
-                                        [value]="judet">
-                                        {{judet}}
-                                      </mat-option>
-                                    </mat-select> -->
-
                                     </div> 
-                                    <div class="col-md-2">
-                                        <mat-form-field class="atribut-candidat">
-                                            <mat-label>{{atributCandidat.functiaDeBaza}}</mat-label>
-                                        <input id="functiaDeBaza" type = "text" 
+                                    <div class="col-md-2" style="vertical-align: bottom;" >
+                                        <mat-checkbox 
+                                            style="margin-top:100px;margin-bottom: 0;vertical-align: -15px; align-content: -50px;"
+                                            class="example-margin"
+                                            color="primary"
                                             matInput
+                                            id="functiaDeBaza" 
+                                            [(ngModel)] = "defaultFunctiaDeBaza"
                                             formControlName='functiaDeBaza'
-                                            [ngClass]="{'is-invalid': (candidatiGroup.get('functiaDeBaza').touched ||
-                                                            candidatiGroup.get('functiaDeBaza').dirty) &&
-                                                            !candidatiGroup.get('functiaDeBaza').valid }"
-                                        />
-                                        <span class="invalid-feedback">
-                                            <span *ngIf="candidatiGroup.get('functiaDeBaza').errors?.required">
-                                                Va rugam introduceti {{atributCandidat.functiaDeBaza}}
-                                            </span>
-                                        </span>
-                                        </mat-form-field>
+                                        > {{atributCandidat.functiaDeBaza}}
+                                        </mat-checkbox>
                                     </div> 
                                     <div class="col-md-2">
                                         <mat-form-field class="atribut-candidat">
@@ -1355,7 +1315,17 @@
                                 <!-- Rand 11   -->
                                 <div class="form-group row mb-12">
                                     <div class="col-md-2">
-                                        <mat-form-field class="atribut-candidat">
+                                        <mat-checkbox 
+                                            style="margin-top:100px;margin-bottom: 0;vertical-align: -15px; align-content: -50px;"
+                                            class="example-margin"
+                                            color="primary"
+                                            matInput
+                                            id="ticheteDeMasa" 
+                                            [(ngModel)] = "defaultTicheteDeMasa"
+                                            formControlName='ticheteDeMasa'
+                                        > {{atributCandidat.ticheteDeMasa}}
+                                        </mat-checkbox>
+                                        <!-- <mat-form-field class="atribut-candidat">
                                             <mat-label>{{atributCandidat.ticheteDeMasa}}</mat-label>
                                         <input id="ticheteDeMasa" type = "text" 
                                             matInput
@@ -1369,7 +1339,7 @@
                                                 Va rugam introduceti {{atributCandidat.ticheteDeMasa}}
                                             </span>
                                         </span>
-                                        </mat-form-field>
+                                        </mat-form-field> -->
                                     </div> 
                                     <div class="col-md-2">
                                         <mat-form-field class="atribut-candidat">

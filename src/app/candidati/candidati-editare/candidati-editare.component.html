@@ -1,3 +1,4 @@
+<mat-progress-bar mode="indeterminate" *ngIf="isLoading"></mat-progress-bar>
 <div class='card'>
     <div class='card-header'>
         Editare salariat - {{this.salariat?.prenumeSalariat}} {{this.salariat?.numeSalariat}} 
@@ -160,7 +161,7 @@
                                         </mat-form-field>
                                     </div>
                                     <div class="col-md-2">
-                                        <mat-form-field appearance="fill" style="width: 100%;">
+                                        <mat-form-field style="width: 100%;">
                                             <mat-label>Judet</mat-label>
                                             <mat-select 
                                                 [(ngModel)]="listaJudete[36]"
@@ -1125,21 +1126,16 @@
                                             </mat-checkbox>
                                     </div> 
                                     <div class="col-md-2">
-                                        <mat-form-field class="atribut-candidat">
-                                            <mat-label>{{atributCandidat.functiaDeBaza}}</mat-label>
-                                        <input id="functiaDeBaza" type = "text" 
+                                        <mat-checkbox 
+                                            style="margin-top:100px;margin-bottom: 0;vertical-align: -15px; align-content: -50px;"
+                                            class="example-margin"
+                                            color="primary"
                                             matInput
+                                            id="functiaDeBaza" 
+                                            [(ngModel)] = "defaultFunctiaDeBazaValue"
                                             formControlName='functiaDeBaza'
-                                            [ngClass]="{'is-invalid': (candidatiGroup.get('functiaDeBaza').touched ||
-                                                            candidatiGroup.get('functiaDeBaza').dirty) &&
-                                                            !candidatiGroup.get('functiaDeBaza').valid }"
-                                        />
-                                        <span class="invalid-feedback">
-                                            <span *ngIf="candidatiGroup.get('functiaDeBaza').errors?.required">
-                                                Va rugam introduceti {{atributCandidat.functiaDeBaza}}
-                                            </span>
-                                        </span>
-                                        </mat-form-field>
+                                        >{{atributCandidat.functiaDeBaza}}
+                                        </mat-checkbox>
                                     </div> 
                                     <div class="col-md-2">
                                         <mat-form-field class="atribut-candidat">
@@ -1321,21 +1317,16 @@
                                 <!-- Rand 11   -->
                                 <div class="form-group row mb-12">
                                     <div class="col-md-2">
-                                        <mat-form-field class="atribut-candidat">
-                                            <mat-label>{{atributCandidat.ticheteDeMasa}}</mat-label>
-                                        <input id="ticheteDeMasa" type = "text" 
+                                        <mat-checkbox 
+                                            style="margin-top:100px;margin-bottom: 0;vertical-align: -15px; align-content: -50px;"
+                                            class="example-margin"
+                                            color="primary"
                                             matInput
+                                            id="ticheteDeMasa" 
+                                            [(ngModel)] = "defaultTicheteDeMasaValue"
                                             formControlName='ticheteDeMasa'
-                                            [ngClass]="{'is-invalid': (candidatiGroup.get('ticheteDeMasa').touched ||
-                                                            candidatiGroup.get('ticheteDeMasa').dirty) &&
-                                                            !candidatiGroup.get('ticheteDeMasa').valid }"
-                                        />
-                                        <span class="invalid-feedback">
-                                            <span *ngIf="candidatiGroup.get('ticheteDeMasa').errors?.required">
-                                                Va rugam introduceti {{atributCandidat.ticheteDeMasa}}
-                                            </span>
-                                        </span>
-                                        </mat-form-field>
+                                        >{{atributCandidat.ticheteDeMasa}}
+                                        </mat-checkbox>
                                     </div> 
                                     <div class="col-md-2">
                                         <mat-form-field class="atribut-candidat">

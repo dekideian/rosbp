@@ -3,14 +3,6 @@
       Lista cu salariati 
   </div>
   <br>
-  <!-- <div class="card-body">
-    <div class='row'>
-      <div class ='col-md-2'>Filtrare dupa nume:</div>
-      <div class = 'col-md-4'>
-          <input type="text" [(ngModel)] = 'listFilter'>  
-      </div>
-    </div>
-  </div> -->
 <div *ngFor="let contactInformation of listOfAuthorizedContacts; let i = index" [attr.data-index]="i">
   <div class="accordion" id="accordionExample">
     <div class="card" style="margin-left:0px; margin-right:0px;margin-top:-13px; margin-bottom: 10px;">
@@ -21,29 +13,23 @@
                 </button>									
         </h2>
       </div>
-      <button class="btn btn-outline-primary" 
-      [routerLink]="['/candidati/adauga', contactInformation.firmaUID]"
-      [queryParams]="{ nume: contactInformation.numeFirma,
-        sediu: contactInformation.sediu,
-        regComert: contactInformation.regComert,
-        nr: contactInformation.nr,
-        cui: contactInformation.cui,
-        rep: contactInformation.rep,
-        telefon: contactInformation.telefon
-      }" >
-        <i class="fa fa-plus" aria-hidden="true"></i> 
-        Adauga salariat
-    </button>
+      
       <div attr.id="collapseOne_{{i}}" class="collapse show" attr.aria-labelledby="headingOne_{{i}}" data-parent="#accordionExample">
-      <!-- <div *ngIf="i!=0" id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordionExample"> -->
-        <div class="card-body">
-            <!-- Rand 1 -->
-            <!-- <div class="form-group row mb-12">
-                <div class="col-md-2">
-                  hello nurse
-                </div>
-            </div>   -->
+        <div class="card-body"> 
              <div class="table-responsive">
+                  <button class="btn btn-outline-primary" 
+                    [routerLink]="['/candidati/adauga', contactInformation.firmaUID]"
+                    [queryParams]="{ nume: contactInformation.numeFirma,
+                      sediu: contactInformation.sediu,
+                      regComert: contactInformation.regComert,
+                      nr: contactInformation.nr,
+                      cui: contactInformation.cui,
+                      rep: contactInformation.rep,
+                      telefon: contactInformation.telefon
+                    }" >
+                      <i class="fa fa-plus" aria-hidden="true"></i> 
+                      Adauga salariat
+                  </button>
               <table class="table" *ngIf='candidatesMap[contactInformation.firmaUID] && candidatesMap[contactInformation.firmaUID].length'>
                   <thead>
                       <tr>
@@ -83,43 +69,6 @@
     </div>
   </div>
 </div>
-  
-
-
-  <!-- <div class="table-responsive">
-    <table class="table" *ngIf='candidatiFiltrate && candidatiFiltrate.length'>
-        <thead>
-            <tr>
-                <td>Nume</td>
-                <th>Tip Contract</th>
-                <th>Data Contract</th>
-                <th>Email</th>
-                <th>Editare Date</th>
-                <th>Stergere</th>
-            </tr>        
-        </thead>
-        <tbody>
-          
-            <tr *ngFor='let candidat of candidatiFiltrate'>
-                <td>
-                  <a [routerLink]="['/candidati', candidat.uid]">{{candidat.prenumeSalariat}} {{candidat.numeSalariat}}</a>        
-                </td>  
-                <td>{{candidat.tipContract}}</td>
-                <td>{{candidat.dataContract}}</td>
-                <td>{{candidat.mail}}</td>
-                <td>
-                    <button  class="btn btn-outline-info">
-                        <i class="fa fa-minus-circle"> Editare</i>
-                    </button>
-                <td>
-                  <button (click)="delete(candidat.uid)" class="btn btn-outline-danger" disabled>
-                      <i class="fa fa-minus-circle"> Stergere</i>
-                  </button>
-              </td>
-            </tr>
-        </tbody>
-    </table>
-  </div> -->
   <div class='card-footer text-right' style="align-items:flex-end;"> 
     <a target="_blank" style="color: gray;">
         <i class="fa fa-facebook-f"></i> 

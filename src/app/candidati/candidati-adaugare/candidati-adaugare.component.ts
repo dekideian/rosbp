@@ -21,6 +21,7 @@ import { identifierName } from '@angular/compiler';
   styleUrls: ['./candidati-adaugare.component.css']
 })
 export class CandidatiAdaugareComponent  implements OnInit {
+  isLoading = false;
   candidatiGroup: FormGroup;
   nextNrContract="?";
   candidat: ICandidatLocal;
@@ -39,6 +40,8 @@ export class CandidatiAdaugareComponent  implements OnInit {
   coduriCorSelectate: any[]
   selected: 'Timis';
   defaultCheckboxValue = true;
+  defaultFunctiaDeBaza = false;
+  defaultTicheteDeMasa = false;
   defaultContractDeterminat = false;
 
   constructor(
@@ -234,7 +237,7 @@ export class CandidatiAdaugareComponent  implements OnInit {
       nrZileCOConveniteInAnulCurent: ['21', [Validators.required]],
       platitorDeImpozit: ['', []],
       
-      functiaDeBaza: ['', [Validators.required]],
+      functiaDeBaza: ['', []],
       mail: ['', [Validators.required, Validators.email]],
       parolaWeb: ['', [Validators.required]],
       locatiePlata: ['', [Validators.required]],
@@ -245,7 +248,7 @@ export class CandidatiAdaugareComponent  implements OnInit {
       angajatorNexus: ['', [Validators.required]],
       cuiAngajator: ['', [Validators.required]],
       cuiLocDeMunca: ['', [Validators.required]],
-      ticheteDeMasa: ['', [Validators.required]],
+      ticheteDeMasa: ['', []],
       studiiSCED: ['', [Validators.required]]
     });
     
@@ -303,11 +306,13 @@ setNrInregCerereDeAngajare() {
 
   save() {
     // this.auth.userCompany
-    
+    this.isLoading=true;
+    this.candidatiGroup.disable();
     console.log('Am trimis val '+this.candidatiGroup.get('nrContract').value)
     let writeMessage = firebase.functions().httpsCallable('writeMessage');
     writeMessage({count: this.candidatiGroup.get('nrContract').value})
     .then(result=>{
+      this.candidatiGroup.enable();
       let nr = result["data"];
       console.log('Nr returnat este '+nr)
       this.setareNrContractSiAlteNr(nr);
@@ -366,7 +371,7 @@ setNrInregCerereDeAngajare() {
         nrZileCOConveniteInAnulCurent: this.candidatiGroup.get('nrZileCOConveniteInAnulCurent').value,
         platitorDeImpozit: this.platitorDeImpozit(),
   
-        functiaDeBaza: this.candidatiGroup.get('functiaDeBaza').value,
+        functiaDeBaza: this.functiaDeBaza(),
         mail: this.candidatiGroup.get('mail').value,
         parolaWeb: this.candidatiGroup.get('parolaWeb').value,
         locatiePlata: this.candidatiGroup.get('locatiePlata').value,
@@ -377,7 +382,7 @@ setNrInregCerereDeAngajare() {
         angajatorNexus: this.candidatiGroup.get('angajatorNexus').value,
         cuiAngajator: this.candidatiGroup.get('cuiAngajator').value,
         cuiLocDeMunca: this.candidatiGroup.get('cuiLocDeMunca').value,
-        ticheteDeMasa: this.candidatiGroup.get('ticheteDeMasa').value,
+        ticheteDeMasa: this.ticheteDeMasa(),
         studiiSCED: this.candidatiGroup.get('studiiSCED').value,
         codFirma: this.codFirma,
         numeFirma: this.numeFirma,
@@ -390,10 +395,12 @@ setNrInregCerereDeAngajare() {
       };
       this.salariatiService.addCandidat(data);
       console.log('Salariat ', JSON.stringify(data));
+      this.isLoading = false;
       this.router.navigate(['/candidati']);
     }).catch((error) => {
       // Getting the Error details.
-      
+      this.candidatiGroup.enable();
+      this.isLoading = false;
       var code = error.code;
       var message = error.message;
       var details = error.details;
@@ -404,6 +411,18 @@ setNrInregCerereDeAngajare() {
   }
   platitorDeImpozit(): string {
     if(this.candidatiGroup.get('platitorDeImpozit').value===true) {
+      return "Da";
+    }
+    return "Nu";
+  }
+  functiaDeBaza(): string {
+    if(this.candidatiGroup.get('functiaDeBaza').value===true) {
+      return "Da";
+    }
+    return "Nu";
+  }
+  ticheteDeMasa(): string {
+    if(this.candidatiGroup.get('ticheteDeMasa').value===true) {
       return "Da";
     }
     return "Nu";
@@ -657,7 +676,7 @@ setNrInregCerereDeAngajare() {
 
   diverseValid() {
 
-    if(this.isValid('functiaDeBaza') && 
+    if( 
        this.isValid('mail') &&
        this.isValid('parolaWeb') && 
        this.isValid('locatiePlata') &&
@@ -666,7 +685,6 @@ setNrInregCerereDeAngajare() {
        this.isValid('sablonContractNexus') &&
        this.isValid('angajatorNexus') &&
        this.isValid('cuiAngajator') &&
-       this.isValid('ticheteDeMasa') &&
        this.isValid('studiiSCED') 
        ){
       return true;
@@ -675,7 +693,7 @@ setNrInregCerereDeAngajare() {
     }
   }
   diverseInvalid() {
-    if(this.isInvalid('functiaDeBaza') ||  
+    if(  
        this.isInvalid('mail') ||
        this.isInvalid('parolaWeb') ||
        this.isInvalid('locatiePlata') ||
@@ -684,7 +702,6 @@ setNrInregCerereDeAngajare() {
        this.isInvalid('sablonContractNexus') ||
        this.isInvalid('angajatorNexus') ||
        this.isInvalid('cuiAngajator') ||
-       this.isInvalid('ticheteDeMasa') ||
        this.isInvalid('studiiSCED') 
     ) {
       return true;
