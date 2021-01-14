@@ -16,7 +16,7 @@ export class AngajatiDetaliiComponent implements OnInit {
   }
 
   goBack() {
-    this.router.navigate(['/angajati']);
+    this.router.navigate(['/utilizatori']);
   }
 
 }

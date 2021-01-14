@@ -159,7 +159,7 @@ export class CandidatiDetaliiComponent implements OnInit {
     const templateFile = await response.blob();
     const handler = new TemplateHandler();
     const doc = await handler.process(templateFile, data);
-    this.saveFile('CIM_' + this.templateDetails.nume, doc);
+    this.saveFile('CIM_' +this.salariat.prenumeSalariat+"_"+this.salariat.numeSalariat+"_"+ this.templateDetails.nume, doc);
 
   }
 

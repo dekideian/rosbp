@@ -32,7 +32,7 @@ export class AngajatiListComponent implements OnInit {
   }
 
   adaugaAngajat() {
-    this.router.navigate(['/angajati/adauga'])
+    this.router.navigate(['/utilizatori/adauga'])
   }
 
   ngOnInit(): void {

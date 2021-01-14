@@ -147,7 +147,7 @@ import { environment } from 'src/environments/environment';
       if(this.isAdmin())
         result = 'Administrator';
       else if(this.isRosBpEmployee())
-        result =   'Angajat RosBP';
+        result =   'Utilizator RosBP';
       else if(this.isAnyEmployee())
         result = 'Client';
       else {

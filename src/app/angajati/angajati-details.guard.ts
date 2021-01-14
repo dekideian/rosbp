@@ -22,7 +22,7 @@ export class AngajatiDetailsGuard implements CanActivate {
       //  this.dialog.open(FirmeListComponent, dialogConfig);
        //create a nicer component for this dialog..maybe..  it loads the component within.. :))
 
-        this.router.navigate(['/angajati']);
+        this.router.navigate(['/utilizatori']);
         return false;
       }
       return true;

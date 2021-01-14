@@ -1,6 +1,6 @@
 <div class='card'>
     <div class='card-header'>
-        Adauga angajat
+        Adauga utilizator
     </div>
     <div class="card-body">
         <div class="container-fluid">
@@ -10,7 +10,7 @@
                     <!-- <label for="firmaName" class="col-md-3 col-form-label">First Name</label> -->
                     <div class="col-md-3">
                         <mat-form-field style="width: 100%;">
-                            <mat-label>Nume angajat</mat-label>
+                            <mat-label>Nume utilizator</mat-label>
                             <input id="angajatiName" type = "text" 
                                 formControlName="angajatiName"
                                 matInput
@@ -33,7 +33,7 @@
                  <div class="form-group row mb-12">
                     <div class="col-md-3">
                             <mat-form-field style="width: 100%;">
-                                <mat-label>Email angajat</mat-label>
+                                <mat-label>Email utilizator</mat-label>
                                 
                                 <input id="angajatiEmail" type = "text" 
                                     placeholder="Email angajat"
@@ -46,10 +46,10 @@
                                 />
                                 <span class="invalid-feedback">
                                     <span *ngIf="angajatiGroup.get('angajatiEmail').errors?.required">
-                                        Va rugam introduceti adresa de email a angajatului
+                                        Va rugam introduceti adresa de email a utilizatorului
                                     </span>
                                     <span *ngIf="angajatiGroup.get('angajatiEmail').errors?.email">
-                                        Va rugam introduceti adresa de email a angajatului
+                                        Va rugam introduceti adresa de email a utilizatorului
                                     </span>
                                 </span>
                             </mat-form-field>
@@ -61,7 +61,7 @@
                         style="width: 100%;" 
                         type="submit"
                         [disabled]="!angajatiGroup.valid"
-                        >Salveaza Angajat</button>
+                        >Salveaza Utilizator</button>
                     </div> 
                 </div>           
             </form>
@@ -71,7 +71,7 @@
     <div class='card-footer' style="align-items:flex-end;"> 
         <div>
             <button class="btn btn-outline-secondary" (click)="goBack();">
-                <i class="fa fa-chevron-left"></i> Lista angajati</button>
+                <i class="fa fa-chevron-left"></i> Lista utilizatori</button>
         </div>
         <div class="text-right" >
             <a target="_blank" style="color: gray;">

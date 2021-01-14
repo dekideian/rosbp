@@ -1,6 +1,6 @@
 <div class='card'>
   <div class='card-header'>
-      Lista angajati 
+      Lista utilizatori 
   </div>
   <div class="card-body">
     <div class='row'>
@@ -9,7 +9,7 @@
           style="width: 100%;" 
           type="submit"
           (click)="adaugaAngajat()"
-          >Adaugă Angajat</button>
+          >Adaugă Utilizator</button>
       </div>
     </div>
     <br>
@@ -30,14 +30,14 @@
     <table class="table" *ngIf='angajatiFiltrate && angajatiFiltrate.length'>
         <thead>
             <tr>
-                <th style="font-size: medium;">Nume Angajat</th>
+                <th style="font-size: medium;">Nume utilizator</th>
                 <th>Email</th>
                 <th>Stergere</th>
             </tr>        
         </thead>
         <tbody>
             <tr *ngFor='let angajat of angajatiFiltrate'>
-                <td><a [routerLink]="['/angajati', angajat.email]"> {{angajat.nume}}</a></td>
+                <td><a [routerLink]="['/utilizatori', angajat.email]"> {{angajat.nume}}</a></td>
                 <td>{{angajat.email}}</td>
                 <td>
                   <button (click)="delete(angajat.email)" class="btn btn-outline-danger">

@@ -10,9 +10,9 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { AngajatiAdaugareComponent } from './angajati-adaugare/angajati-adaugare.component';
 import { AuthAngajatiGuardService } from './guards/auth-angajati-guard.service';
 const routes: Routes = [
-  { path: 'angajati', canActivate: [AuthAngajatiGuardService], component: AngajatiListComponent },
-  { path: 'angajati/adauga', canActivate: [AuthAngajatiGuardService], component: AngajatiAdaugareComponent },
-  { path: 'angajati/:id', canActivate: [AuthAngajatiGuardService], component: AngajatiDetaliiComponent }
+  { path: 'utilizatori', canActivate: [AuthAngajatiGuardService], component: AngajatiListComponent },
+  { path: 'utilizatori/adauga', canActivate: [AuthAngajatiGuardService], component: AngajatiAdaugareComponent },
+  { path: 'utilizatori/:id', canActivate: [AuthAngajatiGuardService], component: AngajatiDetaliiComponent }
   // { path: 'angajati/:id', canActivate: [AngajatiDetailsGuard], component: AngajatiDetaliiComponent }
 ];
 

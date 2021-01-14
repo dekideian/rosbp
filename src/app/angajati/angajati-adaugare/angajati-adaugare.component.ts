@@ -29,7 +29,7 @@ export class AngajatiAdaugareComponent implements OnInit {
   }
 
   goBack() {
-    this.router.navigate(['/angajati']);
+    this.router.navigate(['/utilizatori']);
   }
 
   save() {
@@ -39,6 +39,6 @@ export class AngajatiAdaugareComponent implements OnInit {
     };
     this.angajatiService.addAngajat(data);
     console.log('Angajat ', JSON.stringify(data));
-    this.router.navigate(['/angajati']);
+    this.router.navigate(['/utilizatori']);
   }
 }
