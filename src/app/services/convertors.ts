@@ -1,4 +1,5 @@
 // import { Location } from '../models/location.class';
+import { Responsabil } from '../models/responsabil.class';
 import { Utilizator } from '../models/utilizator.class';
 
 /* ================================================================= */
@@ -17,6 +18,22 @@ export const utilizatoriConverter = {
     }
   }
 
+  export const responsabiliConverter = {
+    toFirestore: function(responsabil: Responsabil) {
+        return {
+            nume: responsabil.nume,
+            email: responsabil.email,
+            numeFirma: responsabil.numeFirma,
+            firmaUID: responsabil.firmaUID
+            };
+    },
+
+    fromFirestore: function(snapshot, options): Responsabil{
+        const id = snapshot.id;
+        const data = snapshot.data(options);
+        return new Responsabil({id:id, nume: data.nume, email:data.email, numeFirma: data.numeFirma, firmaUID: data.firmaUID});
+    }
+  }
 
 // export const locationConverter = {
 //     toFirestore: function(location: Location) {

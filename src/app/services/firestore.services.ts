@@ -1,9 +1,10 @@
 import { Injectable } from "@angular/core";
 import firebase from 'firebase/app';
 import { AngularFirestore, Query } from "@angular/fire/firestore";
-import { utilizatoriConverter } from "./convertors";
+import { responsabiliConverter, utilizatoriConverter } from "./convertors";
 import { Utilizator } from "../models/utilizator.class";
 import { noUndefined } from "@angular/compiler/src/util";
+import { JsonpClientBackend } from "@angular/common/http";
 
 
 @Injectable({
@@ -149,6 +150,13 @@ import { noUndefined } from "@angular/compiler/src/util";
     async removeUtilizator(utilizatorId: string, email: string) {
         this.removeDocument(`angajati`, utilizatorId);
         this.removeDocument(`users`, email);
+
+        const query = this.filterByAttributeValue(`responsabili`, 'email', email);
+        const snapshot = await query.withConverter(responsabiliConverter).get();
+        let foundDocuments = [];
+        snapshot.forEach(doc => {            
+          this.removeDocument(`responsabili`, doc.data().id);
+        })
     }
     async addUtilizator(utilizator: Partial<Utilizator>) {        
         let utilizatorNou = this.addConvertedDocument('angajati', utilizator, utilizatoriConverter);        

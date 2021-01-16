@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 
-import { IUtilizator } from '../utilizator';
+
 import { UtilizatoriService } from '../utilizatori.service';
 import { FirestoreService } from 'src/app/services/firestore.services';
 import { Utilizator } from 'src/app/models/utilizator.class';
@@ -15,7 +15,7 @@ import { Utilizator } from 'src/app/models/utilizator.class';
 export class UtilizatoriAdaugareComponent implements OnInit {
 
   utilizatoriGroup: FormGroup;
-  utilizator: IUtilizator;
+  utilizator: Utilizator;
   constructor(
     private firestoreService: FirestoreService,
     private router: Router,
