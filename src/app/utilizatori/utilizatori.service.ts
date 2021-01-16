@@ -1,5 +1,4 @@
 import { Injectable } from '@angular/core';
-import { IAngajat } from './angajat';
 import { rosbp } from '../shared/user.model';
 import { Observable, throwError } from 'rxjs';
 import { tap, catchError } from 'rxjs/operators';
@@ -8,41 +7,23 @@ import { AngularFirestore } from '@angular/fire/firestore';
 @Injectable({
   providedIn: 'root'
 })
-export class AngajatiService {
+export class UtilizatoriService {
 
-  angajati: IAngajat[];
   angajatiUrl = 'api/angajati.json';
   constructor(
     private http: HttpClient,
     private afs: AngularFirestore
     ) {}
 
-  getAngajati(): Observable<any> {
-    // return this.http.get<IAngajat[]>(this.angajatiUrl).pipe(
-    //   tap(data => console.log('We received a list of companies ', JSON.stringify(data))),
-    //   catchError(this.handleError)
-    // );
+  getUtilizatori(): Observable<any> {
     return this.afs.collection('angajati').valueChanges()
     .pipe(
-      tap(val => console.log('Avem angajati ', JSON.stringify(val))),
+      tap(val => console.log('Avem utilizatori ', JSON.stringify(val))),
       catchError(this.handleError)
     );
   }
-  addAngajat(data: IAngajat) {
-    this.afs.collection(`angajati`).doc(`${data.email}`).set(data, {merge: true});
-    const newData = {
-      uid: data.email,
-      company: rosbp 
-    };
 
-    this.afs.doc(`users/${data.email}`).set(newData, {merge: true});
-  }
-
-  remove(emailAngajat: string) {
-    this.afs.collection(`angajati`).doc(`${emailAngajat}`).delete();
-    // throw new Error('Method not implemented.');
-  }
-
+ 
 
   private handleError(err: HttpErrorResponse){
     let errorMessage = '';

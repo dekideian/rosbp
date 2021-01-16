@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { AngajatiListComponent } from './angajati-list.component';
+import { UtilizatoriListComponent } from './utilizatori-list.component';
 
-describe('AngajatiListComponent', () => {
-  let component: AngajatiListComponent;
-  let fixture: ComponentFixture<AngajatiListComponent>;
+describe('UtilizatoriListComponent', () => {
+  let component: UtilizatoriListComponent;
+  let fixture: ComponentFixture<UtilizatoriListComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ AngajatiListComponent ]
+      declarations: [ UtilizatoriListComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(AngajatiListComponent);
+    fixture = TestBed.createComponent(UtilizatoriListComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

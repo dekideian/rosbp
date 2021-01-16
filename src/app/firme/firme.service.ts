@@ -102,8 +102,7 @@ export class FirmeService {
   }
 
   remove(uidFirma: string) {
-    this.afs.collection(`firme`).doc(`${uidFirma}`).delete();
-    // throw new Error('Method not implemented.');
+    this.afs.collection(`firme`).doc(`${uidFirma}`).delete();    
   }
 
   getFirme(): Observable<any> {

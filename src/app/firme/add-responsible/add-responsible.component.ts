@@ -1,7 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators, FormGroupDirective } from '@angular/forms';
-import { IAngajat } from 'src/app/angajati/angajat';
-import { AngajatiService } from 'src/app/angajati/angajati.service';
+import { IUtilizator } from 'src/app/utilizatori/utilizator';
+import { UtilizatoriService } from 'src/app/utilizatori/utilizatori.service';
 import { ContactInformation } from '../contact-information';
 import { FirmeService } from '../firme.service';
 
@@ -14,7 +14,7 @@ export class AddResponsibleComponent implements OnInit {
   
   @Input() firmaUID: string;
   @Input() numeFirma: string;
-  angajati: IAngajat[];
+  utilizatori: IUtilizator[];
 
   myForm =  new FormGroup({
     name: new FormControl({value: '', disabled: true}, [Validators.required]),
@@ -25,11 +25,11 @@ export class AddResponsibleComponent implements OnInit {
   }
   constructor(
     private firmeService: FirmeService,
-    private angajatiService: AngajatiService
+    private utilizatoriService: UtilizatoriService
     ) {
-      this.angajatiService.getAngajati().subscribe({
-        next: angajati => {
-          this.angajati = angajati;
+      this.utilizatoriService.getUtilizatori().subscribe({
+        next: utilizatori => {
+          this.utilizatori = utilizatori;
         },
         error: err => {
         }
@@ -54,7 +54,7 @@ export class AddResponsibleComponent implements OnInit {
   }
   onChanges() {
     this.myForm.get('email').valueChanges.subscribe(val => {
-      this.angajati.filter(value => {
+      this.utilizatori.filter(value => {
         if(value.email === val) {
           this.myForm.get('name').setValue(value.nume);
         }

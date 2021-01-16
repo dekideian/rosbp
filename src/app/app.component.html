@@ -19,7 +19,7 @@
           <li class="nav-item">
             <a class="nav-link" [routerLink]="['/firme']" *ngIf="auth.isAdmin()">Firme</a>
           </li>
-          <li class="nav-item"><!-- doar admini, dar inside angajati-->
+          <li class="nav-item"><!-- doar admini, dar inside utilizatori-->
             <a class="nav-link" [routerLink]="['/utilizatori']" *ngIf="auth.isAdmin()">Utilizatori</a>
           </li>
           <li class="nav-item">

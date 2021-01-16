@@ -5,7 +5,7 @@ import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 @Injectable({
   providedIn: 'root'
 })
-export class AngajatiDetailsGuard implements CanActivate {
+export class UtilizatoriDetailsGuard implements CanActivate {
   constructor(private router: Router, public dialog: MatDialog) { }
 
   canActivate(
