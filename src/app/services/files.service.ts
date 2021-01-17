@@ -71,8 +71,7 @@ export class FilesService {
     );
   }
 
-  getTemplates(codFirma: string): Observable<TemplateDetails[]> {
-    console.log('Filtram dupa cod firma: ' + codFirma);
+  getTemplates(codFirma: string): Observable<TemplateDetails[]> {    
     return this.templatesDinStorage$.pipe(
       map(ob => {
          return ob.filter(templateEntry => templateEntry.codFirma === codFirma);
@@ -81,8 +80,7 @@ export class FilesService {
     );
   }
 
-  getClienti(firmaUID: string): Observable<ContactInformation[]> {
-    console.log('Filtram dupa cod firma: ' + firmaUID);
+  getClienti(firmaUID: string): Observable<ContactInformation[]> {    
     return this.clienti$.pipe(
       map(ob => {
          return ob.filter(templateEntry => templateEntry.firmaUID === firmaUID);
@@ -91,8 +89,7 @@ export class FilesService {
     );
   }
 
-  getResponsabili(firmaUID: string): Observable<ContactInformation[]> {
-    console.log('Filtram dupa cod firma: ' + firmaUID);
+  getResponsabili(firmaUID: string): Observable<ContactInformation[]> {  
     return this.responsabili$.pipe(
       map(ob => {
          return ob.filter(templateEntry => templateEntry.firmaUID === firmaUID);
