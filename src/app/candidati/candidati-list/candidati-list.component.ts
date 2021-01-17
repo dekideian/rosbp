@@ -180,7 +180,7 @@ export class CandidatiListComponent implements OnInit {
 
   async getCandidatiForFirmaId(firmaId: string){    
     const candidati:Candidat[] = await this.firestoreService.getCandidatiList(firmaId);
-    candidati.sort((a, b) => a.nrContract < b.nrContract ? -1 : (a.nrContract > b.nrContract ? 1 : 0));
+    candidati.sort((a, b) => a.nrContract > b.nrContract ? -1 : (a.nrContract < b.nrContract ? 1 : 0));
     this.candidatesMap[firmaId] = candidati;
     return candidati;
   }
