@@ -5,25 +5,25 @@
     <div class="card-body">
         <div class="container-fluid">
           <div class="text-left">
-            <form (ngSubmit)="save()" [formGroup]="angajatiGroup">
+            <form (ngSubmit)="save()" [formGroup]="utilizatoriGroup">
                 <div class="form-group row mb-12">
                     <!-- <label for="firmaName" class="col-md-3 col-form-label">First Name</label> -->
                     <div class="col-md-3">
                         <mat-form-field style="width: 100%;">
                             <mat-label>Nume utilizator</mat-label>
-                            <input id="angajatiName" type = "text" 
-                                formControlName="angajatiName"
+                            <input id="utilizatoriName" type = "text" 
+                                formControlName="utilizatoriName"
                                 matInput
                                 style="width:100%;"
-                                [ngClass]="{'is-invalid': (angajatiGroup.get('angajatiName').touched ||
-                                angajatiGroup.get('angajatiName').dirty) &&
-                                                !angajatiGroup.get('angajatiName').valid }"
+                                [ngClass]="{'is-invalid': (utilizatoriGroup.get('utilizatoriName').touched ||
+                                utilizatoriGroup.get('utilizatoriName').dirty) &&
+                                                !utilizatoriGroup.get('utilizatoriName').valid }"
                             />  
                             <span class="invalid-feedback">
-                                <span *ngIf="angajatiGroup.get('angajatiName').errors?.required">
+                                <span *ngIf="utilizatoriGroup.get('utilizatoriName').errors?.required">
                                     Va rugam introduceti un nume 
                                 </span>
-                                <span *ngIf="angajatiGroup.get('angajatiName').errors?.minlength">
+                                <span *ngIf="utilizatoriGroup.get('utilizatoriName').errors?.minlength">
                                     Minim 3 caractere
                                 </span>
                             </span>   
@@ -35,20 +35,20 @@
                             <mat-form-field style="width: 100%;">
                                 <mat-label>Email utilizator</mat-label>
                                 
-                                <input id="angajatiEmail" type = "text" 
-                                    placeholder="Email angajat"
-                                    formControlName="angajatiEmail"
+                                <input id="utilizatoriEmail" type = "text" 
+                                    placeholder="Email utilizator"
+                                    formControlName="utilizatoriEmail"
                                     style="width:100%;"
                                     matInput
-                                    [ngClass]="{'is-invalid': (angajatiGroup.get('angajatiEmail').touched ||
-                                                    angajatiGroup.get('angajatiEmail').dirty) &&
-                                                    !angajatiGroup.get('angajatiEmail').valid }"
+                                    [ngClass]="{'is-invalid': (utilizatoriGroup.get('utilizatoriEmail').touched ||
+                                    utilizatoriGroup.get('utilizatoriEmail').dirty) &&
+                                                    !utilizatoriGroup.get('utilizatoriEmail').valid }"
                                 />
                                 <span class="invalid-feedback">
-                                    <span *ngIf="angajatiGroup.get('angajatiEmail').errors?.required">
+                                    <span *ngIf="utilizatoriGroup.get('utilizatoriEmail').errors?.required">
                                         Va rugam introduceti adresa de email a utilizatorului
                                     </span>
-                                    <span *ngIf="angajatiGroup.get('angajatiEmail').errors?.email">
+                                    <span *ngIf="utilizatoriGroup.get('utilizatoriEmail').errors?.email">
                                         Va rugam introduceti adresa de email a utilizatorului
                                     </span>
                                 </span>
@@ -60,7 +60,7 @@
                     <button class="btn btn-outline-info col-form-label"
                         style="width: 100%;" 
                         type="submit"
-                        [disabled]="!angajatiGroup.valid"
+                        [disabled]="!utilizatoriGroup.valid"
                         >Salveaza Utilizator</button>
                     </div> 
                 </div>           

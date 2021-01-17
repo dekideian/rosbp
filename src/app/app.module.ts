@@ -4,7 +4,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { AppComponent } from './app.component';
 import { WelcomeComponent } from './shared/welcome/welcome.component';
 import { NotfoundComponent } from './shared/notfound/notfound.component';
-import { AngajatiModule } from './angajati/angajati.module';
+import { UtilizatoriModule } from './utilizatori/utilizatori.module';
 import { FirmeModule } from './firme/firme.module';
 import { CandidatiModule } from './candidati/candidati.module';
 import { AuthComponent } from './shared/auth/auth.component';
@@ -33,7 +33,7 @@ const routes: Routes = [
   imports: [
     BrowserModule,
     AngularFireModule.initializeApp(environment.firebaseConfig, 'cloud'),
-    AngajatiModule,
+    UtilizatoriModule,
     FirmeModule,
     CandidatiModule,
     RouterModule.forRoot(routes)

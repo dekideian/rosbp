@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from 'src/app/services/auth.service';
-import { IFirma } from '../ifirma.model';
 import { FirmeService } from '../firme.service';
 import { Router } from '@angular/router';
+import { Firma } from 'src/app/models/Firma.class';
+import { FirestoreService } from 'src/app/services/firestore.services';
 
 @Component({
   selector: 'app-firme-list',
@@ -11,11 +12,12 @@ import { Router } from '@angular/router';
 })
 export class FirmeListComponent implements OnInit {
 
-  firme: IFirma[];
-  firmeFiltrate: IFirma[];
+  firme: Firma[];
+  firmeFiltrate: Firma[];
   listFilterField = '';
   errorMessage = '';
   constructor(
+              private firestoreService: FirestoreService,
               private router: Router,
               private firmeService: FirmeService,
               public auth: AuthService) { }
@@ -27,34 +29,35 @@ export class FirmeListComponent implements OnInit {
     this.listFilterField = value;
     this.firmeFiltrate = this.listFilter ? this.performFilter(this.listFilter) : this.firme;
   }
-  performFilter(filterBy: string): IFirma[] {
+  performFilter(filterBy: string): Firma[] {
     filterBy = filterBy.toLocaleLowerCase();
-    return this.firme.filter((firma: IFirma) =>
+    return this.firme.filter((firma: Firma) =>
         firma.nume.toLocaleLowerCase().indexOf(filterBy) !== -1);
   }
 
   ngOnInit(): void {
-    this.firmeService.getFirme().subscribe({
-      next: firme => {
-        this.firme = firme;
-        this.firmeFiltrate = firme;
-      },
-      error: err => {
-        this.errorMessage = err;
-      }
-    });
+    this.initializeFirmeState();
   }
+
+  async initializeFirmeState() {
+    const firme:Firma[] = await this.firestoreService.getAllFirmeList();
+    firme.sort((a, b) => a.nume < b.nume ? -1 : (a.nume > b.nume ? 1 : 0));
+    this.firme = firme; 
+    this.firmeFiltrate = firme;   
+  }
+
+
   adaugaFirma() {
     this.router.navigate(['/firme/adauga'])
   }
   delete(uidFirma: string) {
     const result = confirm("Esti sigur ca vrei sa stergi ? ");
     if (result) {
-      this.firmeService.remove(uidFirma);
-
-      // this.firmeService.removeAllClients(uidFirma);
-      // this.firmeService.removeAllResponsibles(uidFirma);
-      console.log('remove item ' + uidFirma);
+      //this.firmeService.remove(uidFirma);
+      this.firestoreService.removeFirma(uidFirma);
+      this.firme.forEach( (item, index) => {
+        if(item.id === uidFirma) this.firme.splice(index,1);
+      });      
     }
   }
 }

@@ -8,26 +8,15 @@
           <button class="btn btn-outline-info"
           style="width: 100%;" 
           type="submit"
-          (click)="adaugaAngajat()"
+          (click)="adaugaUtilizator()"
           >Adaugă Utilizator</button>
       </div>
     </div>
     <br>
-
-    <div class='row'>
-      <div class ='col-md-2'>
-        <p>
-          Filtrare dupa nume:
-        </p>
-      </div>
-      <div class = 'col-md-2'>
-          <input type="text" [(ngModel)] = 'listFilter' style="width:100%;">  
-      </div>
-    </div>
   </div>
 
   <div class="table-responsive" style="margin-left:10px; margin-right:10px; width:98%">
-    <table class="table" *ngIf='angajatiFiltrate && angajatiFiltrate.length'>
+    <table class="table" *ngIf='utilizatori && utilizatori.length'>
         <thead>
             <tr>
                 <th style="font-size: medium;">Nume utilizator</th>
@@ -36,11 +25,11 @@
             </tr>        
         </thead>
         <tbody>
-            <tr *ngFor='let angajat of angajatiFiltrate'>
-                <td><a [routerLink]="['/utilizatori', angajat.email]"> {{angajat.nume}}</a></td>
-                <td>{{angajat.email}}</td>
+            <tr *ngFor='let utilizator of utilizatori'>
+                <td><a [routerLink]="['/utilizatori', utilizator.email]"> {{utilizator.nume}}</a></td>
+                <td>{{utilizator.email}}</td>
                 <td>
-                  <button (click)="delete(angajat.email)" class="btn btn-outline-danger">
+                  <button (click)="delete(utilizator.id, utilizator.email)" class="btn btn-outline-danger">
                       <i class="fa fa-minus-circle"> Stergere</i>
                   </button>
               </td>

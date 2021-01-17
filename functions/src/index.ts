@@ -52,21 +52,19 @@ exports.writeMessage = functions.https.onCall((data,context)=>{
     //     count: newCount,
     // }
 });
- 
-// export const helloWorld = functions.https.onRequest((request, response) => {
-//   functions.logger.info("Hello logs!", {structuredData: true});
-//   response.send("Hello from Firebase!");
-// });
+export const createCustomClaim = functions.firestore
+  .document('users/{userId}')
+  .onUpdate((change, context) => {
 
-// exports.random = functions.https.onRequest((req,res)=>{
-//     const randomNumber = Math.random();
-//     res.status(200).send(`<!doctype html>
-//     <head>
-//         <title>Random nr</title>
-//     </head>
-//     <body>
-//         ${'your nr is: '+randomNumber}
-//     </body>
-//     </htlm> 
-//     `);
-// });
+
+    const newValue = change.after.data();
+    const customClaims = {
+      level: newValue.company,
+    };
+    const email = newValue.uid;
+    return admin.auth().getUserByEmail(email).then(user => {
+      return  admin.auth().setCustomUserClaims(user.uid, customClaims);
+    }).catch(error => {
+        console.log(error);
+    });
+});

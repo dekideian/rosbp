@@ -86,7 +86,6 @@ export class SalariatiService {
   }
 
   remove(salariatId: string) {
-    this.afs.collection(`candidati`).doc(`${salariatId}`).delete();
-    // throw new Error('Method not implemented.');
+    this.afs.collection(`candidati`).doc(`${salariatId}`).delete();    
   }
 }

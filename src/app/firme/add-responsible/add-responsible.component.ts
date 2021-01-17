@@ -1,7 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators, FormGroupDirective } from '@angular/forms';
-import { IAngajat } from 'src/app/angajati/angajat';
-import { AngajatiService } from 'src/app/angajati/angajati.service';
+import { Utilizator } from 'src/app/models/utilizator.class';
+import { FirestoreService } from 'src/app/services/firestore.services';
 import { ContactInformation } from '../contact-information';
 import { FirmeService } from '../firme.service';
 
@@ -14,7 +14,7 @@ export class AddResponsibleComponent implements OnInit {
   
   @Input() firmaUID: string;
   @Input() numeFirma: string;
-  angajati: IAngajat[];
+  utilizatori: Utilizator[];
 
   myForm =  new FormGroup({
     name: new FormControl({value: '', disabled: true}, [Validators.required]),
@@ -25,20 +25,21 @@ export class AddResponsibleComponent implements OnInit {
   }
   constructor(
     private firmeService: FirmeService,
-    private angajatiService: AngajatiService
+    private firestoreService: FirestoreService
     ) {
-      this.angajatiService.getAngajati().subscribe({
-        next: angajati => {
-          this.angajati = angajati;
-        },
-        error: err => {
-        }
-      });
+      
     }
 
   ngOnInit(): void {
     this.onChanges();
     this.myForm.get('name').disable();
+    this.initializeUtilizatoriState();
+  }
+
+  async initializeUtilizatoriState() {
+    const utilizatori:Utilizator[] = await this.firestoreService.getAllUtilizatoriList();
+    utilizatori.sort((a, b) => a.email < b.email ? -1 : (a.email > b.email ? 1 : 0));
+    this.utilizatori = utilizatori;    
   }
 
   submit(formDirective: FormGroupDirective) {
@@ -47,14 +48,13 @@ export class AddResponsibleComponent implements OnInit {
     contactInformation.email = this.myForm.get('email').value;
     contactInformation.numeFirma = this.numeFirma;
     contactInformation.firmaUID = this.firmaUID;
-    console.log('adaugare responsabil')
     this.firmeService.addResponsible(contactInformation);
     this.myForm.reset();
     formDirective.resetForm();
   }
   onChanges() {
     this.myForm.get('email').valueChanges.subscribe(val => {
-      this.angajati.filter(value => {
+      this.utilizatori.filter(value => {
         if(value.email === val) {
           this.myForm.get('name').setValue(value.nume);
         }
