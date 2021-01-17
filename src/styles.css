@@ -26,7 +26,18 @@ body {
   height: 100%;
   font-family: Arial, sans-serif;
   font-size: medium;
-  background-image: repeating-linear-gradient(90deg, #eeeeee,white 0.4%)!important;
+  
+  /* albastru */
+  /* background-color: #8BC6EC;
+background-image: linear-gradient(125deg, #8BC6EC 0%, #9599E2 50%, #ffffff 100%); */
+
+/* crem */
+background-color: #ffcdb2;
+background-image: linear-gradient(136deg, #ffcdb2 0%, #ffffff 100%);
+background-attachment: fixed;
+
+   /* dungi albe gri */
+  /* background-image: repeating-linear-gradient(90deg, #eeeeee,white 0.4%)!important; */
 }
 
 .basic-container {
@@ -75,4 +86,17 @@ p {
 
 th, td {
   font-size: medium;
+}
+
+@media (max-width: 1000px) {
+  div.card {
+     margin-left: 2%;
+     margin-right: 2%;
+  }
+}
+@media (max-width: 1500px) {
+  div.card {
+     margin-left: 5%;
+     margin-right: 5%;
+  }
 }
