@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Utilizator } from 'src/app/models/utilizator.class';
 import { FirestoreService } from 'src/app/services/firestore.services';
-import { UtilizatoriService } from '../utilizatori.service';
 
 @Component({
   selector: 'app-utilizatori-list',
@@ -17,8 +16,7 @@ export class UtilizatoriListComponent implements OnInit {
   
   constructor(
     private firestoreService: FirestoreService,
-    private router: Router,
-    private utilizatoriService: UtilizatoriService
+    private router: Router
     ) { }
  
   ngOnInit(): void {

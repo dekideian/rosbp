@@ -21,9 +21,9 @@ export class CandidatiEditareComponent implements OnInit {
   coduriCor: any[];
   coduriCorSelectate: any[];
   codCorSiFunctia;
-  defaultCheckboxValue = true;
-  defaultFunctiaDeBazaValue = false;
-  defaultTicheteDeMasaValue = false;
+  defaultCheckboxValue;
+  defaultFunctiaDeBazaValue;
+  defaultTicheteDeMasaValue;
   defaultFunctieDeConducere;
   defaultContractDeterminat = false;
 
@@ -162,9 +162,9 @@ export class CandidatiEditareComponent implements OnInit {
           ticheteDeMasa: [this.salariat.ticheteDeMasa==='da'? 'true':'false', []],
           studiiSCED: [this.salariat.studiiSCED, [Validators.required]]
         });
-        this.defaultCheckboxValue = this.salariat.platitorDeImpozit === 'da' ? true : false;
-        this.defaultFunctiaDeBazaValue = this.salariat.functiaDeBaza === 'da' ? true : false;
-        this.defaultTicheteDeMasaValue = this.salariat.ticheteDeMasa === 'da' ? true : false;
+        this.defaultCheckboxValue = this.salariat.platitorDeImpozit;
+        this.defaultFunctiaDeBazaValue = this.salariat.functiaDeBaza;
+        this.defaultTicheteDeMasaValue = this.salariat.ticheteDeMasa;
         this.defaultFunctieDeConducere = this.salariat.functieDeConducere;
         this.candidatiGroup.get('codCOR').setValue(this.salariat.codCOR);
         this.disableNrContractSiAltele();

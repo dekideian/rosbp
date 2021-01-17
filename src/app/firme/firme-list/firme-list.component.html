@@ -29,11 +29,12 @@
 
     
         <div class="form-group row mb-12" style="margin-left:0px;">
-            <div class="col-md-4">
+            <div class="col-md-12">
                 <table class="table" *ngIf='firmeFiltrate && firmeFiltrate.length'>
                     <thead>
                         <tr>
                             <th style="font-size: medium;">Nume firma</th>
+                            <th style="font-size: medium;">Reprezentant firma</th>
                             <th style="font-size: medium;">Stergere</th>
                         </tr>        
                     </thead>
@@ -41,14 +42,17 @@
                         <tr *ngFor='let firma of firmeFiltrate'>
                             <td style="font-size: medium; vertical-align: middle;">
                                 <a 
-                                  [routerLink]="['/firme', firma.uid]"
+                                  [routerLink]="['/firme', firma.id]"
                                   [queryParams]="{ nume: firma.nume, 
                                     sediu: firma.sediu, regComert:firma.regComert, nr: firma.nr, CUI: firma.CUI, rep: firma.rep, telefon: firma.telefon }"  
                                        > {{firma.nume}}
                                   </a></td>  
                             <td>
-                              <button (click)="delete(firma.uid)" class="btn btn-outline-danger"
-                                style="width: 100%;" 
+                                {{firma.rep}}
+                            </td>
+                            <td>
+                              <button (click)="delete(firma.id)" class="btn btn-outline-danger"
+                                
                               
                               >
                                   <i class="fa fa-minus-circle" style="font-size: medium;"> Stergere</i>

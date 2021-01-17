@@ -87,14 +87,14 @@ export class FirmeService {
     );
   }
 
-  addClient(data: ContactInformation) {
-    this.afs.collection(`clienti`).add(Object.assign({}, data));
-    const newData = {
-      uid: data.email,
-      company: data.firmaUID
-    };
-    this.afs.doc(`users/${data.email}`).set(newData, {merge: true});
-  }
+  // addClient(data: ContactInformation) {
+  //   this.afs.collection(`clienti`).add(Object.assign({}, data));
+  //   const newData = {
+  //     uid: data.email,
+  //     company: data.firmaUID
+  //   };
+  //   this.afs.doc(`users/${data.email}`).set(newData, {merge: true});
+  // }
 
   addResponsible(data: ContactInformation) {
 
@@ -108,7 +108,7 @@ export class FirmeService {
   getFirme(): Observable<any> {
  
     return this.firme$.pipe(
-      tap(val => console.log('Returnam firme ')),
+      // tap(val => console.log('Returnam firme ')),
      catchError(this.handleError)
    );
   }  

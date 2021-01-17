@@ -1,10 +1,14 @@
 import { Injectable } from "@angular/core";
 import firebase from 'firebase/app';
 import { AngularFirestore, Query } from "@angular/fire/firestore";
-import { responsabiliConverter, utilizatoriConverter } from "./convertors";
+import { candidatiConverter, clientiConverter, firmeConverter, responsabiliConverter, utilizatoriConverter } from "./convertors";
 import { Utilizator } from "../models/utilizator.class";
 import { noUndefined } from "@angular/compiler/src/util";
 import { JsonpClientBackend } from "@angular/common/http";
+import { Firma } from "../models/Firma.class";
+import { Client } from "../models/Client.class";
+import { Candidat } from "../models/Candidat.class";
+import { Responsabil } from "../models/responsabil.class";
 
 
 @Injectable({
@@ -163,4 +167,90 @@ import { JsonpClientBackend } from "@angular/common/http";
         this.firestore.firestore.doc(`users/${utilizator.email}`).set({company:'rosbp'}, {merge: true});
         return utilizatorNou;
     }
+
+// Firme 
+    async getFirmaForId(firmaId): Promise<Firma> {
+        return this.getConvertedDocument(`firme`, firmaId, firmeConverter);
+    }
+
+    async getAllFirmeList():Promise<Firma[]> {        
+        return this.getConvertedDocuments('firme', firmeConverter);
+    }  
+
+    async removeFirma(firmaId: string) {
+        this.removeDocument(`firme`, firmaId);
+        // trebuie sa cautam responsabilii pt aceasta firma (array)
+        // - stergem toti responsabili cu aceasta firmaId
+        // functie pe responsabili. S-a sters cineva din responsabili ? .. verificam daca acel 
+        //email mai este responsabil sau client. Daca nu -> stergem si din users. 
+        
+        
+        // trbuie sa cautam clientii pt aceasta firma
+        // - stergem toti clientii cu aceasta firma id
+        // functie pe responsabili. S-a sters cineva din responsabili ? .. verificam daca acel 
+        //email mai este responsabil sau client. Daca nu -> stergem si din users. 
+        
+
+
+        // functie pe firma ..
+        // - s-a sters o firma?.. sterge din responsabili, clienti.. si poate si candidati. 
+        const query = this.filterByAttributeValue(`responsabili`, 'firmaUID', firmaId);
+        const snapshot = await query.withConverter(responsabiliConverter).get();        
+        snapshot.forEach(doc => {      
+            //Responsabilul este Userul.. daca a fost sters ca responsabil, il lasam inca angajat. 
+            // Daca vrea cineva mai mult, sterge de la angajati      
+          this.removeDocument(`responsabili`, doc.data().id);
+        });
+
+        const queryClienti = this.filterByAttributeValue(`clienti`, 'firmaUID', firmaId);
+        const snapshotClienti = await queryClienti.withConverter(clientiConverter).get();
+        snapshotClienti.forEach(doc => {  
+            //aici avem emailul omului..           
+            // luam mailul si il stergem , ii dam mumum:D
+            let email = doc.data().email;
+            this.removeDocument(`users`, email);
+          this.removeDocument(`clienti`, doc.data().id);
+        });
+
+        const queryCandidati = this.filterByAttributeValue(`candidati`, 'codFirma', firmaId);
+        const snapshotCandidati = await queryCandidati.withConverter(candidatiConverter).get();
+        snapshotCandidati.forEach(doc => {              
+          this.removeDocument(`candidati`, doc.data().id);
+        });    
+        //jita care esti, sterge si din storage + templates .. 
+        //cand stergi un utilizator, sterge-i si fisierele pe care le-a avut uploadate.     
+    }
+    //adaugare client - pt firma (hr)
+    async addClient(client: Partial<Client>) {        
+        console.log('teoretic adaugam client -> '+client)
+        let clientNou = await this.addConvertedDocument(`clienti`, client, clientiConverter);   
+        console.log('teoretic am adaugat client '+clientNou.id);
+        this.firestore.firestore.doc(`users/${client.email}`).set({company:client.firmaUID}, {merge: true});
+        return clientNou;
+    }
+    async addFirma(firma: Partial<Firma>) {                
+        let clientNou = await this.addConvertedDocument(`firme`, firma, firmeConverter);           
+        return clientNou;
+    }
+
+//candidati
+    async getCandidatiList(firmaUID: string):Promise<Candidat[]> {     
+        if(firmaUID==='admin') {
+            return this.getConvertedDocuments('candidati', candidatiConverter);
+        } else {
+            const query = this.filterByAttributeValue('candidati', 'codFirma', firmaUID);
+            return this.getFilteredConvertedDocuments(query, candidatiConverter);
+        }            
+    }   
+    
+//responsabili
+    async getResponsabiliList(email: string):Promise<Responsabil[]> {
+        const query = this.filterByAttributeValue('responsabili', 'email', email)
+        return this.getFilteredConvertedDocuments(query, responsabiliConverter);
+    }   
+//clienti
+    async getClientiList(email: string):Promise<Client[]> {
+        const query = this.filterByAttributeValue('clienti', 'email', email)
+        return this.getFilteredConvertedDocuments(query, clientiConverter);
+    }        
 }

@@ -1,5 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators, FormGroupDirective } from '@angular/forms';
+import { Client } from 'src/app/models/Client.class';
+import { FirestoreService } from 'src/app/services/firestore.services';
 import { ContactInformation } from '../contact-information';
 import { FirmeService } from '../firme.service';
 
@@ -14,7 +16,10 @@ export class AddClientComponent implements OnInit {
   @Input() numeFirma: string;
 
   myForm;
-  constructor(private firmeService: FirmeService) {
+  constructor(
+    private firestoreService: FirestoreService,
+    private firmeService: FirmeService
+    ) {
     this.myForm =  new FormGroup({
       name: new FormControl('', [Validators.required]),
       email: new FormControl('', [Validators.required, Validators.email])
@@ -29,12 +34,18 @@ export class AddClientComponent implements OnInit {
   }
 
   submit(formDirective: FormGroupDirective) {
+    //to remove ContactInformation
     const contactInformation = new ContactInformation();
-    contactInformation.nume = this.myForm.get('name').value;
-    contactInformation.email = this.myForm.get('email').value;
-    contactInformation.firmaUID = this.firmaUID;
-    contactInformation.numeFirma = this.numeFirma;
-    this.firmeService.addClient(contactInformation);
+    let newClient: Client = new Client({
+      nume: this.myForm.get('name').value,
+      email: this.myForm.get('email').value,
+      firmaUID: this.firmaUID,
+      numeFirma: this.numeFirma
+    });
+    console.log('Adaugam client nou '+newClient);
+    this.firestoreService.addClient(newClient);
+    
+    //this.firmeService.addClient(contactInformation);
     this.myForm.reset();
     formDirective.resetForm();
   }

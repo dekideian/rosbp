@@ -1,9 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
-
-
-import { UtilizatoriService } from '../utilizatori.service';
 import { FirestoreService } from 'src/app/services/firestore.services';
 import { Utilizator } from 'src/app/models/utilizator.class';
 
@@ -19,7 +16,6 @@ export class UtilizatoriAdaugareComponent implements OnInit {
   constructor(
     private firestoreService: FirestoreService,
     private router: Router,
-    private utilizatoriService: UtilizatoriService,
     private fb: FormBuilder
     ) { }
 
