@@ -178,13 +178,13 @@ export class CandidatiEditareComponent implements OnInit {
   }
 
   disableNrContractSiAltele() {
-    this.candidatiGroup.get('nrContract').disable();
-    this.candidatiGroup.get('nrInregCerereDeAngajare').disable();
-    this.candidatiGroup.get('nrInregDeclaratieFunctieDeBaza').disable();
-    this.candidatiGroup.get('nrInregDeclaratiePersoaneInIntretinere').disable();
-    this.candidatiGroup.get('nrInregDeclaratieCasaDeSanatate').disable();
-    this.candidatiGroup.get('nrInregDeclLuareLaCunostintaROI').disable();
-    this.candidatiGroup.get('nrInregPlanificareaZilelorDeCO').disable();
+   // this.candidatiGroup.get('nrContract').disable();
+    // this.candidatiGroup.get('nrInregCerereDeAngajare').disable();
+    // this.candidatiGroup.get('nrInregDeclaratieFunctieDeBaza').disable();
+    // this.candidatiGroup.get('nrInregDeclaratiePersoaneInIntretinere').disable();
+    // this.candidatiGroup.get('nrInregDeclaratieCasaDeSanatate').disable();
+    // this.candidatiGroup.get('nrInregDeclLuareLaCunostintaROI').disable();
+    // this.candidatiGroup.get('nrInregPlanificareaZilelorDeCO').disable();
   }
 
   // Receive user input and send to search method**
@@ -207,6 +207,15 @@ export class CandidatiEditareComponent implements OnInit {
 
       this.candidatiGroup.get('parolaWeb').setValue(newPass);
     }
+  }
+
+  setNrInregCerereDeAngajare() {
+    let val = +this.candidatiGroup.get('nrInregCerereDeAngajare').value;  
+    this.candidatiGroup.get('nrInregDeclaratieFunctieDeBaza').setValue(val+1);
+    this.candidatiGroup.get('nrInregDeclaratiePersoaneInIntretinere').setValue(val+2);
+    this.candidatiGroup.get('nrInregDeclaratieCasaDeSanatate').setValue(val+3);
+    this.candidatiGroup.get('nrInregDeclLuareLaCunostintaROI').setValue(val+4);
+    this.candidatiGroup.get('nrInregPlanificareaZilelorDeCO').setValue(val+5);
   }
 
   platitorDeImpozit(): string {

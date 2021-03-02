@@ -254,23 +254,28 @@ export class CandidatiAdaugareComponent  implements OnInit {
     
     this.disableNrContractSiAltele();
     
-    let addMessage = firebase.functions().httpsCallable('readMessage');
-    addMessage({})
-    .then(result=>{
-      let nr = result["data"];
-      console.log('Nr este '+nr)
-      this.nextNrContract = result["data"];   
-      this.candidatiGroup.get('nrContract').enable();
-      this.setareNrContractSiAlteNr(nr);
+//TODO make this nicer
+    this.candidatiGroup.get('nrContract').enable();
+    this.candidatiGroup.get('nrContract').setValue('');
+     // this.setareNrContractSiAlteNr("");
+
+    // let addMessage = firebase.functions().httpsCallable('readMessage');
+    // addMessage({})
+    // .then(result=>{
+    //   let nr = result["data"];
+    //   console.log('Nr este '+nr)
+    //   this.nextNrContract = result["data"];   
+    //   this.candidatiGroup.get('nrContract').enable();
+    //   this.setareNrContractSiAlteNr(nr);
       
-    }).catch((error) => {
-      // Getting the Error details.
+    // }).catch((error) => {
+    //   // Getting the Error details.
       
-      var code = error.code;
-      var message = error.message;
-      var details = error.details;
-      console.log('Eroare ' + error);
-    });
+    //   var code = error.code;
+    //   var message = error.message;
+    //   var details = error.details;
+    //   console.log('Eroare ' + error);
+    // });
   }
 
   //TODO on key press.. any other value added for nrContract should update the rest..
@@ -291,14 +296,12 @@ export class CandidatiAdaugareComponent  implements OnInit {
   }
 
 setNrInregCerereDeAngajare() {
-  let val =  this.candidatiGroup.get('nrInregCerereDeAngajare').value;
-  
+  let val = +this.candidatiGroup.get('nrInregCerereDeAngajare').value;  
   this.candidatiGroup.get('nrInregDeclaratieFunctieDeBaza').setValue(val+1);
   this.candidatiGroup.get('nrInregDeclaratiePersoaneInIntretinere').setValue(val+2);
   this.candidatiGroup.get('nrInregDeclaratieCasaDeSanatate').setValue(val+3);
   this.candidatiGroup.get('nrInregDeclLuareLaCunostintaROI').setValue(val+4);
   this.candidatiGroup.get('nrInregPlanificareaZilelorDeCO').setValue(val+5);
-
 }
   goBack() {
     this.router.navigate(['/candidati']);
@@ -307,14 +310,15 @@ setNrInregCerereDeAngajare() {
   save() {
     // this.auth.userCompany
     this.isLoading=true;
-    this.candidatiGroup.disable();
-    console.log('Am trimis val '+this.candidatiGroup.get('nrContract').value)
-    let writeMessage = firebase.functions().httpsCallable('writeMessage');
-    writeMessage({count: this.candidatiGroup.get('nrContract').value})
-    .then(result=>{
-      this.candidatiGroup.enable();
-      let nr = result["data"];
-      console.log('Nr returnat este '+nr)
+    // this.candidatiGroup.disable();
+    // console.log('Am trimis val '+this.candidatiGroup.get('nrContract').value)
+    // let writeMessage = firebase.functions().httpsCallable('writeMessage');
+    // writeMessage({count: this.candidatiGroup.get('nrContract').value})
+    // .then(result=>{
+      // this.candidatiGroup.enable();
+      //let nr = result["data"];
+      let nr = this.candidatiGroup.get('nrContract').value;
+      // console.log('Nr returnat este '+nr)
       this.setareNrContractSiAlteNr(nr);
       const data: ICandidatLocal = {
         uid: null,
@@ -394,18 +398,18 @@ setNrInregCerereDeAngajare() {
         telefonFirma: this.telefonFirma,
       };
       this.salariatiService.addCandidat(data);
-      console.log('Salariat ', JSON.stringify(data));
+      // console.log('Salariat ', JSON.stringify(data));
       this.isLoading = false;
       this.router.navigate(['/candidati']);
-    }).catch((error) => {
-      // Getting the Error details.
-      this.candidatiGroup.enable();
-      this.isLoading = false;
-      var code = error.code;
-      var message = error.message;
-      var details = error.details;
-      console.log('Eroare ' + error);
-    });
+    // }).catch((error) => {
+    //   // Getting the Error details.
+    //   this.candidatiGroup.enable();
+    //   this.isLoading = false;
+    //   var code = error.code;
+    //   var message = error.message;
+    //   var details = error.details;
+    //   console.log('Eroare ' + error);
+    // });
 
     
   }

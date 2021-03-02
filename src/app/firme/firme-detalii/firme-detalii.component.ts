@@ -44,7 +44,7 @@ export class FirmeDetaliiComponent implements OnInit {
       this.rep = params.rep;
       this.telefon = params.telefon;
   });
-  console.log('acu chemam');
+  // console.log('acu chemam');
     this.auth.callFunction();
     this.filesService.getTemplates(this.currentId).subscribe({
       next: templates => {

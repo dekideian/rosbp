@@ -978,6 +978,7 @@
                                         <input id="nrInregCerereDeAngajare" type = "text" 
                                             matInput
                                             formControlName='nrInregCerereDeAngajare'
+                                            (change)="setNrInregCerereDeAngajare()"
                                             [ngClass]="{'is-invalid': (candidatiGroup.get('nrInregCerereDeAngajare').touched ||
                                                             candidatiGroup.get('nrInregCerereDeAngajare').dirty) &&
                                                             !candidatiGroup.get('nrInregCerereDeAngajare').valid }"
