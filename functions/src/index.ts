@@ -20,7 +20,7 @@ exports.readMessage = functions.https.onCall((data,context)=>{
       });
 });
 
-exports. = functions.https.onCall((data,context)=>{
+exports.writeMessage = functions.https.onCall((data,context)=>{
     
     console.log('Write message..'+data.count)
     let receivedNr = data.count;
