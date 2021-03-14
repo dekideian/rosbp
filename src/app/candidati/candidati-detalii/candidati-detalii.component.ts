@@ -463,11 +463,15 @@ function getMonthsBetween(date1,date2,roundUpFractionalMonths)
 };
 
 function getDate(dateAsString) {
-  let today = new Date(dateAsString);
-  var dd = String(today.getDate()).padStart(2, '0');
-  var mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
-  var yyyy = today.getFullYear();
-  
-  return mm + '/' + dd + '/' + yyyy;
+  if(dateAsString && !isNaN(new Date(dateAsString).getTime())) {
+    let today = new Date(dateAsString);     
+    var dd = String(today.getDate()).padStart(2, '0');    
+    var mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
+    var yyyy = today.getFullYear();
+    
+    return mm + '/' + dd + '/' + yyyy;
+  } else {
+    return '-';
+  }
 }
 
