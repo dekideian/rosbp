@@ -85,11 +85,16 @@ export class CandidatiDetaliiComponent implements OnInit {
   } 
   async downloadCimGenerat() {    
     let art = '';
-    if(this.salariat.artContractDeterminat==="true") {
-      art = 'Art 83 lit h) in alte cazuri prevazute expres de legi speciale ori pentru desfasurarea unor lucrari, proiecte sau programe.';
+
+    if(this.salariat.dataAngajareNedeterminat !== '-') {
+      art = '';
     } else {
-      art = 'Art 83 lit b) cresterea si/sau modificarea temporara a structurii activitatii angajatorului.';  
-    }
+      if(this.salariat.artContractDeterminat==="true") {
+        art = 'conform Art 83 lit h) in alte cazuri prevazute expres de legi speciale ori pentru desfasurarea unor lucrari, proiecte sau programe.';
+      } else {
+        art = 'conform Art 83 lit b) cresterea si/sau modificarea temporara a structurii activitatii angajatorului.';  
+      }
+    }    
 
     const data = {
       posts: [
@@ -98,7 +103,7 @@ export class CandidatiDetaliiComponent implements OnInit {
             prenumeNumeSalariat: this.salariat.prenumeSalariat+' '+this.salariat.numeSalariat,
             domiciliul: this.salariat.localitate + ', strada '+ this.salariat.strada+ ' nr '+this.salariat.numar+', bloc '+this.salariat.bloc+', scara '+this.salariat.scara + ', etaj '+this.salariat.etaj+', apartament '+this.salariat.apartament+', judetul '+this.salariat.judet+', '+this.salariat.tara,
             nrContract: this.salariat.nrContract,
-            dataContract: this.salariat.dataContract,
+            dataContract: getDate(this.salariat.dataContract),
             numeSalariat: this.salariat.numeSalariat,
             prenumeSalariat: this.salariat.prenumeSalariat,
             marca: this.salariat.marca,
@@ -115,14 +120,14 @@ export class CandidatiDetaliiComponent implements OnInit {
             serieCI: this.salariat.serieCI,
             numarCI: this.salariat.numarCI,
             unitateaCareAEliberatCI: this.salariat.unitateaCareAEliberatCI,
-            dataEliberareCI: this.salariat.dataEliberareCI,
-            dataExpirareCI: this.salariat.dataExpirareCI,
+            dataEliberareCI: getDate(this.salariat.dataEliberareCI),
+            dataExpirareCI: getDate(this.salariat.dataExpirareCI),
             cnp: this.salariat.cnp,
-            dataAngajare: this.salariat.dataAngajare,
-            dataAngajareNedeterminat: this.salariat.dataAngajareNedeterminat,
+            dataAngajare: getDate(this.salariat.dataAngajare),
+            dataAngajareNedeterminat: getDate(this.salariat.dataAngajareNedeterminat),
             nrLuniSaptamaniAni: this.salariat.nrLuniSaptamaniAni,
-            dataInceputCimDeterminat: this.salariat.dataInceputCimDeterminat,
-            dataSfarsitCimDeterminat: this.salariat.dataSfarsitCimDeterminat,
+            dataInceputCimDeterminat: getDate(this.salariat.dataInceputCimDeterminat),
+            dataSfarsitCimDeterminat: getDate(this.salariat.dataSfarsitCimDeterminat),
             departament: this.salariat.departament,
             locDeMunca: this.salariat.locDeMunca,
             functia: this.salariat.functia,
@@ -223,7 +228,7 @@ export class CandidatiDetaliiComponent implements OnInit {
             prenumeNumeSalariat: this.salariat.prenumeSalariat+' '+this.salariat.numeSalariat,
             domiciliul: this.salariat.localitate + ', strada '+ this.salariat.strada+ ' nr '+this.salariat.numar+', bloc '+this.salariat.bloc+', scara '+this.salariat.scara + ', etaj '+this.salariat.etaj+', apartament '+this.salariat.apartament+', judetul '+this.salariat.judet+', '+this.salariat.tara,
             nrContract: this.salariat.nrContract,
-            dataContract: this.salariat.dataContract,
+            dataContract: getDate(this.salariat.dataContract),
             numeSalariat: this.salariat.numeSalariat,
             prenumeSalariat: this.salariat.prenumeSalariat,
             marca: this.salariat.marca,
@@ -240,16 +245,16 @@ export class CandidatiDetaliiComponent implements OnInit {
             serieCI: this.salariat.serieCI,
             numarCI: this.salariat.numarCI,
             unitateaCareAEliberatCI: this.salariat.unitateaCareAEliberatCI,
-            dataEliberareCI: this.salariat.dataEliberareCI,
-            dataExpirareCI: this.salariat.dataExpirareCI,
+            dataEliberareCI: getDate(this.salariat.dataEliberareCI),
+            dataExpirareCI: getDate(this.salariat.dataExpirareCI),
             cnp: this.salariat.cnp,
-            dataAngajare: this.salariat.dataAngajare,
-            dataAngajareNedeterminat: this.salariat.dataAngajareNedeterminat,
+            dataAngajare: getDate(this.salariat.dataAngajare),
+            dataAngajareNedeterminat: getDate(this.salariat.dataAngajareNedeterminat),
             nrLuniSaptamaniAni: this.salariat.nrLuniSaptamaniAni,
-            dataInceputCimDeterminat: this.salariat.dataInceputCimDeterminat,
-            dataSfarsitCimDeterminat: this.salariat.dataSfarsitCimDeterminat,
-            dac: this.salariat.dataInceputCimDeterminat,
-            dsc: this.salariat.dataSfarsitCimDeterminat,
+            dataInceputCimDeterminat: getDate(this.salariat.dataInceputCimDeterminat),
+            dataSfarsitCimDeterminat: getDate(this.salariat.dataSfarsitCimDeterminat),
+            dac: getDate(this.salariat.dataInceputCimDeterminat),
+            dsc: getDate(this.salariat.dataSfarsitCimDeterminat),
             departament: this.salariat.departament,
             locDeMunca: this.salariat.locDeMunca,
             functia: this.salariat.functia,
@@ -337,7 +342,7 @@ export class CandidatiDetaliiComponent implements OnInit {
 
     const data: CandidatCSV[] = [{
       nrContract: this.salariat.nrContract,
-      dataContract: this.salariat.dataContract,
+      dataContract: getDate(this.salariat.dataContract),
       numeSalariat: this.salariat.numeSalariat,
       prenumeSalariat: this.salariat.prenumeSalariat,
       marca: this.salariat.marca,
@@ -354,14 +359,14 @@ export class CandidatiDetaliiComponent implements OnInit {
       serieCI: this.salariat.serieCI,
       numarCI: this.salariat.numarCI,
       unitateaCareAEliberatCI: this.salariat.unitateaCareAEliberatCI,
-      dataEliberareCI: this.salariat.dataEliberareCI,
-      dataExpirareCI: this.salariat.dataExpirareCI,
+      dataEliberareCI: getDate(this.salariat.dataEliberareCI),
+      dataExpirareCI: getDate(this.salariat.dataExpirareCI),
       cnp: "_"+this.salariat.cnp+"",
-      dataAngajare: this.salariat.dataAngajare,
-      dataAngajareNedeterminat: this.salariat.dataAngajareNedeterminat,
+      dataAngajare: getDate(this.salariat.dataAngajare),
+      dataAngajareNedeterminat: getDate(this.salariat.dataAngajareNedeterminat),
       nrLuniSaptamaniAni: this.salariat.nrLuniSaptamaniAni,
-      dataInceputCimDeterminat: this.salariat.dataInceputCimDeterminat,
-      dataSfarsitCimDeterminat: this.salariat.dataSfarsitCimDeterminat,
+      dataInceputCimDeterminat: getDate(this.salariat.dataInceputCimDeterminat),
+      dataSfarsitCimDeterminat: getDate(this.salariat.dataSfarsitCimDeterminat),
       departament: this.salariat.departament,
       locDeMunca: this.salariat.locDeMunca,
       functia: this.salariat.functia,
@@ -456,3 +461,13 @@ function getMonthsBetween(date1,date2,roundUpFractionalMonths)
 
     return (inverse?-1:1)*(yearsDifference*12+monthsDifference+monthCorrection);
 };
+
+function getDate(dateAsString) {
+  let today = new Date(dateAsString);
+  var dd = String(today.getDate()).padStart(2, '0');
+  var mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
+  var yyyy = today.getFullYear();
+  
+  return mm + '/' + dd + '/' + yyyy;
+}
+
