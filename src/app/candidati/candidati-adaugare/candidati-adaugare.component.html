@@ -593,6 +593,30 @@
                                         </mat-form-field>
                                     </div> 
                                 </div>
+                                <div class="form-group row mb-12"> 
+                                    <div class="col-md-12" [hidden]="!this.candidatiGroup.get('contractDeterminat').value">
+                                        <mat-radio-group
+                                        id = 'artContractDeterminatId'
+                                        name = 'artContractDeterminatName'
+                                        layout="column"
+                                        color="primary"
+                                        aria-labelledby="example-radio-group-label"
+                                        class="example-radio-group"
+                                        formControlName='artContractDeterminat'
+                                        >
+                                        <mat-radio-button class="example-radio-button" [value]="false" [checked]="this.candidatiGroup.get('artContractDeterminat').value===false">
+                                            Art 83 lit b) cresterea si/sau modificarea temporara a structurii activitatii angajatorului &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+                                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                        </mat-radio-button>
+                                        <br>
+
+                                        <mat-radio-button class="example-radio-button"  [value]="true" [checked]="this.candidatiGroup.get('artContractDeterminat').value===true">
+                                            Art 83 lit h) in alte cazuri prevazute expres de legi speciale ori pentru desfasurarea unor lucrari, proiecte sau programe. 
+                                        </mat-radio-button>
+                                        </mat-radio-group>
+                                    </div>
+                                </div>
                             </div>
                         </div>
 <!-- Locul si felul muncii -->

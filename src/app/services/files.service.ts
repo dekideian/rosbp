@@ -73,12 +73,20 @@ export class FilesService {
 
   getTemplates(codFirma: string): Observable<TemplateDetails[]> {    
     return this.templatesDinStorage$.pipe(
-      map(ob => {
+      map(ob => {        
          return ob.filter(templateEntry => templateEntry.codFirma === codFirma);
       }),
       catchError(this.handleError)
     );
   }
+  getAnexeTemplate(): Observable<TemplateDetails[]> {    
+    return this.templatesDinStorage$.pipe(
+      map(ob => {        
+         return ob.filter(templateEntry => templateEntry.codFirma ==='generic');
+      }),
+      catchError(this.handleError)
+    );
+  }  
 
   getClienti(firmaUID: string): Observable<ContactInformation[]> {    
     return this.clienti$.pipe(

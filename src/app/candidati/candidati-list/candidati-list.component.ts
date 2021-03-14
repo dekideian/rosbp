@@ -50,9 +50,9 @@ export class CandidatiListComponent implements OnInit {
 
   ngOnInit(): void {
    
-  console.log('Auth email '+this.auth.userEmail);
+  // console.log('Auth email '+this.auth.userEmail);
     if(this.auth.isAdmin()){ 
-      console.log('we have an admin')
+      // console.log('we have an admin')
       this.initializeCandidatiStateAdmin();
       // this.firmeService.getFirme().subscribe({
       //   next: firme => {
@@ -84,7 +84,7 @@ export class CandidatiListComponent implements OnInit {
       // });
     }
     else if (this.auth.isRosBpEmployee()){
-      console.log('we have a rosbp employee '+this.auth.userEmail)
+      // console.log('we have a rosbp employee '+this.auth.userEmail)
       this.initializeCandidatiStateRosBP(this.auth.userEmail);
       // this.firmeService.getContactInfoIfResponsible(this.auth.userEmail).subscribe({
       //   next: contactInfo => {
@@ -101,7 +101,7 @@ export class CandidatiListComponent implements OnInit {
       //   }
       // });
     } else if (this.auth.isAnyEmployee()) {
-      console.log('we have a client '+this.auth.userEmail)
+      // console.log('we have a client '+this.auth.userEmail)
       this.initializeCandidatiStateHR(this.auth.userEmail);
       // this.firmeService.getContactInfoIfClient(this.auth.userEmail).subscribe({
       //   next: contactInfo => {
@@ -130,7 +130,7 @@ export class CandidatiListComponent implements OnInit {
     const firme:Firma[] = await this.firestoreService.getAllFirmeList();
     firme.sort((a, b) => a.nume < b.nume ? -1 : (a.nume > b.nume ? 1 : 0));
     firme.map(firma=>{
-      console.log('firma '+firma.nume)
+      // console.log('firma '+firma.nume)
       const newContactInformation = this.createContactInformationForThisFirma(firma);                        
       this.listOfAuthorizedContacts.push(newContactInformation);
 
@@ -143,7 +143,7 @@ export class CandidatiListComponent implements OnInit {
     // get candidati pt toate firmele la care acest user e responsabil. 
     const responsabilitati: Responsabil[] = await this.firestoreService.getResponsabiliList(authUserEmail);
     responsabilitati.map(responsabil=>{
-      console.log('responsabil pt'+responsabil.firmaUID);
+      // console.log('responsabil pt'+responsabil.firmaUID);
       this.getFirmaForFirmaId(responsabil.firmaUID);
       this.getCandidatiForFirmaId(responsabil.firmaUID);
     });   
@@ -159,7 +159,7 @@ export class CandidatiListComponent implements OnInit {
       // get candidati pt toate firmele la care acest user e responsabil. 
     const clienti: Client[] = await this.firestoreService.getClientiList(authUserEmail);
     clienti.map(client=>{
-      console.log('client pt'+client.firmaUID);
+      // console.log('client pt'+client.firmaUID);
       this.getFirmaForFirmaId(client.firmaUID);
       this.getCandidatiForFirmaId(client.firmaUID);
     });   

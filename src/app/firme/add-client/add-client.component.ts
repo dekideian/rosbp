@@ -42,7 +42,7 @@ export class AddClientComponent implements OnInit {
       firmaUID: this.firmaUID,
       numeFirma: this.numeFirma
     });
-    console.log('Adaugam client nou '+newClient);
+    // console.log('Adaugam client nou '+newClient);
     this.firestoreService.addClient(newClient);
     
     //this.firmeService.addClient(contactInformation);

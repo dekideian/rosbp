@@ -15,8 +15,7 @@ export class CandidatiDetailsGuard implements CanActivate {
       const param = next.paramMap.get('id');
       const id = +param;
       if (isNaN(id) || id < 1) {
-        alert(`Invalid product id ${param}`);
-        console.log('oops');
+        alert(`Invalid product id ${param}`);        
         const dialogConfig = new MatDialogConfig();
         dialogConfig.disableClose = true;
         dialogConfig.autoFocus = true;

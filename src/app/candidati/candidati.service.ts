@@ -35,7 +35,7 @@ export class SalariatiService {
          return ob.filter(bla => bla.uid === currentId);
       }),
       mergeAll(),
-      tap(val => console.log('Avem 1 salariati ', JSON.stringify(val.uid))),
+      // tap(val => console.log('Avem 1 salariati ', JSON.stringify(val.uid))),
       catchError(this.handleError)
     );
   }
@@ -43,23 +43,23 @@ export class SalariatiService {
   getCandidatiForFirmaUID(firmaUID: string): Observable<ICandidatLocal[]> {
     return this.salariati$.pipe(
        map(candidateObject => {
-         console.log('nr total candidati '+candidateObject.length  )
+        //  console.log('nr total candidati '+candidateObject.length  )
          return candidateObject.filter(oneCandidate => {
-           console.log('acest candidat are cod firma:'+oneCandidate.codFirma + ', iar noi cautam '+firmaUID );
+          //  console.log('acest candidat are cod firma:'+oneCandidate.codFirma + ', iar noi cautam '+firmaUID );
           if(oneCandidate.codFirma===firmaUID)
             return true;
           return false;
         
         })
        }),
-       tap(val => console.log('Returnam salariati ')),
+      //  tap(val => console.log('Returnam salariati ')),
       catchError(this.handleError)
     );
   }
 
   getCandidati(): Observable<any> {
     return this.salariati$.pipe(
-       tap(val => console.log('Returnam salariati ')),
+      //  tap(val => console.log('Returnam salariati ')),
       catchError(this.handleError)
     );
   }

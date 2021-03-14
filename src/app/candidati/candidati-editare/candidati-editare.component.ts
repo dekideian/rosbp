@@ -34,7 +34,9 @@ export class CandidatiEditareComponent implements OnInit {
     private salariatiService: SalariatiService) { }
 
   ngOnInit(): void {
-    this.atributCandidat = CANDIDAT_ATRIBUT;
+
+    
+    this.atributCandidat = CANDIDAT_ATRIBUT;    
     this.listaJudete = [
       "Alba",
       "Arad",
@@ -119,13 +121,15 @@ export class CandidatiEditareComponent implements OnInit {
           nrLuniSaptamaniAni: [this.salariat.nrLuniSaptamaniAni, [Validators.required]],
           dataInceputCimDeterminat: [this.salariat.dataInceputCimDeterminat, [Validators.required]],
           dataSfarsitCimDeterminat: [this.salariat.dataSfarsitCimDeterminat, [Validators.required]],
-          contractDeterminat: [this.salariat.dataAngajareNedeterminat !== '-' ? false : true, []],
+          contractDeterminat: [this.salariat.dataAngajareNedeterminat !== '-' ? false : true, []],          
+          artContractDeterminat: [this.salariat.artContractDeterminat, []],
 
           departament: [this.salariat.departament, [Validators.required]],
           locDeMunca: [this.salariat.locDeMunca, [Validators.required]],
           codCOR: [this.salariat.codCOR, [Validators.required]],
           functieDeConducere: [this.salariat.functieDeConducere],
-          normaIntreaga: ['true', []],
+          normaIntreaga: [this.salariat.normaIntreagaDeLucruOreZi !== '-' ? true : false, []],
+          
           normaIntreagaDeLucruOreZi: [this.salariat.normaIntreagaDeLucruOreZi, [Validators.required]],
           normaIntreagaDeLucruOreSapt: [this.salariat.normaIntreagaDeLucruOreSapt, [Validators.required]],
           normaPartiala: [this.salariat.normaPartiala, [Validators.required]],
@@ -168,7 +172,8 @@ export class CandidatiEditareComponent implements OnInit {
         this.defaultFunctieDeConducere = this.salariat.functieDeConducere;
         this.candidatiGroup.get('codCOR').setValue(this.salariat.codCOR);
         this.disableNrContractSiAltele();
-        console.log('Salariatul are numele ' + this.salariat.codCOR + ' - ' + this.salariat.functia);
+        // console.log('Norma intreaga ' + this.candidatiGroup.get('normaIntreaga').value);
+        // console.log('Salariatul are numele ' + this.salariat.codCOR + ' - ' + this.salariat.functia);
       },
       error: err => {
         this.errorMessage = err;
@@ -189,7 +194,7 @@ export class CandidatiEditareComponent implements OnInit {
 
   // Receive user input and send to search method**
   onKey(value) {
-    console.log('Cautam dupa valoarea ' + value)
+    // console.log('Cautam dupa valoarea ' + value)
     this.coduriCorSelectate = this.search(value);
   }
   // Filter the functions list and send back to populate the selected function**
@@ -351,7 +356,9 @@ export class CandidatiEditareComponent implements OnInit {
   }
 
   durataContractValid() {
+    // console.log('durata contract valid '+ this.candidatiGroup.get('contractDeterminat').value+ ' data ang valid? : '+this.isValid('dataAngajare'))
     if (this.candidatiGroup.get('contractDeterminat').value) {
+      
       if (this.isValid('dataAngajare') &&
         this.isValid('nrLuniSaptamaniAni') &&
         this.isValid('dataInceputCimDeterminat') &&
@@ -582,13 +589,15 @@ export class CandidatiEditareComponent implements OnInit {
       locDeMunca: this.candidatiGroup.get('locDeMunca').value,
       functia: functieCorAles,
       codCOR: codCorAles,
-      functieDeConducere: this.candidatiGroup.get('functieDeConducere').value,
+      functieDeConducere: this.candidatiGroup.get('functieDeConducere').value,      
       normaIntreagaDeLucruOreZi: this.candidatiGroup.get('normaIntreaga').value ? this.candidatiGroup.get('normaIntreagaDeLucruOreZi').value : '-',
       normaIntreagaDeLucruOreSapt: this.candidatiGroup.get('normaIntreaga').value ? this.candidatiGroup.get('normaIntreagaDeLucruOreSapt').value : '-',
       normaPartiala: this.candidatiGroup.get('normaIntreaga').value ? '-' : this.candidatiGroup.get('normaPartiala').value,
       repartizareProgramPtNormaPartiala: this.candidatiGroup.get('normaIntreaga').value ? '-' : this.candidatiGroup.get('repartizareProgramPtNormaPartiala').value,
       repartizareTimpMunca: this.candidatiGroup.get('normaIntreaga').value ? '-' : this.candidatiGroup.get('repartizareTimpMunca').value,
       tipIntervalRepartizare: this.candidatiGroup.get('normaIntreaga').value ? '-' : this.candidatiGroup.get('tipIntervalRepartizare').value,
+
+      artContractDeterminat: this.candidatiGroup.get('contractDeterminat').value?this.candidatiGroup.get("artContractDeterminat").value:null,
 
       durataConcediuDeOdihna: this.candidatiGroup.get('durataConcediuDeOdihna').value,
       salariulDeBazaBrut: this.candidatiGroup.get('salariulDeBazaBrut').value,

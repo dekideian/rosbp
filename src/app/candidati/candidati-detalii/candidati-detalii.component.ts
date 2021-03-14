@@ -20,6 +20,7 @@ export class CandidatiDetaliiComponent implements OnInit {
   files: FileDetails[];
   errorMessage: string;
   templateDetails: TemplateDetails;
+  anexeDetails: TemplateDetails;
   selectedFile: File = null;
   fb;
   downloadURL: Observable<string>;
@@ -34,21 +35,28 @@ export class CandidatiDetaliiComponent implements OnInit {
 
   ngOnInit(): void {
     this.currentId = this.route.snapshot.paramMap.get('id');
-    console.log('Current id salariat: ' + this.currentId);
+    // console.log('Current id salariat: ' + this.currentId);
     this.candidatiService.getCandidat(this.currentId).subscribe({
       next: candidat => {
 
-        this.salariat = candidat;
-        console.log('Angajatul are cod firma: '+candidat?.codFirma)
+        this.salariat = candidat;        
         this.filesService.getTemplates(candidat?.codFirma).subscribe({
-          next: files => {
+          next: files => {            
             this.templateDetails = files[0];
           },
           error: err => {
             this.errorMessage = err;
           }
-        });
-
+        });   
+        
+        this.filesService.getAnexeTemplate().subscribe({
+          next: files => {            
+            this.anexeDetails = files[0];
+          },
+          error: err => {
+            this.errorMessage = err;
+          }
+        });   
       },
       error: err => {
         this.errorMessage = err;
@@ -70,16 +78,23 @@ export class CandidatiDetaliiComponent implements OnInit {
     fileDetails.salariat  = this.currentId;
     this.filesService.addFile(fileDetails);
 
-    console.log('User just uploaded: ' + fileDetails.documentUrl + ' and ' + fileDetails.nume);
+    // console.log('User just uploaded: ' + fileDetails.documentUrl + ' and ' + fileDetails.nume);
   }
   goBack() {
     this.router.navigate(['/candidati']);
-  }
-  async downloadCimGenerat() {
-    console.log('hah');
+  } 
+  async downloadCimGenerat() {    
+    let art = '';
+    if(this.salariat.artContractDeterminat==="true") {
+      art = 'Art 83 lit h) in alte cazuri prevazute expres de legi speciale ori pentru desfasurarea unor lucrari, proiecte sau programe.';
+    } else {
+      art = 'Art 83 lit b) cresterea si/sau modificarea temporara a structurii activitatii angajatorului.';  
+    }
+
     const data = {
       posts: [
           {
+            articolContractDeterminat: art,            
             prenumeNumeSalariat: this.salariat.prenumeSalariat+' '+this.salariat.numeSalariat,
             domiciliul: this.salariat.localitate + ', strada '+ this.salariat.strada+ ' nr '+this.salariat.numar+', bloc '+this.salariat.bloc+', scara '+this.salariat.scara + ', etaj '+this.salariat.etaj+', apartament '+this.salariat.apartament+', judetul '+this.salariat.judet+', '+this.salariat.tara,
             nrContract: this.salariat.nrContract,
@@ -162,6 +177,133 @@ export class CandidatiDetaliiComponent implements OnInit {
     this.saveFile('CIM_' +this.salariat.prenumeSalariat+"_"+this.salariat.numeSalariat+"_"+ this.templateDetails.nume, doc);
 
   }
+  
+  
+
+  async downloadAnexeGenerate() {
+    // console.log('download anexe');
+
+    let tc = '';
+    let restPerioada = '';
+    let anexaTipContract='';
+    let anexaOreZi=''; //oz
+    if( this.salariat.normaIntreagaDeLucruOreZi !== '-' ) {
+      //norma intreaga
+      anexaOreZi = this.salariat.normaIntreagaDeLucruOreZi;  
+    } else {
+      //norma partiala
+      anexaOreZi = this.salariat.normaPartiala;
+    }
+
+    if(this.salariat.dataAngajareNedeterminat!=='-'){
+      // console.log('avem nedeterminat');
+      tc = 'Nedeterminata'
+      anexaTipContract = 'Nedeterminata'
+      restPerioada = this.salariat.dataAngajareNedeterminat;
+    } else {
+      let dic = new Date(this.salariat.dataInceputCimDeterminat);
+      let dfc = new Date(this.salariat.dataSfarsitCimDeterminat);
+      // console.log('avem determinat');
+      // console.log('Data inceput contract '+this.salariat.dataInceputCimDeterminat);
+      // console.log('Data sf contract '+this.salariat.dataSfarsitCimDeterminat);
+      // console.log('Durata muncii '+(dfc.getDate()-dic.getDate()));
+      let months = getMonthsBetween(dic,dfc, true);
+      // console.log('Durata muncii2 '+months);
+      tc = 'Determinata'
+      anexaTipContract = 'Determinata '+months+ ' luni'
+      restPerioada = this.salariat.dataInceputCimDeterminat+' ('+months+' luni, pana la data de '+this.salariat.dataSfarsitCimDeterminat+')';
+    }       
+
+    const data = {
+      posts: [
+          {
+            tc: tc,
+            az: anexaOreZi,
+            rp: restPerioada,
+            prenumeNumeSalariat: this.salariat.prenumeSalariat+' '+this.salariat.numeSalariat,
+            domiciliul: this.salariat.localitate + ', strada '+ this.salariat.strada+ ' nr '+this.salariat.numar+', bloc '+this.salariat.bloc+', scara '+this.salariat.scara + ', etaj '+this.salariat.etaj+', apartament '+this.salariat.apartament+', judetul '+this.salariat.judet+', '+this.salariat.tara,
+            nrContract: this.salariat.nrContract,
+            dataContract: this.salariat.dataContract,
+            numeSalariat: this.salariat.numeSalariat,
+            prenumeSalariat: this.salariat.prenumeSalariat,
+            marca: this.salariat.marca,
+            tara: this.salariat.tara,
+            judet: this.salariat.judet,
+            localitate: this.salariat.localitate,
+            strada: this.salariat.strada,
+            numar: this.salariat.numeSalariat,
+            bloc: this.salariat.bloc,
+            scara: this.salariat.scara,
+            etaj: this.salariat.etaj,
+            apartament: this.salariat.apartament,
+            actIdentitate: this.salariat.actIdentitate,
+            serieCI: this.salariat.serieCI,
+            numarCI: this.salariat.numarCI,
+            unitateaCareAEliberatCI: this.salariat.unitateaCareAEliberatCI,
+            dataEliberareCI: this.salariat.dataEliberareCI,
+            dataExpirareCI: this.salariat.dataExpirareCI,
+            cnp: this.salariat.cnp,
+            dataAngajare: this.salariat.dataAngajare,
+            dataAngajareNedeterminat: this.salariat.dataAngajareNedeterminat,
+            nrLuniSaptamaniAni: this.salariat.nrLuniSaptamaniAni,
+            dataInceputCimDeterminat: this.salariat.dataInceputCimDeterminat,
+            dataSfarsitCimDeterminat: this.salariat.dataSfarsitCimDeterminat,
+            dac: this.salariat.dataInceputCimDeterminat,
+            dsc: this.salariat.dataSfarsitCimDeterminat,
+            departament: this.salariat.departament,
+            locDeMunca: this.salariat.locDeMunca,
+            functia: this.salariat.functia,
+            codCOR: this.salariat.codCOR,
+            normaIntreagaDeLucruOreZi: this.salariat.normaIntreagaDeLucruOreZi,
+            normaIntreagaDeLucruOreSapt: this.salariat.normaIntreagaDeLucruOreSapt,
+            normaPartiala: this.salariat.normaPartiala,
+            repartizareProgramPtNormaPartiala: this.salariat.repartizareProgramPtNormaPartiala,
+            repartizareTimpMunca: this.salariat.repartizareTimpMunca,
+            tipIntervalRepartizare: this.salariat.tipIntervalRepartizare,
+            durataConcediuDeOdihna: this.salariat.durataConcediuDeOdihna,
+            salariulDeBazaBrut: this.salariat.salariulDeBazaBrut,
+            perioadaDeProba: this.salariat.perioadaDeProba,
+            perioadaDePreavizInCazulConcedierii: this.salariat.perioadaDePreavizInCazulConcedierii,
+            perioadaDePreavizInCazulDemisiei: this.salariat.perioadaDePreavizInCazulDemisiei,
+            anulCurent: this.salariat.anulCurent,
+            nrInregCerereDeAngajare: this.salariat.nrInregCerereDeAngajare,
+            nrInregDeclaratieFunctieDeBaza: this.salariat.nrInregDeclaratieFunctieDeBaza,
+            nrInregDeclaratiePersoaneInIntretinere: this.salariat.nrInregDeclaratiePersoaneInIntretinere,
+            nrInregDeclaratieCasaDeSanatate: this.salariat.nrInregDeclaratieCasaDeSanatate,
+            nrInregDeclLuareLaCunostintaROI: this.salariat.nrInregDeclLuareLaCunostintaROI,
+            nrInregPlanificareaZilelorDeCO: this.salariat.nrInregPlanificareaZilelorDeCO,
+            nrZileCOConveniteInAnulCurent: this.salariat.nrZileCOConveniteInAnulCurent,
+            platitorDeImpozit: this.salariat.platitorDeImpozit,
+            functiaDeBaza: this.salariat.functiaDeBaza,
+            mail: this.salariat.mail,
+            parolaWeb: this.salariat.parolaWeb,
+            locatiePlata: this.salariat.locatiePlata,
+            bancaAngajator: this.salariat.bancaAngajator,
+            iban: this.salariat.iban,
+            tipContract: anexaTipContract,
+            sablonContractNexus: this.salariat.sablonContractNexus,
+            angajatorNexus: this.salariat.angajatorNexus,
+            cuiAngajator: this.salariat.cuiAngajator,
+            cuiLocDeMunca: this.salariat.cuiLocDeMunca,
+            ticheteDeMasa: this.salariat.ticheteDeMasa,
+            studiiSCED: this.salariat.studiiSCED,
+            numeFirma: this.salariat.numeFirma,
+            sediuFirma: this.salariat.sediuFirma,
+            regComertFirma: this.salariat.regComertFirma,
+            nrFirma: this.salariat.nrFirma,
+            cuiFirma: this.salariat.cuiFirma,
+            repFirma: this.salariat.repFirma,
+            telefonFirma: this.salariat.telefonFirma
+          }]
+      };      
+    const response = await fetch(this.anexeDetails.documentUrl);    
+    const templateFile = await response.blob();    
+    const handler = new TemplateHandler();    
+    const doc = await handler.process(templateFile, data);    
+    this.saveFile('_' +this.salariat.prenumeSalariat+"_"+this.salariat.numeSalariat+"_anexa.docx", doc);
+
+  }
+  
 
   deleteFile(fileId: string, documentURL: string) {
     this.filesService.removeFile(fileId, documentURL);
@@ -278,3 +420,39 @@ export class CandidatiDetaliiComponent implements OnInit {
   }
 
 }
+
+function getMonthsBetween(date1,date2,roundUpFractionalMonths)
+{
+    //Months will be calculated between start and end dates.
+    //Make sure start date is less than end date.
+    //But remember if the difference should be negative.
+    var startDate=date1;
+    var endDate=date2;
+    var inverse=false;
+    if(date1>date2)
+    {
+        startDate=date2;
+        endDate=date1;
+        inverse=true;
+    }
+
+    //Calculate the differences between the start and end dates
+    var yearsDifference=endDate.getFullYear()-startDate.getFullYear();
+    var monthsDifference=endDate.getMonth()-startDate.getMonth();
+    var daysDifference=endDate.getDate()-startDate.getDate();
+
+    var monthCorrection=0;
+    //If roundUpFractionalMonths is true, check if an extra month needs to be added from rounding up.
+    //The difference is done by ceiling (round up), e.g. 3 months and 1 day will be 4 months.
+    if(roundUpFractionalMonths===true && daysDifference>0)
+    {
+        monthCorrection=1;
+    }
+    //If the day difference between the 2 months is negative, the last month is not a whole month.
+    else if(roundUpFractionalMonths!==true && daysDifference<0)
+    {
+        monthCorrection=-1;
+    }
+
+    return (inverse?-1:1)*(yearsDifference*12+monthsDifference+monthCorrection);
+};

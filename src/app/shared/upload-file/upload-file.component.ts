@@ -76,8 +76,7 @@ export class UploadFileComponent implements OnInit {
               value.documentUrl = url;
               this.uploadedFile.emit(value);
               this.myForm.get('name').reset();
-              this.myForm.get('file').reset();
-              console.log('url:', url);
+              this.myForm.get('file').reset();              
             }
           });
         })

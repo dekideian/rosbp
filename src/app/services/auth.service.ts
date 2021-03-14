@@ -75,12 +75,12 @@ import { environment } from 'src/environments/environment';
 
     callFunction() {
   
-      console.log('second write message')
+      // console.log('second write message')
       let nextNrNumber = 0;
       let writeCount = firebase.functions().httpsCallable('writeMessage');
       writeCount({'count':nextNrNumber})
         .then(function(result){
-          console.log('Am primit de la count '+JSON.stringify(result));
+          // console.log('Am primit de la count '+JSON.stringify(result));
       })
       .catch((error) => {
         // Getting the Error details.

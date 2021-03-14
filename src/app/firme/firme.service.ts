@@ -21,7 +21,7 @@ export class FirmeService {
          return ob.filter(bla => bla.uid === codFirma);
       }),
       mergeAll(),
-      tap(val => console.log('Avem 1 salariati ', JSON.stringify(val.uid))),
+      // tap(val => console.log('Avem 1 salariati ', JSON.stringify(val.uid))),
       catchError(this.handleError)
     );
   }
@@ -70,7 +70,7 @@ export class FirmeService {
           (bla.email === email)
           );
       }),
-      tap(val => console.log(`Avem ${email} responsabil pt firma:  `, JSON.stringify(val))),
+      // tap(val => console.log(`Avem ${email} responsabil pt firma:  `, JSON.stringify(val))),
       catchError(this.handleError)
     );
   }
@@ -82,7 +82,7 @@ export class FirmeService {
           (bla.email === email)
           );
       }),
-      tap(val => console.log(`Avem ${email} client pt firma:  `, JSON.stringify(val))),
+      // tap(val => console.log(`Avem ${email} client pt firma:  `, JSON.stringify(val))),
       catchError(this.handleError)
     );
   }

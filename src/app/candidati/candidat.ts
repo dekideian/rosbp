@@ -69,6 +69,7 @@
 
 export interface ICandidatLocal {
     uid;
+    artContractDeterminat: string;
     nrContract: string;
     dataContract: string;
     numeSalariat: string;
@@ -147,6 +148,7 @@ export interface ICandidatLocal {
 
 export class Candidat implements ICandidatLocal {
     uid: string;
+    artContractDeterminat: string;
     nrContract: string;
     dataContract: string;
     numeSalariat: string;

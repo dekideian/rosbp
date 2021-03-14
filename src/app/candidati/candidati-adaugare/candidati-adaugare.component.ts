@@ -99,7 +99,7 @@ export class CandidatiAdaugareComponent  implements OnInit {
 
     // Receive user input and send to search method**
     onKey(value) { 
-      console.log('Cautam dupa valoarea '+value)
+      // console.log('Cautam dupa valoarea '+value)
       this.coduriCorSelectate = this.search(value);
     }
         // Filter the functions list and send back to populate the selected function**
@@ -112,13 +112,13 @@ export class CandidatiAdaugareComponent  implements OnInit {
       
       if(!this.candidatiGroup.get('cnp').errors?.cnpvalid) {
         let newPass = value.toString().substring(value.toString().length-6);
-        console.log('value  '+value + 'replace with: '+newPass);
+        // console.log('value  '+value + 'replace with: '+newPass);
 
         this.candidatiGroup.get('parolaWeb').setValue(newPass);
       }
     }
   onLuniCompleted(nrLuni: string) {
-    console.log('am pus valoarea '+nrLuni);
+    // console.log('am pus valoarea '+nrLuni);
     if(nrLuni!==''){
       let nr:number = +nrLuni;
       if(nr < +3) {
@@ -137,7 +137,7 @@ export class CandidatiAdaugareComponent  implements OnInit {
   functieDeConducere() {
     if(this.candidatiGroup.get('contractDeterminat').value) {
       let contractLength = +this.candidatiGroup.get('nrLuniSaptamaniAni').value;
-      console.log('Contract length '+contractLength + 'iar butonul:'+this.candidatiGroup.get('functieDeConducere').value)
+      // console.log('Contract length '+contractLength + 'iar butonul:'+this.candidatiGroup.get('functieDeConducere').value)
       if(contractLength>=+6) {
         if(this.candidatiGroup.get('functieDeConducere').value === true) {
           this.candidatiGroup.get('perioadaDeProba').setValue('45');
@@ -153,7 +153,7 @@ export class CandidatiAdaugareComponent  implements OnInit {
     this.codFirma = this.route.snapshot.paramMap.get('id');
     this.firmeService.getFirma(this.codFirma).subscribe({
       next: firma=>{
-        console.log('citire firma '+JSON.stringify(firma));
+        // console.log('citire firma '+JSON.stringify(firma));
         this.numeFirma = firma.nume;
         this.sediuFirma = firma.sediu;
         this.regComertFirma = firma.regComert;
@@ -208,7 +208,7 @@ export class CandidatiAdaugareComponent  implements OnInit {
       dataInceputCimDeterminat: ['', [Validators.required]],
       dataSfarsitCimDeterminat: ['', [Validators.required]],
       contractDeterminat: ['', []],
-
+      artContractDeterminat: ['',[]],
       departament: ['', [Validators.required]],
       locDeMunca: ['', [Validators.required]],
       // functia: ['', [Validators.required]],
@@ -360,6 +360,8 @@ setNrInregCerereDeAngajare() {
         repartizareTimpMunca: this.candidatiGroup.get('normaIntreaga').value?'-':this.candidatiGroup.get('repartizareTimpMunca').value,
         tipIntervalRepartizare: this.candidatiGroup.get('normaIntreaga').value?'-':this.candidatiGroup.get('tipIntervalRepartizare').value,
   
+        artContractDeterminat: this.candidatiGroup.get('artContractDeterminat').value,
+
         durataConcediuDeOdihna: this.candidatiGroup.get('durataConcediuDeOdihna').value,
         salariulDeBazaBrut: this.candidatiGroup.get('salariulDeBazaBrut').value,
         perioadaDeProba: this.candidatiGroup.get('perioadaDeProba').value,

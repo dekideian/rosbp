@@ -222,9 +222,9 @@ import { Responsabil } from "../models/responsabil.class";
     }
     //adaugare client - pt firma (hr)
     async addClient(client: Partial<Client>) {        
-        console.log('teoretic adaugam client -> '+client)
+        // console.log('teoretic adaugam client -> '+client)
         let clientNou = await this.addConvertedDocument(`clienti`, client, clientiConverter);   
-        console.log('teoretic am adaugat client '+clientNou.id);
+        // console.log('teoretic am adaugat client '+clientNou.id);
         this.firestore.firestore.doc(`users/${client.email}`).set({company:client.firmaUID}, {merge: true});
         return clientNou;
     }

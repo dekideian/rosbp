@@ -7,9 +7,11 @@
         <div class="col-md-4">
           <h2>CIM</h2>
             <ul>
-              <li><a class="btn btn-link" href="{{templateDetails?.documentUrl}}" target="_blank">Download CIM cadru.</a></li> 
               <li> <button class="btn btn-link" (click)="downloadCimGenerat()">Download CIM generat</button> </li>
+              <li> <button class="btn btn-link" (click)="downloadAnexeGenerate()">Download Anexe salariat.</button> </li>
               <li> <button class="btn btn-link" (click)="csvExport()">Download CSV date salariat</button> </li>
+              <li><a class="btn btn-link" href="{{templateDetails?.documentUrl}}" target="_blank">Download fisier CIM cadru.</a></li>                             
+              <li><a class="btn btn-link" href="{{anexeDetails?.documentUrl}}" target="_blank">Download fisier Anexe cadru.</a></li>               
               <li> <a class="btn btn-link" href="mailto:mihai.rosca@rosbp.ro?subject=CIM {{this.salariat?.numeSalariat}} {{this.salariat?.prenumeSalariat}}&body=Buna,%0D%0AAtasat este CIM pentru {{this.salariat?.numeSalariat}} {{this.salariat?.prenumeSalariat}}%0D%0AMultumesc">Email CIM catre HR firma client</a> </li>
             </ul>
         </div>     
