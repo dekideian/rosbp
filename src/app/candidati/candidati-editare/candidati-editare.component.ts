@@ -5,6 +5,9 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { AuthService } from 'src/app/services/auth.service';
 import { Candidat, CANDIDAT_ATRIBUT, ICandidatLocal } from '../candidat';
 import { SalariatiService } from '../candidati.service';
+import { DateAdapter } from '@angular/material/core';
+import { DatePipe, formatDate } from '@angular/common'
+import * as moment from 'moment';
 @Component({
   selector: 'app-candidati-editare',
   templateUrl: './candidati-editare.component.html',
@@ -31,7 +34,12 @@ export class CandidatiEditareComponent implements OnInit {
     private route: ActivatedRoute,
     private router: Router,
     private fb: FormBuilder,
-    private salariatiService: SalariatiService) { }
+    private salariatiService: SalariatiService,
+    private dateAdapter: DateAdapter<Date>
+    ) {
+      this.dateAdapter.setLocale('ro-RO'); //dd/MM/yyyy
+      
+     }
 
   ngOnInit(): void {
 
@@ -94,12 +102,14 @@ export class CandidatiEditareComponent implements OnInit {
       next: salariat => {
         this.codCorSiFunctia = salariat.codCOR;
         this.salariat = salariat;
+                        
         this.candidatiGroup = this.fb.group({
           nrContract: [this.salariat.nrContract, [Validators.required, Validators.minLength(1)]],
-          dataContract: [this.salariat.dataContract, [Validators.required]],
+          dataContract: [convertDate(this.salariat.dataContract), [Validators.required]],
           numeSalariat: [this.salariat.numeSalariat, [Validators.required, Validators.minLength(3)]],
           prenumeSalariat: [this.salariat.prenumeSalariat, [Validators.required, Validators.minLength(3)]],
-          marca: [this.salariat.marca, [Validators.required]],
+          marca: [this.salariat.marca, []],
+          adresa: [this.salariat.adresa, [Validators.required, Validators.minLength(1)]],
           tara: [this.salariat.tara, [Validators.required, Validators.minLength(2)]],
           judet: [this.salariat.judet, [Validators.required, Validators.minLength(2)]],
           localitate: [this.salariat.localitate, [Validators.required, Validators.minLength(3)]],
@@ -113,18 +123,18 @@ export class CandidatiEditareComponent implements OnInit {
           serieCI: [this.salariat.serieCI, [Validators.required]],
           numarCI: [this.salariat.numarCI, [Validators.required]],
           unitateaCareAEliberatCI: [this.salariat.unitateaCareAEliberatCI, [Validators.required, Validators.minLength(3)]],
-          dataEliberareCI: [this.salariat.dataEliberareCI, [Validators.required]],
-          dataExpirareCI: [this.salariat.dataExpirareCI, [Validators.required]],
+          dataEliberareCI: [convertDate(this.salariat.dataEliberareCI), [Validators.required]],
+          dataExpirareCI: [convertDate(this.salariat.dataExpirareCI), [Validators.required]],
           cnp: [this.salariat.cnp, [Validators.required, cnpControlNumber]],
-          dataAngajare: [this.salariat.dataAngajare, [Validators.required]],
-          dataAngajareNedeterminat: [this.salariat.dataAngajareNedeterminat, [Validators.required]],
+          dataAngajare: [convertDate(this.salariat.dataAngajare), [Validators.required]],
+          dataAngajareNedeterminat: [convertDate(this.salariat.dataAngajareNedeterminat), [Validators.required]],
           nrLuniSaptamaniAni: [this.salariat.nrLuniSaptamaniAni, [Validators.required]],
-          dataInceputCimDeterminat: [this.salariat.dataInceputCimDeterminat, [Validators.required]],
-          dataSfarsitCimDeterminat: [this.salariat.dataSfarsitCimDeterminat, [Validators.required]],
+          dataInceputCimDeterminat: [convertDate(this.salariat.dataInceputCimDeterminat), [Validators.required]],
+          dataSfarsitCimDeterminat: [convertDate(this.salariat.dataSfarsitCimDeterminat), [Validators.required]],
           contractDeterminat: [this.salariat.dataAngajareNedeterminat !== '-' ? false : true, []],          
           artContractDeterminat: [this.salariat.artContractDeterminat, []],
 
-          departament: [this.salariat.departament, [Validators.required]],
+          departament: [this.salariat.departament, []],
           locDeMunca: [this.salariat.locDeMunca, [Validators.required]],
           codCOR: [this.salariat.codCOR, [Validators.required]],
           functieDeConducere: [this.salariat.functieDeConducere],
@@ -207,8 +217,7 @@ export class CandidatiEditareComponent implements OnInit {
   onValidCnp(value) {
 
     if (!this.candidatiGroup.get('cnp').errors?.cnpvalid) {
-      let newPass = value.toString().substring(value.toString().length - 6);
-      console.log('value  ' + value + 'replace with: ' + newPass);
+      let newPass = value.toString().substring(value.toString().length - 6);      
 
       this.candidatiGroup.get('parolaWeb').setValue(newPass);
     }
@@ -258,8 +267,7 @@ export class CandidatiEditareComponent implements OnInit {
   }
   informatiiSalariatValid() {
     if (this.isValid('numeSalariat') &&
-      this.isValid('prenumeSalariat') &&
-      this.isValid('marca') &&
+      this.isValid('prenumeSalariat') &&      
       this.isValid('tara') &&
       this.isValid('judet') &&
       this.isValid('localitate') &&
@@ -286,8 +294,7 @@ export class CandidatiEditareComponent implements OnInit {
   }
   informatiiSalariatInvalid() {
     if (this.isInvalid('numeSalariat') ||
-      this.isInvalid('prenumeSalariat') ||
-      this.isInvalid('marca') ||
+      this.isInvalid('prenumeSalariat') ||      
       this.isInvalid('tara') ||
       this.isInvalid('judet') ||
       this.isInvalid('localitate') ||
@@ -400,7 +407,7 @@ export class CandidatiEditareComponent implements OnInit {
 
 
   loculSiFelulMunciiValid() {
-    if (this.isValid('departament') &&
+    if (
       this.isValid('locDeMunca') &&
       this.isValid('codCOR')
     ) {
@@ -410,7 +417,7 @@ export class CandidatiEditareComponent implements OnInit {
     }
   }
   loculSiFelulMunciiInvalid() {
-    if (this.isInvalid('departament') ||
+    if (
       this.isInvalid('locDeMunca') ||
       this.isInvalid('codCOR')
     ) {
@@ -553,6 +560,10 @@ export class CandidatiEditareComponent implements OnInit {
     return this.coduriCor.filter(unCod => unCod.cod === codCOR)[0].nume;
   }
   save() {
+    // let asdf = new Date( )
+    // let newDate = (moment(asdf)).format("DD/MM/YYYY");
+    
+
     this.candidatiGroup.disable();
     this.isLoading = true;
     let codCorAles = this.candidatiGroup.get('codCOR').value;
@@ -560,10 +571,11 @@ export class CandidatiEditareComponent implements OnInit {
     const data: ICandidatLocal = {
       uid: null,
       nrContract: this.candidatiGroup.get('nrContract').value,
-      dataContract: this.candidatiGroup.get('dataContract').value,
+      dataContract: convertDateToFormat(this.candidatiGroup.get('dataContract').value),
       numeSalariat: this.candidatiGroup.get('numeSalariat').value,
       prenumeSalariat: this.candidatiGroup.get('prenumeSalariat').value,
       marca: this.candidatiGroup.get('marca').value,
+      adresa: this.candidatiGroup.get('adresa').value,
       tara: this.candidatiGroup.get('tara').value,
       judet: this.candidatiGroup.get('judet').value,
       localitate: this.candidatiGroup.get('localitate').value,
@@ -577,14 +589,14 @@ export class CandidatiEditareComponent implements OnInit {
       serieCI: this.candidatiGroup.get('serieCI').value,
       numarCI: this.candidatiGroup.get('numarCI').value,
       unitateaCareAEliberatCI: this.candidatiGroup.get('unitateaCareAEliberatCI').value,
-      dataEliberareCI: this.candidatiGroup.get('dataEliberareCI').value,
-      dataExpirareCI: this.candidatiGroup.get('dataExpirareCI').value,
+      dataEliberareCI: convertDateToFormat(this.candidatiGroup.get('dataEliberareCI').value),
+      dataExpirareCI: convertDateToFormat(this.candidatiGroup.get('dataExpirareCI').value),
       cnp: this.candidatiGroup.get('cnp').value,
-      dataAngajare: this.candidatiGroup.get('contractDeterminat').value ? this.candidatiGroup.get('dataAngajare').value : '-',
-      dataAngajareNedeterminat: this.candidatiGroup.get('contractDeterminat').value ? '-' : this.candidatiGroup.get('dataAngajareNedeterminat').value,
+      dataAngajare: this.candidatiGroup.get('contractDeterminat').value ? convertDateToFormat(this.candidatiGroup.get('dataAngajare').value) : '-',
+      dataAngajareNedeterminat: this.candidatiGroup.get('contractDeterminat').value ? '-' : convertDateToFormat(this.candidatiGroup.get('dataAngajareNedeterminat').value),
       nrLuniSaptamaniAni: this.candidatiGroup.get('contractDeterminat').value ? this.candidatiGroup.get('nrLuniSaptamaniAni').value : '-',
-      dataInceputCimDeterminat: this.candidatiGroup.get('contractDeterminat').value ? this.candidatiGroup.get('dataInceputCimDeterminat').value : '-',
-      dataSfarsitCimDeterminat: this.candidatiGroup.get('contractDeterminat').value ? this.candidatiGroup.get('dataSfarsitCimDeterminat').value : '-',
+      dataInceputCimDeterminat: this.candidatiGroup.get('contractDeterminat').value ? convertDateToFormat(this.candidatiGroup.get('dataInceputCimDeterminat').value) : '-',
+      dataSfarsitCimDeterminat: this.candidatiGroup.get('contractDeterminat').value ? convertDateToFormat(this.candidatiGroup.get('dataSfarsitCimDeterminat').value) : '-',
       departament: this.candidatiGroup.get('departament').value,
       locDeMunca: this.candidatiGroup.get('locDeMunca').value,
       functia: functieCorAles,
@@ -679,6 +691,18 @@ export class CandidatiEditareComponent implements OnInit {
   }
 }
 
+function convertDateToFormat(selectedDate): string {  
+  let actualSelectedDate = new Date(selectedDate )
+  return (moment(actualSelectedDate)).format("DD/MM/YYYY");
+}
+
+function convertDate(savedDate): Date {
+  var dateMomentObject = moment(savedDate, "DD/MM/YYYY"); // 1st argument - string, 2nd argument - format
+  return dateMomentObject.toDate();
+}
+
+
+
 function cnpControlNumber(c: AbstractControl): { [key: string]: boolean } | null {
   if (c.value !== null && (isNaN(c.value) || c.value.toString().length !== 13 || (!isCnpValid(+c.value)))) {
     return { 'cnpvalid': true }
@@ -705,7 +729,6 @@ function isCnpValid(value: number): boolean {
   }
   return false;
 }
-
 
 
 

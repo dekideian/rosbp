@@ -5,6 +5,7 @@ import { FilesService } from 'src/app/services/files.service';
 import { FileDetails, TemplateDetails } from 'src/app/shared/upload-file/uploadedFileDetails';
 import { ContactInformation } from '../contact-information';
 import { IFirma } from '../ifirma.model';
+import * as moment from 'moment';
 @Component({
   selector: 'app-firme-detalii',
   templateUrl: './firme-detalii.component.html',
@@ -79,7 +80,9 @@ export class FirmeDetaliiComponent implements OnInit {
   }
 
   newFileUploaded(fileDetails: TemplateDetails) {
-    fileDetails.data = new Date().toISOString().slice(0, 10);
+    fileDetails.data = convertDateToFormat();
+    // new Date().toISOString().slice(0, 10);
+
     fileDetails.autor = this.auth.userEmail + ' ';
     fileDetails.codFirma  = this.currentId;
     // adauga firma..
@@ -98,4 +101,10 @@ export class FirmeDetaliiComponent implements OnInit {
   deleteResponsabil(clientUID: string) {
     this.filesService.removeResponsabil(clientUID);
   }
+
+  
+}
+function convertDateToFormat(): string {  
+  let actualSelectedDate = new Date()
+  return (moment(actualSelectedDate)).format("DD/MM/YYYY");
 }

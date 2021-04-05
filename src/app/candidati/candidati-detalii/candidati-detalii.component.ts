@@ -34,8 +34,7 @@ export class CandidatiDetaliiComponent implements OnInit {
     ) { }
 
   ngOnInit(): void {
-    this.currentId = this.route.snapshot.paramMap.get('id');
-    // console.log('Current id salariat: ' + this.currentId);
+    this.currentId = this.route.snapshot.paramMap.get('id');    
     this.candidatiService.getCandidat(this.currentId).subscribe({
       next: candidat => {
 
@@ -86,22 +85,26 @@ export class CandidatiDetaliiComponent implements OnInit {
   async downloadCimGenerat() {    
     let art = '';
 
+    // let isTrueSet = (this.salariat.artContractDeterminat == 'true');
+    // if(this.salariat.artContractDeterminat) 
+    // { console.log('should be visible for true!');}
+    // console.log('Art contract determinat -'+this.salariat.artContractDeterminat+'- and isTrueSet '+isTrueSet);
     if(this.salariat.dataAngajareNedeterminat !== '-') {
       art = '';
     } else {
-      if(this.salariat.artContractDeterminat==="true") {
+      if(this.salariat.artContractDeterminat) {
         art = 'conform Art 83 lit h) in alte cazuri prevazute expres de legi speciale ori pentru desfasurarea unor lucrari, proiecte sau programe.';
       } else {
         art = 'conform Art 83 lit b) cresterea si/sau modificarea temporara a structurii activitatii angajatorului.';  
       }
     }    
-
+// console.log('Data inceput cim determinat '+this.salariat.dataInceputCimDeterminat + ' si '+ getDate(this.salariat.dataInceputCimDeterminat));
     const data = {
       posts: [
           {
             articolContractDeterminat: art,            
             prenumeNumeSalariat: this.salariat.prenumeSalariat+' '+this.salariat.numeSalariat,
-            domiciliul: this.salariat.localitate + ', strada '+ this.salariat.strada+ ' nr '+this.salariat.numar+', bloc '+this.salariat.bloc+', scara '+this.salariat.scara + ', etaj '+this.salariat.etaj+', apartament '+this.salariat.apartament+', judetul '+this.salariat.judet+', '+this.salariat.tara,
+            domiciliul: this.salariat.adresa,
             nrContract: this.salariat.nrContract,
             dataContract: getDate(this.salariat.dataContract),
             numeSalariat: this.salariat.numeSalariat,
@@ -463,15 +466,17 @@ function getMonthsBetween(date1,date2,roundUpFractionalMonths)
 };
 
 function getDate(dateAsString) {
-  if(dateAsString && !isNaN(new Date(dateAsString).getTime())) {
-    let today = new Date(dateAsString);     
-    var dd = String(today.getDate()).padStart(2, '0');    
-    var mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
-    var yyyy = today.getFullYear();
+  return dateAsString;
+  // console.log('Date '+dateAsString);
+  // if(dateAsString && !isNaN(new Date(dateAsString).getTime())) {
+  //   let today = new Date(dateAsString);     
+  //   var dd = String(today.getDate()).padStart(2, '0');    
+  //   var mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
+  //   var yyyy = today.getFullYear();
     
-    return mm + '/' + dd + '/' + yyyy;
-  } else {
-    return '-';
-  }
+  //   return mm + '/' + dd + '/' + yyyy;
+  // } else {
+  //   return '-';
+  // }
 }
 

@@ -49,13 +49,22 @@
                                     <div class="col-md-3">
                                         <mat-form-field class="atribut-candidat">
                                             <mat-label>{{atributCandidat.dataContract}}</mat-label>
-                                            <input id="dataContract" type = "date" 
+                                            <!-- <input id="dataContract" type = "date" 
                                                 matInput 
                                                 formControlName="dataContract"
                                                 [ngClass]="{'is-invalid': (candidatiGroup.get('dataContract').touched ||
                                                             candidatiGroup.get('dataContract').dirty) &&
                                                             !candidatiGroup.get('dataContract').valid }"
-                                                >
+                                                > -->
+                                                <input id="dataContract" 
+                                                    matInput 
+                                                    [matDatepicker]="picker" 
+                                                    formControlName="dataContract" 
+                                                    [ngClass]="{'is-invalid': (candidatiGroup.get('dataContract').touched ||
+                                                            candidatiGroup.get('dataContract').dirty) &&
+                                                            !candidatiGroup.get('dataContract').valid }">
+                                                <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                                                <mat-datepicker #picker></mat-datepicker>                                                
                                                 <span class="invalid-feedback">
                                                     <span *ngIf="candidatiGroup.get('dataContract').errors?.required">
                                                         Va rugam introduceti {{atributCandidat.dataContract}}
@@ -140,7 +149,28 @@
                                         </span>
                                         </mat-form-field>
                                     </div>
-                                    <div class="col-md-2">
+                                    <div class="col-md-6">
+                                        <mat-form-field class="atribut-candidat" style="width: 100%;">
+                                            <mat-label>{{atributCandidat.adresa}}</mat-label>
+                                        <input id="adresa" type = "text" 
+
+                                            matInput
+                                            formControlName="adresa"
+                                            [ngClass]="{'is-invalid': (candidatiGroup.get('adresa').touched ||
+                                                            candidatiGroup.get('adresa').dirty) &&
+                                                            !candidatiGroup.get('adresa').valid }"
+                                        />
+                                        <span class="invalid-feedback">
+                                            <span *ngIf="candidatiGroup.get('adresa').errors?.required">
+                                                Va rugam introduceti {{atributCandidat.adresa.toLowerCase()}}
+                                            </span>
+                                            <span *ngIf="candidatiGroup.get('adresa').errors?.minlength">
+                                                Minim 1 caracter
+                                            </span>
+                                        </span>
+                                        </mat-form-field>
+                                    </div>
+                                    <!-- <div class="col-md-2">
                                         <mat-form-field class="atribut-candidat">
                                             <mat-label>{{atributCandidat.tara}}</mat-label>
                                         <input id="tara" type = "text" 
@@ -193,10 +223,10 @@
                                             </span>
                                         </span>
                                         </mat-form-field>
-                                    </div>
+                                    </div> -->
                                 </div>          
                                 <!-- Rand 2   -->
-                                <div class="form-group row mb-12">
+                                <!-- <div class="form-group row mb-12">
 
                                     <div class="col-md-2">
                                         <mat-form-field class="atribut-candidat">
@@ -310,7 +340,7 @@
                                         </span>
                                         </mat-form-field>
                                     </div>
-                                </div>
+                                </div> -->
                                 <!-- Rand 3   -->
                                 <div class="form-group row mb-12">
                                     <div class="col-md-2">
@@ -393,13 +423,17 @@
                                     <div class="col-md-2">
                                         <mat-form-field class="atribut-candidat">
                                             <mat-label>{{atributCandidat.dataEliberareCI}}</mat-label>
-                                        <input id="dataEliberareCI" type = "date" 
+                                        <input id="dataEliberareCI" 
                                             matInput
+                                            [matDatepicker]="picker2"                                             
                                             formControlName='dataEliberareCI'
                                             [ngClass]="{'is-invalid': (candidatiGroup.get('dataEliberareCI').touched ||
                                                             candidatiGroup.get('dataEliberareCI').dirty) &&
                                                             !candidatiGroup.get('dataEliberareCI').valid }"
-                                        />
+                                        />                                                                                
+                                        <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
+                                        <mat-datepicker #picker2></mat-datepicker>
+
                                         <span class="invalid-feedback">
                                             <span *ngIf="candidatiGroup.get('dataEliberareCI').errors?.required">
                                                 Va rugam introduceti {{atributCandidat.dataEliberareCI}}
@@ -413,13 +447,16 @@
                                     <div class="col-md-2">
                                         <mat-form-field class="atribut-candidat">
                                             <mat-label>{{atributCandidat.dataExpirareCI}}</mat-label>
-                                        <input id="dataExpirareCI" type = "date" 
+                                        <input id="dataExpirareCI" 
                                             matInput
+                                            [matDatepicker]="picker3"                                             
                                             formControlName='dataExpirareCI'
                                             [ngClass]="{'is-invalid': (candidatiGroup.get('dataExpirareCI').touched ||
                                                             candidatiGroup.get('dataExpirareCI').dirty) &&
                                                             !candidatiGroup.get('dataExpirareCI').valid }"
-                                        />
+                                        />                                                                                                                          
+                                        <mat-datepicker-toggle matSuffix [for]="picker3"></mat-datepicker-toggle>
+                                        <mat-datepicker #picker3></mat-datepicker>
                                         <span class="invalid-feedback">
                                             <span *ngIf="candidatiGroup.get('dataExpirareCI').errors?.required">
                                                 Va rugam introduceti {{atributCandidat.dataExpirareCI}}
@@ -503,13 +540,17 @@
                                     <div class="col-md-3" [hidden]="!this.candidatiGroup.get('contractDeterminat').value">
                                         <mat-form-field class="atribut-candidat">
                                             <mat-label>{{atributCandidat.dataAngajare}}</mat-label>
-                                        <input id="dataAngajare" type = "date" 
+                                        <input id="dataAngajare" 
+                                            [matDatepicker]="picker4" 
                                             matInput
                                             formControlName='dataAngajare'
                                             [ngClass]="{'is-invalid': (candidatiGroup.get('dataAngajare').touched ||
                                                             candidatiGroup.get('dataAngajare').dirty) &&
                                                             !candidatiGroup.get('dataAngajare').valid }"
                                         />
+                                                                                        
+                                        <mat-datepicker-toggle matSuffix [for]="picker4"></mat-datepicker-toggle>
+                                        <mat-datepicker #picker4></mat-datepicker>
                                         <span class="invalid-feedback">
                                             <span *ngIf="candidatiGroup.get('dataAngajare').errors?.required">
                                                 Va rugam introduceti {{atributCandidat.dataAngajare}}
@@ -520,8 +561,9 @@
                                     <div class="col-md-3" [hidden]="this.candidatiGroup.get('contractDeterminat').value">
                                         <mat-form-field class="atribut-candidat">
                                             <mat-label>{{atributCandidat.dataAngajareNedeterminat}}</mat-label>
-                                        <input id="dataAngajareNedeterminat" type = "date" 
+                                        <input id="dataAngajareNedeterminat" 
                                             matInput
+                                            [matDatepicker]="picker5" 
                                             formControlName='dataAngajareNedeterminat'
                                             [ngClass]="{'is-invalid': (candidatiGroup.get('dataAngajareNedeterminat').touched ||
                                                             candidatiGroup.get('dataAngajareNedeterminat').dirty) &&
@@ -531,7 +573,9 @@
                                             <span *ngIf="candidatiGroup.get('dataAngajareNedeterminat').errors?.required">
                                                 Va rugam introduceti {{atributCandidat.dataAngajareNedeterminat}}
                                             </span>
-                                        </span>
+                                        </span>                                              
+                                        <mat-datepicker-toggle matSuffix [for]="picker5"></mat-datepicker-toggle>
+                                        <mat-datepicker #picker5></mat-datepicker>
                                         </mat-form-field>
                                     </div>
                                     <div class="col-md-3" [hidden]="!this.candidatiGroup.get('contractDeterminat').value">
@@ -555,8 +599,9 @@
                                     <div class="col-md-3" [hidden]="!this.candidatiGroup.get('contractDeterminat').value">
                                         <mat-form-field class="atribut-candidat">
                                             <mat-label>{{atributCandidat.dataInceputCimDeterminat}}</mat-label>
-                                        <input id="dataInceputCimDeterminat" type = "date" 
+                                        <input id="dataInceputCimDeterminat" 
                                             matInput
+                                            [matDatepicker]="picker6" 
                                             formControlName='dataInceputCimDeterminat'
                                             [ngClass]="{'is-invalid': (candidatiGroup.get('dataInceputCimDeterminat').touched ||
                                                             candidatiGroup.get('dataInceputCimDeterminat').dirty) &&
@@ -566,14 +611,17 @@
                                             <span *ngIf="candidatiGroup.get('dataInceputCimDeterminat').errors?.required">
                                                 Va rugam introduceti {{atributCandidat.dataInceputCimDeterminat}}
                                             </span>
-                                        </span>
+                                        </span>                                                                                                                                                                        
+                                        <mat-datepicker-toggle matSuffix [for]="picker6"></mat-datepicker-toggle>
+                                        <mat-datepicker #picker6></mat-datepicker>
                                         </mat-form-field>
                                     </div>
                                     <div class="col-md-3" [hidden]="!this.candidatiGroup.get('contractDeterminat').value">
                                         <mat-form-field class="atribut-candidat">
                                             <mat-label>{{atributCandidat.dataSfarsitCimDeterminat}}</mat-label>
-                                        <input id="dataSfarsitCimDeterminat" type = "date" 
+                                        <input id="dataSfarsitCimDeterminat" 
                                             matInput
+                                            [matDatepicker]="picker7" 
                                             formControlName='dataSfarsitCimDeterminat'
                                             [ngClass]="{'is-invalid': (candidatiGroup.get('dataSfarsitCimDeterminat').touched ||
                                                             candidatiGroup.get('dataSfarsitCimDeterminat').dirty) &&
@@ -583,7 +631,9 @@
                                             <span *ngIf="candidatiGroup.get('dataSfarsitCimDeterminat').errors?.required">
                                                 Va rugam introduceti {{atributCandidat.dataSfarsitCimDeterminat}}
                                             </span>
-                                        </span>
+                                        </span>                                                                                                                                                                    
+                                        <mat-datepicker-toggle matSuffix [for]="picker7"></mat-datepicker-toggle>
+                                        <mat-datepicker #picker7></mat-datepicker>
                                         </mat-form-field>
                                     </div> 
                                 </div>

@@ -186,6 +186,7 @@ export class CandidatiListComponent implements OnInit {
   }
 
   delete(idCandidat: string) {
+    console.log('sterge fraier '+idCandidat)
     this.candidatiService.remove(idCandidat);
   }
 

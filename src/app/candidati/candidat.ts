@@ -75,6 +75,7 @@ export interface ICandidatLocal {
     numeSalariat: string;
     prenumeSalariat: string;
     marca: string;
+    adresa: string;
     tara: string;
     judet: string;
     localitate: string;
@@ -154,6 +155,7 @@ export class Candidat implements ICandidatLocal {
     numeSalariat: string;
     prenumeSalariat: string;
     marca: string;
+    adresa: string;
     tara: string;
     judet: string;
     localitate: string;
@@ -229,6 +231,7 @@ export const CANDIDAT_ATRIBUT = {
     numeSalariat: 'Nume salariat',
     prenumeSalariat: 'Prenume salariat',
     marca: 'Marca',
+    adresa: 'Adresă',
     tara: 'Țara',
     judet: 'Județ',
     localitate: 'Localitate',

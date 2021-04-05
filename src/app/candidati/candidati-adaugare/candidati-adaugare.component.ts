@@ -14,6 +14,8 @@ import { AuthService } from 'src/app/services/auth.service';
 import { FirmeService } from 'src/app/firme/firme.service';
 import { Firma } from 'src/app/firme/firma.model';
 import { identifierName } from '@angular/compiler';
+import * as moment from 'moment';
+import { DateAdapter } from '@angular/material/core';
 
 @Component({
   selector: 'app-candidati-adaugare',
@@ -50,8 +52,10 @@ export class CandidatiAdaugareComponent  implements OnInit {
     private salariatiService: SalariatiService,
     private firmeService: FirmeService,
     private fb: FormBuilder,
-    public auth: AuthService
+    public auth: AuthService,
+    private dateAdapter: DateAdapter<Date>
     ) {
+      this.dateAdapter.setLocale('ro-RO'); //dd/MM/yyyy
       this.listaJudete = [
             "Alba", 
             "Arad", 
@@ -185,7 +189,8 @@ export class CandidatiAdaugareComponent  implements OnInit {
       numeSalariat:  ['', [Validators.required, Validators.minLength(3)]],
       prenumeSalariat:  ['', [Validators.required, Validators.minLength(3)]],
       // candidatiEmail: ['', [Validators.required, Validators.email]],
-      marca: ['', [Validators.required]],
+      marca: ['', []],
+      adresa: ['', [Validators.required, Validators.minLength(1)]],
       tara: ['Romania', [Validators.required, Validators.minLength(2)]],
       judet: ['Timis', [Validators.required, Validators.minLength(2)]],
       localitate: ['', [Validators.required, Validators.minLength(3)]],
@@ -209,7 +214,7 @@ export class CandidatiAdaugareComponent  implements OnInit {
       dataSfarsitCimDeterminat: ['', [Validators.required]],
       contractDeterminat: ['', []],
       artContractDeterminat: ['',[]],
-      departament: ['', [Validators.required]],
+      departament: ['', []],
       locDeMunca: ['', [Validators.required]],
       // functia: ['', [Validators.required]],
       codCOR: ['', [Validators.required]],
@@ -308,6 +313,8 @@ setNrInregCerereDeAngajare() {
   }
 
   save() {
+    let asdf = new Date(this.candidatiGroup.get('dataContract').value )
+    let newDate = (moment(asdf)).format("DD/MM/YYYY");
     // this.auth.userCompany
     this.isLoading=true;
     // this.candidatiGroup.disable();
@@ -323,10 +330,11 @@ setNrInregCerereDeAngajare() {
       const data: ICandidatLocal = {
         uid: null,
         nrContract: this.candidatiGroup.get('nrContract').value,
-        dataContract: this.candidatiGroup.get('dataContract').value,
+        dataContract: convertDateToFormat(this.candidatiGroup.get('dataContract').value),
         numeSalariat: this.candidatiGroup.get('numeSalariat').value,
         prenumeSalariat: this.candidatiGroup.get('prenumeSalariat').value,
         marca: this.candidatiGroup.get('marca').value,
+        adresa: this.candidatiGroup.get('adresa').value, 
         tara: this.candidatiGroup.get('tara').value,
         judet: this.candidatiGroup.get('judet').value,
         localitate: this.candidatiGroup.get('localitate').value,
@@ -340,14 +348,14 @@ setNrInregCerereDeAngajare() {
         serieCI: this.candidatiGroup.get('serieCI').value,
         numarCI: this.candidatiGroup.get('numarCI').value,
         unitateaCareAEliberatCI: this.candidatiGroup.get('unitateaCareAEliberatCI').value,
-        dataEliberareCI: this.candidatiGroup.get('dataEliberareCI').value,
-        dataExpirareCI: this.candidatiGroup.get('dataExpirareCI').value,
+        dataEliberareCI: convertDateToFormat(this.candidatiGroup.get('dataEliberareCI').value),
+        dataExpirareCI: convertDateToFormat(this.candidatiGroup.get('dataExpirareCI').value),
         cnp: this.candidatiGroup.get('cnp').value,
-        dataAngajare: this.candidatiGroup.get('contractDeterminat').value?this.candidatiGroup.get('dataAngajare').value:'-',
-        dataAngajareNedeterminat:this.candidatiGroup.get('contractDeterminat').value?'-':this.candidatiGroup.get('dataAngajareNedeterminat').value,
+        dataAngajare: this.candidatiGroup.get('contractDeterminat').value? convertDateToFormat(this.candidatiGroup.get('dataAngajare').value):'-',
+        dataAngajareNedeterminat:this.candidatiGroup.get('contractDeterminat').value?'-':convertDateToFormat(this.candidatiGroup.get('dataAngajareNedeterminat').value),
         nrLuniSaptamaniAni: this.candidatiGroup.get('contractDeterminat').value?this.candidatiGroup.get('nrLuniSaptamaniAni').value:'-',
-        dataInceputCimDeterminat: this.candidatiGroup.get('contractDeterminat').value?this.candidatiGroup.get('dataInceputCimDeterminat').value:'-',
-        dataSfarsitCimDeterminat: this.candidatiGroup.get('contractDeterminat').value?this.candidatiGroup.get('dataSfarsitCimDeterminat').value:'-',
+        dataInceputCimDeterminat: this.candidatiGroup.get('contractDeterminat').value? convertDateToFormat(this.candidatiGroup.get('dataInceputCimDeterminat').value):'-',
+        dataSfarsitCimDeterminat: this.candidatiGroup.get('contractDeterminat').value?convertDateToFormat(this.candidatiGroup.get('dataSfarsitCimDeterminat').value):'-',
         departament: this.candidatiGroup.get('departament').value,
         locDeMunca: this.candidatiGroup.get('locDeMunca').value,
         functia: this.candidatiGroup.get('codCOR').value.nume,
@@ -452,8 +460,7 @@ setNrInregCerereDeAngajare() {
   }
   informatiiSalariatValid() {
     if(this.isValid('numeSalariat') && 
-       this.isValid('prenumeSalariat') && 
-       this.isValid('marca') &&
+       this.isValid('prenumeSalariat') &&        
        this.isValid('tara') &&
        this.isValid('judet') &&
        this.isValid('localitate') &&
@@ -480,8 +487,7 @@ setNrInregCerereDeAngajare() {
   }
   informatiiSalariatInvalid() {
     if(this.isInvalid('numeSalariat') || 
-        this.isInvalid('prenumeSalariat') ||
-        this.isInvalid('marca') ||
+        this.isInvalid('prenumeSalariat') ||        
         this.isInvalid('tara') ||
         this.isInvalid('judet') ||
         this.isInvalid('localitate') ||
@@ -592,7 +598,7 @@ setNrInregCerereDeAngajare() {
 
 
   loculSiFelulMunciiValid() {
-    if(this.isValid('departament') && 
+    if(
        this.isValid('locDeMunca') &&
        this.isValid('codCOR')  
        ){
@@ -602,7 +608,7 @@ setNrInregCerereDeAngajare() {
     }
   }
   loculSiFelulMunciiInvalid() {
-    if(this.isInvalid('departament') ||  
+    if(
        this.isInvalid('locDeMunca') ||
        this.isInvalid('codCOR') 
     ) {
@@ -778,4 +784,9 @@ function isCnpValid(value: number): boolean {
     return true;
   }
   return false;
+}
+
+function convertDateToFormat(selectedDate): string {  
+  let actualSelectedDate = new Date(selectedDate )
+  return (moment(actualSelectedDate)).format("DD/MM/YYYY");
 }
