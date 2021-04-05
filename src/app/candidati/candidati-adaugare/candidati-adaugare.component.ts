@@ -461,15 +461,16 @@ setNrInregCerereDeAngajare() {
   informatiiSalariatValid() {
     if(this.isValid('numeSalariat') && 
        this.isValid('prenumeSalariat') &&        
-       this.isValid('tara') &&
-       this.isValid('judet') &&
-       this.isValid('localitate') &&
-       this.isValid('strada') &&
-       this.isValid('numar') &&
-       this.isValid('bloc') &&
-       this.isValid('scara') &&
-       this.isValid('etaj') &&
-       this.isValid('apartament') &&
+       this.isValid('adresa') &&
+      //  this.isValid('tara') &&
+      //  this.isValid('judet') &&
+      //  this.isValid('localitate') &&
+      //  this.isValid('strada') &&
+      //  this.isValid('numar') &&
+      //  this.isValid('bloc') &&
+      //  this.isValid('scara') &&
+      //  this.isValid('etaj') &&
+      //  this.isValid('apartament') &&
        this.isValid('actIdentitate') &&
        this.isValid('serieCI') &&
        this.isValid('numarCI') &&
@@ -488,15 +489,16 @@ setNrInregCerereDeAngajare() {
   informatiiSalariatInvalid() {
     if(this.isInvalid('numeSalariat') || 
         this.isInvalid('prenumeSalariat') ||        
-        this.isInvalid('tara') ||
-        this.isInvalid('judet') ||
-        this.isInvalid('localitate') ||
-        this.isInvalid('strada') ||
-        this.isInvalid('numar') ||
-        this.isInvalid('bloc') ||
-        this.isInvalid('scara') ||
-        this.isInvalid('etaj') ||
-        this.isInvalid('apartament') ||
+        this.isInvalid('adresa') &&
+        // this.isInvalid('tara') ||
+        // this.isInvalid('judet') ||
+        // this.isInvalid('localitate') ||
+        // this.isInvalid('strada') ||
+        // this.isInvalid('numar') ||
+        // this.isInvalid('bloc') ||
+        // this.isInvalid('scara') ||
+        // this.isInvalid('etaj') ||
+        // this.isInvalid('apartament') ||
         this.isInvalid('actIdentitate') ||
         this.isInvalid('serieCI') ||
         this.isInvalid('numarCI') ||
