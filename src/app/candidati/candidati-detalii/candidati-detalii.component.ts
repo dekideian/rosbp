@@ -251,7 +251,7 @@ export class CandidatiDetaliiComponent implements OnInit {
             dataEliberareCI: getDate(this.salariat.dataEliberareCI),
             dataExpirareCI: getDate(this.salariat.dataExpirareCI),
             cnp: this.salariat.cnp,
-            dataAngajare: getDate(this.salariat.dataAngajare),
+            dataAngajare: this.salariat.dataAngajare=="-"?getDate(this.salariat.dataAngajareNedeterminat):getDate(this.salariat.dataAngajare),
             dataAngajareNedeterminat: getDate(this.salariat.dataAngajareNedeterminat),
             nrLuniSaptamaniAni: this.salariat.nrLuniSaptamaniAni,
             dataInceputCimDeterminat: getDate(this.salariat.dataInceputCimDeterminat),
