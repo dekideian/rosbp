@@ -228,7 +228,8 @@ import { Responsabil } from "../models/responsabil.class";
         this.firestore.firestore.doc(`users/${client.email}`).set({company:client.firmaUID}, {merge: true});
         return clientNou;
     }
-    async addFirma(firma: Partial<Firma>) {                
+    async addFirma(firma: Partial<Firma>) {     
+        console.log(`in serviciu avem `+JSON.stringify(firma) +' si '+firma.codCaen);
         let clientNou = await this.addConvertedDocument(`firme`, firma, firmeConverter);           
         return clientNou;
     }

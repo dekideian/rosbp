@@ -19,7 +19,7 @@ export class FirmeDetaliiComponent implements OnInit {
   nr: string;
   CUI: string;
   dataPlatiiSalariului: string;
-  codCAEN: string;
+  codCaen: string;
   rep: string;
   telefon: string;
   errorMessage: string;
@@ -47,7 +47,7 @@ export class FirmeDetaliiComponent implements OnInit {
       this.rep = params.rep;
       this.telefon = params.telefon;
       this.dataPlatiiSalariului = params.dataPlatiiSalariului;
-      this.codCAEN = params.codCAEN;
+      this.codCaen = params.codCaen;
   });  
     this.auth.callFunction();
     this.filesService.getTemplates(this.currentId).subscribe({

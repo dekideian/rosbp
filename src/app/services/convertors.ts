@@ -65,7 +65,7 @@ export const utilizatoriConverter = {
             rep: firma.rep,
             sediu: firma.sediu,
             telefon: firma.telefon,
-            codCAEN: firma.codCAEN,
+            codCaen: firma.codCaen,
             dataPlatiiSalariului: firma.dataPlatiiSalariului
             };
     },
@@ -79,7 +79,7 @@ export const utilizatoriConverter = {
             nr: data.nr, 
             nume: data.nume, 
             regComert: data.regComert,
-            codCAEN: data.codCAEN,
+            codCaen: data.codCaen,
             dataPlatiiSalariului: data.dataPlatiiSalariului,
             rep: data.rep,
             sediu: data.sediu,

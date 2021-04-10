@@ -8,6 +8,8 @@ import { FileDetails, TemplateDetails } from 'src/app/shared/upload-file/uploade
 import { AuthService } from 'src/app/services/auth.service';
 import { TemplateHandler } from 'easy-template-x';
 import * as fileSaver from 'file-saver';
+import { FirmeService } from 'src/app/firme/firme.service';
+import { Firma } from 'src/app/firme/firma.model';
 
 @Component({
   selector: 'app-candidati-detalii',
@@ -16,6 +18,7 @@ import * as fileSaver from 'file-saver';
 })
 export class CandidatiDetaliiComponent implements OnInit {
   currentId: string;
+  firma: Firma;
   salariat: Candidat;
   files: FileDetails[];
   errorMessage: string;
@@ -30,14 +33,21 @@ export class CandidatiDetaliiComponent implements OnInit {
     private route: ActivatedRoute,
     private router: Router,
     private candidatiService: SalariatiService,
-    private filesService: FilesService
+    private filesService: FilesService, 
+    private firmeService: FirmeService
     ) { }
 
   ngOnInit(): void {
     this.currentId = this.route.snapshot.paramMap.get('id');    
     this.candidatiService.getCandidat(this.currentId).subscribe({
       next: candidat => {
-
+        
+        this.firmeService.getFirma(candidat?.codFirma).subscribe(
+           firma=>{
+              this.firma = firma;
+           },
+           err=>console.log('Eroare la returnarea firmei '+err)
+        );
         this.salariat = candidat;        
         this.filesService.getTemplates(candidat?.codFirma).subscribe({
           next: files => {            
@@ -169,12 +179,14 @@ export class CandidatiDetaliiComponent implements OnInit {
             ticheteDeMasa: this.salariat.ticheteDeMasa,
             studiiSCED: this.salariat.studiiSCED,
 
-            numeFirma: this.salariat.numeFirma,
-            sediuFirma: this.salariat.sediuFirma,
-            regComertFirma: this.salariat.regComertFirma,
-            nrFirma: this.salariat.nrFirma,
-            cuiFirma: this.salariat.cuiFirma,
-            repFirma: this.salariat.repFirma,
+            numeFirma: this.firma.nume, 
+            sediuFirma: this.firma.sediu,
+            regComertFirma: this.firma.regComert,
+            nrFirma: this.firma.nr,
+            cuiFirma: this.firma.CUI,
+            repFirma: this.firma.rep,
+            codCaen: this.firma.codCaen,
+            dataPlatiiSalariului: this.firma.dataPlatiiSalariului,
             telefonFirma: this.salariat.telefonFirma
           }]
       };
@@ -295,12 +307,14 @@ export class CandidatiDetaliiComponent implements OnInit {
             cuiLocDeMunca: this.salariat.cuiLocDeMunca,
             ticheteDeMasa: this.salariat.ticheteDeMasa,
             studiiSCED: this.salariat.studiiSCED,
-            numeFirma: this.salariat.numeFirma,
-            sediuFirma: this.salariat.sediuFirma,
-            regComertFirma: this.salariat.regComertFirma,
-            nrFirma: this.salariat.nrFirma,
-            cuiFirma: this.salariat.cuiFirma,
-            repFirma: this.salariat.repFirma,
+            numeFirma: this.firma.nume, 
+            sediuFirma: this.firma.sediu,
+            regComertFirma: this.firma.regComert,
+            nrFirma: this.firma.nr,
+            cuiFirma: this.firma.CUI,
+            repFirma: this.firma.rep,
+            codCaen: this.firma.codCaen,
+            dataPlatiiSalariului: this.firma.dataPlatiiSalariului,
             telefonFirma: this.salariat.telefonFirma
           }]
       };      

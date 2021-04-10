@@ -29,7 +29,7 @@ export class CandidatiAdaugareComponent  implements OnInit {
   candidat: ICandidatLocal;
   atributCandidat;
   codFirma: string;
-  numeFirma: string;
+  numeFirma: string;  
   sediuFirma: string;
   regComertFirma: string;
   nrFirma: string;
@@ -163,7 +163,7 @@ export class CandidatiAdaugareComponent  implements OnInit {
         this.regComertFirma = firma.regComert;
         this.nrFirma = firma.nr;
         this.cuiFirma = firma.CUI;
-        this.repFirma = firma.rep;
+        this.repFirma = firma.rep;        
         this.telefonFirma = firma.telefon;
       },
       error: err => {

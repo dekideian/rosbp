@@ -36,7 +36,7 @@ export class FirmeAdaugareComponent implements OnInit {
       cui:  ['', [Validators.required, Validators.minLength(2)]],
       rep:  ['', [Validators.required, Validators.minLength(2)]],
       telefon:  ['', [Validators.required, Validators.minLength(2)]], 
-      codCAEN:  ['', [Validators.required, Validators.minLength(1)]], 
+      codCaen:  ['', [Validators.required, Validators.minLength(1)]], 
       dataPlatiiSalariului:  ['', [Validators.required, Validators.minLength(1)]], 
       // codFirma:  ['', [Validators.required, Validators.minLength(2)]],
       // angajatRosEmail: ['', [Validators.required, Validators.email]],
@@ -58,7 +58,7 @@ export class FirmeAdaugareComponent implements OnInit {
       rep: this.firmeGroup.get('rep').value,
       sediu: this.firmeGroup.get('sediu').value,
       telefon: this.firmeGroup.get('telefon').value,
-      codCAEN: this.firmeGroup.get('codCAEN').value,
+      codCaen: this.firmeGroup.get('codCaen').value,
       dataPlatiiSalariului: this.firmeGroup.get('dataPlatiiSalariului').value,
     });
     this.firestoreService.addFirma(newFirma);    

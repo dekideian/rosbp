@@ -60,6 +60,10 @@ export class FirmeService {
     // throw new Error('Method not implemented.');
   }
 
+  actualizeazaFirma(firmaId: string, data: IFirma) {
+    this.afs.collection(`firme`).doc(`${firmaId}`).set(Object.assign({}, data));
+  }
+
 
   // getFirmeWhereResponsible(email: string)
 

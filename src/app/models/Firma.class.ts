@@ -8,7 +8,7 @@ export class Firma {
     rep: string;
     sediu: string;
     telefon: string;
-    codCAEN: string;
+    codCaen: string;
     dataPlatiiSalariului: string;
 
     constructor(obj?: Partial<Firma>) {    

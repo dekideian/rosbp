@@ -9,7 +9,4 @@ export interface IFirma {
     telefon: string;
     dataPlatiiSalariului; string;
     codCaen: string;
-    // codFirma: string;
-    // angajatFirma: string;
-    // angajatRos: string;
 }

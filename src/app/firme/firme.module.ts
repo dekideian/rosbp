@@ -17,11 +17,12 @@ import { AddResponsibleComponent } from './add-responsible/add-responsible.compo
 import { AddClientComponent } from './add-client/add-client.component';
 import { UploadFileComponent } from '../shared/upload-file/upload-file.component';
 import { AuthFirmeGuardService } from './guards/auth-firme-guard.service';
+import { FirmeEditareComponent } from './firme-editare/firme-editare.component';
 
 const routes: Routes = [
   { path: 'firme', canActivate: [AuthFirmeGuardService], component: FirmeListComponent },
   { path: 'firme/adauga', canActivate: [AuthFirmeGuardService], component: FirmeAdaugareComponent },
-  // { path: 'firme/:id', canActivate: [FirmeDetailsGuard], component: FirmeDetaliiComponent }
+  { path: 'firme/editare/:id', canActivate: [AuthFirmeGuardService], component: FirmeEditareComponent },  
   { path: 'firme/:id', canActivate: [AuthFirmeGuardService], component: FirmeDetaliiComponent }
 ]
 
@@ -31,7 +32,8 @@ const routes: Routes = [
     FirmeDetaliiComponent,
     FirmeAdaugareComponent,
     AddResponsibleComponent,
-    AddClientComponent],
+    AddClientComponent,
+    FirmeEditareComponent],
   imports: [
     SharedModule,
     DemoMaterialModule,
