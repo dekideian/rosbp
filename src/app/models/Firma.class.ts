@@ -8,6 +8,8 @@ export class Firma {
     rep: string;
     sediu: string;
     telefon: string;
+    codCAEN: string;
+    dataPlatiiSalariului: string;
 
     constructor(obj?: Partial<Firma>) {    
         Object.assign(this, obj);

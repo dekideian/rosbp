@@ -162,7 +162,53 @@
                                         Va rugam introduceti telefonul de contact al firmei client
                                     </span>
                                     <span *ngIf="firmeGroup.get('telefon').errors?.minlength">
-                                        Numele firmei client are lungimea minima 2 caractere
+                                        Telefonul are lungimea minima 2 caractere
+                                    </span>
+                                </span>  
+                        </mat-form-field>
+                    </div>
+                </div>
+                <div class="form-group row mb-12">
+                    <div class="col-md-4">
+                        <mat-form-field class="atribut-candidat">
+                            <mat-label>Cod CAEN</mat-label>
+                            <input id="telefon" 
+                                type = "text" 
+                                matInput 
+                                formControlName="codCAEN"
+                                [ngClass]="{'is-invalid': (firmeGroup.get('codCAEN').touched ||
+                                firmeGroup.get('codCAEN').dirty) &&
+                                !firmeGroup.get('codCAEN').valid }"
+                                >
+                                <span class="invalid-feedback">
+                                    <span *ngIf="firmeGroup.get('codCAEN').errors?.required">
+                                        Va rugam introduceti codul CAEN  al firmei client
+                                    </span>
+                                    <span *ngIf="firmeGroup.get('codCAEN').errors?.minlength">
+                                        Codul CAEN are lungimea minima de 1 caracter
+                                    </span>
+                                </span>  
+                        </mat-form-field>
+                    </div>
+                </div>
+                <div class="form-group row mb-12">
+                    <div class="col-md-4">
+                        <mat-form-field class="atribut-candidat">
+                            <mat-label>Data platii salariului</mat-label>
+                            <input id="telefon" 
+                                type = "text" 
+                                matInput 
+                                formControlName="dataPlatiiSalariului"
+                                [ngClass]="{'is-invalid': (firmeGroup.get('dataPlatiiSalariului').touched ||
+                                firmeGroup.get('dataPlatiiSalariului').dirty) &&
+                                !firmeGroup.get('dataPlatiiSalariului').valid }"
+                                >
+                                <span class="invalid-feedback">
+                                    <span *ngIf="firmeGroup.get('dataPlatiiSalariului').errors?.required">
+                                        Va rugam introduceti data platii salariului 
+                                    </span>
+                                    <span *ngIf="firmeGroup.get('dataPlatiiSalariului').errors?.minlength">
+                                        Data platii salariului are lungimea minima de 1 caracter
                                     </span>
                                 </span>  
                         </mat-form-field>

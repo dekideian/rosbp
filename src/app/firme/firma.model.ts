@@ -9,7 +9,8 @@ export class Firma implements IFirma {
     CUI: string;
     rep: string;
     telefon: string;
-
+    dataPlatiiSalariului; string;
+    codCaen: string;
     codFirma: string;
     angajatFirma: string;
     angajatRos: string;

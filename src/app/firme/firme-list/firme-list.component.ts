@@ -60,4 +60,15 @@ export class FirmeListComponent implements OnInit {
       });      
     }
   }
+
+  edit(uidFirma: string) {
+    // const result = confirm("Esti sigur ca vrei sa stergi ? ");
+    // if (result) {
+    //   //this.firmeService.remove(uidFirma);
+    //   this.firestoreService.removeFirma(uidFirma);
+    //   this.firme.forEach( (item, index) => {
+    //     if(item.id === uidFirma) this.firme.splice(index,1);
+    //   });      
+    // }
+  }
 }

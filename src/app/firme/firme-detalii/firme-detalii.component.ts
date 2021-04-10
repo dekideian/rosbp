@@ -18,6 +18,8 @@ export class FirmeDetaliiComponent implements OnInit {
   regComert: string;
   nr: string;
   CUI: string;
+  dataPlatiiSalariului: string;
+  codCAEN: string;
   rep: string;
   telefon: string;
   errorMessage: string;
@@ -44,8 +46,9 @@ export class FirmeDetaliiComponent implements OnInit {
       this.CUI = params.CUI;
       this.rep = params.rep;
       this.telefon = params.telefon;
-  });
-  // console.log('acu chemam');
+      this.dataPlatiiSalariului = params.dataPlatiiSalariului;
+      this.codCAEN = params.codCAEN;
+  });  
     this.auth.callFunction();
     this.filesService.getTemplates(this.currentId).subscribe({
       next: templates => {
@@ -80,8 +83,7 @@ export class FirmeDetaliiComponent implements OnInit {
   }
 
   newFileUploaded(fileDetails: TemplateDetails) {
-    fileDetails.data = convertDateToFormat();
-    // new Date().toISOString().slice(0, 10);
+    fileDetails.data = convertDateToFormat();    
 
     fileDetails.autor = this.auth.userEmail + ' ';
     fileDetails.codFirma  = this.currentId;

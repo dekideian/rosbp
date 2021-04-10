@@ -35,7 +35,9 @@ export class FirmeAdaugareComponent implements OnInit {
       nr:  ['', [Validators.required, Validators.minLength(2)]],
       cui:  ['', [Validators.required, Validators.minLength(2)]],
       rep:  ['', [Validators.required, Validators.minLength(2)]],
-      telefon:  ['', [Validators.required, Validators.minLength(2)]]
+      telefon:  ['', [Validators.required, Validators.minLength(2)]], 
+      codCAEN:  ['', [Validators.required, Validators.minLength(1)]], 
+      dataPlatiiSalariului:  ['', [Validators.required, Validators.minLength(1)]], 
       // codFirma:  ['', [Validators.required, Validators.minLength(2)]],
       // angajatRosEmail: ['', [Validators.required, Validators.email]],
       // angajatFirmaExtEmail: ['', [Validators.required, Validators.email]],
@@ -55,7 +57,9 @@ export class FirmeAdaugareComponent implements OnInit {
       regComert: this.firmeGroup.get('regComert').value,
       rep: this.firmeGroup.get('rep').value,
       sediu: this.firmeGroup.get('sediu').value,
-      telefon: this.firmeGroup.get('telefon').value
+      telefon: this.firmeGroup.get('telefon').value,
+      codCAEN: this.firmeGroup.get('codCAEN').value,
+      dataPlatiiSalariului: this.firmeGroup.get('dataPlatiiSalariului').value,
     });
     this.firestoreService.addFirma(newFirma);    
     this.router.navigate(['/firme']);
