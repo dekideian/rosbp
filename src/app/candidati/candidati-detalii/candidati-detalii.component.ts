@@ -99,7 +99,7 @@ export class CandidatiDetaliiComponent implements OnInit {
     // if(this.salariat.artContractDeterminat) 
     // { console.log('should be visible for true!');}
     // console.log('Art contract determinat -'+this.salariat.artContractDeterminat+'- and isTrueSet '+isTrueSet);
-    if(this.salariat.dataAngajareNedeterminat !== '-') {
+    if(this.salariat?.dataAngajareNedeterminat !== '-') {
       art = '';
     } else {
       if(this.salariat.artContractDeterminat) {
@@ -481,6 +481,7 @@ function getMonthsBetween(date1,date2,roundUpFractionalMonths)
 function getDate(dateAsString) {
  
   dateAsString = dateAsString.replaceAll("/", ".");
+  dateAsString = dateAsString.replaceAll("-", "");
   return dateAsString;
 }
 
