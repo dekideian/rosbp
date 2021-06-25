@@ -697,7 +697,7 @@ function convertDateToFormat(selectedDate): string {
 }
 
 function convertDate(savedDate): Date {
-  var dateMomentObject = moment(savedDate, "DD/MM/YYYY"); // 1st argument - string, 2nd argument - format
+  var dateMomentObject = moment(savedDate, "DD/MM/YYYY"); // 1st argument - string, 2nd argument - format  
   return dateMomentObject.toDate();
 }
 

@@ -185,9 +185,17 @@ export class CandidatiListComponent implements OnInit {
     return candidati;
   }
 
-  delete(idCandidat: string) {
-    console.log('sterge fraier '+idCandidat)
-    this.candidatiService.remove(idCandidat);
+  delete(idFirma: string, idCandidat: string) {
+    console.log('sterge angajat .. '+idCandidat +' din firma '+idFirma);
+    // this.candidatiService.remove(idCandidat);
+
+
+    const result = confirm("Esti sigur ca vrei sa stergi ? ");
+    if (result) {
+
+      this.candidatiService.remove(idCandidat);
+      this.ngOnInit();   
+    }
   }
 
   editare(idCandidat: string) {

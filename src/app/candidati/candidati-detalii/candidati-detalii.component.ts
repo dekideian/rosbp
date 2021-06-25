@@ -219,7 +219,7 @@ export class CandidatiDetaliiComponent implements OnInit {
       // console.log('avem nedeterminat');
       tc = 'Nedeterminata'
       anexaTipContract = 'Nedeterminata'
-      restPerioada = this.salariat.dataAngajareNedeterminat;
+      restPerioada = getDate(this.salariat.dataAngajareNedeterminat);
     } else {
       let dic = new Date(this.salariat.dataInceputCimDeterminat);
       let dfc = new Date(this.salariat.dataSfarsitCimDeterminat);
@@ -231,9 +231,8 @@ export class CandidatiDetaliiComponent implements OnInit {
       // console.log('Durata muncii2 '+months);
       tc = 'Determinata'
       anexaTipContract = 'Determinata '+months+ ' luni'
-      restPerioada = this.salariat.dataInceputCimDeterminat+' ('+months+' luni, pana la data de '+this.salariat.dataSfarsitCimDeterminat+')';
+      restPerioada = getDate(this.salariat.dataInceputCimDeterminat)+' ('+months+' luni, pana la data de '+getDate(this.salariat.dataSfarsitCimDeterminat)+')';
     }       
-
     const data = {
       posts: [
           {
@@ -480,17 +479,8 @@ function getMonthsBetween(date1,date2,roundUpFractionalMonths)
 };
 
 function getDate(dateAsString) {
+ 
+  dateAsString = dateAsString.replaceAll("/", ".");
   return dateAsString;
-  // console.log('Date '+dateAsString);
-  // if(dateAsString && !isNaN(new Date(dateAsString).getTime())) {
-  //   let today = new Date(dateAsString);     
-  //   var dd = String(today.getDate()).padStart(2, '0');    
-  //   var mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
-  //   var yyyy = today.getFullYear();
-    
-  //   return mm + '/' + dd + '/' + yyyy;
-  // } else {
-  //   return '-';
-  // }
 }
 

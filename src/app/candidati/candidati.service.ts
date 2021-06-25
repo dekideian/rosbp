@@ -86,6 +86,7 @@ export class SalariatiService {
   }
 
   remove(salariatId: string) {
+    //todo sterge si potentiale documente pt acest candidat. 
     this.afs.collection(`candidati`).doc(`${salariatId}`).delete();    
   }
 }
