@@ -24,6 +24,6 @@ jobs:
       - name: Firebase Deploy
         uses: w9jds/firebase-action@master
         with: 
-          args: deploy
+          args: deploy --except functions
         env: 
           FIREBASE_TOKEN: ${{ secrets.FIREBASE_TOKEN }}
