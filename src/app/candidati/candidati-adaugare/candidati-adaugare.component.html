@@ -1023,7 +1023,7 @@
                             <div class="card-body">
                                 <!-- Rand 1 -->
                                 <div class="form-group row mb-12">
-                                    <div class="col-md-2">
+                                    <div class="col-md-3">
                                         <mat-form-field class="atribut-candidat">
                                             <mat-label>{{atributCandidat.nrInregCerereDeAngajare}}</mat-label>
                                         <input id="nrInregCerereDeAngajare" type = "number" 
@@ -1041,7 +1041,7 @@
                                         </span>
                                         </mat-form-field>
                                     </div> 
-                                    <div class="col-md-2">
+                                    <div class="col-md-3">
                                         <mat-form-field class="atribut-candidat">
                                             <mat-label>{{atributCandidat.nrInregDeclaratieFunctieDeBaza}}</mat-label>
                                         <input id="nrInregDeclaratieFunctieDeBaza" type = "text" 
@@ -1058,7 +1058,7 @@
                                         </span>
                                         </mat-form-field>
                                     </div> 
-                                    <div class="col-md-2">
+                                    <div class="col-md-3">
                                         <mat-form-field class="atribut-candidat">
                                             <mat-label>{{atributCandidat.nrInregDeclaratiePersoaneInIntretinere}}</mat-label>
                                         <input id="nrInregDeclaratiePersoaneInIntretinere" type = "text" 
@@ -1075,7 +1075,7 @@
                                         </span>
                                         </mat-form-field>
                                     </div> 
-                                    <div class="col-md-2">
+                                    <div class="col-md-3">
                                         <mat-form-field class="atribut-candidat">
                                             <mat-label>{{atributCandidat.nrInregDeclaratieCasaDeSanatate}}</mat-label>
                                         <input id="nrInregDeclaratieCasaDeSanatate" type = "text" 
@@ -1092,7 +1092,10 @@
                                         </span>
                                         </mat-form-field>
                                     </div> 
-                                    <div class="col-md-2">
+                                </div>        
+                                <div class="form-group row mb-12">
+
+                                    <div class="col-md-3">
                                         <mat-form-field class="atribut-candidat">
                                             <mat-label>{{atributCandidat.nrInregDeclLuareLaCunostintaROI}}</mat-label>
                                         <input id="nrInregDeclLuareLaCunostintaROI" type = "text" 
@@ -1109,7 +1112,7 @@
                                         </span>
                                         </mat-form-field>
                                     </div> 
-                                    <div class="col-md-2">
+                                    <div class="col-md-3">
                                         <mat-form-field class="atribut-candidat">
                                             <mat-label>{{atributCandidat.nrInregPlanificareaZilelorDeCO}}</mat-label>
                                         <input id="nrInregPlanificareaZilelorDeCO" type = "text" 
@@ -1126,9 +1129,7 @@
                                         </span>
                                         </mat-form-field>
                                     </div>    
-                                </div> 
-                                <div class = "form-group row mb-12">
-                                    <div class="col-md-2">
+                                    <div class="col-md-3">
                                         <mat-form-field class="atribut-candidat">
                                             <mat-label>{{atributCandidat.nrZileCOConveniteInAnulCurent}}</mat-label>
                                         <input id="nrZileCOConveniteInAnulCurent" type = "text" 
@@ -1145,7 +1146,63 @@
                                         </span>
                                         </mat-form-field>
                                     </div> 
-                                </div>         
+                                </div> 
+                                <div class = "form-group row mb-12">                                    
+                                    <div class="col-md-3">
+                                        <mat-form-field class="atribut-candidat">
+                                            <mat-label>{{atributCandidat.nrInregLocuriVacante}}</mat-label>
+                                        <input id="nrInregLocuriVacante" type = "text" 
+                                            matInput
+                                            formControlName='nrInregLocuriVacante'
+                                            [ngClass]="{'is-invalid': (candidatiGroup.get('nrInregLocuriVacante').touched ||
+                                                            candidatiGroup.get('nrInregLocuriVacante').dirty) &&
+                                                            !candidatiGroup.get('nrInregLocuriVacante').valid }"
+                                        />
+                                        <span class="invalid-feedback">
+                                            <span *ngIf="candidatiGroup.get('nrInregLocuriVacante').errors?.required">
+                                                Va rugam introduceti {{atributCandidat.nrInregLocuriVacante}}
+                                            </span>
+                                        </span>
+                                        </mat-form-field>
+                                    </div> 
+                                    <div class="col-md-3">
+                                        <mat-form-field class="atribut-candidat">
+                                            <mat-label>{{atributCandidat.nrInregOcupareLocuriVacante}}</mat-label>
+                                        <input id="nrInregOcupareLocuriVacante" type = "text" 
+                                            matInput
+                                            formControlName='nrInregOcupareLocuriVacante'
+                                            [ngClass]="{'is-invalid': (candidatiGroup.get('nrInregOcupareLocuriVacante').touched ||
+                                                            candidatiGroup.get('nrInregOcupareLocuriVacante').dirty) &&
+                                                            !candidatiGroup.get('nrInregOcupareLocuriVacante').valid }"
+                                        />
+                                        <span class="invalid-feedback">
+                                            <span *ngIf="candidatiGroup.get('nrInregOcupareLocuriVacante').errors?.required">
+                                                Va rugam introduceti {{atributCandidat.nrInregOcupareLocuriVacante}}
+                                            </span>
+                                        </span>
+                                        </mat-form-field>
+                                    </div> 
+                                    <div class="col-md-3">
+                                        <mat-form-field class="atribut-candidat">
+                                            <mat-label>{{atributCandidat.nrInregInstiintareIncadrare}}</mat-label>
+                                        <input id="nrInregInstiintareIncadrare" type = "text" 
+                                            matInput
+                                            formControlName='nrInregInstiintareIncadrare'
+                                            [ngClass]="{'is-invalid': (candidatiGroup.get('nrInregInstiintareIncadrare').touched ||
+                                                            candidatiGroup.get('nrInregInstiintareIncadrare').dirty) &&
+                                                            !candidatiGroup.get('nrInregInstiintareIncadrare').valid }"
+                                        />
+                                        <span class="invalid-feedback">
+                                            <span *ngIf="candidatiGroup.get('nrInregInstiintareIncadrare').errors?.required">
+                                                Va rugam introduceti {{atributCandidat.nrInregInstiintareIncadrare}}
+                                            </span>
+                                        </span>
+                                        </mat-form-field>
+                                    </div> 
+                                </div>   
+                                
+                                
+
                             </div>
                         </div>                        
 <!-- diverse -->

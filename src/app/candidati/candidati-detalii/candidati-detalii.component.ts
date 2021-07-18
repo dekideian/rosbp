@@ -314,7 +314,10 @@ export class CandidatiDetaliiComponent implements OnInit {
             repFirma: this.firma.rep,
             codCaen: this.firma.codCaen,
             dataPlatiiSalariului: this.firma.dataPlatiiSalariului,
-            telefonFirma: this.salariat.telefonFirma
+            telefonFirma: this.salariat.telefonFirma,
+            nr1: this.salariat.nrInregLocuriVacante,
+            nr2: this.salariat.nrInregOcupareLocuriVacante,
+            nr3: this.salariat.nrInregInstiintareIncadrare
           }]
       };      
     const response = await fetch(this.anexeDetails.documentUrl);    

@@ -145,6 +145,9 @@ export interface ICandidatLocal {
     cuiFirma: string;
     repFirma: string;
     telefonFirma: string;
+    nrInregLocuriVacante: string;
+    nrInregOcupareLocuriVacante: string;
+    nrInregInstiintareIncadrare: string;    
 }
 
 export class Candidat implements ICandidatLocal {
@@ -223,6 +226,9 @@ export class Candidat implements ICandidatLocal {
     cuiFirma: string;
     repFirma: string;
     telefonFirma: string;
+    nrInregLocuriVacante: string;
+    nrInregOcupareLocuriVacante: string;
+    nrInregInstiintareIncadrare: string;
 }
 
 export const CANDIDAT_ATRIBUT = {
@@ -295,6 +301,9 @@ export const CANDIDAT_ATRIBUT = {
     cuiLocDeMunca: 'CUI loc de muncă',
     ticheteDeMasa: 'Tichete de masă',
     studiiSCED: 'Studii ISCED (SAGA)',
+    nrInregLocuriVacante: 'Nr. Inreg Locuri de munca vacante',
+    nrInregOcupareLocuriVacante: 'Nr. Inreg Ocupare locuri de munca vacante',
+    nrInregInstiintareIncadrare: 'Nr. Inreg - Instiintare incadrare in munca',
 }
 export class FuncResp {
     data: number

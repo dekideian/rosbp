@@ -254,7 +254,10 @@ export class CandidatiAdaugareComponent  implements OnInit {
       cuiAngajator: ['', [Validators.required]],
       cuiLocDeMunca: ['', [Validators.required]],
       ticheteDeMasa: ['', []],
-      studiiSCED: ['', [Validators.required]]
+      studiiSCED: ['', [Validators.required]],
+      nrInregLocuriVacante: ['', [Validators.required]],
+      nrInregOcupareLocuriVacante: ['', [Validators.required]],
+      nrInregInstiintareIncadrare: ['', [Validators.required]],            
     });
     
     this.disableNrContractSiAltele();
@@ -406,6 +409,9 @@ setNrInregCerereDeAngajare() {
         cuiFirma: this.cuiFirma,
         repFirma: this.repFirma,
         telefonFirma: this.telefonFirma,
+        nrInregLocuriVacante: this.candidatiGroup.get('nrInregLocuriVacante').value,
+        nrInregOcupareLocuriVacante: this.candidatiGroup.get('nrInregOcupareLocuriVacante').value,
+        nrInregInstiintareIncadrare: this.candidatiGroup.get('nrInregInstiintareIncadrare').value,        
       };
       this.salariatiService.addCandidat(data);
       // console.log('Salariat ', JSON.stringify(data));
@@ -666,7 +672,10 @@ setNrInregCerereDeAngajare() {
        this.isValid('nrInregDeclaratieCasaDeSanatate') &&
        this.isValid('nrInregDeclLuareLaCunostintaROI') &&
        this.isValid('nrInregPlanificareaZilelorDeCO') &&
-       this.isValid('nrZileCOConveniteInAnulCurent') 
+       this.isValid('nrZileCOConveniteInAnulCurent') &&
+       this.isValid('nrInregLocuriVacante') &&
+       this.isValid('nrInregOcupareLocuriVacante') &&
+       this.isValid('nrInregInstiintareIncadrare')        
        ){
       return true;
     } else {
@@ -680,7 +689,10 @@ setNrInregCerereDeAngajare() {
        this.isInvalid('nrInregDeclaratieCasaDeSanatate') ||
        this.isInvalid('nrInregDeclLuareLaCunostintaROI') ||
        this.isInvalid('nrInregPlanificareaZilelorDeCO') ||
-       this.isInvalid('nrZileCOConveniteInAnulCurent') 
+       this.isInvalid('nrZileCOConveniteInAnulCurent') || 
+       this.isInvalid('nrInregLocuriVacante') ||
+       this.isInvalid('nrInregOcupareLocuriVacante') ||
+       this.isInvalid('nrInregInstiintareIncadrare')        
     ) {
       return true;
     } else {

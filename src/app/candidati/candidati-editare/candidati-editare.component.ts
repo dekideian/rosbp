@@ -174,7 +174,10 @@ export class CandidatiEditareComponent implements OnInit {
           cuiAngajator: [this.salariat.cuiAngajator, [Validators.required]],
           cuiLocDeMunca: [this.salariat.cuiLocDeMunca, [Validators.required]],
           ticheteDeMasa: [this.salariat.ticheteDeMasa==='da'? 'true':'false', []],
-          studiiSCED: [this.salariat.studiiSCED, [Validators.required]]
+          studiiSCED: [this.salariat.studiiSCED, [Validators.required]],
+          nrInregLocuriVacante: [this.salariat.nrInregLocuriVacante, [Validators.required]],
+          nrInregOcupareLocuriVacante: [this.salariat.nrInregOcupareLocuriVacante, [Validators.required]],
+          nrInregInstiintareIncadrare: [this.salariat.nrInregInstiintareIncadrare, [Validators.required]],
         });
         this.defaultCheckboxValue = this.salariat.platitorDeImpozit;
         this.defaultFunctiaDeBazaValue = this.salariat.functiaDeBaza;
@@ -468,7 +471,10 @@ export class CandidatiEditareComponent implements OnInit {
   nrOrdineValid() {
 
     if (
-      this.isValid('nrZileCOConveniteInAnulCurent')
+      this.isValid('nrZileCOConveniteInAnulCurent') &&
+      this.isValid('nrInregLocuriVacante') &&
+      this.isValid('nrInregOcupareLocuriVacante') &&
+      this.isValid('nrInregInstiintareIncadrare') 
     ) {
       return true;
     } else {
@@ -477,7 +483,10 @@ export class CandidatiEditareComponent implements OnInit {
   }
   nrOrdineInvalid() {
     if (
-      this.isInvalid('nrZileCOConveniteInAnulCurent')
+      this.isInvalid('nrZileCOConveniteInAnulCurent') ||
+      this.isInvalid('nrInregLocuriVacante') ||
+      this.isInvalid('nrInregOcupareLocuriVacante') ||
+      this.isInvalid('nrInregInstiintareIncadrare')       
     ) {
       return true;
     } else {
@@ -646,7 +655,10 @@ export class CandidatiEditareComponent implements OnInit {
       nrFirma: this.salariat.nrFirma,
       cuiFirma: this.salariat.cuiFirma,
       repFirma: this.salariat.repFirma,
-      telefonFirma: this.salariat.telefonFirma
+      telefonFirma: this.salariat.telefonFirma,
+      nrInregLocuriVacante: this.candidatiGroup.get('nrInregLocuriVacante').value,
+      nrInregOcupareLocuriVacante: this.candidatiGroup.get('nrInregOcupareLocuriVacante').value,
+      nrInregInstiintareIncadrare: this.candidatiGroup.get('nrInregInstiintareIncadrare').value      
     };
     this.salariatiService.actualizeazaCandidat(this.salariatId, data);
     this.isLoading = false;
